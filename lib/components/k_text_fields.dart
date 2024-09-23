@@ -187,6 +187,67 @@ class BorderlessTextFiled extends StatelessWidget {
 }
 
 
+class CustomTextField extends StatelessWidget {
+  final BuildContext context;
+  final String? prefixText;
+  final String? suffixText;
+  final TextEditingController? controller;
+
+  const CustomTextField({super.key,
+    required this.context,
+    this.prefixText,
+    this.suffixText,
+    this.controller,
+    });
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      controller: controller,
+      cursorColor: AppColor.greyColor,
+      maxLines: 1,
+      style: primaryTextStyle(color: AppColor.blackColor, fontSize: 18.0,fontWeight: FontWeight.w400),
+      keyboardType: TextInputType.number,
+      textInputAction: TextInputAction.next,
+      onTapOutside: (event) {context.dismissKeyBoard();},
+      textDirection: TextDirection.rtl,
+      decoration: InputDecoration(
+        prefixIcon: Padding(
+          padding: const EdgeInsets.only(left: 8.0),
+          child: Text(prefixText!,style: primaryTextStyle(fontWeight: FontWeight.w500,fontSize: 16,color: AppColor.greyColor),),
+        ),
+        suffixIcon: Padding(
+          padding: const EdgeInsets.only(right: 8.0),
+          child: Text(suffixText!,style: primaryTextStyle(fontWeight: FontWeight.w500,fontSize: 16,color: AppColor.greyColor),),
+        ),
+        prefixIconConstraints: const BoxConstraints(maxHeight: 25.0),
+        suffixIconConstraints: const BoxConstraints(maxHeight: 25.0,),
+        filled: true,
+        isDense: true,
+
+        fillColor: AppColor.lightGreyColor,
+        enabledBorder:  OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide:  const BorderSide(color: Colors.transparent, width: 1.0),
+        ),
+        focusedBorder:  OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: const  BorderSide(color: Colors.transparent, width: 1.0),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide:  const BorderSide(color: Colors.red, width: 1.0),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide:  const BorderSide(color: Colors.red, width: 1.0),
+        ),
+      ),
+    );
+  }
+}
+
+
 class PinCodeFields extends StatefulWidget {
   final AuthController controller;
   PinCodeFields({Key? key, required this.controller}) : super(key: key);

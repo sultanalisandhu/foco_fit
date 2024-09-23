@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:focofit/screens/auth_ui/onboarding_screen.dart';
 import 'package:focofit/screens/auth_ui/splash_screen.dart';
 import 'package:focofit/screens/home_ui/home_screen.dart';
 import 'package:focofit/screens/home_ui/slider.dart';
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: AppColor.primaryColor),
         useMaterial3: true,
       ),
-      home: CustomBottomBar(),
+      home: KOnboardingScreen(),
     );
   }
 }

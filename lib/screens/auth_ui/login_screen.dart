@@ -6,6 +6,7 @@ import 'package:focofit/components/k_text_fields.dart';
 import 'package:focofit/controller/auth_controller.dart';
 import 'package:focofit/extensions/extension.dart';
 import 'package:focofit/screens/auth_ui/register_screen.dart';
+import 'package:focofit/screens/nav_bar/k_bottom_navigation.dart';
 import 'package:focofit/utils/app_colors.dart';
 import 'package:focofit/utils/asset_utils.dart';
 import 'package:focofit/utils/k_text_styles.dart';
@@ -77,7 +78,9 @@ class LoginScreen extends StatelessWidget {
                 15.height,
                 kTextButton(
                   btnText: 'Entrar',
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.offAll(()=> CustomBottomBar());
+                  },
                   useGradient: true,
                 ),
                 50.height,

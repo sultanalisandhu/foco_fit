@@ -43,6 +43,61 @@ Widget kTextButton( {
     ),
   );
 }
+Widget kNumberButton( {
+  Color? color,
+  Function()? onPressed,
+  required String btnText,
+  required String itemCount,
+  Color? textColor,
+  Color? borderColor,
+  double? height,
+  double ? width,
+  double ? borderRadius,
+  double ? fontSize,
+  double? padding,
+  bool useGradient = false,
+  Gradient? gradient,
+}) {
+  return GestureDetector(
+    onTap: onPressed,
+    child: Container(
+      alignment: Alignment.center,
+      height: height??50,
+      width: width,
+      padding:  EdgeInsets.symmetric(horizontal: padding??15),
+      decoration: BoxDecoration(
+        gradient: useGradient
+            ? gradient ?? AppColor.primaryGradient
+            : null,
+        color: useGradient ? null : (color ?? AppColor.primaryColor),
+        border: Border.all(width: 1, color: borderColor??Colors.transparent),
+        borderRadius: BorderRadius.circular(borderRadius??26),
+      ),
+      child: Row(
+        children: [
+          Spacer(),
+          Text(
+            btnText,
+            textAlign: TextAlign.center,
+            style: primaryTextStyle(fontSize: fontSize??16,
+                fontWeight: FontWeight.w600,
+                color: textColor??AppColor.whiteColor),),
+          Spacer(),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 20,vertical: 5),
+            decoration: BoxDecoration(
+              color: AppColor.whiteColor,
+              borderRadius: BorderRadius.circular(26),
+            ),
+            child: Text(itemCount,style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w600),),
+          )
+        ],
+      ),
+    ),
+  );
+}
+
+
 Widget kSocialButton({
   final Function()? onTap,
   final String? btnText,

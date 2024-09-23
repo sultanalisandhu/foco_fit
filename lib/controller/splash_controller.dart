@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:focofit/screens/auth_ui/onboarding_screen.dart';
-import 'package:focofit/screens/auth_ui/test_onboarding.dart';
 import 'package:focofit/utils/asset_utils.dart';
 import 'package:get/get.dart';
+
+import '../screens/auth_ui/onboarding_screen.dart';
 
 class SplashController extends GetxController{
 
@@ -30,7 +30,7 @@ class SplashController extends GetxController{
   ///Functions
   Future<void> navigateTo() async {
     await Future.delayed(const Duration(seconds: 3), () {
-      Get.offAll(()=> OnboardingScreen());
+      Get.offAll(()=> KOnboardingScreen());
     });
   }
 }
