@@ -8,6 +8,7 @@ import 'package:focofit/utils/app_colors.dart';
 import 'package:focofit/utils/app_data/home_data.dart';
 import 'package:focofit/utils/asset_utils.dart';
 import 'package:focofit/utils/k_text_styles.dart';
+import 'package:focofit/widgets/recipe_widgets/k_circular_progress_bar.dart';
 import 'package:get/get.dart';
 
 class KHomeBottomSheet {
@@ -56,10 +57,7 @@ class KHomeBottomSheet {
 
 
 
-  static void quickRegistration(BuildContext context, {
-    required Function() onExerciseTap,
-    required Function() onSnackTap
-  }) {
+  static void quickRegistration(BuildContext context, {required Function() onExerciseTap, required Function() onSnackTap}) {
     show(
       context: context,
       title: 'Registro rápido',
@@ -105,7 +103,6 @@ class KHomeBottomSheet {
       heightFactor: 0.35,
     );
   }
-
 
   static void snackRegisterSheet(BuildContext context, {Function()? onConfirmTap}) {
     show(
@@ -182,6 +179,7 @@ class KHomeBottomSheet {
               return Obx(() => GestureDetector(
                 onTap: () {
                   if(index==0){
+                    Get.back();
                     Get.to((()=> SearchRecipeManually()));
                   }else if(index==1){
 
@@ -223,9 +221,79 @@ class KHomeBottomSheet {
     );
   }
 
+  static void addCalories(BuildContext context) {
+    show(
+      context: context,
+      title: 'Registrar café da manhã',
+      content: [
+        Align(
+            alignment: Alignment.center,
+            child: Text('Arroz doce cozido com canela em pó',style: primaryTextStyle(fontSize: 20,fontWeight: FontWeight.w500),)),
+        10.height,
+        Align(
+          alignment: Alignment.center,
+          child: RichText(
+              text: TextSpan(
+              children: [
+            TextSpan(text: '0', style: primaryTextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
+            TextSpan(text: 'Kcal', style: primaryTextStyle(fontSize: 12,fontWeight: FontWeight.w600)),
+          ])),
+        ),
+        15.height,
+        const Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+          KCircularProgressBar(consumed: '0', dietName: 'Carboidrato', lineGradient: AppColor.greenGradient, progressValue: 0.2),
+          KCircularProgressBar(consumed: '0', dietName: 'Proteína', lineGradient: AppColor.redGradient, progressValue: 0.2),
+          KCircularProgressBar(consumed: '0', dietName: 'Gordura', lineGradient: AppColor.primaryGradient, progressValue: 0.2),
+        ],),
+        15.height,
+        CustomTextField(
+          context: context,
+          controller: TextEditingController(),
+          prefixText: 'Quantidade:',
+          suffixText: 'gramas',
+          color: AppColor.whiteColor,borderColor: AppColor.lightGreyColor,
+          textDirection: TextDirection.ltr,
+          textInputAction: TextInputAction.done,
+        ),
+      ],
+      onConfirmTap: (){},
+      heightFactor: 0.55,
+    );
+  }
+
+  static void addPhysicalActivity(BuildContext context) {
+    show(
+      context: context,
+      title: 'Registrar atividade física',
+      content: [
+        Align(
+          alignment: Alignment.center,
+          child: RichText(
+              text: TextSpan(
+                  children: [
+                    TextSpan(text: '0 ', style: primaryTextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
+                    TextSpan(text: 'Kcal', style: primaryTextStyle(fontSize: 12,fontWeight: FontWeight.w600)),
+                  ])),
+        ),
+        15.height,
+        CustomTextField(
+          context: context,
+          controller: TextEditingController(),
+          prefixText: 'Duração:',
+          suffixText: 'min.',
+          textDirection: TextDirection.ltr,
+          textInputAction: TextInputAction.done,
+        ),
+      ],
+      onConfirmTap: (){},
+      heightFactor: 0.4,
+    );
+  }
 
 
-  // Helper method for header
+
   static Widget _buildHeader() {
     return Align(
       alignment: Alignment.center,
@@ -233,7 +301,6 @@ class KHomeBottomSheet {
     );
   }
 
-  // Helper method for title
   static Widget _buildTitle(String title) {
     return Align(
       alignment: Alignment.center,
@@ -247,32 +314,6 @@ class KHomeBottomSheet {
     );
   }
 
-  // Helper method to build text fields
-  static Widget _buildTextField({
-    required BuildContext context,
-    String? label,
-    required String hintText,
-  }) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        if (label != null)
-          Text(
-            label,
-            textAlign: TextAlign.center,
-            style: primaryTextStyle(
-              fontSize: 16.0,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-        GetTextField(
-          context: context,
-          hintText: hintText,
-          obSecureText: false,
-        ),
-      ],
-    );
-  }
 
 
   static Widget _buildConfirmButton(Function()? onConfirmTap) {

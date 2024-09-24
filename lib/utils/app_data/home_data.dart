@@ -43,3 +43,12 @@ RxList<KHomeData> registerRecipeList= [
     title: 'Código\nde barras',
     iconPath: AppImages.blueBarcodeImg,  ),
 ].obs;
+
+RxList subscriptionList= [
+ 'Ad-Free Experience',
+  'Full Access to all premium features',
+  'Unlimited access to fasting Plans, etc',
+    'Advance tracking tool',
+  'Personalized insights & recommendations',
+  'Priority customer support',
+].obs;

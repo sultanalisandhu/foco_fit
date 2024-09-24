@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:focofit/components/k_buttons.dart';
+import 'package:focofit/components/k_svg_icon.dart';
 import 'package:focofit/components/k_text_fields.dart';
 import 'package:focofit/controller/home_controller.dart';
 import 'package:focofit/extensions/extension.dart';
-import 'package:focofit/screens/home_ui/create_diet_screens/create_diet_options.dart';
+import 'package:focofit/screens/home_ui/add_physical_activity/create_activity_options.dart';
+import 'package:focofit/screens/home_ui/add_physical_activity/edit_physical_activity.dart';
 import 'package:focofit/utils/app_colors.dart';
 import 'package:focofit/utils/asset_utils.dart';
 import 'package:focofit/utils/k_text_styles.dart';
@@ -11,8 +14,8 @@ import 'package:focofit/widgets/k_app_bar.dart';
 import 'package:focofit/widgets/k_bottom_sheets/home_bottom_sheets.dart';
 import 'package:get/get.dart';
 
-class SearchRecipeManually extends StatelessWidget {
-  const SearchRecipeManually({super.key});
+class AllPhysicalActivity extends StatelessWidget {
+  const AllPhysicalActivity({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,12 +24,12 @@ class SearchRecipeManually extends StatelessWidget {
       builder: (c) {
         return Scaffold(
           appBar: kAppBar(
-            title: 'Café da manhã',
+            title: 'Atividade física',
             onTap: () {
               Get.back();
             },
             trailingOnTap: () {
-              Get.to(() => CreateDietOptions());
+              Get.to(() => CreateActivityOptions());
             },
             trailingIcon: AppIcons.plusIcon,
           ),
@@ -36,10 +39,10 @@ class SearchRecipeManually extends StatelessWidget {
             height: mQ.height*0.08,
             width: mQ.width,
             child: kNumberButton(
-                onPressed: () {
-                },
+              onPressed: () {
+              },
               itemCount: '0',
-              btnText: 'Confirmar e salvar',
+              btnText: 'Adicionar atividade',
             ),
           ),
           body: DefaultTabController(
@@ -53,7 +56,7 @@ class SearchRecipeManually extends StatelessWidget {
                     context: context,
                     controller: c.searchController,
                     prefixIcon: AppIcons.searchIcon,
-                    hintText: 'O que você comeu?',
+                    hintText: 'O que você fez hoje?',
                   ),
                   15.height,
                   Container(
@@ -94,47 +97,70 @@ class SearchRecipeManually extends StatelessWidget {
                     child: TabBarView(
                       physics: const NeverScrollableScrollPhysics(),
                       children: [
-                        ListView.builder(
-                            itemCount: 16,
-                            itemBuilder: (context,index){
-                          return ListTile(
-                            title: const Text('Arroz doce com canela em pó'),
+                        /// All Physical Activity Tab Bar-----------------------------------
+                    ListView.builder(
+                      itemCount: 16,
+                      itemBuilder: (context, index) {
+                        return Slidable(
+                          direction: Axis.horizontal,
+                          startActionPane: ActionPane(
+                            motion: const ScrollMotion(),
+                            children: [
+                              SlidableAction(
+                                onPressed: (context) {},
+                                backgroundColor: AppColor.greenColor,
+                                foregroundColor: Colors.white,
+                                icon: Icons.favorite,
+                                label: 'Like',
+                                autoClose: false,
+                                borderRadius: BorderRadius.circular(16),
+
+                              ),
+                            ],
+                          ),
+                          child: ListTile(
+                            title: const Text('Biscoito recheado de chocolate Trakinas'),
                             titleTextStyle: primaryTextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w600,
                             ),
-                            subtitle: const Text('319 calorias (100g)'),
+                            subtitle: const Text('Calorias: -319kcal'),
                             subtitleTextStyle: primaryTextStyle(
                               fontSize: 14,
                               color: AppColor.greyColor,
                             ),
-
                             trailing: GestureDetector(
-                              onTap: (){
-                                KHomeBottomSheet.addCalories(context);
+                              onTap: () {
+                                KHomeBottomSheet.addPhysicalActivity(context);
                               },
                               child: Container(
                                 padding: const EdgeInsets.all(8),
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
-                                  border: Border.all(color: AppColor.startGradient)
+                                  border: Border.all(color: AppColor.startGradient),
                                 ),
-                                child: const Icon(Icons.add,color: AppColor.endGradient,)
+                                child: const Icon(
+                                  Icons.add,
+                                  color: AppColor.endGradient,
+                                ),
                               ),
                             ),
                             contentPadding: EdgeInsets.zero,
-                          );
-                        }),
-                        ListView.builder(
+                          ),
+                        );
+                      },
+                    ),
+                        /// favourites Physical Activity Tab Bar-----------------------------------
+                      ListView.builder(
                             itemCount: 16,
                             itemBuilder: (context,index){
                               return ListTile(
-                                title: const Text('Arroz doce com canela em pó'),
+                                title: const Text('Minha nova atividade física favoritada numero 1'),
                                 titleTextStyle: primaryTextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.w600,
                                 ),
-                                subtitle: const Text('319 calorias (100g)'),
+                                subtitle: const Text('Calorias: -319kcal'),
                                 subtitleTextStyle: primaryTextStyle(
                                   fontSize: 14,
                                   color: AppColor.greyColor,
@@ -142,7 +168,7 @@ class SearchRecipeManually extends StatelessWidget {
 
                                 trailing: GestureDetector(
                                   onTap: (){
-                                    KHomeBottomSheet.addCalories(context);
+                                    KHomeBottomSheet.addPhysicalActivity(context);
                                   },
                                   child: Container(
                                       padding: const EdgeInsets.all(8),
@@ -156,35 +182,33 @@ class SearchRecipeManually extends StatelessWidget {
                                 contentPadding: EdgeInsets.zero,
                               );
                             }),
+                        /// Created Physical Activity Tab Bar-----------------------------------
                         ListView.builder(
                             itemCount: 16,
                             itemBuilder: (context,index){
                               return ListTile(
-                                title: const Text('Arroz doce com canela em pó'),
+                                title: Row(
+                                  children: [
+                                    const Expanded(child: Text('Minha nova atividade física criada numero 1',maxLines: 2,overflow: TextOverflow.ellipsis,)),
+                                  showSvgIconWidget(
+                                      onTap: (){
+                                        Get.to(()=> EditPhysicalActivity());
+                                      },
+                                      iconPath: AppIcons.editIcon)
+                                  ],
+                                ),
                                 titleTextStyle: primaryTextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.w600,
                                 ),
-                                subtitle: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    const Text('319 calorias (100g)'),
-                                    Container(
-                                      padding: const EdgeInsets.symmetric(horizontal: 10,),
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(16),
-                                          border: Border.all(color: AppColor.startGradient),
-                                        ),
-                                        child: GradientText(text: 'Criado com FocoFit Pro+', gradient: AppColor.primaryGradient,style: primaryTextStyle(fontSize: 12),)),
-                                  ],
-                                ),
+                                subtitle: const Text('319 calorias (100g)'),
                                 subtitleTextStyle: primaryTextStyle(
                                   fontSize: 14,
                                   color: AppColor.greyColor,
                                 ),
                                 trailing: GestureDetector(
                                   onTap: (){
-                                    KHomeBottomSheet.addCalories(context);
+                                    KHomeBottomSheet.addPhysicalActivity(context);
                                   },
                                   child: Container(
                                       padding: const EdgeInsets.all(8),

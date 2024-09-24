@@ -189,15 +189,32 @@ class BorderlessTextFiled extends StatelessWidget {
 
 class CustomTextField extends StatelessWidget {
   final BuildContext context;
-  final String? prefixText;
-  final String? suffixText;
   final TextEditingController? controller;
+  final String? prefixText;
+  final String? prefixIcon;
+  final String? suffixText;
+  final String? hintText;
+  final Color? color;
+  final Color? borderColor;
+  final TextDirection? textDirection;
+  final TextInputType? textInputType;
+  final TextInputAction? textInputAction;
+  final int? maxLines;
+
 
   const CustomTextField({super.key,
     required this.context,
-    this.prefixText,
-    this.suffixText,
     this.controller,
+    this.prefixText,
+    this.prefixIcon,
+    this.suffixText,
+    this.color,
+    this.borderColor,
+    this.textDirection,
+    this.hintText,
+    this.maxLines,
+    this.textInputType,
+    this.textInputAction,
     });
 
   @override
@@ -205,42 +222,44 @@ class CustomTextField extends StatelessWidget {
     return TextFormField(
       controller: controller,
       cursorColor: AppColor.greyColor,
-      maxLines: 1,
+      maxLines: maxLines?? 1,
       style: primaryTextStyle(color: AppColor.blackColor, fontSize: 18.0,fontWeight: FontWeight.w400),
-      keyboardType: TextInputType.number,
-      textInputAction: TextInputAction.next,
+      keyboardType: textInputType?? TextInputType.number,
+      textInputAction: textInputAction?? TextInputAction.next,
       onTapOutside: (event) {context.dismissKeyBoard();},
-      textDirection: TextDirection.rtl,
+      textDirection: textDirection!=null? TextDirection.rtl:TextDirection.ltr,
       decoration: InputDecoration(
-        prefixIcon: Padding(
-          padding: const EdgeInsets.only(left: 8.0),
-          child: Text(prefixText!,style: primaryTextStyle(fontWeight: FontWeight.w500,fontSize: 16,color: AppColor.greyColor),),
-        ),
-        suffixIcon: Padding(
+        prefixIcon:  Padding(
+          padding: const EdgeInsets.only(left: 12.0,right: 10),
+          child: prefixText!=null? Text(prefixText!,style: primaryTextStyle(fontWeight: FontWeight.w500,fontSize: 16,color: AppColor.greyColor),)
+              :prefixIcon!=null? showSvgIconWidget(iconPath:  prefixIcon!):null,),
+        suffixIcon: suffixText!= null?Padding(
           padding: const EdgeInsets.only(right: 8.0),
           child: Text(suffixText!,style: primaryTextStyle(fontWeight: FontWeight.w500,fontSize: 16,color: AppColor.greyColor),),
-        ),
+        ):null,
+        hintText: hintText??'',
+        hintStyle: primaryTextStyle(color: AppColor.greyColor, fontSize: 16.0,fontWeight: FontWeight.w400),
         prefixIconConstraints: const BoxConstraints(maxHeight: 25.0),
         suffixIconConstraints: const BoxConstraints(maxHeight: 25.0,),
         filled: true,
         isDense: true,
-
-        fillColor: AppColor.lightGreyColor,
+        fillColor: color?? AppColor.lightGreyColor,
+        contentPadding: const EdgeInsets.all(20),
         enabledBorder:  OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide:  const BorderSide(color: Colors.transparent, width: 1.0),
+          borderRadius: BorderRadius.circular(12),
+          borderSide:  BorderSide(color: borderColor?? Colors.transparent),
         ),
         focusedBorder:  OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: const  BorderSide(color: Colors.transparent, width: 1.0),
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide(color: borderColor??Colors.transparent,),
         ),
         errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide:  const BorderSide(color: Colors.red, width: 1.0),
+          borderRadius: BorderRadius.circular(12),
+          borderSide:  const BorderSide(color: Colors.red),
         ),
         focusedErrorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide:  const BorderSide(color: Colors.red, width: 1.0),
+          borderRadius: BorderRadius.circular(12),
+          borderSide:  const BorderSide(color: Colors.red),
         ),
       ),
     );

@@ -35,6 +35,7 @@ class AppIcons{
   static const String dashIcon= 'assets/icons/dashIcon.svg';
   static const String plusIcon= 'assets/icons/plusIcon.svg';
   static const String heartIcon= 'assets/icons/heartIcon.svg';
+  static const String searchIcon= 'assets/icons/searchIcon.svg';
 }
 
 
@@ -64,4 +65,5 @@ class AppImages{
   static const String blueSearchImg= 'assets/images/blueSearchImg.png';
   static const String blueCameraImg= 'assets/images/blueCameraImg.png';
   static const String blueBarcodeImg= 'assets/images/blueBarcodeImg.png';
+  static const String crownImg= 'assets/images/crownImg.png';
 }

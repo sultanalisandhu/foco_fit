@@ -1,6 +1,13 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:focofit/components/k_buttons.dart';
+import 'package:focofit/components/k_svg_icon.dart';
 import 'package:focofit/extensions/extension.dart';
+import 'package:focofit/screens/home_ui/add_physical_activity/all_physical_activity.dart';
+import 'package:focofit/screens/home_ui/subscribed_screen.dart';
+import 'package:focofit/utils/asset_utils.dart';
+import 'package:focofit/utils/k_text_styles.dart';
 import 'package:focofit/widgets/k_bottom_sheets/home_bottom_sheets.dart';
 import 'package:focofit/screens/profile_ui/notification_screen.dart';
 import 'package:focofit/screens/profile_ui/profile_setting_ui/profile_setting.dart';
@@ -33,34 +40,28 @@ class HomeScreen extends StatelessWidget {
         padding: const EdgeInsets.all(12.0),
         child: Column(
           children: [
-            // Month and Year with Navigation
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                // Previous Month Button
-                IconButton(
-                  onPressed: controller.previousMonth,
-                  icon: const Icon(Icons.arrow_back_ios_new),
+            GestureDetector(
+              onTap: (){
+                Get.to(()=> SubscribedScreen());
+              },
+              child: Container(
+                width: mQ.width,
+                margin: const EdgeInsets.symmetric(vertical: 10,horizontal: 10),
+                decoration: BoxDecoration(
+                 gradient: AppColor.redGradient,
+                  borderRadius: BorderRadius.circular(16),
                 ),
-                // Display Month and Year
-                Obx(() {
-                  return Text(
-                    controller.monthAndYear,
-                    style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  );
-                }),
-                // Next Month Button
-                IconButton(
-                  onPressed: controller.nextMonth,
-                  icon: const Icon(Icons.arrow_forward_ios),
+                child: ListTile(
+                  leading: const Image(image: AssetImage(AppImages.crownImg)),
+                  title:  Text('Seja um assinante FocoFit Pro',style: primaryTextStyle(color: Colors.white,fontWeight: FontWeight.w400),),
+                  subtitle:   Text('Aproveite nossos recursos exclusivos!',style: primaryTextStyle(color: AppColor.whiteColor,fontWeight: FontWeight.w400,fontSize: 14),),
                 ),
-              ],
+              ),
             ),
-            // Weekday Names and Dates
+            20.height,
             SizedBox(
               height: 100,
               child: Obx(() {
-                // Wrap with Obx to observe daysInMonth and selectedDay changes
                 return ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: controller.daysInMonth.length,
@@ -71,7 +72,10 @@ class HomeScreen extends StatelessWidget {
                       controller.currentDate.value.month,
                       day,
                     ));
+
+                    // Check if this is the selected day
                     final isSelected = day == controller.selectedDay.value;
+
                     return GestureDetector(
                       onTap: () {
                         controller.selectDay(day);
@@ -88,7 +92,9 @@ class HomeScreen extends StatelessWidget {
                             margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              gradient: isSelected ? AppColor.primaryGradient : null,
+                              gradient: isSelected
+                                  ? AppColor.primaryGradient  // Selected day gradient
+                                  : AppColor.greenGradient,   // Default gradient
                             ),
                             child: Center(
                               child: Text(
@@ -121,7 +127,7 @@ class HomeScreen extends StatelessWidget {
               fat: '200 / 1000',
               fatPercent: 0.4,
             ),
-            15.height,
+            20.height,
             kTextButton(
                 onPressed: (){
                   KHomeBottomSheet.quickRegistration(
@@ -150,32 +156,58 @@ class HomeScreen extends StatelessWidget {
                 btnText: 'Registro rápido de calorias',
               useGradient: true
             ),
+            20.height,
             ListView.builder(
-                itemCount: homeDataList.length,
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemBuilder: (context,index){
-              return CustomExpandableContainer(
-                title: homeDataList[index].title,
-                subtitle: 'Meta diária: 100/1000 kcal',
-                imageUrl: homeDataList[index].iconPath,
-                childrenData: const [
-                  {'name': 'Cafe sem acucar,100ml', 'calories': '56 kcal'},
-                  {'name': 'Cafe com leite, 200ml', 'calories': '120 kcal'},
-                  {'name': 'Pão integral, 50g', 'calories': '150 kcal'},
-                ],
-                onTapTrailing: () {
-                  KHomeBottomSheet.recordMeal(context);
-                },
-                onSavePressed: () {
-                  print('Salvar refeicao tapped');
-                },
-                onEditPressed: () {
-                  print('Editor historico tapped');
-                },
-              );
-            })
-
+              itemCount: homeDataList.length,
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemBuilder: (context, index) {
+                if (index >= homeDataList.length - 2) {
+                  return KHomeListTile(
+                    title: homeDataList[index].title,
+                    subtitle: 'Meta: dynamic value',
+                    imageUrl: homeDataList[index].iconPath,
+                    borderColor: AppColor.redColor,
+                  );
+                } else {
+                  // Render your CustomExpandableContainer for other items
+                  final randomColor = Color((Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0);
+                  return CustomExpandableContainer(
+                    title: homeDataList[index].title,
+                    subtitle: 'Meta diária: 100/1000 kcal',
+                    imageUrl: homeDataList[index].iconPath,
+                    borderColor: randomColor,
+                    childrenData: const [
+                      {'name': 'Cafe sem acucar,100ml ', 'calories': ' 56 kcal'},
+                      {'name': 'Cafe com leite, 200ml ', 'calories': ' 120 kcal'},
+                      {'name': 'Pão integral, 50g ', 'calories': ' 150 kcal'},
+                    ],
+                    onTapTrailing: () {
+                      switch (homeDataList[index].title) {
+                        case 'Café da manhã':
+                          KHomeBottomSheet.recordMeal(context);
+                          break;
+                        case 'Almoço':
+                          KHomeBottomSheet.recordMeal(context);
+                          break;
+                        case 'Jantar':
+                          KHomeBottomSheet.recordMeal(context);
+                          break;
+                        case 'Lanches':
+                          KHomeBottomSheet.recordMeal(context);
+                          break;
+                        case 'Atividades físicas':
+                          Get.to(() => AllPhysicalActivity());
+                          break;
+                      }
+                    },
+                    onEditPressed: () {
+                      print('Editor historico tapped');
+                    },
+                  );
+                }
+              },
+            )
 
           ],
         ),

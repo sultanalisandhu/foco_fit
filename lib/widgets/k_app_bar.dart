@@ -23,7 +23,7 @@ AppBar kAppBar({
       alignment: Alignment.center,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: AppColor.lightGreyColor)),
+            border: Border.all(color: AppColor.greyBorder)),
       child: const Icon(Icons.arrow_back_ios),
       ),
   ): const SizedBox.shrink(),
@@ -42,7 +42,7 @@ AppBar kAppBar({
           alignment: Alignment.center,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: AppColor.lightGreyColor)),
+              border: Border.all(color: AppColor.greyBorder)),
           child: showSvgIconWidget(iconPath: trailingIcon??AppIcons.settingIcon,onTap: trailingOnTap),
         ),
       )
