@@ -45,6 +45,9 @@ class AppImages{
   static const String onboardingImage1 = 'assets/images/onboardingImage1.png';
   static const String onboardingImage2 = 'assets/images/onboardingImage2.png';
   static const String onboardingImage3 = 'assets/images/onboardingImage3.png';
+  static const String googleImage= 'assets/images/googleImage.png';
+  static const String faceBookImage= 'assets/images/faceBookImage.png';
+  static const String appleImage= 'assets/images/appleImage.png';
   static const String forgotImage= 'assets/images/forgotImage.png';
   static const String changePasswordImg= 'assets/images/changePasswordImg.png';
   static const String otpImg= 'assets/images/otpImg.png';
@@ -66,4 +69,5 @@ class AppImages{
   static const String blueCameraImg= 'assets/images/blueCameraImg.png';
   static const String blueBarcodeImg= 'assets/images/blueBarcodeImg.png';
   static const String crownImg= 'assets/images/crownImg.png';
+
 }

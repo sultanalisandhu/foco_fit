@@ -7,19 +7,19 @@ class GradientText extends StatelessWidget {
   final String text;
   final TextStyle? style;
   final Gradient gradient;
-  final Function()? onTap;
+  final Function()? onTextTap;
   const GradientText({
     super.key,
     required this.text,
     this.style,
     required this.gradient,
-    this.onTap,
+    this.onTextTap,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: onTextTap,
       child: ShaderMask(
         blendMode: BlendMode.srcIn,
         shaderCallback: (bounds) => gradient.createShader(

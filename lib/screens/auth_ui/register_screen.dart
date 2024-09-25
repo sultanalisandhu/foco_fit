@@ -67,6 +67,7 @@ class RegisterScreen extends StatelessWidget {
                       suffixOnTap: () {
                         c.togglePassword();
                       },
+                      textInputAction: TextInputAction.done,
                     ),
                     CustomCheckbox(
                       isChecked: c.isTermsAccepted,
@@ -146,16 +147,19 @@ class RegisterScreen extends StatelessWidget {
                       ],
                     ),
                     kSocialButton(
-                      onTap: () {},
-                      btnText: 'Continuar com Google',
+                        onTap: () {},
+                        btnText: 'Continuar com Google',
+                        imgPath: AppImages.googleImage
                     ),
                     kSocialButton(
-                      onTap: () {},
-                      btnText: 'Continuar com Apple',
+                        onTap: () {},
+                        btnText: 'Continuar com Apple',
+                        imgPath: AppImages.appleImage
                     ),
                     kSocialButton(
-                      onTap: () {},
-                      btnText: 'Continuar com Facebook',
+                        onTap: () {},
+                        btnText: 'Continuar com Facebook',
+                        imgPath: AppImages.faceBookImage
                     ),
                   ],
                 ),

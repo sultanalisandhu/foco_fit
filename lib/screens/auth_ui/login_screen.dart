@@ -26,12 +26,13 @@ class LoginScreen extends StatelessWidget {
             onTap: () => Navigator.pop(context),
           ),
           body: SingleChildScrollView(
-            padding: const EdgeInsets.all(12.0),
+            padding: const EdgeInsets.all(15.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                Center(
+                Align(
+                  alignment: Alignment.center,
                   child: Text(
                     'Entre na sua conta',
                     style: primaryTextStyle(
@@ -68,6 +69,7 @@ class LoginScreen extends StatelessWidget {
                   suffixOnTap: () {
                     c.togglePassword();
                   },
+                  textInputAction: TextInputAction.done,
                 ),
                 CustomCheckbox(
                   isChecked: c.isTermsAccepted,
@@ -142,14 +144,17 @@ class LoginScreen extends StatelessWidget {
                 kSocialButton(
                   onTap: () {},
                   btnText: 'Continuar com Google',
+                  imgPath: AppImages.googleImage
                 ),
                 kSocialButton(
                   onTap: () {},
                   btnText: 'Continuar com Apple',
+                    imgPath: AppImages.appleImage
                 ),
                 kSocialButton(
                   onTap: () {},
                   btnText: 'Continuar com Facebook',
+                    imgPath: AppImages.faceBookImage
                 ),
               ],
             ),

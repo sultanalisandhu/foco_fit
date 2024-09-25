@@ -18,6 +18,7 @@ class GetTextField extends StatelessWidget {
   final Function()? suffixOnTap;
   final Function()? fieldOnTap;
   final TextInputType? keyboardType;
+  final TextInputAction? textInputAction;
   final TextEditingController? controller;
   final bool? obSecureText;
   final bool? readOnly;
@@ -31,6 +32,7 @@ class GetTextField extends StatelessWidget {
     this.suffixIcon,
     this.validator,
     this.keyboardType,
+    this.textInputAction,
     this.controller,
     this.obSecureText,
     this.suffixOnTap,
@@ -50,7 +52,7 @@ class GetTextField extends StatelessWidget {
       maxLines: 1,
       style: primaryTextStyle(color: AppColor.blackColor, fontSize: 18.0,fontWeight: FontWeight.w400),
       keyboardType: keyboardType ?? TextInputType.text,
-      textInputAction: TextInputAction.next,
+      textInputAction: textInputAction??TextInputAction.next,
       obscureText: obSecureText??true,
       onTapOutside: (event) {context.dismissKeyBoard();},
       onChanged: onChanged,

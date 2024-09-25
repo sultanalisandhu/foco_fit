@@ -66,6 +66,7 @@ class ChangePassword extends StatelessWidget {
                   suffixOnTap: () {
                     c.togglePassword();
                   },
+                  textInputAction: TextInputAction.done,
                 ),
                 const Spacer(),
                 kTextButton(

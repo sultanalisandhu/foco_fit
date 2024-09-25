@@ -39,6 +39,7 @@ class ForgotPassword extends StatelessWidget {
             hintText: 'Digite seu email',
             obSecureText: false,
             prefixIcon: AppIcons.emailIcon,
+            textInputAction: TextInputAction.done,
           ),
           const Spacer(),
           kTextButton(

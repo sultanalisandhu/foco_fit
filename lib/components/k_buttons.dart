@@ -79,16 +79,16 @@ Widget kNumberButton( {
       ),
       child: Row(
         children: [
-          Spacer(),
+          const Spacer(),
           Text(
             btnText,
             textAlign: TextAlign.center,
             style: primaryTextStyle(fontSize: fontSize??16,
                 fontWeight: FontWeight.w600,
                 color: textColor??AppColor.whiteColor),),
-          Spacer(),
+          const Spacer(),
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 20,vertical: 5),
+            padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 5),
             decoration: BoxDecoration(
               color: AppColor.whiteColor,
               borderRadius: BorderRadius.circular(26),
@@ -105,6 +105,7 @@ Widget kNumberButton( {
 Widget kSocialButton({
   final Function()? onTap,
   final String? btnText,
+  final String? imgPath
 }){
   return GestureDetector(
     onTap: onTap,
@@ -119,7 +120,7 @@ Widget kSocialButton({
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          showSvgIconWidget(iconPath: AppIcons.emailIcon),
+          Image(image: AssetImage(imgPath!),height: 30,width: 30,),
           const Spacer(),
           Text(btnText!,style: primaryTextStyle(fontWeight: FontWeight.w500,fontSize: 16),),
           const Spacer(),
@@ -136,8 +137,7 @@ class KOutlineButton extends StatelessWidget {
   final String btnText;
   final double? height;
   final double? width;
-  Gradient? textGradient;
-
+  final Gradient? textGradient;
 
   KOutlineButton({
     super.key,
@@ -163,7 +163,11 @@ class KOutlineButton extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 15),
           width: width,
           child:
-              GradientText(text: btnText, gradient: textGradient?? AppColor.primaryGradient,style: primaryTextStyle(fontSize: 16,
+              GradientText(
+                onTextTap: onTap,
+                text: btnText,
+                gradient: textGradient?? AppColor.primaryGradient,
+                style: primaryTextStyle(fontSize: 16,
                   fontWeight: FontWeight.w600,
                   color: AppColor.blackColor),),
         ),

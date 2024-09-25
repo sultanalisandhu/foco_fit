@@ -53,7 +53,7 @@ class CustomCheckbox extends StatelessWidget {
           const Spacer(),
           GradientText(
             text: "Esqueceu a senha?",
-            onTap: (){
+            onTextTap: (){
               Get.to(()=> ForgotPassword());
             },
             gradient: AppColor.primaryGradient,
