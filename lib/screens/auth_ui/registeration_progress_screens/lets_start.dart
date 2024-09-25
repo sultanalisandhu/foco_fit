@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:focofit/components/k_buttons.dart';
-import 'package:focofit/main.dart';
-import 'package:focofit/screens/nav_bar/k_bottom_bar.dart';
 import 'package:focofit/screens/nav_bar/k_bottom_navigation.dart';
 import 'package:focofit/utils/asset_utils.dart';
 import 'package:focofit/utils/k_text_styles.dart';

@@ -49,7 +49,41 @@ class KPersonalDataSheet {
       },
     );
   }
-
+  static void editHistoricoSheet(BuildContext context, {
+    required Function() onConfirmTap,
+    required Function() onCancelTap}) {
+    show(
+      context: context,
+      title: 'Editar histórico',
+      content: [
+        Align(
+            alignment: Alignment.center,
+            child: Text('O que deseja fazer com este histórico?',
+              textAlign: TextAlign.center,
+              style: primaryTextStyle(fontSize: 14,fontWeight: FontWeight.w400),)),
+        const Spacer(),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            KOutlineButton(
+              onTap: onCancelTap,
+              btnText: 'Excluir',
+              gradient: AppColor.blackGradient,
+              textGradient: AppColor.blackGradient,
+              width:120,
+            ),
+            kTextButton(
+              onPressed: onConfirmTap,
+              btnText: 'Alterar',
+              useGradient: true,
+              width:120,
+            ),
+          ],
+        ),
+      ],
+      heightFactor: 0.25, onConfirmTap: () {  },
+    );
+  }
   static void editHeight(BuildContext context, {Function()? onConfirmTap}) {
     final c = Get.put(ProfileController());
 

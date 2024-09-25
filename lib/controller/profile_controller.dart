@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
+import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 class ProfileController extends GetxController{
   final FixedExtentScrollController dateController = FixedExtentScrollController();
@@ -24,6 +26,8 @@ class ProfileController extends GetxController{
   final RxString selectedHeight = 'cm'.obs;
   final RxBool recalculateCalorieLimit= true.obs;
   final int currentYearValue = DateTime.now().year;
+  final RxString selectedDateRange = ''.obs;
+
   final RxList<String> genderList= ['Masculino','Feminino','Prefiro não dizer'].obs;
   final RxList<ActivityLevelList> activityLevelList= [
     ActivityLevelList(
@@ -43,6 +47,12 @@ class ProfileController extends GetxController{
         subTitle: 'Trabalho físico pesado (ex: academia)'
     )
   ].obs;
+
+
+
+
+
+
 
 
 }

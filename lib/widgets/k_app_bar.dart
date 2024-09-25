@@ -51,10 +51,13 @@ AppBar kAppBar({
   );
 }
 
-
 AppBar kProfileAppBar({
-  final Function()? onTap,
+  final Function()? onTileTap,
   final Function()? trailingOnTap,
+  final String? imgPath,
+  final String? title,
+  final String? subTitle,
+  final String? notificationCount,
 }){
   return AppBar(
     leadingWidth: mQ.width,
@@ -64,19 +67,17 @@ AppBar kProfileAppBar({
     elevation: 5,
     surfaceTintColor: AppColor.whiteColor,
     leading: ListTile(
-      onTap: onTap,
+      onTap: onTileTap,
       contentPadding: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
       leading: CircleAvatar(
         radius: 30,
-        backgroundImage: NetworkImage(
-            'https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg?t=st=1726037514~exp=1726041114~hmac='
-                'df5d8c90eb262717d2a532974732ce0c847b84a167232fe9b051e093d9d3bc61&w=1380'),
+        backgroundImage: NetworkImage(imgPath!,),
       ),
-      title: Text('Boa tarde,'),
-      subtitle: Text('Weslei Vicentini'),
+      title: Text(title!),
+      subtitle: Text(subTitle!),
       titleTextStyle: primaryTextStyle(fontWeight: FontWeight.w500,fontSize: 14,color: AppColor.blackColor),
       subtitleTextStyle: primaryTextStyle(fontWeight: FontWeight.w600,fontSize: 16,color: AppColor.blackColor),
-      trailing: Stack(
+      trailing: notificationCount!=null?Stack(
         alignment: Alignment.center,
         children: [
           showSvgIconWidget(iconPath: AppIcons.bellIcon,onTap: trailingOnTap),
@@ -86,9 +87,21 @@ AppBar kProfileAppBar({
                 shape: BoxShape.circle,
                 color: AppColor.whiteColor
             ),
-            child: Text('9',style: primaryTextStyle(fontSize: 10,fontWeight: FontWeight.w600),),
+            child: Text(notificationCount!,style: primaryTextStyle(fontSize: 10,fontWeight: FontWeight.w600),),
           )
         ],
+      ):GestureDetector(
+        onTap: trailingOnTap,
+        child: Container(
+          height: 50,
+          width: 50,
+          margin: const EdgeInsets.only(right: 10),
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(color: AppColor.greyBorder)),
+          child: showSvgIconWidget(iconPath: AppIcons.settingIcon,onTap: trailingOnTap),
+        ),
       ),
     ),
   );

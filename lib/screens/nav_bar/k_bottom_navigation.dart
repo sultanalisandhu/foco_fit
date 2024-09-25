@@ -13,7 +13,6 @@ import 'package:get/get.dart';
 
 class CustomBottomBar extends StatelessWidget {
   CustomBottomBar({super.key});
-  final RxInt _currentIndex = 0.obs;
   final List<Widget> _pages = [
     HomeScreen(),
     FastingScreen(),
@@ -23,7 +22,7 @@ class CustomBottomBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(()=> Scaffold(
-      body: _pages[_currentIndex.value],
+      body: _pages[BottomBarIndex.currentIndex.value],
       bottomNavigationBar: Container(
         height: 80,
         width: mQ.width,
@@ -42,7 +41,7 @@ class CustomBottomBar extends StatelessWidget {
           children: List.generate(4, (index) {
             return InkWell(
               onTap: () {
-                _currentIndex.value = index;
+                BottomBarIndex.currentIndex.value = index;
               },
               child: Container(
                 padding: const EdgeInsets.only(bottom: 15),
@@ -56,15 +55,15 @@ class CustomBottomBar extends StatelessWidget {
                   children: [
                     showSvgIconWidget(
                       onTap: (){
-                        _currentIndex.value = index;
+                        BottomBarIndex.currentIndex.value = index;
                       },
                       height:25,
-                      iconPath: index== _currentIndex.value
+                      iconPath: index== BottomBarIndex.currentIndex.value
                           ? filledIcons[index]
                           : listOfIcons[index],
                     ),
                     5.height,
-                    GradientText(text: listofTitles[index], gradient: index==_currentIndex.value?AppColor.primaryGradient:AppColor.blackGradient,
+                    GradientText(text: listofTitles[index], gradient: index==BottomBarIndex.currentIndex.value?AppColor.primaryGradient:AppColor.blackGradient,
                     style: primaryTextStyle(fontSize: 14,fontWeight: FontWeight.w400),
                     )
                   ],
@@ -94,5 +93,8 @@ class CustomBottomBar extends StatelessWidget {
     'Receitas',
     'Perfil'
   ];
+}
+class BottomBarIndex{
+  static final  RxInt currentIndex = 0.obs;
 }
 

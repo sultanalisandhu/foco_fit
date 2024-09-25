@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:focofit/components/k_buttons.dart';
+import 'package:focofit/components/k_subscribe_container.dart';
 import 'package:focofit/components/k_svg_icon.dart';
 import 'package:focofit/extensions/extension.dart';
 import 'package:focofit/screens/home_ui/add_physical_activity/all_physical_activity.dart';
@@ -30,33 +31,26 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.whiteColor,
-      appBar: kProfileAppBar(
-        onTap: ()=>Get.to(()=> ProfileSetting()),
-        trailingOnTap: (){
-          Get.to(()=> NotificationScreen());
-        }
+      appBar:
+      kProfileAppBar(
+          onTileTap: ()=>Get.to(()=> ProfileSetting()),
+          trailingOnTap: (){
+            Get.to(()=> NotificationScreen());
+          },
+          imgPath: 'https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg?t=st=1726037514~exp=1726041114~hmac='
+              'df5d8c90eb262717d2a532974732ce0c847b84a167232fe9b051e093d9d3bc61&w=1380',
+          title: 'Boa tarde,',
+          subTitle: 'Weslei Vicentini',
+          notificationCount: '9'
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(12.0),
         child: Column(
           children: [
-            GestureDetector(
-              onTap: (){
-                Get.to(()=> SubscribedScreen());
-              },
-              child: Container(
-                width: mQ.width,
-                margin: const EdgeInsets.symmetric(vertical: 10,horizontal: 10),
-                decoration: BoxDecoration(
-                 gradient: AppColor.redGradient,
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                child: ListTile(
-                  leading: const Image(image: AssetImage(AppImages.crownImg)),
-                  title:  Text('Seja um assinante FocoFit Pro',style: primaryTextStyle(color: Colors.white,fontWeight: FontWeight.w400),),
-                  subtitle:   Text('Aproveite nossos recursos exclusivos!',style: primaryTextStyle(color: AppColor.whiteColor,fontWeight: FontWeight.w400,fontSize: 14),),
-                ),
-              ),
+            SubScribedContainer(
+            onTap: ()=>Get.to(()=> SubscribedScreen(),),
+                title: 'Seja um assinante FocoFit Pro',
+                subTitle: 'Aproveite nossos recursos exclusivos!'
             ),
             20.height,
             SizedBox(
