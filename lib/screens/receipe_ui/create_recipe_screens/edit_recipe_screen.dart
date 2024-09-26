@@ -23,7 +23,6 @@ class EditRecipeScreen extends StatelessWidget {
           return Scaffold(
             appBar: kAppBar(
                 onTap: (){
-                  log('dfghjk');
                   Get.back();
                 },
                 title: 'Receitas'
@@ -87,13 +86,14 @@ class EditRecipeScreen extends StatelessWidget {
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Expanded(child: Text('Salmão defumado com molho de limão ao molho de nozes e castanha,Salmão defumado com molho de limão ao molho de nozes e castanha,',style: primaryTextStyle(fontSize: 18,fontWeight: FontWeight.w600),)),
+                      Expanded(child: Text('Doce de pudim de abacate cremoso sem açúcar',style: primaryTextStyle(fontSize: 18,fontWeight: FontWeight.w600),)),
                       showSvgIconWidget(iconPath: AppIcons.editIcon,onTap: (){
                         Get.to(()=> CreateRecipeManual());
                       },color: AppColor.blackColor),
                     ],
                   ),
                   20.height,
+                  //MacroNeutrients  ---------------------------------------------------
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 15),
                     decoration: BoxDecoration(
@@ -153,7 +153,7 @@ class EditRecipeScreen extends StatelessWidget {
                     child: Column(children: [
                       Row(
                         children: [
-                          showSvgIconWidget(iconPath: AppIcons.heartIcon),
+                          showSvgIconWidget(iconPath: AppIcons.ingredientesIcon),
                           5.width,
                           Text('Ingredientes',style: primaryTextStyle(fontSize: 18,fontWeight: FontWeight.w600),),
                         ],
@@ -171,8 +171,7 @@ class EditRecipeScreen extends StatelessWidget {
                                 children: [
                                   // ingredient name
                                   Text(c.ingredients[index].name.toString(),style: primaryTextStyle(fontWeight: FontWeight.w600,fontSize: 18),),
-                                  const Expanded(child: Text('-------------------------------------------------',maxLines: 1,)),
-
+                                  const Expanded(child: Text('  ---------------------------------------------------------------------------------------   ',maxLines: 1,)),
                                   Text(c.ingredients[index].quantity.toString(),style: primaryTextStyle(fontWeight: FontWeight.w600,fontSize: 16),),
                                 ],),
                             );
@@ -194,7 +193,7 @@ class EditRecipeScreen extends StatelessWidget {
                     child: Column(children: [
                       Row(
                         children: [
-                          showSvgIconWidget(iconPath: AppIcons.heartIcon),
+                          showSvgIconWidget(iconPath: AppIcons.ingredientesIcon),
                           5.width,
                           Text('Modo de preparo',style: primaryTextStyle(fontSize: 18,fontWeight: FontWeight.w600),),
                         ],

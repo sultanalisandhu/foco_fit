@@ -24,12 +24,27 @@ class CreateRecipeManual extends StatelessWidget {
       ),
       bottomNavigationBar: Container(
         padding: const EdgeInsets.symmetric(horizontal: 25,vertical: 10),
-        child: kTextButton(
-          onPressed: (){
-            Get.to(()=>RecipeAdded());
-          },
-          btnText: 'Salvar receita',
-          gradient: AppColor.blackGradient,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(
+              children: [
+                const Icon(Icons.info,color: AppColor.greyColor,),
+                15.width,
+                Expanded(child: Text('Todas as informações nutricionais são baseadas na descrição dos ingredientes preenchidos no campo acima.',style:
+                primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w400)
+                  ,))
+              ],
+            ),
+            5.height,
+            kTextButton(
+              onPressed: (){
+                Get.to(()=>RecipeAdded());
+              },
+              btnText: 'Salvar receita',
+              gradient: AppColor.blackGradient,
+            ),
+          ],
         ),
       ),
       body: SingleChildScrollView(
@@ -39,10 +54,14 @@ class CreateRecipeManual extends StatelessWidget {
           children: [
             Text('Nome da receita',style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w600),),
             10.height,
-            BorderlessTextFiled(
+            CustomTextField(
               context: context,
-            controller: controller.recipeNameC,
-            hintText: 'Bolo de chocolate sem açúcar',
+              controller: controller.recipeNameC,
+              hintText: 'Bolo de chocolate sem açúcar',
+              textInputType: TextInputType.text,
+              textInputAction: TextInputAction.done,
+              color: AppColor.whiteColor,
+              borderColor: AppColor.greyColor,
             ),
             20.height,
             Column(
@@ -59,33 +78,22 @@ class CreateRecipeManual extends StatelessWidget {
                   children: [
                     Expanded(
                       flex: 2,
-                      child: BorderlessTextFiled(context: context,
+                      child: CustomTextField(
+                        context: context,
                         controller: controller.recipeIngredientC,
                         hintText: 'Bolo de chocolate sem açúcar',
+                        textInputType: TextInputType.text,
                       ),
                     ),
                     5.width,
                     Expanded(
-                      flex: 2,
-                      child: BorderlessTextFiled(
+                      flex: 1,
+                      child: CustomTextField(
                         context: context,
-                        controller: controller.recipeIngredientQuantityC,
-                        hintText: 'Bolo',
-                        contentPadding: 2,
-                        keyboardType: TextInputType.number,
-                        suffixWidget: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            ///selected quantity type name
-                           Text(controller.selectedQuantityType.value,style: primaryTextStyle(fontSize: 12,fontWeight: FontWeight.w600),),
-                            IconButton(onPressed: (){
-                              KCreateRecipeSheetSheet.addQuantityType(context,c: controller,);
-                            }, icon: const Icon(Icons.keyboard_arrow_down)),
-                          ],
-                        ),
-
-                      ),
+                      controller: controller.recipeIngredientQuantityC,
+                      suffixText: 'g',
+                        textDirection: TextDirection.ltr,
+                      )
                     ),
 
                   ],
@@ -102,21 +110,16 @@ class CreateRecipeManual extends StatelessWidget {
             20.height,
             Text('Modo de preparo',style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w600),),
             10.height,
-            BorderlessTextFiled(context: context,
+            CustomTextField(
+              context: context,
               controller: controller.recipeDescriptionC,
-              hintText: 'Descreva aqui como você faz para preparar esta receita.',
+              hintText: 'Bolo de chocolate sem açúcar',
               maxLines: 6,
+              textInputType: TextInputType.text,
+              textInputAction: TextInputAction.done,
+
             ),
-            20.height,
-            Row(
-              children: [
-               const Icon(Icons.info,color: AppColor.greyColor,),
-                15.width,
-                Expanded(child: Text('Todas as informações nutricionais são baseadas na descrição dos ingredientes preenchidos no campo acima.',style:
-                  primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w400)
-                  ,))
-              ],
-            )
+
           ],
         ),
       ),

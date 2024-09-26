@@ -22,31 +22,6 @@ class CreateRecipeAi extends StatelessWidget {
           Get.back();
         },
       ),
-      bottomNavigationBar: Container(
-        height: MediaQuery.of(context).size.height*0.15,
-        padding: const EdgeInsets.symmetric(horizontal: 25,vertical: 10),
-        child: Column(
-          children: [
-            Row(
-              children: [
-                const Icon(Icons.info,color: AppColor.greyColor,),
-                15.width,
-                Expanded(child: Text('Todas as informações nutricionais são baseadas na descrição dos ingredientes preenchidos no campo acima.',style:
-                primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w400)
-                  ,))
-              ],
-            ),
-            5.height,
-            kTextButton(
-              onPressed: (){
-                Get.to(()=> GeneratingRecipe());
-              },
-              btnText: 'Salvar receita',
-              gradient: AppColor.blackGradient,
-            ),
-          ],
-        ),
-      ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 25,vertical: 10),
         child: Column(
@@ -54,21 +29,54 @@ class CreateRecipeAi extends StatelessWidget {
           children: [
             Text('Nome da receita',style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w600),),
             10.height,
-            BorderlessTextFiled(
+            CustomTextField(
               context: context,
               controller: controller.recipeNameC,
               hintText: 'Bolo de chocolate sem açúcar',
+              color: Colors.white,
+              textInputType: TextInputType.text,
+              borderColor: AppColor.greyColor,
             ),
             20.height,
             Text('Descrição da receita (opcional)',style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w600),),
             10.height,
-            BorderlessTextFiled(context: context,
+            CustomTextField(
+              context: context,
               controller: controller.recipeDescriptionC,
               hintText: 'Exemplo: quero que não tenha soja ou laticínios.',
               maxLines: 6,
+              textInputAction: TextInputAction.done,
+              textInputType: TextInputType.text,
+              color: Colors.white,
+              borderColor: AppColor.greyColor,
             ),
             20.height,
 
+          ],
+        ),
+      ),
+      bottomNavigationBar: Container(
+        height: mQ.height*0.15,
+        padding: const EdgeInsets.symmetric(horizontal: 25,vertical: 10),
+        child: Column(
+          children: [
+            Row(
+              children: [
+                const Icon(Icons.info,color: AppColor.greyColor,),
+                15.width,
+                Expanded(child: Text('Todas as informações nutricionais são baseadas na descrição dos ingredientes preenchidos no campo acima.',
+                  style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w400),
+                ))
+              ],
+            ),
+            5.height,
+            kTextButton(
+              onPressed: (){
+                Get.to(()=> GeneratingRecipe());
+              },
+              btnText: 'Criar receita',
+              gradient: AppColor.blackGradient,
+            ),
           ],
         ),
       ),

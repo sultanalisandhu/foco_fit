@@ -39,7 +39,7 @@ class RecipeAdded extends StatelessWidget {
           const Image(image: AssetImage(AppImages.greenCheckImg),height: 250,width: 250,),
           Text('Parabéns! Sua nova receita foi salva com sucesso! Agora você pode consultar ela a qualquer momento na tela inicial.',
             textAlign: TextAlign.center,
-            style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w600),),
+            style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w400),),
         ],).paddingSymmetric(horizontal: 25,vertical: 10)
 
     ],),);

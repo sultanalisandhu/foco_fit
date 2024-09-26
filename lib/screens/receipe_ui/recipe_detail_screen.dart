@@ -65,7 +65,7 @@ class RecipeDetailScreen extends StatelessWidget {
                           ),
                           const Spacer(),
                           GestureDetector(
-
+                            onTap: (){},
                             child: Container(
                               padding: const EdgeInsets.all(10),
                               decoration:  BoxDecoration(
@@ -83,6 +83,7 @@ class RecipeDetailScreen extends StatelessWidget {
             5.height,
             Text('Salmão defumado com molho de limão ao molho de nozes e castanha,',style: primaryTextStyle(fontSize: 18,fontWeight: FontWeight.w600),),
                 20.height,
+                //MacroNeutrients  ---------------------------------------------------
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 15),
                   decoration: BoxDecoration(
@@ -142,7 +143,7 @@ class RecipeDetailScreen extends StatelessWidget {
                   child: Column(children: [
                     Row(
                       children: [
-                        showSvgIconWidget(iconPath: AppIcons.heartIcon),
+                        showSvgIconWidget(iconPath: AppIcons.ingredientesIcon),
                         5.width,
                         Text('Ingredientes',style: primaryTextStyle(fontSize: 18,fontWeight: FontWeight.w600),),
                       ],
@@ -160,8 +161,7 @@ class RecipeDetailScreen extends StatelessWidget {
                           children: [
                             // ingredient name
                           Text(c.ingredients[index].name.toString(),style: primaryTextStyle(fontWeight: FontWeight.w600,fontSize: 18),),
-                          const Expanded(child: Text('-------------------------------------------------',maxLines: 1,)),
-
+                          const Expanded(child: Text('---------------------------------------------------------------------------------',maxLines: 1,)),
                           Text(c.ingredients[index].quantity.toString(),style: primaryTextStyle(fontWeight: FontWeight.w600,fontSize: 16),),
                         ],),
                       );
@@ -183,7 +183,7 @@ class RecipeDetailScreen extends StatelessWidget {
                   child: Column(children: [
                     Row(
                       children: [
-                        showSvgIconWidget(iconPath: AppIcons.heartIcon),
+                        showSvgIconWidget(iconPath: AppIcons.ingredientesIcon),
                         5.width,
                         Text('Modo de preparo',style: primaryTextStyle(fontSize: 18,fontWeight: FontWeight.w600),),
                       ],

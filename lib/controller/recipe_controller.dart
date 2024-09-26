@@ -10,6 +10,8 @@ class RecipeController extends GetxController {
   final TextEditingController recipeIngredientQuantityC = TextEditingController();
   final TextEditingController recipeDescriptionC = TextEditingController();
 
+
+
   ///list wheel scroll controllers
   final FixedExtentScrollController quantityController = FixedExtentScrollController();
 
@@ -41,6 +43,9 @@ class RecipeController extends GetxController {
   final RxString selectedQuantityType = ''.obs;
   RxBool focused = false.obs;
   RxBool searching = false.obs;
+  RxDouble currentCalories = 0.0.obs;
+
+
 
 }
 

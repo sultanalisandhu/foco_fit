@@ -3,12 +3,12 @@ class AppIcons{
   static const String keyBoardIcon= 'assets/icons/keyBoardIcon.svg';
   static const String homeIcon= 'assets/icons/homeIcon.svg';
   static const String alarmIcon= 'assets/icons/alarmIcon.svg';
-  static const String recipeIcon= 'assets/icons/receipeIcon.svg';
+  static const String recipeIcon= 'assets/icons/recipeIcon.svg';
   static const String profileIcon= 'assets/icons/profileIcon.svg';
   static const String filledAlarmIcon= 'assets/icons/filledAlarmIcon.svg';
-  static const String filledRecipeIcon= 'assets/icons/filledRecipeIcon.svg';
   static const String filledHomeIcon= 'assets/icons/filledHomeIcon.svg';
   static const String filledProfileIcon= 'assets/icons/filledProfileIcon.svg';
+  static const String filledRecipeIcon= 'assets/icons/filledRecipeIcon.svg';
   static const String bellIcon= 'assets/icons/bellIcon.svg';
   static const String knifeIcon= 'assets/icons/knifeIcon.svg';
   static const String arrowIcons= 'assets/icons/arrowIcons.svg';
@@ -19,6 +19,7 @@ class AppIcons{
   static const String genderIcon= 'assets/icons/genderIcon.svg';
   static const String heightIcon= 'assets/icons/heightIcon.svg';
   static const String weightIcon= 'assets/icons/weightIcon.svg';
+  static const String ingredientesIcon= 'assets/icons/ingredientesIcon.svg';
   static const String goalWeightIcon= 'assets/icons/goalWeightIcon.svg';
   static const String shoeIcon= 'assets/icons/shoeIcon.svg';
   static const String saladIcon= 'assets/icons/saladIcon.svg';
@@ -36,6 +37,7 @@ class AppIcons{
   static const String plusIcon= 'assets/icons/plusIcon.svg';
   static const String heartIcon= 'assets/icons/heartIcon.svg';
   static const String searchIcon= 'assets/icons/searchIcon.svg';
+  static const String barIcon= 'assets/icons/barIcon.svg';
 }
 
 

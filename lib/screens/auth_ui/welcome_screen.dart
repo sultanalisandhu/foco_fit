@@ -37,7 +37,6 @@ class WelcomeScreen extends StatelessWidget {
           ),),
         ],),
           const Spacer(),
-
           kTextButton(
             onPressed: (){
               Get.to(()=> RegisterScreen());

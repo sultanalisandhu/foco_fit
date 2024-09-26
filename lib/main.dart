@@ -3,7 +3,6 @@ import 'package:focofit/screens/auth_ui/onboarding_screen.dart';
 import 'package:focofit/screens/auth_ui/splash_screen.dart';
 import 'package:focofit/screens/auth_ui/welcome_screen.dart';
 import 'package:focofit/screens/home_ui/home_screen.dart';
-import 'package:focofit/screens/home_ui/slider.dart';
 import 'package:focofit/screens/nav_bar/k_bottom_navigation.dart';
 import 'package:focofit/utils/app_colors.dart';
 import 'package:get/get.dart';
