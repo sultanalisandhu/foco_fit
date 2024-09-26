@@ -7,24 +7,21 @@ import 'package:focofit/utils/k_text_styles.dart';
 import 'package:get/get.dart';
 
 
-class CaloriesGraphScreen extends StatelessWidget {
+class AquaChart extends StatelessWidget {
   final ChartsController controller;
   final String btnText;
   final Function() onButtonTap;
-  CaloriesGraphScreen({super.key, required this.controller,required this.onButtonTap,required this.btnText,});
 
-  final ChartsController caloriesController = Get.put(ChartsController());
+  AquaChart({super.key, required this.controller, required this.onButtonTap, required this.btnText});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 15),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
       decoration: BoxDecoration(
         color: AppColor.whiteColor,
         borderRadius: BorderRadius.circular(16),
-        boxShadow:const [
-          AppColor.shadow
-        ],
+        boxShadow: const [AppColor.shadow],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -32,8 +29,8 @@ class CaloriesGraphScreen extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              _buildCaloriesInfo('Kcal consumidas', caloriesController.caloriesConsumed),
-              _buildCaloriesInfo('Kcal queimadas', caloriesController.caloriesBurned),
+              _buildAquaInfo('Ingerido', controller.aquaConsumed),
+              _buildAquaInfo('Meta mensal', controller.aquaGoal),
             ],
           ),
           const SizedBox(height: 20),
@@ -46,14 +43,13 @@ class CaloriesGraphScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildCaloriesInfo(String label, RxInt value) {
+  Widget _buildAquaInfo(String label, RxInt value) {
     return Column(
       children: [
         Text(label, style: primaryTextStyle(fontSize: 16)),
         Obx(() => Text(
-          '${value.value} kcal',
-          style: primaryTextStyle(
-              fontSize: 20, fontWeight: FontWeight.bold),
+          '${value.value} L', // Display in liters
+          style: primaryTextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         )),
       ],
     );
@@ -66,43 +62,39 @@ class CaloriesGraphScreen extends StatelessWidget {
         border: Border.all(color: AppColor.greyBorder),
       ),
       child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            _buildPeriodButton('Semana', caloriesController.selectedPeriod.value == 'Semana','calories'),
-            _buildPeriodButton('Mês', caloriesController.selectedPeriod.value == 'Mês','calories'),
-            _buildPeriodButton('Ano', caloriesController.selectedPeriod.value == 'Ano','calories'),
-          ],
-        ),
-    ),
-    );
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          _buildPeriodButton('Semana', controller.selectedAquaPeriod.value == 'Semana', 'aqua'),
+          _buildPeriodButton('Mês', controller.selectedAquaPeriod.value == 'Mês', 'aqua'),
+          _buildPeriodButton('Ano', controller.selectedAquaPeriod.value == 'Ano', 'aqua'),
+        ],
+      ),
+    ));
   }
 
-  // Widget for an individual period button
-  Widget _buildPeriodButton(String period, bool isSelected,String chartType) {
+  Widget _buildPeriodButton(String period, bool isSelected, String chartType) {
     return Expanded(
       child: GestureDetector(
-        onTap: () => caloriesController.updatePeriod(period),
+        onTap: () => controller.updateAquaPeriod(period),
         child: Container(
           alignment: Alignment.center,
           padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
           decoration: BoxDecoration(
-            gradient: isSelected?AppColor.primaryGradient:null,
+            gradient: isSelected ? AppColor.primaryGradient : null,
             borderRadius: BorderRadius.circular(20),
           ),
           child: Text(
             period,
             style: primaryTextStyle(
-              color: isSelected ? Colors.white : Colors.orange,
-              fontWeight: FontWeight.bold,
-              fontSize: 16
-            ),
+                color: isSelected ? Colors.white : Colors.orange,
+                fontWeight: FontWeight.bold,
+                fontSize: 16),
           ),
         ),
       ),
     );
   }
 
-  // Widget to build the bar chart
   Widget _buildBarChart() {
     return SizedBox(
       height: 300,
@@ -111,7 +103,6 @@ class CaloriesGraphScreen extends StatelessWidget {
           BarChartData(
             alignment: BarChartAlignment.spaceAround,
             barGroups: _buildBarGroups(),
-
             titlesData: FlTitlesData(
               show: true,
               bottomTitles: AxisTitles(
@@ -127,12 +118,13 @@ class CaloriesGraphScreen extends StatelessWidget {
               ),
               rightTitles: AxisTitles(
                 sideTitles: SideTitles(
-                  showTitles: true,   // Enable right titles
+                  reservedSize: 40,
+                  showTitles: true, // Enable right titles
                   interval: _getIntervalForSelectedPeriod(),
                   getTitlesWidget: (value, meta) {
                     String formattedValue = _formatYAxisLabels(value);
                     return Text(
-                      formattedValue,
+                      '$formattedValue L', // Add "L" for liters
                       style: primaryTextStyle(fontSize: 10),
                     );
                   },
@@ -152,74 +144,67 @@ class CaloriesGraphScreen extends StatelessWidget {
     );
   }
 
-
-
   List<BarChartGroupData> _buildBarGroups() {
-    return caloriesController.chartData
-        .asMap()
-        .entries
-        .map((entry) => BarChartGroupData(
-      x: entry.key,
-      barRods: [
-        BarChartRodData(
-          toY: entry.value,
-          width: 8,
-          borderRadius: BorderRadius.circular(4),
-          gradient: AppColor.primaryGradient,
-
-        ),
-      ],
-    ))
-        .toList();
+    return controller.aquaChartData.asMap().entries.map((entry) {
+      return BarChartGroupData(
+        x: entry.key,
+        barRods: [
+          BarChartRodData(
+            toY: entry.value,
+            width: 8,
+            borderRadius: BorderRadius.circular(4),
+            gradient: AppColor.blueGradient,
+          ),
+        ],
+      );
+    }).toList();
   }
 
-  // Method to determine the interval based on the selected period
   double _getIntervalForSelectedPeriod() {
-    switch (caloriesController.selectedPeriod.value) {
+    switch (controller.selectedAquaPeriod.value) {
       case 'Semana':
-        return 200;  // Adjust as needed
+        return 200;
       case 'Mês':
-        return 500;  // Adjust as needed
+        return 500;
       case 'Ano':
-        return 1000;  // Adjust as needed
+        return 1000;
       default:
-        return 200;  // Default interval
+        return 200;
     }
   }
+
   String _formatYAxisLabels(double value) {
-    // For Semana period, show values in K after 800
-    if (caloriesController.selectedPeriod.value == 'Semana' && value > 800) {
-      return '${(value / 1000).toStringAsFixed(1)}k';
+    if (controller.selectedAquaPeriod.value == 'Semana' && value > 800) {
+      return '${(value / 1000).toStringAsFixed(1)}';
     }
-
-    // For Mês period, show values in K after 500
-    if (caloriesController.selectedPeriod.value == 'Mês' && value >= 500) {
-      return '${(value / 1000).toStringAsFixed(1)}k';
+    if (controller.selectedAquaPeriod.value == 'Mês' && value >= 500) {
+      return '${(value / 1000).toStringAsFixed(1)}';
     }
-
-    // For Ano, handle any large values
-    if (caloriesController.selectedPeriod.value == 'Ano' && value >= 1000) {
-      return '${(value / 1000).toStringAsFixed(1)}k';
+    if (controller.selectedAquaPeriod.value == 'Ano' && value >= 2000) {
+      return '${(value / 1000).toStringAsFixed(1)}';
     }
-
-    // Otherwise, return normal values
     return value.toInt().toString();
   }
 
-
   Widget _buildBottomTitles(double value, TitleMeta meta) {
     const weeklyLabels = ['31 dom', '1 seg', '2 ter', '3 qua', '4 qui', '5 sex', '6 sáb'];
-    const monthlyLabels = ['Jan', 'Feb', 'Mar', 'Apr'];
-    const annualLabels = ['2019', '2020', '2021', '2022','2023'];
+    const monthlyLabels = ['Jan', 'Feb', 'Mar', 'Apr','May','Jun','Jul'];
+    const annualLabels = ['2017','2018', '2019', '2020', '2021', '2022', '2023'];
 
     String text = '';
 
-    if (caloriesController.selectedPeriod.value == 'Semana') {
-      text = weeklyLabels[value.toInt()];
-    } else if (caloriesController.selectedPeriod.value == 'Mês') {
-      text = monthlyLabels[value.toInt()];
-    } else if (caloriesController.selectedPeriod.value == 'Ano') {
-      text = annualLabels[value.toInt()];
+    if (controller.selectedAquaPeriod.value == 'Semana') {
+      if (value.toInt() < weeklyLabels.length) {
+        text = weeklyLabels[value.toInt()];
+      }
+    } else if (controller.selectedAquaPeriod.value == 'Mês') {
+      if (value.toInt() < monthlyLabels.length) {
+        text = monthlyLabels[value.toInt()];
+      }
+    } else if (controller.selectedAquaPeriod.value == 'Ano') {
+      if (value.toInt() < annualLabels.length) {
+        text = annualLabels[value.toInt()];
+      }
     }
 
     return SideTitleWidget(
@@ -231,4 +216,6 @@ class CaloriesGraphScreen extends StatelessWidget {
       ),
     );
   }
+
 }
+

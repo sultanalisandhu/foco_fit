@@ -68,7 +68,7 @@ AppBar kProfileAppBar({
     surfaceTintColor: AppColor.whiteColor,
     leading: ListTile(
       onTap: onTileTap,
-      contentPadding: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 10,vertical: 10),
       leading: CircleAvatar(
         radius: 30,
         backgroundImage: NetworkImage(imgPath!,),
@@ -80,14 +80,18 @@ AppBar kProfileAppBar({
       trailing: notificationCount!=null?Stack(
         alignment: Alignment.center,
         children: [
-          showSvgIconWidget(iconPath: AppIcons.bellIcon,onTap: trailingOnTap),
           Container(
-            padding: EdgeInsets.all(3),
-            decoration: BoxDecoration(
+              height: 50,
+              width: 50,
+              color: Colors.lightBlue,
+              child: showSvgIconWidget(iconPath: AppIcons.bellIcon,onTap: trailingOnTap)),
+          Container(
+            padding: const EdgeInsets.all(3),
+            decoration: const BoxDecoration(
                 shape: BoxShape.circle,
                 color: AppColor.whiteColor
             ),
-            child: Text(notificationCount!,style: primaryTextStyle(fontSize: 10,fontWeight: FontWeight.w600),),
+            child: Text(notificationCount,style: primaryTextStyle(fontSize: 10,fontWeight: FontWeight.w600),),
           )
         ],
       ):GestureDetector(

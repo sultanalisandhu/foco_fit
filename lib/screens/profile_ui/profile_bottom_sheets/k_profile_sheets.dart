@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:focofit/controller/profile_controller.dart';
-import 'package:focofit/screens/auth_ui/registeration_progress_screens/select_height.dart';
 import 'package:focofit/screens/profile_ui/calender_ui.dart';
 import 'package:get/get.dart';
 import 'package:focofit/components/k_buttons.dart';

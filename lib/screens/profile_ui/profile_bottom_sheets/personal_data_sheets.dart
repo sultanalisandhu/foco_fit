@@ -23,11 +23,11 @@ class KPersonalDataSheet {
         borderRadius: BorderRadius.circular(0.0),
       ),
       isScrollControlled: true,
-      isDismissible: true,
+      isDismissible: false,
       backgroundColor: AppColor.whiteColor,
       builder: (BuildContext context) {
         return SizedBox(
-          height: context.isKeyboardVisible ? mQ.height : mQ.height * heightFactor,
+          height: mQ.height * heightFactor,
           width: mQ.width,
           child: Padding(
             padding: const EdgeInsets.all(20.0),
@@ -49,77 +49,44 @@ class KPersonalDataSheet {
       },
     );
   }
-  static void editHistoricoSheet(BuildContext context, {
-    required Function() onConfirmTap,
-    required Function() onCancelTap}) {
-    show(
-      context: context,
-      title: 'Editar histórico',
-      content: [
-        Align(
-            alignment: Alignment.center,
-            child: Text('O que deseja fazer com este histórico?',
-              textAlign: TextAlign.center,
-              style: primaryTextStyle(fontSize: 14,fontWeight: FontWeight.w400),)),
-        const Spacer(),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            KOutlineButton(
-              onTap: onCancelTap,
-              btnText: 'Excluir',
-              gradient: AppColor.blackGradient,
-              textGradient: AppColor.blackGradient,
-              width:120,
-            ),
-            kTextButton(
-              onPressed: onConfirmTap,
-              btnText: 'Alterar',
-              useGradient: true,
-              width:120,
-            ),
-          ],
-        ),
-      ],
-      heightFactor: 0.25, onConfirmTap: () {  },
-    );
-  }
-  static void editHeight(BuildContext context, {Function()? onConfirmTap}) {
-    final c = Get.put(ProfileController());
 
+  static void editHeight(BuildContext context, {Function()? onConfirmTap, required ProfileController profileController}) {
     show(
       context: context,
       title: 'Altura',
       content: [
-        /// select measurement container
-        Obx(()=>Row(
+        Obx(() => Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            HeightContainer(text: 'cm',
-                isSelected: c.selectedHeight.value == 'cm',
-                onTap: () {
-                  c.selectedHeight.value='cm';
-                }),
+            HeightContainer(
+              text: 'cm',
+              isSelected: profileController.selectedHeight.value == 'cm',
+              onTap: () {
+                profileController.selectedHeight.value = 'cm';
+              },
+            ),
             20.width,
-            HeightContainer(text: 'ft/In',
-                isSelected: c.selectedHeight.value == 'ft/In',
-                onTap: () {
-                  c.selectedHeight.value='ft/In';
-                }),
+            HeightContainer(
+              text: 'ft/In',
+              isSelected: profileController.selectedHeight.value == 'ft/In',
+              onTap: () {
+                profileController.selectedHeight.value = 'ft/In';
+              },
+            ),
           ],
         )),
         15.height,
-        c.selectedHeight.value=='ft/In'
+        Obx(() => profileController.selectedHeight.value == 'ft/In'
             ? Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.15,
+              height: MediaQuery.of(context).size.height * 0.25, // Adjusted height
               width: MediaQuery.of(context).size.width * 0.25,
               child: ListWheelScrollView.useDelegate(
-                controller: c.ftController,
+                controller: profileController.ftController,
                 onSelectedItemChanged: (value) {
-                  c.heightInFt.value = value;
+                  profileController.heightInFt.value = value;
                 },
                 itemExtent: 65,
                 perspective: 0.006,
@@ -128,17 +95,18 @@ class KPersonalDataSheet {
                 childDelegate: ListWheelChildBuilderDelegate(
                   childCount: 21,
                   builder: (context, index) {
-                    return Obx(()=> Center(
-                      child: index == c.heightInFt.value
-                          ? GradientText(text: index.toString(), gradient: AppColor.primaryGradient,style: primaryTextStyle(
-                          fontSize: 40,
-                          fontWeight: FontWeight.w600
-                      ),)
-                          : Text(
-                        index.toString(),
-                        style:  primaryTextStyle(fontSize: 32, fontWeight: FontWeight.w500,color: Colors.black.withOpacity(0.7)),
+                    return Obx(()=>Center(
+                        child: index == profileController.heightInFt.value
+                            ? GradientText(
+                          text: index.toString(),
+                          gradient: AppColor.primaryGradient,
+                          style: primaryTextStyle(fontSize: 40, fontWeight: FontWeight.w600),
+                        )
+                            : Text(
+                          index.toString(),
+                          style: primaryTextStyle(fontSize: 32, fontWeight: FontWeight.w500, color: Colors.black.withOpacity(0.7)),
+                        ),
                       ),
-                    ),
                     );
                   },
                 ),
@@ -147,16 +115,16 @@ class KPersonalDataSheet {
             Text(
               'ft',
               textAlign: TextAlign.end,
-              style: primaryTextStyle(fontSize: 20.0, fontWeight: FontWeight.w400, color: Colors.black,),
+              style: primaryTextStyle(fontSize: 20.0, fontWeight: FontWeight.w400, color: Colors.black),
             ),
             20.width,
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.15,
+              height: MediaQuery.of(context).size.height * 0.25, // Adjusted height
               width: MediaQuery.of(context).size.width * 0.25,
               child: ListWheelScrollView.useDelegate(
-                controller: c.inchController, // Use a different controller for the second ListWheelScrollView
+                controller: profileController.inchController,
                 onSelectedItemChanged: (value) {
-                  c.heightInch.value = value;
+                  profileController.heightInch.value = value;
                 },
                 itemExtent: 65,
                 perspective: 0.006,
@@ -166,16 +134,17 @@ class KPersonalDataSheet {
                   childCount: 13,
                   builder: (context, index) {
                     return Obx(()=> Center(
-                      child: index == c.heightInCm.value
-                          ? GradientText(text: index.toString(), gradient: AppColor.primaryGradient,style: primaryTextStyle(
-                          fontSize: 40,
-                          fontWeight: FontWeight.w600
-                      ),)
-                          : Text(
-                        index.toString(),
-                        style:  primaryTextStyle(fontSize: 32, fontWeight: FontWeight.w500,color: Colors.black.withOpacity(0.7)),
+                        child: index == profileController.heightInCm.value
+                            ? GradientText(
+                          text: index.toString(),
+                          gradient: AppColor.primaryGradient,
+                          style: primaryTextStyle(fontSize: 40, fontWeight: FontWeight.w600),
+                        )
+                            : Text(
+                          index.toString(),
+                          style: primaryTextStyle(fontSize: 32, fontWeight: FontWeight.w500, color: Colors.black.withOpacity(0.7)),
+                        ),
                       ),
-                    ),
                     );
                   },
                 ),
@@ -184,7 +153,7 @@ class KPersonalDataSheet {
             Text(
               'in',
               textAlign: TextAlign.end,
-              style: primaryTextStyle(fontSize: 20.0, fontWeight: FontWeight.w400, color: Colors.black,),
+              style: primaryTextStyle(fontSize: 20.0, fontWeight: FontWeight.w400, color: Colors.black),
             ),
           ],
         )
@@ -195,9 +164,9 @@ class KPersonalDataSheet {
               height: MediaQuery.of(context).size.height * 0.45,
               width: MediaQuery.of(context).size.width * 0.25,
               child: ListWheelScrollView.useDelegate(
-                controller: c.cmController,
+                controller: profileController.cmController,
                 onSelectedItemChanged: (value) {
-                  c.heightInCm.value = value;
+                  profileController.heightInCm.value = value;
                 },
                 itemExtent: 65,
                 perspective: 0.006,
@@ -206,16 +175,18 @@ class KPersonalDataSheet {
                 childDelegate: ListWheelChildBuilderDelegate(
                   childCount: 500,
                   builder: (context, index) {
-                    return  Obx(()=>Center(child:
-                    index == c.heightInCm.value
-                        ? GradientText(text: index.toString(), gradient: AppColor.primaryGradient,style: primaryTextStyle(
-                        fontSize: 40,
-                        fontWeight: FontWeight.w600
-                    ),)
-                        : Text(
-                      index.toString(),
-                      style:  primaryTextStyle(fontSize: 32, fontWeight: FontWeight.w500,color: Colors.black.withOpacity(0.7)),
-                    )),
+                    return Obx(()=> Center(
+                        child: index == profileController.heightInCm.value
+                            ? GradientText(
+                          text: index.toString(),
+                          gradient: AppColor.primaryGradient,
+                          style: primaryTextStyle(fontSize: 40, fontWeight: FontWeight.w600),
+                        )
+                            : Text(
+                          index.toString(),
+                          style: primaryTextStyle(fontSize: 32, fontWeight: FontWeight.w500, color: Colors.black.withOpacity(0.7)),
+                        ),
+                      ),
                     );
                   },
                 ),
@@ -224,17 +195,19 @@ class KPersonalDataSheet {
             Text(
               'cm',
               textAlign: TextAlign.end,
-              style: primaryTextStyle(fontSize: 20.0, fontWeight: FontWeight.w400, color: Colors.black,),
+              style: primaryTextStyle(fontSize: 20.0, fontWeight: FontWeight.w400, color: Colors.black),
             ),
-          ],),
+          ],
+        )
+        ),
       ],
       onConfirmTap: onConfirmTap,
-      heightFactor: 0.7,
+      heightFactor: 0.75, // Increased heightFactor
     );
   }
 
-  static void editDateBirth(BuildContext context, {Function()? onConfirmTap}) {
-    final profileController = Get.put(ProfileController());
+
+  static void editDateBirth(BuildContext context, {Function()? onConfirmTap,required ProfileController profileController}) {
 
     show(
       context: context,
@@ -370,42 +343,221 @@ class KPersonalDataSheet {
     );
   }
 
-  static void editGender(BuildContext context, {Function()? onConfirmTap}) {
-    final profileController = Get.put(ProfileController(),tag: 'profileDController');
-      show(
-        context: context,
-        title: 'Gênero',
-        content: [
-          for (int i = 0; i < profileController.genderList.length; i++)
-            Obx(() => Container(
-              margin: EdgeInsets.symmetric(vertical: 10),
-                child: ListTile(
-                  title: Text(
-                    profileController.genderList[i].toString(),
-                    style: primaryTextStyle(fontSize: 14, fontWeight: FontWeight.w500),
-                  ),
-                  onTap: () {
-                    profileController.selectedGenderIndex.value = i;
-                  },
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    side: BorderSide(
-                      color: profileController.selectedGenderIndex.value == i
-                          ? AppColor.startGradient
-                          : AppColor.greyBorder,
-                    ),
-                  ),
+  static void editGender(BuildContext context, {Function()? onConfirmTap,required ProfileController profileController}) {
+    show(
+      context: context,
+      title: 'Gênero',
+      content: [
+        for (int i = 0; i < profileController.genderList.length; i++)
+          Obx(() => Container(
+            margin: const EdgeInsets.symmetric(vertical: 10),
+            child: ListTile(
+              title: Text(
+                profileController.genderList[i].toString(),
+                style: primaryTextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+              ),
+              onTap: () {
+                profileController.selectedGenderIndex.value = i;
+              },
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+                side: BorderSide(
+                  color: profileController.selectedGenderIndex.value == i
+                      ? AppColor.startGradient
+                      : AppColor.greyBorder,
                 ),
               ),
             ),
-        ],
-        onConfirmTap: onConfirmTap,
-        heightFactor: 0.45,
-      );
-    }
+          ),
+          ),
+      ],
+      onConfirmTap: onConfirmTap,
+      heightFactor: 0.45,
+    );
+  }
 
-  static void editActivityLevel(BuildContext context, {Function()? onConfirmTap}) {
-    final profileController = Get.put(ProfileController(),tag: 'profileDController');
+
+
+  static void editCurrentWeight(BuildContext context, {Function()? onConfirmTap,required ProfileController profileController}) {
+    show(
+      context: context,
+      title: 'Peso atual',
+      content: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.25,
+              width: MediaQuery.of(context).size.width * 0.25,
+              child: ListWheelScrollView.useDelegate(
+                controller: profileController.kgController,
+                onSelectedItemChanged: (value) {
+                  profileController.selectedWeightKg.value = value;
+                },
+                itemExtent: 65,
+                perspective: 0.006,
+                diameterRatio: 1.9,
+                physics: const FixedExtentScrollPhysics(),
+                childDelegate: ListWheelChildBuilderDelegate(
+                  childCount: 120,
+                  builder: (context, index) {
+                    return Obx(()=> Center(
+                      child: index == profileController.selectedWeightKg.value
+                          ? GradientText(text: index.toString(), gradient: AppColor.primaryGradient,style: primaryTextStyle(
+                          fontSize: 40,
+                          fontWeight: FontWeight.w600
+                      ),)
+                          : Text(
+                        index.toString(),
+                        style:  primaryTextStyle(fontSize: 32, fontWeight: FontWeight.w500,color: Colors.black.withOpacity(0.7)),
+                      ),
+                    ),
+                    );
+                  },
+                ),
+              ),
+            ),
+            Text(
+              'Kg',
+              textAlign: TextAlign.end,
+              style: primaryTextStyle(fontSize: 20.0, fontWeight: FontWeight.w400, color: Colors.black,),
+            ),
+            20.width,
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.25,
+              width: MediaQuery.of(context).size.width * 0.25,
+              child: ListWheelScrollView.useDelegate(
+                controller: profileController.grController,
+                onSelectedItemChanged: (value) {
+                  profileController.selectedWeightGr.value = value;
+                },
+                itemExtent: 65,
+                perspective: 0.006,
+                diameterRatio: 1.9,
+                physics: const FixedExtentScrollPhysics(),
+                childDelegate: ListWheelChildBuilderDelegate(
+                  childCount: 1000,
+                  builder: (context, index) {
+                    return Obx(()=> Center(
+                      child: index == profileController.selectedWeightGr.value
+                          ? GradientText(text: index.toString(), gradient: AppColor.primaryGradient,style: primaryTextStyle(
+                          fontSize: 40,
+                          fontWeight: FontWeight.w600
+                      ),)
+                          : Text(
+                        index.toString(),
+                        style:  primaryTextStyle(fontSize: 32, fontWeight: FontWeight.w500,color: Colors.black.withOpacity(0.7)),
+                      ),
+                    ),
+                    );
+                  },
+                ),
+              ),
+            ),
+            Text(
+              'Gr',
+              textAlign: TextAlign.end,
+              style: primaryTextStyle(fontSize: 20.0, fontWeight: FontWeight.w400, color: Colors.black,),
+            ),
+          ],
+        ),
+      ],
+      onConfirmTap: onConfirmTap,
+      heightFactor: 0.45,
+    );
+  }
+
+  static void editGoalWeight(BuildContext context, {Function()? onConfirmTap,required ProfileController profileController}) {
+    show(
+      context: context,
+      title: 'Peso meta',
+      content: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.25,
+              width: MediaQuery.of(context).size.width * 0.25,
+              child: ListWheelScrollView.useDelegate(
+                controller: profileController.kgController,
+                onSelectedItemChanged: (value) {
+                  profileController.selectedWeightKg.value = value;
+                },
+                itemExtent: 65,
+                perspective: 0.006,
+                diameterRatio: 1.9,
+                physics: const FixedExtentScrollPhysics(),
+                childDelegate: ListWheelChildBuilderDelegate(
+                  childCount: 120,
+                  builder: (context, index) {
+                    return Obx(()=> Center(
+                      child: index == profileController.selectedWeightKg.value
+                          ? GradientText(text: index.toString(), gradient: AppColor.primaryGradient,style: primaryTextStyle(
+                          fontSize: 40,
+                          fontWeight: FontWeight.w600
+                      ),)
+                          : Text(
+                        index.toString(),
+                        style:  primaryTextStyle(fontSize: 32, fontWeight: FontWeight.w500,color: Colors.black.withOpacity(0.7)),
+                      ),
+                    ),
+                    );
+                  },
+                ),
+              ),
+            ),
+            Text(
+              'Kg',
+              textAlign: TextAlign.end,
+              style: primaryTextStyle(fontSize: 20.0, fontWeight: FontWeight.w400, color: Colors.black,),
+            ),
+            20.width,
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.25,
+              width: MediaQuery.of(context).size.width * 0.25,
+              child: ListWheelScrollView.useDelegate(
+                controller: profileController.grController,
+                onSelectedItemChanged: (value) {
+                  profileController.selectedWeightGr.value = value;
+                },
+                itemExtent: 65,
+                perspective: 0.006,
+                diameterRatio: 1.9,
+                physics: const FixedExtentScrollPhysics(),
+                childDelegate: ListWheelChildBuilderDelegate(
+                  childCount: 1000,
+                  builder: (context, index) {
+                    return Obx(()=> Center(
+                      child: index == profileController.selectedWeightGr.value
+                          ? GradientText(text: index.toString(), gradient: AppColor.primaryGradient,style: primaryTextStyle(
+                          fontSize: 40,
+                          fontWeight: FontWeight.w600
+                      ),)
+                          : Text(
+                        index.toString(),
+                        style:  primaryTextStyle(fontSize: 32, fontWeight: FontWeight.w500,color: Colors.black.withOpacity(0.7)),
+                      ),
+                    ),
+                    );
+                  },
+                ),
+              ),
+            ),
+            Text(
+              'Gr',
+              textAlign: TextAlign.end,
+              style: primaryTextStyle(fontSize: 20.0, fontWeight: FontWeight.w400, color: Colors.black,),
+            ),
+          ],
+        ),
+      ],
+      onConfirmTap: onConfirmTap,
+      heightFactor: 0.45,
+    );
+  }
+
+  static void editActivityLevel(BuildContext context, {Function()? onConfirmTap,required ProfileController profileController}) {
+
     show(
       context: context,
       title: 'Nível de atividade',
@@ -442,185 +594,9 @@ class KPersonalDataSheet {
     );
   }
 
-  static void editCurrentWeight(BuildContext context, {Function()? onConfirmTap}) {
-    final c = Get.put(ProfileController());
-    show(
-      context: context,
-      title: 'Peso atual',
-      content: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.25,
-              width: MediaQuery.of(context).size.width * 0.25,
-              child: ListWheelScrollView.useDelegate(
-                controller: c.kgController,
-                onSelectedItemChanged: (value) {
-                  c.selectedWeightKg.value = value;
-                },
-                itemExtent: 65,
-                perspective: 0.006,
-                diameterRatio: 1.9,
-                physics: const FixedExtentScrollPhysics(),
-                childDelegate: ListWheelChildBuilderDelegate(
-                  childCount: 120,
-                  builder: (context, index) {
-                    return Obx(()=> Center(
-                      child: index == c.selectedWeightKg.value
-                          ? GradientText(text: index.toString(), gradient: AppColor.primaryGradient,style: primaryTextStyle(
-                          fontSize: 40,
-                          fontWeight: FontWeight.w600
-                      ),)
-                          : Text(
-                        index.toString(),
-                        style:  primaryTextStyle(fontSize: 32, fontWeight: FontWeight.w500,color: Colors.black.withOpacity(0.7)),
-                      ),
-                    ),
-                    );
-                  },
-                ),
-              ),
-            ),
-            Text(
-              'Kg',
-              textAlign: TextAlign.end,
-              style: primaryTextStyle(fontSize: 20.0, fontWeight: FontWeight.w400, color: Colors.black,),
-            ),
-           20.width,
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.25,
-              width: MediaQuery.of(context).size.width * 0.25,
-              child: ListWheelScrollView.useDelegate(
-                controller: c.grController,
-                onSelectedItemChanged: (value) {
-                  c.selectedWeightGr.value = value;
-                },
-                itemExtent: 65,
-                perspective: 0.006,
-                diameterRatio: 1.9,
-                physics: const FixedExtentScrollPhysics(),
-                childDelegate: ListWheelChildBuilderDelegate(
-                  childCount: 1000,
-                  builder: (context, index) {
-                    return Obx(()=> Center(
-                      child: index == c.selectedWeightGr.value
-                          ? GradientText(text: index.toString(), gradient: AppColor.primaryGradient,style: primaryTextStyle(
-                          fontSize: 40,
-                          fontWeight: FontWeight.w600
-                      ),)
-                          : Text(
-                        index.toString(),
-                        style:  primaryTextStyle(fontSize: 32, fontWeight: FontWeight.w500,color: Colors.black.withOpacity(0.7)),
-                      ),
-                    ),
-                    );
-                  },
-                ),
-              ),
-            ),
-            Text(
-              'Gr',
-              textAlign: TextAlign.end,
-              style: primaryTextStyle(fontSize: 20.0, fontWeight: FontWeight.w400, color: Colors.black,),
-            ),
-          ],
-        ),
-      ],
-      onConfirmTap: onConfirmTap,
-      heightFactor: 0.45,
-    );
-  }
 
-  static void editGoalWeight(BuildContext context, {Function()? onConfirmTap}) {
-    final c = Get.put(ProfileController());
-    show(
-      context: context,
-      title: 'Peso meta',
-      content: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.25,
-              width: MediaQuery.of(context).size.width * 0.25,
-              child: ListWheelScrollView.useDelegate(
-                controller: c.kgController,
-                onSelectedItemChanged: (value) {
-                  c.selectedWeightKg.value = value;
-                },
-                itemExtent: 65,
-                perspective: 0.006,
-                diameterRatio: 1.9,
-                physics: const FixedExtentScrollPhysics(),
-                childDelegate: ListWheelChildBuilderDelegate(
-                  childCount: 120,
-                  builder: (context, index) {
-                    return Obx(()=> Center(
-                      child: index == c.selectedWeightKg.value
-                          ? GradientText(text: index.toString(), gradient: AppColor.primaryGradient,style: primaryTextStyle(
-                          fontSize: 40,
-                          fontWeight: FontWeight.w600
-                      ),)
-                          : Text(
-                        index.toString(),
-                        style:  primaryTextStyle(fontSize: 32, fontWeight: FontWeight.w500,color: Colors.black.withOpacity(0.7)),
-                      ),
-                    ),
-                    );
-                  },
-                ),
-              ),
-            ),
-            Text(
-              'Kg',
-              textAlign: TextAlign.end,
-              style: primaryTextStyle(fontSize: 20.0, fontWeight: FontWeight.w400, color: Colors.black,),
-            ),
-            20.width,
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.25,
-              width: MediaQuery.of(context).size.width * 0.25,
-              child: ListWheelScrollView.useDelegate(
-                controller: c.grController,
-                onSelectedItemChanged: (value) {
-                  c.selectedWeightGr.value = value;
-                },
-                itemExtent: 65,
-                perspective: 0.006,
-                diameterRatio: 1.9,
-                physics: const FixedExtentScrollPhysics(),
-                childDelegate: ListWheelChildBuilderDelegate(
-                  childCount: 1000,
-                  builder: (context, index) {
-                    return Obx(()=> Center(
-                      child: index == c.selectedWeightGr.value
-                          ? GradientText(text: index.toString(), gradient: AppColor.primaryGradient,style: primaryTextStyle(
-                          fontSize: 40,
-                          fontWeight: FontWeight.w600
-                      ),)
-                          : Text(
-                        index.toString(),
-                        style:  primaryTextStyle(fontSize: 32, fontWeight: FontWeight.w500,color: Colors.black.withOpacity(0.7)),
-                      ),
-                    ),
-                    );
-                  },
-                ),
-              ),
-            ),
-            Text(
-              'Gr',
-              textAlign: TextAlign.end,
-              style: primaryTextStyle(fontSize: 20.0, fontWeight: FontWeight.w400, color: Colors.black,),
-            ),
-          ],
-        ),
-      ],
-      onConfirmTap: onConfirmTap,
-      heightFactor: 0.45,
-    );
-  }
+
+
 
   static Widget _buildHeader() {
     return Align(
@@ -651,3 +627,39 @@ class KPersonalDataSheet {
     );
   }
 }
+
+// static void editHistoricoSheet(BuildContext context, {
+//   required Function() onConfirmTap,
+//   required Function() onCancelTap}) {
+//   show(
+//     context: context,
+//     title: 'Editar histórico',
+//     content: [
+//       Align(
+//           alignment: Alignment.center,
+//           child: Text('O que deseja fazer com este histórico?',
+//             textAlign: TextAlign.center,
+//             style: primaryTextStyle(fontSize: 14,fontWeight: FontWeight.w400),)),
+//       const Spacer(),
+//       Row(
+//         mainAxisAlignment: MainAxisAlignment.spaceAround,
+//         children: [
+//           KOutlineButton(
+//             onTap: onCancelTap,
+//             btnText: 'Excluir',
+//             gradient: AppColor.blackGradient,
+//             textGradient: AppColor.blackGradient,
+//             width:120,
+//           ),
+//           kTextButton(
+//             onPressed: onConfirmTap,
+//             btnText: 'Alterar',
+//             useGradient: true,
+//             width:120,
+//           ),
+//         ],
+//       ),
+//     ],
+//     heightFactor: 0.25, onConfirmTap: () { },
+//   );
+// }

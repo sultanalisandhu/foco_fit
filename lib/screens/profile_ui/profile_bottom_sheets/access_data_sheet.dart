@@ -49,22 +49,20 @@ class KBottomSheet {
     );
   }
 
-  // Method to show bottom sheet for editing email
   static void editEmail(BuildContext context, {Function()? onConfirmTap}) {
     show(
       context: context,
       title: 'Alterar email',
       content: [
-        _buildTextField(label: "Novo email", hintText: 'Novo email', context: context),
+        _buildTextField(context: context, label: "Novo email", hintText: 'Novo email', ),
         10.height,
-        _buildTextField(label: "Confirme o email", hintText: 'Confirme o email', context: context),
+        _buildTextField(context: context, label: "Confirme o email", hintText: 'Confirme o email',textInputAction: TextInputAction.done ),
       ],
       onConfirmTap: onConfirmTap,
       heightFactor: 0.4,
     );
   }
 
-  // Method to show bottom sheet for editing password
   static void editPassword(BuildContext context, {Function()? onConfirmTap}) {
     show(
       context: context,
@@ -74,27 +72,25 @@ class KBottomSheet {
         10.height,
         _buildTextField(label: "Novo senha", hintText: 'Novo senha', context: context),
         10.height,
-        _buildTextField(label: "Confirme a senha", hintText: 'Confirme a senha', context: context),
+        _buildTextField(label: "Confirme a senha", hintText: 'Confirme a senha', context: context,textInputAction: TextInputAction.done),
       ],
       onConfirmTap: onConfirmTap,
       heightFactor: 0.5,
     );
   }
 
-  // Method to show bottom sheet for editing phone number
   static void editPhone(BuildContext context, {Function()? onConfirmTap}) {
     show(
       context: context,
       title: 'Alterar celular',
       content: [
-        _buildTextField(hintText: '(16) 99999-9999', context: context),
+        _buildTextField(hintText: '(16) 99999-9999', context: context,textInputAction: TextInputAction.done),
       ],
       onConfirmTap: onConfirmTap,
-      heightFactor: 0.4,
+      heightFactor: 0.35,
     );
   }
 
-  // Helper method for header
   static Widget _buildHeader() {
     return Align(
       alignment: Alignment.center,
@@ -102,7 +98,6 @@ class KBottomSheet {
     );
   }
 
-  // Helper method for title
   static Widget _buildTitle(String title) {
     return Align(
       alignment: Alignment.center,
@@ -116,10 +111,10 @@ class KBottomSheet {
     );
   }
 
-  // Helper method to build text fields
   static Widget _buildTextField({
     required BuildContext context,
     String? label,
+    TextInputAction? textInputAction,
     required String hintText,
   }) {
     return Column(
@@ -134,16 +129,17 @@ class KBottomSheet {
               fontWeight: FontWeight.w500,
             ),
           ),
-        GetTextField(
-          context: context,
-          hintText: hintText,
-          obSecureText: false,
-        ),
+    CustomTextField(context: context,
+    hintText: hintText,
+      color: Colors.white,
+      borderColor: AppColor.greyColor,
+      textInputType: TextInputType.text,
+      textInputAction: textInputAction,
+    ),
       ],
     );
   }
 
-  // Helper method for confirm button
   static Widget _buildConfirmButton(Function()? onConfirmTap) {
     return kTextButton(
       width: mQ.width,

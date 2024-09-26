@@ -21,6 +21,12 @@ class AppColor {
   static const Color reddColor= Color.fromRGBO(222, 0, 40, 1);
   static const Color greenColor= Color.fromRGBO(0, 170, 27, 1);
   static const Color lightGreenColor= Color.fromRGBO(0, 217, 35, 1);
+  static const Color lightBlueColor= Color.fromRGBO(84, 169, 255, 1);
+  static const Color blueColor= Color.fromRGBO(3, 108, 215, 1);
+  static const Color lightPurpelColor= Color.fromRGBO(160, 85, 255, 1);
+  static const Color purpelColor= Color.fromRGBO(102, 0, 229, 1);
+
+
 
   ///Shadow Color
   static const Color shadowColor= Color.fromRGBO(112, 112, 112, 0.18);
@@ -50,6 +56,16 @@ class AppColor {
   );
   static const greenGradient = LinearGradient(
     colors: [AppColor.lightGreenColor, AppColor.greenColor],
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+  );
+  static const blueGradient = LinearGradient(
+    colors: [AppColor.lightBlueColor, AppColor.blueColor],
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+  );
+  static const purpelGradient = LinearGradient(
+    colors: [AppColor.lightPurpelColor, AppColor.purpelColor],
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
   );
