@@ -1,11 +1,11 @@
 {
 
-  "onboardingTitle1": "Welcome to your fitness journey",
-  "onboardingTitle2": "Stay fit. Live healthy.",
-  "onboardingTitle3": "Stay fit. Live healthy.",
-  "onboardingSubTitle1": "Record everything you eat and track your results",
-  "onboardingSubTitle2": "Your fitness journey starts here",
-  "onboardingSubTitle3": "Your fitness journey starts here",
+  "onboardingTitleFirst": "Welcome to your fitness journey",
+  "onboardingTitleSecond": "Stay fit. Live healthy.",
+  "onboardingTitleThird": "Stay fit. Live healthy.",
+  "onboardingSubTitleFirst": "Record everything you eat and track your results",
+  "onboardingSubTitleSecond": "Your fitness journey starts here",
+  "onboardingSubTitleThird": "Your fitness journey starts here",
   "welcomeNote": "Welcome to FocoFit",
   "loginNote": "Log in or create an account",
   "createAccount": "Create account",

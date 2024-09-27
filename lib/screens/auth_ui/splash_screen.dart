@@ -6,23 +6,26 @@ import 'package:get/get.dart';
 
 class SplashScreen extends StatelessWidget {
   SplashScreen({super.key});
-  final SplashController controller= Get.put(SplashController());
   @override
   Widget build(BuildContext context) {
-    controller.navigateTo();
-    return Scaffold(
-      backgroundColor: AppColor.primaryColor,
-      body: Container(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.height,
-        decoration: BoxDecoration(
-          gradient: AppColor.primaryGradient
-        ),
-        child: Center(
-            child: Image(image: AssetImage(AppImages.logoImage))
-        ),
-      )
+    return GetBuilder(
+      init: Get.put(SplashController()),
+      builder: (c) {
+        return Scaffold(
+          backgroundColor: AppColor.primaryColor,
+          body: Container(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.height,
+            decoration: const BoxDecoration(
+              gradient: AppColor.primaryGradient
+            ),
+            child: const Center(
+                child: Image(image: AssetImage(AppImages.logoImage))
+            ),
+          )
 
+        );
+      }
     );
   }
 }

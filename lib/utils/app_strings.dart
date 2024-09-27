@@ -1,11 +1,11 @@
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
 class AppStrings {
-  static String  onboardingTitle1 = "onboardingTitle1".tr;
-  static String  onboardingTitle2 = "onboardingTitle2".tr;
-  static String  onboardingTitle3 = "onboardingTitle3".tr;
-  static String  onboardingSubTitle1 = "onboardingSubTitle1".tr;
-  static String  onboardingSubTitle2 = "onboardingSubTitle2".tr;
-  static String  onboardingSubTitle3 = "onboardingSubTitle3".tr;
+  static String  onboardingTitleFirst = "onboardingTitleFirst".tr;
+  static String  onboardingTitleSecond = "onboardingTitleSecond".tr;
+  static String  onboardingTitleThird = "onboardingTitleThird".tr;
+  static String  onboardingSubTitleFirst = "onboardingSubTitleFirst".tr;
+  static String  onboardingSubTitleSecond = "onboardingSubTitleSecond".tr;
+  static String  onboardingSubTitleThird = "onboardingSubTitleThird".tr;
   static String  welcomeNote = "welcomeNote".tr;
   static String  loginNote = "loginNote".tr;
   static String  createAccount = "createAccount".tr;
