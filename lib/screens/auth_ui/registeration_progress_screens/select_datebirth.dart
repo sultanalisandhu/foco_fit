@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:focofit/components/k_buttons.dart';
 import 'package:focofit/screens/auth_ui/registeration_progress_screens/select_height.dart';
 import 'package:focofit/utils/app_colors.dart';
+import 'package:focofit/utils/app_strings.dart';
 import 'package:focofit/utils/k_text_styles.dart';
 import 'package:focofit/widgets/k_app_bar.dart';
 import 'package:get/get.dart';
@@ -33,14 +34,14 @@ class SelectDateBirth extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Qual é a sua data de nascimento?',
+              AppStrings.whatsYourBirthDate,
               style: primaryTextStyle(
                 fontSize: 24.0,
                 fontWeight: FontWeight.w700,
               ),
             ),
             Text(
-              'Sua idade nos ajuda a personalizar recomendações baseadas no seu estágio da vida e necessidades metabólicas.',
+              AppStrings.yourAgeHelpReferences,
               style: primaryTextStyle(
                 fontSize: 16.0,
                 fontWeight: FontWeight.w400,
@@ -168,7 +169,7 @@ class SelectDateBirth extends StatelessWidget {
                 onPressed: (){
                   Get.to(()=> SelectHeight());
                 },
-                btnText: 'Continuar',
+                btnText: AppStrings.continuue,
                 useGradient: true
             )
           ],

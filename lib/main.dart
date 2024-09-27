@@ -7,8 +7,13 @@ import 'package:focofit/screens/nav_bar/k_bottom_navigation.dart';
 import 'package:focofit/utils/app_colors.dart';
 import 'package:get/get.dart';
 
+import 'controller/language_controller.dart';
 
-void main() {
+Languages languages = Languages();
+
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await languages.loadTranslations();
   runApp(const MyApp());
 }
 
@@ -19,12 +24,15 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'FocoFit',
       debugShowCheckedModeBanner: false,
+      locale: const Locale('en_US'),
+      translations: languages,
+      fallbackLocale: const Locale('en_US'),
       theme: ThemeData(
         scaffoldBackgroundColor: AppColor.whiteColor,
         colorScheme: ColorScheme.fromSeed(seedColor: AppColor.primaryColor),
         useMaterial3: true,
       ),
-      home: WelcomeScreen(),
+      home: SplashScreen(),
     );
   }
 }

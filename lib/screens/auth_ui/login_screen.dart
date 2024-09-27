@@ -8,6 +8,7 @@ import 'package:focofit/extensions/extension.dart';
 import 'package:focofit/screens/auth_ui/register_screen.dart';
 import 'package:focofit/screens/nav_bar/k_bottom_navigation.dart';
 import 'package:focofit/utils/app_colors.dart';
+import 'package:focofit/utils/app_strings.dart';
 import 'package:focofit/utils/asset_utils.dart';
 import 'package:focofit/utils/k_text_styles.dart';
 import 'package:focofit/widgets/k_app_bar.dart';
@@ -34,33 +35,33 @@ class LoginScreen extends StatelessWidget {
                 Align(
                   alignment: Alignment.center,
                   child: Text(
-                    'Entre na sua conta',
+                    AppStrings.loginToAccount,
                     style: primaryTextStyle(
                         fontSize: 24, fontWeight: FontWeight.w700),
                   ),
                 ),
                 Text(
-                  'Email',
+                  AppStrings.email,
                   style: primaryTextStyle(
                       fontSize: 16, fontWeight: FontWeight.w400),
                 ),
                 5.height,
                 GetTextField(
                   context: context,
-                  hintText: 'Digite seu email',
+                  hintText: AppStrings.enterEmail,
                   obSecureText: false,
                   prefixIcon: AppIcons.emailIcon,
                 ),
                 15.height,
                 Text(
-                  'Senha',
+                  AppStrings.password,
                   style: primaryTextStyle(
                       fontSize: 16, fontWeight: FontWeight.w400),
                 ),
                 5.height,
                 GetTextField(
                   context: context,
-                  hintText: 'Digite sua senha',
+                  hintText: AppStrings.enterPassword,
                   prefixIcon: AppIcons.keyBoardIcon,
                   obSecureText: c.showPassword.value,
                   suffixIcon: c.showPassword.value
@@ -79,7 +80,7 @@ class LoginScreen extends StatelessWidget {
                 ),
                 15.height,
                 kTextButton(
-                  btnText: 'Entrar',
+                  btnText: AppStrings.login,
                   onPressed: () {
                     Get.offAll(()=> CustomBottomBar());
                   },
@@ -91,7 +92,7 @@ class LoginScreen extends StatelessWidget {
                     text: TextSpan(
                       children: [
                         TextSpan(
-                          text: 'Não tem uma conta ainda? ',
+                          text: AppStrings.dontHaveAccount,
                           style: primaryTextStyle(
                             color: AppColor.blackColor,
                             fontSize: 14,
@@ -99,7 +100,7 @@ class LoginScreen extends StatelessWidget {
                           ),
                         ),
                         TextSpan(
-                          text: 'Criar conta',
+                          text: AppStrings.createAccount,
                           style: primaryTextStyle(
                             textDecoration: TextDecoration.underline,
                             color: AppColor.startGradient,
@@ -125,7 +126,7 @@ class LoginScreen extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      'OU',
+                      AppStrings.or,
                       style: primaryTextStyle(
                         color: AppColor.greyColor,
                         fontSize: 14,
@@ -143,7 +144,7 @@ class LoginScreen extends StatelessWidget {
                 ),
                 kSocialButton(
                   onTap: () {},
-                  btnText: 'Continuar com Google',
+                  btnText: AppStrings.continueWithGoogle,
                   imgPath: AppImages.googleImage
                 ),
                 kSocialButton(

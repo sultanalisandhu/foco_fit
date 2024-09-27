@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:focofit/utils/app_strings.dart';
 import 'package:focofit/utils/asset_utils.dart';
 import 'package:get/get.dart';
 
@@ -17,14 +18,14 @@ class SplashController extends GetxController{
     AppImages.onboardingImage3,
   ];
   final List<String> tittleText = [
-    'Seja bem-vindo(a)\nà sua jornada fitness',
-    'Fique em forma.\nViva saudável.',
-    'Fique em forma.\nViva saudável.',
+    AppStrings.onboardingTitle1,
+    AppStrings.onboardingTitle2,
+    AppStrings.onboardingTitle3,
   ];
   final List<String> subTitleText = [
-    'Registre tudo o que você come\ne acompanhe seus resultados',
-    'Sua jornada fitness começa aqui',
-    'Sua jornada fitness começa aqui',
+    AppStrings.onboardingSubTitle1,
+    AppStrings.onboardingSubTitle2,
+    AppStrings.onboardingSubTitle3,
   ];
 
   ///Functions

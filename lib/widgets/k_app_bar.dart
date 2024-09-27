@@ -80,11 +80,10 @@ AppBar kProfileAppBar({
       trailing: notificationCount!=null?Stack(
         alignment: Alignment.center,
         children: [
-          Container(
-              height: 50,
-              width: 50,
-              color: Colors.lightBlue,
-              child: showSvgIconWidget(iconPath: AppIcons.bellIcon,onTap: trailingOnTap)),
+          SizedBox(
+              height: 60,
+              width: 70,
+              child: Center(child: showSvgIconWidget(iconPath: AppIcons.bellIcon,onTap: trailingOnTap))),
           Container(
             padding: const EdgeInsets.all(3),
             decoration: const BoxDecoration(

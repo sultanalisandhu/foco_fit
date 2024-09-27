@@ -4,6 +4,7 @@ import 'package:focofit/components/k_text_fields.dart';
 import 'package:focofit/controller/auth_controller.dart';
 import 'package:focofit/extensions/extension.dart';
 import 'package:focofit/screens/auth_ui/forgot_password/change_password.dart';
+import 'package:focofit/utils/app_strings.dart';
 import 'package:focofit/utils/asset_utils.dart';
 import 'package:focofit/utils/k_text_styles.dart';
 import 'package:focofit/widgets/k_app_bar.dart';
@@ -29,8 +30,8 @@ class OtpScreen extends StatelessWidget {
                     height: 150,
                     width: 150,
                     child: Image(image: AssetImage(AppImages.otpImg))),
-                Text('Digite o código de verificação',style: primaryTextStyle(fontSize: 24,fontWeight: FontWeight.w700),),
-                Text('Por questões de segurança,digite abaixo o código que enviamos para você por email',
+                Text(AppStrings.enterVerificationCode,style: primaryTextStyle(fontSize: 24,fontWeight: FontWeight.w700),),
+                Text(AppStrings.enterCodeSentByEmail,
                   textAlign: TextAlign.center,
                   style: primaryTextStyle(fontSize: 18,fontWeight: FontWeight.w400),),
                 20.height,
@@ -40,7 +41,7 @@ class OtpScreen extends StatelessWidget {
                     onPressed: (){
                       Get.to(()=> ChangePassword());
                     },
-                    btnText: 'Continuar',
+                    btnText: AppStrings.continuue,
                     useGradient: true
                 )
               ],),

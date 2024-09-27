@@ -5,6 +5,7 @@ import 'package:focofit/controller/auth_controller.dart';
 import 'package:focofit/extensions/extension.dart';
 import 'package:focofit/screens/auth_ui/forgot_password/password_changed.dart';
 import 'package:focofit/screens/auth_ui/forgot_password/receive_otp.dart';
+import 'package:focofit/utils/app_strings.dart';
 import 'package:focofit/utils/asset_utils.dart';
 import 'package:focofit/utils/k_text_styles.dart';
 import 'package:focofit/widgets/k_app_bar.dart';
@@ -30,18 +31,18 @@ class ChangePassword extends StatelessWidget {
                     height: 150,
                     width: 150,
                     child: Image(image: AssetImage(AppImages.changePasswordImg))),
-                Text('Recupere sua conta',style: primaryTextStyle(fontSize: 24,fontWeight: FontWeight.w700),),
-                Text('Crie uma nova senha para recuperar o acesso à sua conta',
+                Text(AppStrings.recoverAccount,style: primaryTextStyle(fontSize: 24,fontWeight: FontWeight.w700),),
+                Text(AppStrings.createNewPassword,
                   textAlign: TextAlign.center,
                   style: primaryTextStyle(fontSize: 18,fontWeight: FontWeight.w400),),
                 20.height,
                 Align(
                     alignment: Alignment.topLeft,
-                    child: Text('Nova senha',style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w600),)),
+                    child: Text(AppStrings.newPassword,style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w600),)),
                 10.height,
                 GetTextField(
                   context: context,
-                  hintText: 'Digite sua nova senha',
+                  hintText: AppStrings.enterNewPassword,
                   prefixIcon: AppIcons.keyBoardIcon,
                   obSecureText: c.showPassword.value,
                   suffixIcon: c.showPassword.value
@@ -53,11 +54,11 @@ class ChangePassword extends StatelessWidget {
                 ),
                 Align(
                     alignment: Alignment.topLeft,
-                    child: Text('Confirme a senha',style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w600),)),
+                    child: Text(AppStrings.confirmPassword,style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w600),)),
                 10.height,
                 GetTextField(
                   context: context,
-                  hintText: 'Digite sua nova senha',
+                  hintText: AppStrings.enterNewPassword,
                   prefixIcon: AppIcons.keyBoardIcon,
                   obSecureText: c.showPassword.value,
                   suffixIcon: c.showPassword.value
@@ -73,7 +74,7 @@ class ChangePassword extends StatelessWidget {
                     onPressed: (){
                       Get.to(()=> PasswordChanged());
                     },
-                    btnText: 'Continuar',
+                    btnText: AppStrings.continuue,
                     useGradient: true
                 )
               ],),

@@ -32,7 +32,6 @@ class KOnboardingScreen extends StatelessWidget {
                   },
                   itemBuilder: (context, index) {
                     return Image.asset(
-
                       c.images[index],
                       fit: BoxFit.contain,
                     );

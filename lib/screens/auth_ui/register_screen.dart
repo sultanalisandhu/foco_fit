@@ -9,6 +9,7 @@ import 'package:focofit/screens/auth_ui/login_screen.dart';
 import 'package:focofit/screens/auth_ui/registeration_progress_screens/select_datebirth.dart';
 import 'package:focofit/screens/auth_ui/registeration_progress_screens/select_name.dart';
 import 'package:focofit/utils/app_colors.dart';
+import 'package:focofit/utils/app_strings.dart';
 import 'package:focofit/utils/asset_utils.dart';
 import 'package:focofit/utils/k_text_styles.dart';
 import 'package:focofit/widgets/k_app_bar.dart';
@@ -37,30 +38,30 @@ class RegisterScreen extends StatelessWidget {
                   children: [
                     Center(
                       child: Text(
-                        'Crie sua conta',
+                        AppStrings.createYourAccount,
                         style: primaryTextStyle(fontSize: 24, fontWeight: FontWeight.w700),
                       ),
                     ),
                     Text(
-                      'Email',
+                      AppStrings.email,
                       style: primaryTextStyle(fontSize: 16, fontWeight: FontWeight.w400),
                     ),
                     5.height,
                     GetTextField(
                       context: context,
-                      hintText: 'Digite seu email',
+                      hintText: AppStrings.enterEmail,
                       obSecureText: false,
                       prefixIcon: AppIcons.emailIcon,
                     ),
                     15.height,
                     Text(
-                      'Senha',
+                      AppStrings.password,
                       style: primaryTextStyle(fontSize: 16, fontWeight: FontWeight.w400),
                     ),
                     5.height,
                     GetTextField(
                       context: context,
-                      hintText: 'Digite sua senha',
+                      hintText: AppStrings.enterPassword,
                       prefixIcon: AppIcons.keyBoardIcon,
                       obSecureText: c.showPassword.value,
                       suffixIcon: c.showPassword.value ? Icons.visibility : Icons.visibility_off,
@@ -69,7 +70,7 @@ class RegisterScreen extends StatelessWidget {
                       },
                       textInputAction: TextInputAction.done,
                     ),
-                    CustomCheckbox(
+                    CustomRegisterCheckbox(
                       isChecked: c.isTermsAccepted,
                       onChanged: (bool value) {
                         c.isTermsAccepted.value = value;
@@ -77,7 +78,7 @@ class RegisterScreen extends StatelessWidget {
                     ),
                     15.height,
                     kTextButton(
-                      btnText: 'Criar conta',
+                      btnText: AppStrings.createAccount,
                       onPressed: () {
                         Get.to(()=> SelectName());
                       },
@@ -95,7 +96,7 @@ class RegisterScreen extends StatelessWidget {
                         text: TextSpan(
                           children: [
                             TextSpan(
-                              text: 'Já tem uma conta? ',
+                              text: AppStrings.alreadyHaveAccount,
                               style: primaryTextStyle(
                                 color: AppColor.blackColor,
                                 fontSize: 14,
@@ -104,7 +105,7 @@ class RegisterScreen extends StatelessWidget {
                             ),
                             ///add on tap on this text span
                             TextSpan(
-                              text: 'Entrar',
+                              text: AppStrings.login,
                               style: primaryTextStyle(
                                 textDecoration: TextDecoration.underline,
                                 color: AppColor.startGradient,
@@ -130,7 +131,7 @@ class RegisterScreen extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          'OU',
+                          AppStrings.or,
                           style: primaryTextStyle(
                             color: AppColor.greyColor,
                             fontSize: 14,
@@ -148,17 +149,17 @@ class RegisterScreen extends StatelessWidget {
                     ),
                     kSocialButton(
                         onTap: () {},
-                        btnText: 'Continuar com Google',
+                        btnText: AppStrings.continueWithGoogle,
                         imgPath: AppImages.googleImage
                     ),
                     kSocialButton(
                         onTap: () {},
-                        btnText: 'Continuar com Apple',
+                        btnText: AppStrings.continueWithApple,
                         imgPath: AppImages.appleImage
                     ),
                     kSocialButton(
                         onTap: () {},
-                        btnText: 'Continuar com Facebook',
+                        btnText: AppStrings.continueWithFacebook,
                         imgPath: AppImages.faceBookImage
                     ),
                   ],

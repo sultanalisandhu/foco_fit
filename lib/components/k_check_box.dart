@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:focofit/components/k_text_fields.dart';
+import 'package:focofit/extensions/extension.dart';
 import 'package:focofit/screens/auth_ui/forgot_password/forgot_password.dart';
 import 'package:focofit/utils/app_colors.dart';
+import 'package:focofit/utils/app_strings.dart';
 import 'package:focofit/utils/k_text_styles.dart';
 import 'package:get/get.dart';
 
@@ -43,7 +46,7 @@ class CustomCheckbox extends StatelessWidget {
           ),
         ),
           Text(
-            "Lembrar de mim",
+            AppStrings.rememberMe,
             style: primaryTextStyle(
               fontSize: 14.0,
               color: AppColor.blackColor,
@@ -52,7 +55,7 @@ class CustomCheckbox extends StatelessWidget {
           ),
           const Spacer(),
           GradientText(
-            text: "Esqueceu a senha?",
+            text: AppStrings.forgotPassword,
             onTextTap: (){
               Get.to(()=> ForgotPassword());
             },
@@ -67,6 +70,69 @@ class CustomCheckbox extends StatelessWidget {
     ));
   }
 }
+
+class CustomRegisterCheckbox extends StatelessWidget {
+  final Color? chkBorderColor;
+
+  const CustomRegisterCheckbox({
+    super.key,
+    required this.isChecked,
+    required this.onChanged,
+    this.chkBorderColor,
+  });
+  final RxBool isChecked;
+  final ValueChanged<bool> onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    return Obx(() => Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Checkbox(
+          value: isChecked.value,
+          onChanged: (bool? value) {
+            isChecked.value = value!;
+            onChanged(isChecked.value);
+          },
+          checkColor: Colors.white,
+          activeColor: AppColor.startGradient,
+          side: MaterialStateBorderSide.resolveWith(
+                (states) => BorderSide(
+              color: states.contains(MaterialState.selected)
+                  ? AppColor.startGradient
+                  : chkBorderColor ?? AppColor.greyColor,
+              width: 1.5,
+            ),
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(4),
+          ),
+        ),
+        Text(
+          AppStrings.iAgreeWithThe,
+          style: primaryTextStyle(
+            fontSize: 14.0,
+            color: AppColor.blackColor,
+            fontWeight: FontWeight.w400,
+          ),
+        ),
+        5.width,
+        GradientText(
+          text: AppStrings.termsConditions,
+          onTextTap: (){},
+          gradient: AppColor.primaryGradient,
+          style: primaryTextStyle(
+            fontSize: 14.0,
+            color: AppColor.primaryColor,
+            fontWeight: FontWeight.w400,
+          ),
+        ),
+      ],
+    ));
+  }
+}
+
 
 class CustomSwitchTile extends StatelessWidget {
   final RxBool value;
