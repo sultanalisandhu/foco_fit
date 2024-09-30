@@ -11,7 +11,7 @@ import 'package:focofit/screens/profile_ui/profile_setting_ui/terms_service.dart
 import 'package:focofit/utils/app_colors.dart';
 import 'package:focofit/utils/asset_utils.dart';
 import 'package:focofit/utils/k_text_styles.dart';
-import 'package:focofit/utils/app_data/profile_setting_data.dart';
+import 'package:focofit/models/k_models/profile_setting_data.dart';
 import 'package:focofit/widgets/k_app_bar.dart';
 import 'package:get/get.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';

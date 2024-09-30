@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:focofit/components/k_check_box.dart';
+import 'package:focofit/extensions/extension.dart';
 import 'package:focofit/utils/app_colors.dart';
+import 'package:focofit/utils/app_strings.dart';
 import 'package:focofit/utils/k_text_styles.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
 
 class CaloriesContainer extends StatelessWidget {
   final String title;
+  final String consumedTitle;
+  final String burnTitle;
   final String totalCalories;
+  final String calories;
   final String consumed;
   final String burned;
   final double progress;
@@ -30,6 +36,9 @@ class CaloriesContainer extends StatelessWidget {
     required this.proteinPercent,
     required this.fat,
     required this.fatPercent,
+    required this.consumedTitle,
+    required this.burnTitle,
+    required this.calories,
   });
 
   @override
@@ -57,9 +66,9 @@ class CaloriesContainer extends StatelessWidget {
                 children: [
                   Text(title, style: primaryTextStyle(fontSize: 14, fontWeight: FontWeight.w500)),
                   Text(totalCalories, style: primaryTextStyle(fontSize: 26, fontWeight: FontWeight.w700)),
-                  Text('Consumidas', style: primaryTextStyle(fontSize: 14, fontWeight: FontWeight.w500)),
+                  Text(consumedTitle, style: primaryTextStyle(fontSize: 14, fontWeight: FontWeight.w500)),
                   Text(consumed, style: primaryTextStyle(fontSize: 26, fontWeight: FontWeight.w700)),
-                  Text('Queimadas', style: primaryTextStyle(fontSize: 14, fontWeight: FontWeight.w500)),
+                  Text(burnTitle, style: primaryTextStyle(fontSize: 14, fontWeight: FontWeight.w500)),
                   Text(burned, style: primaryTextStyle(fontSize: 26, fontWeight: FontWeight.w700)),
                 ],
               ),
@@ -72,7 +81,7 @@ class CaloriesContainer extends StatelessWidget {
                 backgroundColor: AppColor.lightGreyColor, // Replace with AppColor.lightGreyColor
                 fillColor: Colors.transparent,
                 circularStrokeCap: CircularStrokeCap.round,
-                radius: 70,
+                radius: 80,
                 lineWidth: 15,
                 backgroundWidth: 17,
                 percent: progress,
@@ -81,13 +90,13 @@ class CaloriesContainer extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     GradientText(text: totalCalories, gradient: AppColor.primaryGradient, style: primaryTextStyle(fontSize: 22, fontWeight: FontWeight.w800)),
-                    Text('Calories', style: primaryTextStyle(fontSize: 16, fontWeight: FontWeight.w400)),
+                    Text(calories, style: primaryTextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
                   ],
                 ),
               ),
             ],
           ),
-          const SizedBox(height: 15),
+          15.height,
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -95,7 +104,7 @@ class CaloriesContainer extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Carboidrato (g)', style: primaryTextStyle(fontSize: 12, fontWeight: FontWeight.w500)),
+                    Text(AppStrings.carbohydrate, style: primaryTextStyle(fontSize: 12, fontWeight: FontWeight.w500)),
                     Text(carbohydrate, style: primaryTextStyle(fontSize: 14, fontWeight: FontWeight.w500)),
                     const SizedBox(height: 5),
                     LinearPercentIndicator(
@@ -117,7 +126,7 @@ class CaloriesContainer extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Proteína (g)', style: primaryTextStyle(fontSize: 12, fontWeight: FontWeight.w500)),
+                    Text(AppStrings.protein, style: primaryTextStyle(fontSize: 12, fontWeight: FontWeight.w500)),
                     Text(protein, style: primaryTextStyle(fontSize: 14, fontWeight: FontWeight.w500)),
                     const SizedBox(height: 5),
                     LinearPercentIndicator(
@@ -139,7 +148,7 @@ class CaloriesContainer extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Gordura (g)', style: primaryTextStyle(fontSize: 12, fontWeight: FontWeight.w500)),
+                    Text(AppStrings.fat, style: primaryTextStyle(fontSize: 12, fontWeight: FontWeight.w500)),
                     Text(fat, style: primaryTextStyle(fontSize: 14, fontWeight: FontWeight.w500)),
                     LinearPercentIndicator(
                       animation: true,

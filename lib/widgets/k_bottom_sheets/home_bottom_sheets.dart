@@ -5,7 +5,8 @@ import 'package:focofit/components/k_text_fields.dart';
 import 'package:focofit/extensions/extension.dart';
 import 'package:focofit/screens/home_ui/search_recipe_manually.dart';
 import 'package:focofit/utils/app_colors.dart';
-import 'package:focofit/utils/app_data/home_data.dart';
+import 'package:focofit/models/k_models/home_data.dart';
+import 'package:focofit/utils/app_strings.dart';
 import 'package:focofit/utils/asset_utils.dart';
 import 'package:focofit/utils/k_text_styles.dart';
 import 'package:focofit/widgets/recipe_widgets/k_circular_progress_bar.dart';
@@ -60,7 +61,7 @@ class KHomeBottomSheet {
   static void quickRegistration(BuildContext context, {required Function() onExerciseTap, required Function() onSnackTap}) {
     show(
       context: context,
-      title: 'Registro rápido',
+      title: AppStrings.quickRegistration,
       content: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -76,7 +77,7 @@ class KHomeBottomSheet {
                 child: Column(
                   children: [
                     Image.asset(AppImages.dumbellImg,height: 50,width: 50,),
-                    Text('Exercício',style: primaryTextStyle(fontSize: 14,fontWeight: FontWeight.w500),)
+                    Text(AppStrings.exercise,style: primaryTextStyle(fontSize: 14,fontWeight: FontWeight.w500),)
                   ],
                 ),
               ),
@@ -92,7 +93,7 @@ class KHomeBottomSheet {
                 child: Column(
                   children: [
                     Image.asset(AppImages.choclateImg,height: 50,width: 50,),
-                    Text('Refeição',style: primaryTextStyle(fontSize: 14,fontWeight: FontWeight.w500),)
+                    Text(AppStrings.snack,style: primaryTextStyle(fontSize: 14,fontWeight: FontWeight.w500),)
                   ],
                 ),
               ),
@@ -107,41 +108,41 @@ class KHomeBottomSheet {
   static void snackRegisterSheet(BuildContext context, {Function()? onConfirmTap}) {
     show(
       context: context,
-      title: 'Registro rápido de refeição',
+      title: AppStrings.quickMealLog,
       content: [
-        Text('Nome do alimento',style: primaryTextStyle(fontSize: 14,fontWeight: FontWeight.w500),),
-        BorderlessTextFiled(context: context,hintText: 'Bolo de cenoura com chocolate',),
+        Text(AppStrings.foodName,style: primaryTextStyle(fontSize: 14,fontWeight: FontWeight.w500),),
+        CustomTextField(context: context,hintText: AppStrings.carrotCake,textInputType: TextInputType.text,),
         10.height,
-        Text('Calorias',style: primaryTextStyle(fontSize: 14,fontWeight: FontWeight.w500),),
-        BorderlessTextFiled(context: context,hintText: 'Calorias:',suffixText: 'kcal',prefixText: 'Caloriadds:',),
+        Text(AppStrings.calories,style: primaryTextStyle(fontSize: 14,fontWeight: FontWeight.w500),),
+        CustomTextField(context: context,prefixText: AppStrings.calories,suffixText: AppStrings.kcal,textDirection: TextDirection.ltr,),
         10.height,
-        Text('Carboidratos (opcional)',style: primaryTextStyle(fontSize: 14,fontWeight: FontWeight.w500),),
-        BorderlessTextFiled(context: context,hintText: 'Carboidratos',suffixText: 'gramas',prefixText: 'Carboidratos:'),
+        Text(AppStrings.carbohydrateOptional,style: primaryTextStyle(fontSize: 14,fontWeight: FontWeight.w500),),
+        CustomTextField(context: context,prefixText: AppStrings.carbohydrates,suffixText: AppStrings.grams,textDirection: TextDirection.ltr,),
         10.height,
-        Text('Proteínas (opcional)',style: primaryTextStyle(fontSize: 14,fontWeight: FontWeight.w500),),
-        BorderlessTextFiled(context: context,hintText: 'Proteínas:',suffixText: 'gramas',prefixText: 'Proteínas:'),
+        Text(AppStrings.proteinsOptional,style: primaryTextStyle(fontSize: 14,fontWeight: FontWeight.w500),),
+        CustomTextField(context: context,prefixText: AppStrings.proteins,suffixText: AppStrings.grams,textDirection: TextDirection.ltr,),
         10.height,
-        Text('Gorduras (opcional)',style: primaryTextStyle(fontSize: 14,fontWeight: FontWeight.w500),),
-        BorderlessTextFiled(context: context,hintText: 'Gorduras',suffixText: 'gramas',prefixText: 'Gorduras:'),
+        Text(AppStrings.fatOptional,style: primaryTextStyle(fontSize: 14,fontWeight: FontWeight.w500),),
+        CustomTextField(context: context,prefixText: AppStrings.fats,suffixText: AppStrings.grams,textDirection: TextDirection.ltr,textInputAction: TextInputAction.done,),
       ],
       onConfirmTap: onConfirmTap!,
-      heightFactor: 0.65,
+      heightFactor: 0.7,
     );
   }
 
   static void exerciseRegisterSheet(BuildContext context, {Function()? onConfirmTap}) {
     show(
       context: context,
-      title: 'Registro rápido de exercício',
+      title: AppStrings.quickExerciseLog,
       content: [
-        Text('Nome da atividade',style: primaryTextStyle(fontSize: 14,fontWeight: FontWeight.w500),),
-        BorderlessTextFiled(context: context,hintText: 'Ex: corrida',),
+        Text(AppStrings.activityName,style: primaryTextStyle(fontSize: 14,fontWeight: FontWeight.w500),),
+        CustomTextField(context: context,hintText: AppStrings.exRace,textInputType: TextInputType.text,),
         10.height,
-        Text('Calorias',style: primaryTextStyle(fontSize: 14,fontWeight: FontWeight.w500),),
-        BorderlessTextFiled(context: context,hintText: 'Calorias:',suffixText: 'kcal',prefixText: 'Caloriadds:',),
+        Text(AppStrings.calories,style: primaryTextStyle(fontSize: 14,fontWeight: FontWeight.w500),),
+        CustomTextField(context: context,prefixText: AppStrings.calories,suffixText: AppStrings.kcal,textDirection: TextDirection.ltr,),
         10.height,
-        Text('Duração',style: primaryTextStyle(fontSize: 14,fontWeight: FontWeight.w500),),
-        BorderlessTextFiled(context: context,hintText: 'Duração:',suffixText: 'min',prefixText: 'Caloriadds:')
+        Text(AppStrings.duration,style: primaryTextStyle(fontSize: 14,fontWeight: FontWeight.w500),),
+        CustomTextField(context: context,prefixText: AppStrings.duration,suffixText: AppStrings.min,textDirection: TextDirection.ltr,textInputAction: TextInputAction.done,),
       ],
       onConfirmTap: onConfirmTap,
       heightFactor: 0.55,
@@ -151,12 +152,12 @@ class KHomeBottomSheet {
   static void confirmationSheet(BuildContext context, {Function()? onConfirmTap}) {
     show(
       context: context,
-      title: 'Registro rápido de refeição',
+      title: AppStrings.quickMealLog,
       content: [
-        Image(image: AssetImage(AppImages.greenCheckImg)),
+        const Image(image: AssetImage(AppImages.greenCheckImg)),
         Align(
           alignment: Alignment.center,
-          child: Text('Exercicio registrado com successo!',
+          child: Text(AppStrings.exerciseRegistered,
             style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w600),),
         ),
       ],
@@ -168,7 +169,7 @@ class KHomeBottomSheet {
   static void recordMeal(BuildContext context) {
     show(
       context: context,
-      title: 'Registrar refeição',
+      title: AppStrings.recordMeal,
       content: [
         SizedBox(
           height: mQ.height*0.15,
@@ -181,10 +182,7 @@ class KHomeBottomSheet {
                   if(index==0){
                     Get.back();
                     Get.to((()=> SearchRecipeManually()));
-                  }else if(index==1){
-
                   }else{
-
                   }
                 },
                 child: Container(
@@ -224,11 +222,11 @@ class KHomeBottomSheet {
   static void addCalories(BuildContext context) {
     show(
       context: context,
-      title: 'Registrar café da manhã',
+      title: AppStrings.registerBreakFast,
       content: [
         Align(
             alignment: Alignment.center,
-            child: Text('Arroz doce cozido com canela em pó',style: primaryTextStyle(fontSize: 20,fontWeight: FontWeight.w500),)),
+            child: Text(AppStrings.sweetRice,style: primaryTextStyle(fontSize: 20,fontWeight: FontWeight.w500),)),
         10.height,
         Align(
           alignment: Alignment.center,
@@ -240,25 +238,24 @@ class KHomeBottomSheet {
           ])),
         ),
         15.height,
-        const Row(
+         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-          KCircularProgressBar(consumed: '0', dietName: 'Carboidrato', lineGradient: AppColor.greenGradient, progressValue: 0.2),
-          KCircularProgressBar(consumed: '0', dietName: 'Proteína', lineGradient: AppColor.redGradient, progressValue: 0.2),
-          KCircularProgressBar(consumed: '0', dietName: 'Gordura', lineGradient: AppColor.primaryGradient, progressValue: 0.2),
+          KCircularProgressBar(consumed: '0', dietName: AppStrings.carbohydrate, lineGradient: AppColor.greenGradient, progressValue: 0.2),
+          KCircularProgressBar(consumed: '0', dietName: AppStrings.protein, lineGradient: AppColor.redGradient, progressValue: 0.2),
+          KCircularProgressBar(consumed: '0', dietName: AppStrings.fat, lineGradient: AppColor.primaryGradient, progressValue: 0.2),
         ],),
         15.height,
         CustomTextField(
           context: context,
-          controller: TextEditingController(),
-          prefixText: 'Quantidade:',
-          suffixText: 'gramas',
+          prefixText: '${AppStrings.amount}:',
+          suffixText: AppStrings.grams,
           color: AppColor.whiteColor,borderColor: AppColor.lightGreyColor,
           textDirection: TextDirection.ltr,
           textInputAction: TextInputAction.done,
         ),
       ],
-      onConfirmTap: (){},
+      onConfirmTap: (){Get.back();},
       heightFactor: 0.55,
     );
   }
@@ -266,7 +263,7 @@ class KHomeBottomSheet {
   static void addPhysicalActivity(BuildContext context) {
     show(
       context: context,
-      title: 'Registrar atividade física',
+      title: AppStrings.recordPhysicalActivity,
       content: [
         Align(
           alignment: Alignment.center,
@@ -274,15 +271,15 @@ class KHomeBottomSheet {
               text: TextSpan(
                   children: [
                     TextSpan(text: '0 ', style: primaryTextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
-                    TextSpan(text: 'Kcal', style: primaryTextStyle(fontSize: 12,fontWeight: FontWeight.w600)),
+                    TextSpan(text: AppStrings.kcal, style: primaryTextStyle(fontSize: 12,fontWeight: FontWeight.w600)),
                   ])),
         ),
         15.height,
         CustomTextField(
           context: context,
           controller: TextEditingController(),
-          prefixText: 'Duração:',
-          suffixText: 'min.',
+          prefixText: '${AppStrings.duration}:',
+          suffixText: AppStrings.min,
           textDirection: TextDirection.ltr,
           textInputAction: TextInputAction.done,
         ),
@@ -320,7 +317,7 @@ class KHomeBottomSheet {
     return kTextButton(
       width: mQ.width,
       onPressed: onConfirmTap!,
-      btnText: 'Salvar',
+      btnText: AppStrings.save,
       useGradient: true,
     );
   }

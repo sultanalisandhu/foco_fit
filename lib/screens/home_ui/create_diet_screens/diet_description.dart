@@ -3,6 +3,7 @@ import 'package:focofit/components/k_buttons.dart';
 import 'package:focofit/components/k_text_fields.dart';
 import 'package:focofit/extensions/extension.dart';
 import 'package:focofit/utils/app_colors.dart';
+import 'package:focofit/utils/app_strings.dart';
 import 'package:focofit/utils/k_text_styles.dart';
 import 'package:focofit/widgets/k_app_bar.dart';
 import 'package:get/get.dart';
@@ -14,7 +15,7 @@ class DietDescription extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: kAppBar(
-        title: 'Criar alimento',
+        title: AppStrings.createFood,
         onTap: () {
           Get.back();
         },
@@ -30,7 +31,7 @@ class DietDescription extends StatelessWidget {
                 15.width,
                 Expanded(
                   child: Text(
-                    'Todas as informações nutricionais são baseadas na descrição dos ingredientes preenchidos no campo acima.',
+                    AppStrings.nutritionalInformationBasedOnIngredients,
                     style: primaryTextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w400,
@@ -43,13 +44,12 @@ class DietDescription extends StatelessWidget {
             5.height,
             kTextButton(
               onPressed: () {
-                print('ertyui');
                 Get.back();
                 Get.back();
                 Get.back();
                 Get.back();
               },
-              btnText: 'Confirmar e criar',
+              btnText: AppStrings.confirmAndCreate,
               gradient: AppColor.greenGradient,
             ),
           ],
@@ -60,45 +60,45 @@ class DietDescription extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-          Text('Descrição do alimento',style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w500),),
-          Text('Torta de limão recheada com baunilha',style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w500),),
+          Text(AppStrings.foodDescription,style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w500),),
+          Text(AppStrings.lemonPieFilled,style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w500),),
             CustomTextField(context: context,
-            prefixText: 'Porção:',
-              suffixText: 'gramas',
+            prefixText: '${AppStrings.portion}:',
+              suffixText: AppStrings.grams,
               textDirection: TextDirection.rtl,
               color: AppColor.whiteColor,
               borderColor: AppColor.greyColor,
             ),
             10.height,
             CustomTextField(context: context,
-              prefixText: 'Calorias por porção:',
-              suffixText: 'kcal',
+               prefixText: '${AppStrings.caloriesPerServing}:',
+              suffixText: AppStrings.kcal,
               textDirection: TextDirection.rtl,
               color: AppColor.whiteColor,
               borderColor: AppColor.greyColor,
             ),
             30.height,
-            Text('Macronutrientes',style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w500),),
+            Text(AppStrings.macronutrients,style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w500),),
             10.height,
             CustomTextField(context: context,
-              prefixText: 'Carboidratos:',
-              suffixText: 'gramas',
+              prefixText: '${AppStrings.carbohydrate}:',
+              suffixText: AppStrings.grams,
               textDirection: TextDirection.rtl,
               color: AppColor.whiteColor,
               borderColor: AppColor.greyColor,
             ),
             10.height,
             CustomTextField(context: context,
-              prefixText: 'Proteínas:',
-              suffixText: 'gramas',
+              prefixText: '${AppStrings.protein}:',
+              suffixText: AppStrings.grams,
               textDirection: TextDirection.rtl,
               color: AppColor.whiteColor,
               borderColor: AppColor.greyColor,
             ),
             10.height,
             CustomTextField(context: context,
-              prefixText: 'Gorduras:',
-              suffixText: 'gramas',
+              prefixText:'${AppStrings.fat}:',
+              suffixText: AppStrings.grams,
               textDirection: TextDirection.rtl,
               color: AppColor.whiteColor,
               borderColor: AppColor.greyColor,

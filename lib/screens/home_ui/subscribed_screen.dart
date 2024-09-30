@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:focofit/components/k_buttons.dart';
 import 'package:focofit/extensions/extension.dart';
 import 'package:focofit/utils/app_colors.dart';
-import 'package:focofit/utils/app_data/home_data.dart';
+import 'package:focofit/models/k_models/home_data.dart';
+import 'package:focofit/utils/app_strings.dart';
 import 'package:focofit/utils/asset_utils.dart';
 import 'package:focofit/utils/k_text_styles.dart';
 import 'package:get/get.dart';
@@ -67,12 +68,12 @@ class _SubscribedScreenState extends State<SubscribedScreen> {
               ),
               20.height,
               Text(
-                'Congratulations!',
+                AppStrings.congratulation,
                 style: primaryTextStyle(fontSize: 20, fontWeight: FontWeight.w600),
               ),
               20.height,
               Text(
-                'You\'ve upgraded to the Yearly subscription!',
+                AppStrings.upgradedToYearlySubscription,
                 style: primaryTextStyle(fontSize: 20, fontWeight: FontWeight.w400),
               ),
               10.height,
@@ -81,7 +82,7 @@ class _SubscribedScreenState extends State<SubscribedScreen> {
                 color: AppColor.lightGreyColor.withOpacity(0.2),
               ),
               Text(
-                'Benefits Unlocked:',
+                  AppStrings.benefitsUnlock,
                 style: primaryTextStyle(fontSize: 20, fontWeight: FontWeight.w600),
               ),
               for (int i = 0; i < subscriptionList.length; i++)
@@ -97,7 +98,7 @@ class _SubscribedScreenState extends State<SubscribedScreen> {
                 color: AppColor.lightGreyColor.withOpacity(0.2),
               ),
               Text(
-                'Your subscription will automatically renew annually unless cancelled. Manage your subscription in your account setting.',
+                AppStrings.subscriptionWillRenewAnnually,
                 textAlign: TextAlign.center,
                 style: primaryTextStyle(fontSize: 20, fontWeight: FontWeight.w400),
               ),
@@ -117,7 +118,7 @@ class _SubscribedScreenState extends State<SubscribedScreen> {
           onPressed: () {
             Get.back();
           },
-          btnText: 'Start Exploring premium features',
+          btnText: AppStrings.startExploringFeatures,
           useGradient: true,
           gradient: AppColor.redGradient,
           height: 50,

@@ -8,6 +8,7 @@ import 'package:focofit/extensions/extension.dart';
 import 'package:focofit/screens/home_ui/add_physical_activity/create_activity_options.dart';
 import 'package:focofit/screens/home_ui/add_physical_activity/edit_physical_activity.dart';
 import 'package:focofit/utils/app_colors.dart';
+import 'package:focofit/utils/app_strings.dart';
 import 'package:focofit/utils/asset_utils.dart';
 import 'package:focofit/utils/k_text_styles.dart';
 import 'package:focofit/widgets/k_app_bar.dart';
@@ -24,7 +25,7 @@ class AllPhysicalActivity extends StatelessWidget {
       builder: (c) {
         return Scaffold(
           appBar: kAppBar(
-            title: 'Atividade física',
+            title: AppStrings.physicalActivity,
             onTap: () {
               Get.back();
             },
@@ -32,18 +33,6 @@ class AllPhysicalActivity extends StatelessWidget {
               Get.to(() => CreateActivityOptions());
             },
             trailingIcon: AppIcons.plusIcon,
-          ),
-          bottomNavigationBar: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 15),
-            alignment: Alignment.center,
-            height: mQ.height*0.08,
-            width: mQ.width,
-            child: kNumberButton(
-              onPressed: () {
-              },
-              itemCount: '0',
-              btnText: 'Adicionar atividade',
-            ),
           ),
           body: DefaultTabController(
             length: 3,
@@ -56,7 +45,7 @@ class AllPhysicalActivity extends StatelessWidget {
                     context: context,
                     controller: c.searchController,
                     prefixIcon: AppIcons.searchIcon,
-                    hintText: 'O que você fez hoje?',
+                    hintText: AppStrings.whatYouDoToday,
                   ),
                   15.height,
                   Container(
@@ -85,10 +74,10 @@ class AllPhysicalActivity extends StatelessWidget {
                       indicatorSize: TabBarIndicatorSize.tab,
                       indicatorColor: Colors.transparent,
                       dividerColor: Colors.transparent,
-                      tabs: const [
-                        Tab(text: 'Todos'),
-                        Tab(text: 'Favoritos'),
-                        Tab(text: 'Criados'),
+                      tabs: [
+                        Tab(text: AppStrings.all),
+                        Tab(text: AppStrings.favorites),
+                        Tab(text: AppStrings.created),
                       ],
                     ),
                   ),
@@ -119,32 +108,19 @@ class AllPhysicalActivity extends StatelessWidget {
                             ],
                           ),
                           child: ListTile(
-                            title: const Text('Biscoito recheado de chocolate Trakinas'),
+                            title: Text(AppStrings.chocolateFilledBiscuit),
                             titleTextStyle: primaryTextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w600,
                             ),
-                            subtitle: const Text('Calorias: -319kcal'),
+                            subtitle: Text(AppStrings.sweetRiceCalories),
                             subtitleTextStyle: primaryTextStyle(
                               fontSize: 14,
                               color: AppColor.greyColor,
                             ),
-                            trailing: GestureDetector(
-                              onTap: () {
-                                KHomeBottomSheet.addPhysicalActivity(context);
-                              },
-                              child: Container(
-                                padding: const EdgeInsets.all(8),
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  border: Border.all(color: AppColor.startGradient),
-                                ),
-                                child: const Icon(
-                                  Icons.add,
-                                  color: AppColor.endGradient,
-                                ),
-                              ),
-                            ),
+                            trailing: _trailingButton(onTap: (){
+                              KHomeBottomSheet.addPhysicalActivity(context);
+                            }),
                             contentPadding: EdgeInsets.zero,
                           ),
                         );
@@ -155,30 +131,20 @@ class AllPhysicalActivity extends StatelessWidget {
                             itemCount: 16,
                             itemBuilder: (context,index){
                               return ListTile(
-                                title: const Text('Minha nova atividade física favoritada numero 1'),
+                                title: Text(AppStrings.myPhysicalActivity),
                                 titleTextStyle: primaryTextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.w600,
                                 ),
-                                subtitle: const Text('Calorias: -319kcal'),
+                                subtitle: Text(AppStrings.sweetRiceCalories),
                                 subtitleTextStyle: primaryTextStyle(
                                   fontSize: 14,
                                   color: AppColor.greyColor,
                                 ),
 
-                                trailing: GestureDetector(
-                                  onTap: (){
-                                    KHomeBottomSheet.addPhysicalActivity(context);
-                                  },
-                                  child: Container(
-                                      padding: const EdgeInsets.all(8),
-                                      decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          border: Border.all(color: AppColor.startGradient)
-                                      ),
-                                      child: const Icon(Icons.add,color: AppColor.endGradient,)
-                                  ),
-                                ),
+                                trailing: _trailingButton(onTap: (){
+                                  KHomeBottomSheet.addPhysicalActivity(context);
+                                }),
                                 contentPadding: EdgeInsets.zero,
                               );
                             }),
@@ -189,7 +155,7 @@ class AllPhysicalActivity extends StatelessWidget {
                               return ListTile(
                                 title: Row(
                                   children: [
-                                    const Expanded(child: Text('Minha nova atividade física criada numero 1',maxLines: 2,overflow: TextOverflow.ellipsis,)),
+                                    Expanded(child: Text(AppStrings.myPhysicalActivity,maxLines: 2,overflow: TextOverflow.ellipsis,)),
                                   showSvgIconWidget(
                                       onTap: (){
                                         Get.to(()=> EditPhysicalActivity());
@@ -197,27 +163,17 @@ class AllPhysicalActivity extends StatelessWidget {
                                       iconPath: AppIcons.editIcon)
                                   ],
                                 ),
+                                subtitle: Text(AppStrings.sweetRiceCalories),
+                                trailing:_trailingButton(onTap: (){
+                                  KHomeBottomSheet.addPhysicalActivity(context);
+                                }),
                                 titleTextStyle: primaryTextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.w600,
                                 ),
-                                subtitle: const Text('319 calorias (100g)'),
                                 subtitleTextStyle: primaryTextStyle(
                                   fontSize: 14,
                                   color: AppColor.greyColor,
-                                ),
-                                trailing: GestureDetector(
-                                  onTap: (){
-                                    KHomeBottomSheet.addPhysicalActivity(context);
-                                  },
-                                  child: Container(
-                                      padding: const EdgeInsets.all(8),
-                                      decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          border: Border.all(color: AppColor.startGradient)
-                                      ),
-                                      child: const Icon(Icons.add,color: AppColor.endGradient,)
-                                  ),
                                 ),
                                 contentPadding: EdgeInsets.zero,
                               );
@@ -229,8 +185,32 @@ class AllPhysicalActivity extends StatelessWidget {
               ),
             ),
           ),
+          bottomNavigationBar: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            alignment: Alignment.center,
+            height: mQ.height*0.08,
+            width: mQ.width,
+            child: kNumberButton(
+              onPressed: () {Get.back();},
+              itemCount: '0',
+              btnText: AppStrings.addActivity,
+            ),
+          ),
         );
       },
+    );
+  }
+  Widget _trailingButton({required Function() onTap}){
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+          padding: const EdgeInsets.all(8),
+          decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              border: Border.all(color: AppColor.startGradient)
+          ),
+          child: const Icon(Icons.add,color: AppColor.endGradient,)
+      ),
     );
   }
 }

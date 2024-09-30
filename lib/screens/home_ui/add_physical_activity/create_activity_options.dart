@@ -6,6 +6,7 @@ import 'package:focofit/screens/home_ui/add_physical_activity/create_activity_ma
 import 'package:focofit/screens/home_ui/create_diet_screens/create_diet_ai.dart';
 import 'package:focofit/screens/home_ui/create_diet_screens/create_diet_manually.dart';
 import 'package:focofit/utils/app_colors.dart';
+import 'package:focofit/utils/app_strings.dart';
 import 'package:focofit/utils/asset_utils.dart';
 import 'package:focofit/utils/k_text_styles.dart';
 import 'package:focofit/widgets/k_app_bar.dart';
@@ -21,7 +22,7 @@ class CreateActivityOptions extends StatelessWidget {
           onTap: (){
             Navigator.pop(context);
           },
-          title: 'Criar atividade física'
+          title: AppStrings.createPhysicalActivity
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -31,7 +32,7 @@ class CreateActivityOptions extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Image(image: AssetImage(AppImages.yellowStartImg),height: 250,width: 250,),
-              Text('Você pode cadastrar uma nova receita manualmente ou utilizaro FocoAI, a nossa inteligência artificial, para criar automaticamente para você.',
+              Text(AppStrings.registerRecipeManualAiDescription,
                 style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w400),
                 textAlign: TextAlign.center,
               )
@@ -45,7 +46,7 @@ class CreateActivityOptions extends StatelessWidget {
                   onPressed: (){
                     Get.to(()=> CreateActivityAi());
                   },
-                  btnText: 'Usar o FocoFit Pro+',
+                  btnText: AppStrings.usingFocoFitPro,
                   useGradient: true
               ),
               10.height,
@@ -53,7 +54,7 @@ class CreateActivityOptions extends StatelessWidget {
                   onTap: (){
                     Get.to(()=>  CreateActivityManually());
                   },
-                  btnText: 'Criar manualmente',
+                  btnText: AppStrings.createManually,
                   textGradient: AppColor.blackGradient,
                   gradient: AppColor.blackGradient)
             ],

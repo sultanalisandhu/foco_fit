@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:focofit/models/recipe_model.dart';
+import 'package:focofit/models/k_models/recipe_data.dart';
 import 'package:get/get.dart';
 
 class RecipeController extends GetxController {

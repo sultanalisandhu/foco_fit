@@ -6,6 +6,7 @@ import 'package:focofit/extensions/extension.dart';
 import 'package:focofit/screens/home_ui/add_physical_activity/generating_activity.dart';
 import 'package:focofit/screens/home_ui/create_diet_screens/generating_diet.dart';
 import 'package:focofit/utils/app_colors.dart';
+import 'package:focofit/utils/app_strings.dart';
 import 'package:focofit/utils/k_text_styles.dart';
 import 'package:focofit/widgets/k_app_bar.dart';
 import 'package:get/get.dart';
@@ -21,7 +22,7 @@ class CreateActivityAi extends StatelessWidget {
         onTap: () {
           Get.back();
         },
-        title: 'Criar atividade física',
+        title: AppStrings.createPhysicalActivity,
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
@@ -29,14 +30,14 @@ class CreateActivityAi extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Nome da atividade física',
+              AppStrings.namePhysicalActivity,
               style: primaryTextStyle(fontSize: 16, fontWeight: FontWeight.w600),
             ),
             10.height,
             CustomTextField(
               context: context,
               controller: controller.foodNameController,
-              hintText: 'Exemplo: caminhada',
+              hintText: '${AppStrings.example}: ${AppStrings.walking}',
               textInputType: TextInputType.text,
               textInputAction: TextInputAction.done,
             ),
@@ -55,7 +56,7 @@ class CreateActivityAi extends StatelessWidget {
                 15.width,
                 Expanded(
                   child: Text(
-                    'Vamos analisar as calorias baseado na descrição da atividade física descrita no campo acima.',
+                    AppStrings.analyseCaloriesBasedOnDescription,
                     style: primaryTextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w400,
@@ -70,7 +71,7 @@ class CreateActivityAi extends StatelessWidget {
               onPressed: () {
                 Get.to(() => GeneratingActivity());
               },
-              btnText: 'Analisar',
+              btnText: AppStrings.analyse,
               gradient: AppColor.greenGradient,
             ),
           ],

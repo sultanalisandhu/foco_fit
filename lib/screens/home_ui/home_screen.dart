@@ -7,12 +7,14 @@ import 'package:focofit/components/k_svg_icon.dart';
 import 'package:focofit/extensions/extension.dart';
 import 'package:focofit/screens/home_ui/add_physical_activity/all_physical_activity.dart';
 import 'package:focofit/screens/home_ui/subscribed_screen.dart';
+import 'package:focofit/utils/app_strings.dart';
 import 'package:focofit/utils/asset_utils.dart';
+import 'package:focofit/utils/enums.dart';
 import 'package:focofit/utils/k_text_styles.dart';
 import 'package:focofit/widgets/k_bottom_sheets/home_bottom_sheets.dart';
 import 'package:focofit/screens/profile_ui/notification_screen.dart';
 import 'package:focofit/screens/profile_ui/profile_setting_ui/profile_setting.dart';
-import 'package:focofit/utils/app_data/home_data.dart';
+import 'package:focofit/models/k_models/home_data.dart';
 import 'package:focofit/widgets/home_widgets/expansion_tile.dart';
 import 'package:focofit/widgets/home_widgets/k_calories_container.dart';
 import 'package:get/get.dart';
@@ -23,7 +25,7 @@ import 'package:intl/intl.dart';
 
 
 class HomeScreen extends StatelessWidget {
-  HomeScreen({super.key});
+  const HomeScreen({super.key});
 
 
   @override
@@ -33,9 +35,7 @@ class HomeScreen extends StatelessWidget {
       tag: 'homeController',
       builder: (c) {
         return Scaffold(
-          backgroundColor: AppColor.whiteColor,
-          appBar:
-          kProfileAppBar(
+          appBar: kProfileAppBar(
               onTileTap: ()=>Get.to(()=> ProfileSetting()),
               trailingOnTap: (){
                 Get.to(()=> NotificationScreen());
@@ -52,8 +52,8 @@ class HomeScreen extends StatelessWidget {
               children: [
                 SubScribedContainer(
                 onTap: ()=>Get.to(()=> SubscribedScreen(),),
-                    title: 'Seja um assinante FocoFit Pro',
-                    subTitle: 'Aproveite nossos recursos exclusivos!'
+                    title: AppStrings.becomeProSubscriber,
+                    subTitle: AppStrings.subscribeBenefit
                 ),
                 20.height,
                 SizedBox(
@@ -111,11 +111,14 @@ class HomeScreen extends StatelessWidget {
                   }),
                 ),
                 15.height,
-                const CaloriesContainer(
-                  title: 'Meta de calorias',
+                CaloriesContainer(
+                  title: AppStrings.dailyGoal,
                   totalCalories: '1252',
+                  consumedTitle: AppStrings.consumed,
                   consumed: '1252',
+                  burnTitle: AppStrings.burns,
                   burned: '1252',
+                  calories: AppStrings.caloriesRemaining,
                   progress: 0.4,
                   carbohydrate: '400 / 1000',
                   carbPercent: 0.6,
@@ -130,26 +133,30 @@ class HomeScreen extends StatelessWidget {
                       KHomeBottomSheet.quickRegistration(
                           context,
                           onExerciseTap: (){
+                            Navigator.pop(context);
                             KHomeBottomSheet.exerciseRegisterSheet(
                                 context,
                                 onConfirmTap: (){
+                                  Navigator.pop(context);
                                   KHomeBottomSheet.confirmationSheet(context,onConfirmTap: (){
                                     Navigator.pop(context);
                                   });
                                 });
                           },
                         onSnackTap: (){
+                          Navigator.pop(context);
                             KHomeBottomSheet.snackRegisterSheet(context,
                             onConfirmTap: (){
+                              Navigator.pop(context);
                               KHomeBottomSheet.confirmationSheet(context,onConfirmTap: (){
-
+                                Navigator.pop(context);
                               });
                             }
                             );
                         }
                       );
                     },
-                    btnText: 'Registro rápido de calorias',
+                    btnText: AppStrings.quickCalorieLog,
                   useGradient: true
                 ),
                 20.height,
@@ -178,25 +185,27 @@ class HomeScreen extends StatelessWidget {
                           {'name': 'Cafe com leite, 200ml ', 'calories': ' 120 kcal'},
                           {'name': 'Pão integral, 50g ', 'calories': ' 150 kcal'},
                         ],
-                        onTapTrailing: () {
-                          switch (homeDataList[index].title) {
-                            case 'Café da manhã':
-                              KHomeBottomSheet.recordMeal(context);
-                              break;
-                            case 'Almoço':
-                              KHomeBottomSheet.recordMeal(context);
-                              break;
-                            case 'Jantar':
-                              KHomeBottomSheet.recordMeal(context);
-                              break;
-                            case 'Lanches':
-                              KHomeBottomSheet.recordMeal(context);
-                              break;
-                            case 'Atividades físicas':
-                              Get.to(() => AllPhysicalActivity());
-                              break;
-                          }
-                        },
+                          onTapTrailing: () {
+                            switch (homeDataList[index].type) {
+                              case HomeItemType.breakFast:
+                                KHomeBottomSheet.recordMeal(context);
+                                break;
+                              case HomeItemType.lunch:
+                                KHomeBottomSheet.recordMeal(context);
+                                break;
+                              case HomeItemType.toHaveLunch:
+                                KHomeBottomSheet.recordMeal(context);
+                                break;
+                              case HomeItemType.snacks:
+                                KHomeBottomSheet.recordMeal(context);
+                                break;
+                              case HomeItemType.physicalActivity:
+                                Get.to(() => AllPhysicalActivity());
+                                break;
+                              default:
+                                print('No matching action for ${homeDataList[index].title}');
+                            }
+                          },
                         onEditPressed: () {
                           print('Editor historico tapped');
                         },

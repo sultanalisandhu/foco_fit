@@ -31,7 +31,9 @@ class KCircularProgressBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           GradientText(text: consumed, gradient: lineGradient, style: primaryTextStyle(fontSize: 18, fontWeight: FontWeight.w800)),
-          Text(dietName, style: primaryTextStyle(fontSize: 14, fontWeight: FontWeight.w400)),
+          Text(dietName,
+              textAlign: TextAlign.center,
+              style: primaryTextStyle(fontSize: 14, fontWeight: FontWeight.w400,)),
         ],
       ),
     );

@@ -4,6 +4,7 @@ import 'package:focofit/screens/home_ui/add_physical_activity/activity_descripti
 import 'package:focofit/screens/home_ui/create_diet_screens/diet_description.dart';
 import 'package:focofit/screens/receipe_ui/create_recipe_screens/recipe_added.dart';
 import 'package:focofit/utils/app_colors.dart';
+import 'package:focofit/utils/app_strings.dart';
 import 'package:focofit/utils/asset_utils.dart';
 import 'package:focofit/utils/k_text_styles.dart';
 import 'package:focofit/widgets/k_app_bar.dart';
@@ -23,10 +24,10 @@ class _GeneratingActivityState extends State<GeneratingActivity> with SingleTick
   late Animation<Offset> _slideAnimation;
 
   final List<String> _loadingTexts = [
-    'Analisando ingredientes...',
-    'Criando novo elemento...',
-    'Gerando receita...',
-    'Por favor, aguarde...'
+    '${AppStrings.analysingIngredients}...',
+    '${AppStrings.creatingNewElement}...',
+    '${AppStrings.generatingRevenue}...',
+    '${AppStrings.pleaseWait}...',
   ];
 
   RxInt _currentTextIndex = 0.obs;

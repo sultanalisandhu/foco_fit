@@ -4,9 +4,8 @@ import 'package:focofit/components/k_text_fields.dart';
 import 'package:focofit/controller/home_controller.dart';
 import 'package:focofit/extensions/extension.dart';
 import 'package:focofit/screens/home_ui/add_physical_activity/activity_created.dart';
-import 'package:focofit/screens/home_ui/add_physical_activity/activity_edited.dart';
-import 'package:focofit/screens/home_ui/add_physical_activity/generating_activity.dart';
 import 'package:focofit/utils/app_colors.dart';
+import 'package:focofit/utils/app_strings.dart';
 import 'package:focofit/utils/k_text_styles.dart';
 import 'package:focofit/widgets/k_app_bar.dart';
 import 'package:get/get.dart';
@@ -23,7 +22,7 @@ class ActivityDescription extends StatelessWidget {
           Get.back();
           Get.back();
         },
-        title: 'Criar atividade física',
+        title: AppStrings.createPhysicalActivity,
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
@@ -31,25 +30,25 @@ class ActivityDescription extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Nome da atividade física',
+              AppStrings.namePhysicalActivity,
               style: primaryTextStyle(fontSize: 16, fontWeight: FontWeight.w600),
             ),
             10.height,
             CustomTextField(
               context: context,
-              hintText: 'Exemplo: caminhada',
+              hintText: '${AppStrings.example}: ${AppStrings.walking}',
               textInputType: TextInputType.text,
             ),
             20.height,
             Text(
-              'Calorias queimadas por horo',
+              AppStrings.caloriesBurnedPerHour,
               style: primaryTextStyle(fontSize: 16, fontWeight: FontWeight.w600),
             ),
             10.height,
             CustomTextField(
               context: context,
-              prefixText: 'Calorias',
-              suffixText: ' kcal',
+              prefixText: AppStrings.calories,
+              suffixText: AppStrings.kcal,
               textDirection: TextDirection.ltr,
               textInputType: TextInputType.number,
               textInputAction: TextInputAction.done,
@@ -64,7 +63,7 @@ class ActivityDescription extends StatelessWidget {
           onPressed: () {
             Get.to(() => ActivityAdded());
           },
-          btnText: 'Confirmar e criar',
+          btnText: AppStrings.confirmAndCreate,
           gradient: AppColor.greenGradient,
         ),
       ),
