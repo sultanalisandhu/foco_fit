@@ -3,6 +3,7 @@ import 'package:focofit/components/k_buttons.dart';
 import 'package:focofit/extensions/extension.dart';
 import 'package:focofit/screens/fast_ui/fasting_bottom_sheets.dart';
 import 'package:focofit/utils/app_colors.dart';
+import 'package:focofit/utils/app_strings.dart';
 import 'package:focofit/utils/k_text_styles.dart';
 import 'package:focofit/widgets/k_app_bar.dart';
 import 'package:percent_indicator/percent_indicator.dart';
@@ -14,7 +15,7 @@ class SeeFasting extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: kAppBar(
-        title: 'Jejum Intermitente'
+        title: AppStrings.intermittentFasting
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 15),
@@ -51,10 +52,10 @@ class SeeFasting extends StatelessWidget {
                   center: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text('Tempo decorrido', style: primaryTextStyle(fontSize: 12, fontWeight: FontWeight.w400)),
+                      Text(AppStrings.elapsedTime, style: primaryTextStyle(fontSize: 12, fontWeight: FontWeight.w400)),
                       Text('00:00:25', style: primaryTextStyle(fontSize: 16, fontWeight: FontWeight.w700)),
                       15.height,
-                      Text('Tempo decorrido', style: primaryTextStyle(fontSize: 12, fontWeight: FontWeight.w400)),
+                      Text(AppStrings.timeExceeded, style: primaryTextStyle(fontSize: 12, fontWeight: FontWeight.w400)),
                       Text('00:00:25', style: primaryTextStyle(fontSize: 16, fontWeight: FontWeight.w700)),
                     ],
                   ),
@@ -65,9 +66,9 @@ class SeeFasting extends StatelessWidget {
                   children: [
                   Column(
                     children: [
-                      Text('Inicio às',style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w500),),
+                      Text(AppStrings.startAt,style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w500),),
                       GradientText(text: '22 : 00', gradient: AppColor.primaryGradient,style: primaryTextStyle(fontSize: 20,fontWeight: FontWeight.w700),),
-                      Text('Hoje (17/08)',style: primaryTextStyle(fontSize: 14,fontWeight: FontWeight.w500),),
+                      Text('${AppStrings.todayAt} (17/08)',style: primaryTextStyle(fontSize: 14,fontWeight: FontWeight.w500),),
                     ],
                   ),
                   Container(
@@ -77,9 +78,9 @@ class SeeFasting extends StatelessWidget {
                   ),
                   Column(
                     children: [
-                      Text('Inicio às',style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w500),),
+                      Text(AppStrings.endsAt,style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w500),),
                       GradientText(text: '22 : 00', gradient: AppColor.primaryGradient,style: primaryTextStyle(fontSize: 20,fontWeight: FontWeight.w700),),
-                      Text('Hoje (17/08)',style: primaryTextStyle(fontSize: 14,fontWeight: FontWeight.w500),),
+                      Text('${AppStrings.tomorrow} (17/08)',style: primaryTextStyle(fontSize: 14,fontWeight: FontWeight.w500),),
                     ],
                   ),
                 ],)
@@ -99,7 +100,7 @@ class SeeFasting extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Plano de jejum atual: 12 - 12',style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w500),),
+                  Text('${AppStrings.currentFastingPlan}: 12 - 12',style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w500),),
                   kTextButton(
                     onPressed: (){
                       Navigator.pop(context);
@@ -121,7 +122,7 @@ class SeeFasting extends StatelessWidget {
                   );
                 },
                 useGradient: true,
-                btnText: 'Iniciar jejum')
+                btnText: AppStrings.startFasting)
           ],
         ),
       ),

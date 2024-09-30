@@ -6,6 +6,7 @@ import 'package:focofit/controller/fasting_controller.dart';
 import 'package:focofit/controller/profile_controller.dart';
 import 'package:focofit/extensions/extension.dart';
 import 'package:focofit/utils/app_colors.dart';
+import 'package:focofit/utils/app_strings.dart';
 import 'package:focofit/utils/asset_utils.dart';
 import 'package:focofit/utils/k_text_styles.dart';
 import 'package:get/get.dart';
@@ -57,11 +58,11 @@ class KFastBottomSheet {
     final fastingController = Get.put(FastingController());
     show(
       context: context,
-      title: 'Quando deseja começar?',
+      title: AppStrings.whenYouWantToStart,
       content: [
         Align(
             alignment: Alignment.center,
-            child: Text('Escolha abaixo o horário em quedeseja iniciar o seu jejum',style: primaryTextStyle(fontSize: 14,fontWeight: FontWeight.w400),)),
+            child: Text(AppStrings.chooseTimeToStartFast,style: primaryTextStyle(fontSize: 14,fontWeight: FontWeight.w400),)),
         10.height,
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -152,16 +153,17 @@ class KFastBottomSheet {
       heightFactor: 0.55,
     );
   }
+
   static void breakFastSheet(BuildContext context, {
   required Function() onConfirmTap,
     required Function() onCancelTap}) {
     show(
       context: context,
-      title: 'Deseja interromper o jejum?',
+      title: AppStrings.breakYourFast,
       content: [
         Align(
             alignment: Alignment.center,
-            child: Text('O contador será resetado e você terá que iniciar novamente, caso queira.',
+            child: Text(AppStrings.counterWillRestAndStartAgain,
               textAlign: TextAlign.center,
               style: primaryTextStyle(fontSize: 14,fontWeight: FontWeight.w400),)),
         const Spacer(),
@@ -171,11 +173,11 @@ class KFastBottomSheet {
            kTextButton(
                onPressed: onConfirmTap,
                useGradient: true,
-               btnText: 'Sim, interromper',
+               btnText: AppStrings.yesInterrupt,
            ),
             KOutlineButton(
               onTap: onCancelTap,
-              btnText: 'Sim, interromper',
+              btnText: AppStrings.noContinue,
               gradient: AppColor.blackGradient,
             textGradient: AppColor.blackGradient,
             )
@@ -216,7 +218,7 @@ class KFastBottomSheet {
     return kTextButton(
       width: mQ.width,
       onPressed: onConfirmTap!,
-      btnText: 'Confirmar horário',
+      btnText: AppStrings.confirmTime,
       useGradient: true,
     );
   }

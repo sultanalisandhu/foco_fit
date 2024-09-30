@@ -152,5 +152,30 @@
     "nutritionalInformationBasedOnIngredients": "All nutritional information is based on the 'ingredients' description filled in the field above.",
     "ingredients": "Ingredients",
     "ingredientsDetail": "2 eggs, 500g of wheat flour, 1 cup of soybean oil, 1 pinch of salt, 3 glasses of whole milk",
-    "lemonPieFilled": "Lemon pie filled with vanilla"
+    "lemonPieFilled": "Lemon pie filled with vanilla",
+
+
+    "intermittentFasting": "Intermittent Fasting",
+    "confirmSelection": "Confirm Selection",
+    "hoursEating": "Hours Eating",
+    "fastingHours": "Fasting Hours",
+    "whenYouWantToStart": "When You Want To Start",
+    "chooseTimeToStartFast": "Choose the time you want to start your fast below.",
+    "confirmTime": "Confirm Time",
+    "elapsedTime": "Elapsed Time",
+    "timeExceeded": "Time Exceeded",
+    "startAt": "Start at",
+    "todayAt": "Today at",
+    "endsAt": "Ends at",
+    "tomorrow": "Tomorrow",
+    "currentFastingPlan": "Current Fasting Plan",
+    "startFasting": "Start Fasting",
+    "breakYourFast": "Do you want to break your fast?",
+    "counterWillRestAndStartAgain": "The counter will be reset and you will have to start again if you want.",
+    "yesInterrupt": "Yes, interrupt",
+    "noContinue": "No Continue",
+    "daily": "Daily",
+    "fast": "Fast",
+    "recipes": "Recipes",
+    "profile": "Profile"
 }

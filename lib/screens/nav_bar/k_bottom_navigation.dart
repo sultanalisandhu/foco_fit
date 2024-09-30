@@ -6,6 +6,7 @@ import 'package:focofit/screens/home_ui/home_screen.dart';
 import 'package:focofit/screens/profile_ui/profile_screen.dart';
 import 'package:focofit/screens/receipe_ui/receipe_screen.dart';
 import 'package:focofit/utils/app_colors.dart';
+import 'package:focofit/utils/app_strings.dart';
 import 'package:focofit/utils/asset_utils.dart';
 import 'package:focofit/utils/k_text_styles.dart';
 import 'package:get/get.dart';
@@ -63,7 +64,7 @@ class CustomBottomBar extends StatelessWidget {
                           : listOfIcons[index],
                     ),
                     5.height,
-                    GradientText(text: listofTitles[index], gradient: index==BottomBarIndex.currentIndex.value?AppColor.primaryGradient:AppColor.blackGradient,
+                    GradientText(text: listOfTitles[index], gradient: index==BottomBarIndex.currentIndex.value?AppColor.primaryGradient:AppColor.blackGradient,
                     style: primaryTextStyle(fontSize: 14,fontWeight: FontWeight.w400),
                     )
                   ],
@@ -87,11 +88,11 @@ class CustomBottomBar extends StatelessWidget {
   AppIcons.recipeIcon,
   AppIcons.profileIcon,
   ];
-  final List listofTitles = [
-    'Diário',
-    'Jejum',
-    'Receitas',
-    'Perfil'
+  static List listOfTitles = [
+    AppStrings.daily,
+    AppStrings.fast,
+    AppStrings.recipes,
+    AppStrings.profile,
   ];
 }
 class BottomBarIndex{

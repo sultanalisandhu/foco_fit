@@ -1,16 +1,12 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:focofit/components/k_buttons.dart';
 import 'package:focofit/components/k_subscribe_container.dart';
-import 'package:focofit/components/k_svg_icon.dart';
 import 'package:focofit/extensions/extension.dart';
 import 'package:focofit/screens/home_ui/add_physical_activity/all_physical_activity.dart';
 import 'package:focofit/screens/home_ui/subscribed_screen.dart';
 import 'package:focofit/utils/app_strings.dart';
-import 'package:focofit/utils/asset_utils.dart';
 import 'package:focofit/utils/enums.dart';
-import 'package:focofit/utils/k_text_styles.dart';
 import 'package:focofit/widgets/k_bottom_sheets/home_bottom_sheets.dart';
 import 'package:focofit/screens/profile_ui/notification_screen.dart';
 import 'package:focofit/screens/profile_ui/profile_setting_ui/profile_setting.dart';

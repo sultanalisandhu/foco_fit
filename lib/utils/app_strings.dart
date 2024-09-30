@@ -158,4 +158,28 @@ class AppStrings {
   static String  ingredients = "ingredients".tr;
   static String  ingredientsDetail = "ingredientsDetail".tr;
   static String  lemonPieFilled = "lemonPieFilled".tr;
+
+  static String  intermittentFasting = "intermittentFasting".tr;
+  static String  confirmSelection = "confirmSelection".tr;
+  static String  hoursEating = "hoursEating".tr;
+  static String  fastingHours = "fastingHours".tr;
+  static String  whenYouWantToStart = "whenYouWantToStart".tr;
+  static String  chooseTimeToStartFast = "chooseTimeToStartFast".tr;
+  static String  confirmTime = "confirmTime".tr;
+  static String  elapsedTime = "elapsedTime".tr;
+  static String  timeExceeded = "timeExceeded".tr;
+  static String  startAt = "startAt".tr;
+  static String  todayAt = "todayAt".tr;
+  static String  endsAt = "endsAt".tr;
+  static String  tomorrow = "tomorrow".tr;
+  static String  currentFastingPlan = "currentFastingPlan".tr;
+  static String  startFasting = "startFasting".tr;
+  static String  breakYourFast = "breakYourFast".tr;
+  static String  counterWillRestAndStartAgain = "counterWillRestAndStartAgain".tr;
+  static String  yesInterrupt = "yesInterrupt".tr;
+  static String  noContinue = "noContinue".tr;
+  static String  daily = "daily".tr;
+  static String  fast = "fast".tr;
+  static String  recipes = "recipes".tr;
+  static String  profile = "profile".tr;
 }
