@@ -9,6 +9,7 @@ import 'package:focofit/screens/receipe_ui/create_recipe_screens/edit_recipe_scr
 import 'package:focofit/screens/receipe_ui/recipe_bottom_sheet.dart';
 import 'package:focofit/screens/receipe_ui/recipe_detail_screen.dart';
 import 'package:focofit/utils/app_colors.dart';
+import 'package:focofit/utils/app_strings.dart';
 import 'package:focofit/utils/asset_utils.dart';
 import 'package:focofit/utils/k_text_styles.dart';
 import 'package:focofit/widgets/k_app_bar.dart';
@@ -27,7 +28,7 @@ class RecipeScreen extends StatelessWidget {
           length: 3, // Number of tabs
           child: Scaffold(
             appBar: kAppBar(
-              title: 'Receitas',
+              title: AppStrings.recipes,
               trailingOnTap: () {
                 Get.to(() => CreateRecipeOption());
               },
@@ -45,7 +46,7 @@ class RecipeScreen extends StatelessWidget {
                           context: context,
                         prefixIcon: AppIcons.searchIcon,
                           textInputType: TextInputType.text,
-                          hintText: 'O que você quer preparar?',
+                          hintText: AppStrings.whatYouWantToPrepare,
                         ),
                       ),
                       5.width,
@@ -94,10 +95,10 @@ class RecipeScreen extends StatelessWidget {
                       indicatorSize: TabBarIndicatorSize.tab,
                       indicatorColor: Colors.transparent,
                       dividerColor: Colors.transparent,
-                      tabs: const [
-                        Tab(text: 'Todas'),
-                        Tab(text: 'Favoritas'),
-                        Tab(text: 'Criadas'),
+                      tabs: [
+                        Tab(text: AppStrings.all),
+                        Tab(text: AppStrings.favorites),
+                        Tab(text: AppStrings.created),
                       ],
                     ),
                   ),
@@ -144,7 +145,7 @@ class RecipeScreen extends StatelessWidget {
                                             borderRadius: BorderRadius.circular(26),
                                             color: AppColor.whiteColor,
                                           ),
-                                          child: const Text('10 min'),
+                                          child: Text('10 ${AppStrings.min}'),
                                         ),
                                         Container(
                                           height: 30,
@@ -155,14 +156,14 @@ class RecipeScreen extends StatelessWidget {
                                             borderRadius: BorderRadius.circular(26),
                                             color: AppColor.whiteColor,
                                           ),
-                                          child: const Text('319 kcal'),
+                                          child: Text('319 ${AppStrings.kcal}'),
                                         ),
                                       ],
                                     ),
                                   ),
-                                  const SizedBox(height: 5),
-                                  const Text(
-                                    'Salmão defumado com molho de limão ao molho de castanha',
+                                 5.height,
+                                   Text(
+                                    AppStrings.smokedSalmon,
                                     overflow: TextOverflow.ellipsis,
                                     maxLines: 2,
                                   ),
@@ -210,7 +211,7 @@ class RecipeScreen extends StatelessWidget {
                                             borderRadius: BorderRadius.circular(26),
                                             color: AppColor.whiteColor,
                                           ),
-                                          child: const Text('10 min'),
+                                          child: Text('10 ${AppStrings.min}'),
                                         ),
                                         Container(
                                           height: 30,
@@ -221,14 +222,14 @@ class RecipeScreen extends StatelessWidget {
                                             borderRadius: BorderRadius.circular(26),
                                             color: AppColor.whiteColor,
                                           ),
-                                          child: const Text('319 kcal'),
+                                          child: Text('319 ${AppStrings.kcal}'),
                                         ),
                                       ],
                                     ),
                                   ),
                                   const SizedBox(height: 5),
-                                  const Text(
-                                    'Salmão defumado com molho de limão ao molho de castanha',
+                                  Text(
+                                    AppStrings.smokedSalmon,
                                     overflow: TextOverflow.ellipsis,
                                     maxLines: 2,
                                   ),
@@ -276,7 +277,7 @@ class RecipeScreen extends StatelessWidget {
                                             borderRadius: BorderRadius.circular(26),
                                             color: AppColor.whiteColor,
                                           ),
-                                          child: const Text('10 min'),
+                                          child: Text('10 ${AppStrings.min}'),
                                         ),
                                         Container(
                                           height: 30,
@@ -287,14 +288,14 @@ class RecipeScreen extends StatelessWidget {
                                             borderRadius: BorderRadius.circular(26),
                                             color: AppColor.whiteColor,
                                           ),
-                                          child: const Text('319 kcal'),
+                                          child: Text('319 ${AppStrings.kcal}'),
                                         ),
                                       ],
                                     ),
                                   ),
                                   const SizedBox(height: 5),
-                                  const Text(
-                                    'Salmão defumado com molho de limão ao molho de castanha',
+                                  Text(
+                                    AppStrings.smokedSalmon,
                                     overflow: TextOverflow.ellipsis,
                                     maxLines: 2,
                                   ),

@@ -5,6 +5,7 @@ import 'package:focofit/controller/recipe_controller.dart';
 import 'package:focofit/extensions/extension.dart';
 import 'package:focofit/screens/receipe_ui/create_recipe_screens/recipe_added.dart';
 import 'package:focofit/utils/app_colors.dart';
+import 'package:focofit/utils/app_strings.dart';
 import 'package:focofit/utils/k_text_styles.dart';
 import 'package:focofit/widgets/k_app_bar.dart';
 import 'package:focofit/widgets/recipe_widgets/k_create_recipe_sheet.dart';
@@ -17,7 +18,7 @@ class CreateRecipeManual extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: kAppBar(
-        title: 'Criar receita',
+        title: AppStrings.createRecipe,
         onTap: (){
           Navigator.pop(context);
         },
@@ -31,7 +32,7 @@ class CreateRecipeManual extends StatelessWidget {
               children: [
                 const Icon(Icons.info,color: AppColor.greyColor,),
                 15.width,
-                Expanded(child: Text('Todas as informações nutricionais são baseadas na descrição dos ingredientes preenchidos no campo acima.',style:
+                Expanded(child: Text(AppStrings.nutritionalInformationBasedOnIngredients,style:
                 primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w400)
                   ,))
               ],
@@ -41,7 +42,7 @@ class CreateRecipeManual extends StatelessWidget {
               onPressed: (){
                 Get.to(()=>RecipeAdded());
               },
-              btnText: 'Salvar receita',
+              btnText: AppStrings.saveRecipe,
               gradient: AppColor.blackGradient,
             ),
           ],
@@ -52,12 +53,12 @@ class CreateRecipeManual extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Nome da receita',style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w600),),
+            Text(AppStrings.recipeName,style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w600),),
             10.height,
             CustomTextField(
               context: context,
               controller: controller.recipeNameC,
-              hintText: 'Bolo de chocolate sem açúcar',
+              hintText: AppStrings.sugarFreeCake,
               textInputType: TextInputType.text,
               textInputAction: TextInputAction.done,
               color: AppColor.whiteColor,
@@ -69,8 +70,8 @@ class CreateRecipeManual extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Ingrediente',style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w600),),
-                    Text('Quantidade',style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w600),),
+                    Text(AppStrings.ingredients,style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w600),),
+                    Text(AppStrings.amount,style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w600),),
                   ],
                 ),
                 10.height,
@@ -81,7 +82,7 @@ class CreateRecipeManual extends StatelessWidget {
                       child: CustomTextField(
                         context: context,
                         controller: controller.recipeIngredientC,
-                        hintText: 'Bolo de chocolate sem açúcar',
+                        hintText: AppStrings.sugarFreeCake,
                         textInputType: TextInputType.text,
                       ),
                     ),
@@ -101,19 +102,19 @@ class CreateRecipeManual extends StatelessWidget {
               20.height,
               KOutlineButton(
                   onTap: (){},
-                  btnText: 'Adicionar ingrediente',
+                  btnText: AppStrings.addIngredient,
                   gradient: AppColor.blackGradient,
                 textGradient: AppColor.blackGradient,
               ),
               ],
             ),
             20.height,
-            Text('Modo de preparo',style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w600),),
+            Text(AppStrings.preparationMethod,style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w600),),
             10.height,
             CustomTextField(
               context: context,
               controller: controller.recipeDescriptionC,
-              hintText: 'Bolo de chocolate sem açúcar',
+              hintText: AppStrings.sugarFreeCake,
               maxLines: 6,
               textInputType: TextInputType.text,
               textInputAction: TextInputAction.done,

@@ -4,6 +4,7 @@ import 'package:focofit/components/k_svg_icon.dart';
 import 'package:focofit/controller/recipe_controller.dart';
 import 'package:focofit/extensions/extension.dart';
 import 'package:focofit/utils/app_colors.dart';
+import 'package:focofit/utils/app_strings.dart';
 import 'package:focofit/utils/asset_utils.dart';
 import 'package:focofit/utils/k_text_styles.dart';
 import 'package:get/get.dart';
@@ -55,19 +56,19 @@ class KRecipeFilterSheet {
 
     show(
       context: context,
-      title: 'Filtrar por:',
+      title: '${AppStrings.filterBy}:',
       content: [
         Text(
-          'Calorias',
+          AppStrings.calories,
           style: primaryTextStyle(fontSize: 16, fontWeight: FontWeight.w600),
         ),
         10.height,
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text('0 kcal', style: primaryTextStyle(fontSize: 14)),
+            Text('0 ${AppStrings.kcal}', style: primaryTextStyle(fontSize: 14)),
             Obx(() => Text(
-              '${recipeController.currentCalories.value.toInt()} kcal', // Display integer value
+              '${recipeController.currentCalories.value.toInt()} ${AppStrings.kcal}', // Display integer value
               style: primaryTextStyle(fontSize: 14),
             )),
           ],
@@ -86,7 +87,7 @@ class KRecipeFilterSheet {
         ),
         20.height,
         Text(
-          'Refeicao',
+          AppStrings.snack,
           style: primaryTextStyle(fontSize: 16, fontWeight: FontWeight.w600),
         ),
         10.height,
@@ -98,13 +99,13 @@ class KRecipeFilterSheet {
               itemBuilder: (context,index){
             return Container(
               alignment: Alignment.center,
-              padding: EdgeInsets.symmetric(horizontal: 15,vertical: 5),
-              margin: EdgeInsets.symmetric(horizontal: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 5),
+              margin: const EdgeInsets.symmetric(horizontal: 10),
               decoration: BoxDecoration(
                 border: Border.all(color: AppColor.greyColor),
                 borderRadius: BorderRadius.circular(8)
               ),
-              child: Text('Almoco',style: primaryTextStyle(fontSize: 12,fontWeight: FontWeight.w400),),
+              child: Text(AppStrings.lunch,style: primaryTextStyle(fontSize: 12,fontWeight: FontWeight.w400),),
             );
           }),
         )
@@ -139,7 +140,7 @@ class KRecipeFilterSheet {
     return kTextButton(
       width: mQ.width,
       onPressed: onConfirmTap,
-      btnText: 'Pesquisar',
+      btnText: AppStrings.toLookFor,
       useGradient: true,
     );
   }

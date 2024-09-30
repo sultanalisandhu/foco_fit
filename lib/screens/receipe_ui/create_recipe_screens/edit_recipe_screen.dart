@@ -6,6 +6,7 @@ import 'package:focofit/controller/recipe_controller.dart';
 import 'package:focofit/extensions/extension.dart';
 import 'package:focofit/screens/receipe_ui/create_recipe_screens/create_recipe_manual.dart';
 import 'package:focofit/utils/app_colors.dart';
+import 'package:focofit/utils/app_strings.dart';
 import 'package:focofit/utils/asset_utils.dart';
 import 'package:focofit/utils/k_text_styles.dart';
 import 'package:focofit/widgets/k_app_bar.dart';
@@ -25,7 +26,7 @@ class EditRecipeScreen extends StatelessWidget {
                 onTap: (){
                   Get.back();
                 },
-                title: 'Receitas'
+                title: AppStrings.recipes
             ),
             body: SingleChildScrollView(
               padding: const EdgeInsets.all(15),
@@ -54,7 +55,7 @@ class EditRecipeScreen extends StatelessWidget {
                                 color: AppColor.whiteColor.withOpacity(0.8),
                                 borderRadius: BorderRadius.circular(22),
                               ),
-                              child: Text('10 min',style: primaryTextStyle(fontSize: 14,fontWeight: FontWeight.w400),),
+                              child: Text('10 ${AppStrings.min}',style: primaryTextStyle(fontSize: 14,fontWeight: FontWeight.w400),),
                             ),
                             5.width,
                             Container(
@@ -63,7 +64,7 @@ class EditRecipeScreen extends StatelessWidget {
                                 color: AppColor.whiteColor.withOpacity(0.8),
                                 borderRadius: BorderRadius.circular(22),
                               ),
-                              child: Text('319 kcal',style: primaryTextStyle(fontSize: 14,fontWeight: FontWeight.w500),),
+                              child: Text('319 ${AppStrings.kcal}',style: primaryTextStyle(fontSize: 14,fontWeight: FontWeight.w500),),
                             ),
                             const Spacer(),
                             GestureDetector(
@@ -86,14 +87,14 @@ class EditRecipeScreen extends StatelessWidget {
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Expanded(child: Text('Doce de pudim de abacate cremoso sem açúcar',style: primaryTextStyle(fontSize: 18,fontWeight: FontWeight.w600),)),
+                      Expanded(child: Text(AppStrings.sugarFreeAvocadoPudding,style: primaryTextStyle(fontSize: 18,fontWeight: FontWeight.w600),)),
                       showSvgIconWidget(iconPath: AppIcons.editIcon,onTap: (){
                         Get.to(()=> CreateRecipeManual());
                       },color: AppColor.blackColor),
                     ],
                   ),
                   20.height,
-                  //MacroNeutrients  ---------------------------------------------------
+                  //MacroNutrients  ---------------------------------------------------
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 15),
                     decoration: BoxDecoration(
@@ -109,28 +110,28 @@ class EditRecipeScreen extends StatelessWidget {
                         children: [
                           showSvgIconWidget(iconPath: AppIcons.chartIcon,color: AppColor.blackColor),
                           5.width,
-                          Text('Macronutrientes',style: primaryTextStyle(fontSize: 18,fontWeight: FontWeight.w600),),
+                          Text(AppStrings.macronutrients,style: primaryTextStyle(fontSize: 18,fontWeight: FontWeight.w600),),
                         ],
                       ),
                       20.height,
-                      const Row(
+                      Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           KCircularProgressBar(
                             consumed: '190',
-                            dietName: 'Carboidrato',
+                            dietName: AppStrings.carbohydrate,
                             lineGradient: AppColor.greenGradient,
                             progressValue: 0.6,
                           ),
                           KCircularProgressBar(
                             consumed: '90',
-                            dietName: 'Proteína',
+                            dietName: AppStrings.protein,
                             lineGradient: AppColor.redGradient,
                             progressValue: 0.4,
                           ),
                           KCircularProgressBar(
                             consumed: '169',
-                            dietName: 'Gordura',
+                            dietName: AppStrings.fat,
                             lineGradient: AppColor.primaryGradient,
                             progressValue: 0.3,
                           ),
@@ -155,7 +156,7 @@ class EditRecipeScreen extends StatelessWidget {
                         children: [
                           showSvgIconWidget(iconPath: AppIcons.ingredientesIcon),
                           5.width,
-                          Text('Ingredientes',style: primaryTextStyle(fontSize: 18,fontWeight: FontWeight.w600),),
+                          Text(AppStrings.ingredients,style: primaryTextStyle(fontSize: 18,fontWeight: FontWeight.w600),),
                         ],
                       ),
                       20.height,
@@ -195,7 +196,7 @@ class EditRecipeScreen extends StatelessWidget {
                         children: [
                           showSvgIconWidget(iconPath: AppIcons.ingredientesIcon),
                           5.width,
-                          Text('Modo de preparo',style: primaryTextStyle(fontSize: 18,fontWeight: FontWeight.w600),),
+                          Text(AppStrings.preparationMethod,style: primaryTextStyle(fontSize: 18,fontWeight: FontWeight.w600),),
                         ],
                       ),
                       20.height,

@@ -21,7 +21,7 @@ class KCircularProgressBar extends StatelessWidget {
       backgroundColor: AppColor.lightGreyColor,
       fillColor: Colors.transparent,
       circularStrokeCap: CircularStrokeCap.round,
-      radius: 50,
+      radius: 55,
       lineWidth: 6,
       backgroundWidth: 8,
       percent: progressValue,

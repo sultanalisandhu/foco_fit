@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:focofit/components/k_buttons.dart';
 import 'package:focofit/screens/receipe_ui/create_recipe_screens/edit_recipe_screen.dart';
 import 'package:focofit/utils/app_colors.dart';
+import 'package:focofit/utils/app_strings.dart';
 import 'package:focofit/utils/asset_utils.dart';
 import 'package:focofit/utils/k_text_styles.dart';
 import 'package:focofit/widgets/k_app_bar.dart';
@@ -17,7 +18,7 @@ class RecipeAdded extends StatelessWidget {
         onTap: (){
           Get.back();
         },
-        title: 'Criar receita',
+        title: AppStrings.createRecipe,
       ),
       bottomNavigationBar: Container(
         padding: const EdgeInsets.symmetric(horizontal: 25,vertical: 10),
@@ -25,7 +26,7 @@ class RecipeAdded extends StatelessWidget {
           onPressed: (){
             Get.to(()=> EditRecipeScreen());
           },
-          btnText: 'Ver receita',
+          btnText: AppStrings.viewRecipe,
           gradient: AppColor.blackGradient,
         ),
       ),
@@ -37,7 +38,7 @@ class RecipeAdded extends StatelessWidget {
         Column(
           children: [
           const Image(image: AssetImage(AppImages.greenCheckImg),height: 250,width: 250,),
-          Text('Parabéns! Sua nova receita foi salva com sucesso! Agora você pode consultar ela a qualquer momento na tela inicial.',
+          Text(AppStrings.recipeAddedConsultAnyTime,
             textAlign: TextAlign.center,
             style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w400),),
         ],).paddingSymmetric(horizontal: 25,vertical: 10)

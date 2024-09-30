@@ -182,4 +182,24 @@ class AppStrings {
   static String  fast = "fast".tr;
   static String  recipes = "recipes".tr;
   static String  profile = "profile".tr;
+  static String  whatYouWantToPrepare = "whatYouWantToPrepare".tr;
+  static String  smokedSalmon = "smokedSalmon".tr;
+  static String  preparationMethod = "preparationMethod".tr;
+  static String  tomato = "tomato".tr;
+  static String  pcs2 = "pcs2".tr;
+  static String  chopTomatoes = "chopTomatoes".tr;
+  static String  addTomatoes = "addTomatoes".tr;
+  static String  onion = "onion".tr;
+  static String  createRecipe = "createRecipe".tr;
+  static String  recipeName = "recipeName".tr;
+  static String  sugarFreeCake = "sugarFreeCake".tr;
+  static String  recipeDescriptionOptional = "RecipeDescriptionOptional".tr;
+  static String  recipeDemand = "recipeDemand".tr;
+  static String  saveRecipe = "saveRecipe".tr;
+  static String  addIngredient = "addIngredient".tr;
+  static String  sugarFreeAvocadoPudding = "sugarFreeAvocadoPudding".tr;
+  static String  viewRecipe = "viewRecipe".tr;
+  static String  recipeAddedConsultAnyTime = "recipeAddedConsultAnyTime".tr;
+  static String  toLookFor = "toLookFor".tr;
+  static String  filterBy = "filterBy".tr;
 }
