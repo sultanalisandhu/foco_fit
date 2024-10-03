@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:focofit/components/k_buttons.dart';
 import 'package:focofit/extensions/extension.dart';
 import 'package:focofit/utils/app_colors.dart';
+import 'package:focofit/utils/app_strings.dart';
 import 'package:focofit/utils/k_text_styles.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class CustomExpandableContainer extends StatelessWidget {
   final String title;
@@ -40,25 +42,19 @@ class CustomExpandableContainer extends StatelessWidget {
       ),
       child: ExpansionTile(
         title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              title,
-              style: primaryTextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-            ),
-            30.width,
+            KText(text: title, fontSize: 14,fontWeight: FontWeight.w600,),
             const Icon(Icons.keyboard_arrow_down_rounded,color: Colors.black,)
           ],
         ),
-        subtitle: Text(
-          subtitle,
-          style: primaryTextStyle(fontSize: 12, fontWeight: FontWeight.w500,color: AppColor.greyColor),
-        ),
+        subtitle: KText(text: subtitle, fontSize: 12,fontWeight: FontWeight.w500,color: AppColor.greyColor,),
         leading: Image(image: AssetImage(imageUrl),),
         trailing: GestureDetector(
           onTap: onTapTrailing,
           child: Container(
-            height: 40,
-            width: 40,
+            height: 5.h,
+            width: 15.w,
             decoration: const BoxDecoration(
               gradient: AppColor.primaryGradient,
               shape: BoxShape.circle,
@@ -71,7 +67,7 @@ class CustomExpandableContainer extends StatelessWidget {
         ),
         backgroundColor: Colors.transparent,
         expandedAlignment: Alignment.topRight,
-        tilePadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+        tilePadding: EdgeInsets.symmetric( horizontal: 2.w),
         childrenPadding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
         collapsedBackgroundColor: Colors.transparent,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
@@ -79,25 +75,25 @@ class CustomExpandableContainer extends StatelessWidget {
           for (var item in childrenData)
             Row(
               children: [
-                Text(
-                  item['name'] ?? '',
-                  style: primaryTextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+                KText(
+                  text: item['name'] ?? '',
+                   fontWeight: FontWeight.w600,
                 ),
                 const Expanded(child: Text('------------------------------------------------------------------------------',maxLines: 1,)),
-                Text(
-                  item['calories'] ?? '',
-                  style: primaryTextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+                KText(
+                  text: item['calories'] ?? '',
+                  fontWeight: FontWeight.w600,
                 ),
               ],
             ),
-          const SizedBox(height: 10),
+          1.ySpace,
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               kTextButton(
                 onPressed: onEditPressed!,
-                btnText: 'Editor historico',
-                height: 35,
+                btnText: AppStrings.historicalEditor,
+                height: 5,
                 useGradient: true,
               ),
             ],
@@ -141,19 +137,13 @@ class KHomeListTile extends StatelessWidget {
         ],
       ),
       child: ListTile(
+        contentPadding: EdgeInsets.symmetric(horizontal: 2.w),
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(
-              title,
-              style: primaryTextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-            ),
-            5.height,
-            Text(
-              subtitle,
-              style: primaryTextStyle(fontSize: 12, fontWeight: FontWeight.w500,color: AppColor.greyColor),
-            ),
+            KText(text: title, fontSize: 14,fontWeight: FontWeight.w600,),
+            KText(text: subtitle, fontSize: 12,fontWeight: FontWeight.w500,color: AppColor.greyColor),
             const Icon(Icons.keyboard_arrow_down_rounded,color: Colors.black,)
           ],
         ),
@@ -164,8 +154,8 @@ class KHomeListTile extends StatelessWidget {
             GestureDetector(
               onTap: onMinusTap,
               child: Container(
-                height: 40,
-                width: 40,
+                height: 4.5.h,
+                width: 10.w,
                 decoration: const BoxDecoration(
                   gradient: AppColor.primaryGradient,
                   shape: BoxShape.circle,
@@ -176,14 +166,14 @@ class KHomeListTile extends StatelessWidget {
                 ),
               ),
             ),
-            10.width,
-            Text('500',style: primaryTextStyle(fontSize: 14,fontWeight: FontWeight.w500),),
-            10.width,
+            2.xSpace,
+            KText(text: '500',),
+            2.xSpace,
             GestureDetector(
               onTap: onPlusTap,
               child: Container(
-                height: 40,
-                width: 40,
+                height: 4.5.h,
+                width: 10.w,
                 decoration: const BoxDecoration(
                   gradient: AppColor.primaryGradient,
                   shape: BoxShape.circle,

@@ -6,7 +6,9 @@ import 'package:focofit/utils/app_colors.dart';
 import 'package:focofit/utils/app_strings.dart';
 import 'package:focofit/utils/k_text_styles.dart';
 import 'package:focofit/widgets/k_app_bar.dart';
+import 'package:get/get.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class SeeFasting extends StatelessWidget {
   const SeeFasting({super.key});
@@ -15,6 +17,9 @@ class SeeFasting extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: kAppBar(
+        onTap: (){
+          Navigator.pop(context);
+        },
         title: AppStrings.intermittentFasting
       ),
       body: SingleChildScrollView(
@@ -44,7 +49,7 @@ class SeeFasting extends StatelessWidget {
                   widgetIndicator: Container(
                       margin: const EdgeInsets.only(right: 20),
                       child: const Icon(Icons.circle,color: Colors.white,size: 12,)),
-                  radius: 100,
+                  radius: 17.h,
                   lineWidth: 20,
                   backgroundWidth: 22,
                   percent: 0.4,
@@ -52,41 +57,41 @@ class SeeFasting extends StatelessWidget {
                   center: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(AppStrings.elapsedTime, style: primaryTextStyle(fontSize: 12, fontWeight: FontWeight.w400)),
-                      Text('00:00:25', style: primaryTextStyle(fontSize: 16, fontWeight: FontWeight.w700)),
+                      KText(text:  AppStrings.elapsedTime,fontSize: 16,color: AppColor.greyColor,),
+                      Text('00:00:25', style: kTextStyle(fontSize: 16, fontWeight: FontWeight.w700)),
                       15.height,
-                      Text(AppStrings.timeExceeded, style: primaryTextStyle(fontSize: 12, fontWeight: FontWeight.w400)),
-                      Text('00:00:25', style: primaryTextStyle(fontSize: 16, fontWeight: FontWeight.w700)),
+                      KText(text:  AppStrings.timeExceeded, fontSize: 16,color: AppColor.greyColor,),
+                      Text('00:00:25', style: kTextStyle(fontSize: 16, fontWeight: FontWeight.w700)),
                     ],
                   ),
                 ),
-                40.height,
+                2.ySpace,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                   Column(
                     children: [
-                      Text(AppStrings.startAt,style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w500),),
-                      GradientText(text: '22 : 00', gradient: AppColor.primaryGradient,style: primaryTextStyle(fontSize: 20,fontWeight: FontWeight.w700),),
-                      Text('${AppStrings.todayAt} (17/08)',style: primaryTextStyle(fontSize: 14,fontWeight: FontWeight.w500),),
+                      KText(text:  AppStrings.startAt, fontSize: 16,color: AppColor.greyColor,),
+                      GradientText(text: '22 : 00', gradient: AppColor.primaryGradient,style: kTextStyle(fontSize: 20,fontWeight: FontWeight.w700),),
+                      KText(text:  '${AppStrings.todayAt} (17/08)',fontWeight: FontWeight.w500,color: AppColor.greyColor,),
                     ],
                   ),
                   Container(
-                    height: 30,
-                    width: 2,
+                    height: 6.h,
+                    width: 1,
                     color: AppColor.greyColor,
                   ),
                   Column(
                     children: [
-                      Text(AppStrings.endsAt,style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w500),),
-                      GradientText(text: '22 : 00', gradient: AppColor.primaryGradient,style: primaryTextStyle(fontSize: 20,fontWeight: FontWeight.w700),),
-                      Text('${AppStrings.tomorrow} (17/08)',style: primaryTextStyle(fontSize: 14,fontWeight: FontWeight.w500),),
+                      KText(text:  AppStrings.endsAt, fontSize: 16,color: AppColor.greyColor,fontWeight: FontWeight.w500),
+                      GradientText(text: '22 : 00', gradient: AppColor.primaryGradient,style: kTextStyle(fontSize: 20,fontWeight: FontWeight.w700),),
+                      KText(text:  '${AppStrings.tomorrow} (17/08)',fontWeight: FontWeight.w500,color: AppColor.greyColor,),
                     ],
                   ),
                 ],)
               ],),
             ),
-            20.height,
+            3.ySpace,
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 20),
               decoration: BoxDecoration(
@@ -100,30 +105,39 @@ class SeeFasting extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('${AppStrings.currentFastingPlan}: 12 - 12',style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w500),),
-                  kTextButton(
-                    onPressed: (){
+                  KText(text:  '${AppStrings.currentFastingPlan}: (17/08)',fontWeight: FontWeight.w500,),
+                  GradientText(
+                    onTextTap: (){
                       Navigator.pop(context);
                       Navigator.pop(context);
                     },
-                    useGradient: true,
-                    width: 100,
-                    borderRadius: 15,
-                    btnText: 'Alter',
-                  )
+                    text: AppStrings.alter,
+                    gradient: AppColor.primaryGradient,
+                    style: kTextStyle(fontSize: 18,fontWeight: FontWeight.w700),),
                 ],),
             ),
-            50.height,
-            kTextButton(
-                onPressed: (){
-                  KFastBottomSheet.breakFastSheet(context,
-                  onConfirmTap: (){},
-                    onCancelTap: (){}
-                  );
-                },
-                useGradient: true,
-                btnText: AppStrings.startFasting)
+
           ],
+        ),
+      ),
+
+      bottomNavigationBar: Container(
+        padding: EdgeInsets.symmetric(horizontal: 1.h,vertical: 1.h),
+        child: kTextButton(
+            onPressed: (){
+              KFastBottomSheet.breakFastSheet(context,
+                  onConfirmTap: (){
+                Get.back();
+                Get.back();},
+                  onCancelTap: (){
+                    Get.back();
+                    Get.back();
+                  }
+              );
+            },
+            useGradient: true,
+            btnText: AppStrings.startFasting,
+            fontSize: 14
         ),
       ),
     );

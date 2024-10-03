@@ -233,10 +233,11 @@ class CustomTextField extends StatelessWidget {
       decoration: InputDecoration(
         prefixIcon:  Padding(
           padding: const EdgeInsets.only(left: 12.0,right: 10),
-          child: prefixText!=null? Text(prefixText!,style: primaryTextStyle(fontWeight: FontWeight.w500,fontSize: 16,color: AppColor.greyColor),)
-              :prefixIcon!=null? showSvgIconWidget(iconPath:  prefixIcon!):null,),
+          child: prefixText != null
+              ? Text(prefixText!,style: primaryTextStyle(fontWeight: FontWeight.w500,fontSize: 16,color: AppColor.greyColor),)
+              : prefixIcon!=null? showSvgIconWidget(iconPath:  prefixIcon!):null,),
         suffixIcon: suffixText!= null?Padding(
-          padding: const EdgeInsets.only(right: 8.0),
+          padding: const EdgeInsets.only(right: 18.0,left: 5),
           child: Text(suffixText!,style: primaryTextStyle(fontWeight: FontWeight.w500,fontSize: 16,color: AppColor.greyColor),),
         ):null,
         hintText: hintText??'',
@@ -254,14 +255,6 @@ class CustomTextField extends StatelessWidget {
         focusedBorder:  OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
           borderSide: BorderSide(color: borderColor??Colors.transparent,),
-        ),
-        errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide:  const BorderSide(color: Colors.red),
-        ),
-        focusedErrorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide:  const BorderSide(color: Colors.red),
         ),
       ),
     );

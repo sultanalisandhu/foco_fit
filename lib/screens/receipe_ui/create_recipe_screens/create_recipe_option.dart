@@ -9,6 +9,7 @@ import 'package:focofit/utils/asset_utils.dart';
 import 'package:focofit/utils/k_text_styles.dart';
 import 'package:focofit/widgets/k_app_bar.dart';
 import 'package:get/get.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class CreateRecipeOption extends StatelessWidget {
   const CreateRecipeOption({super.key});
@@ -33,27 +34,29 @@ class CreateRecipeOption extends StatelessWidget {
         ],
       ).paddingSymmetric(horizontal: 15,vertical: 10),
       bottomNavigationBar: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 25,vertical: 10),
-        height: mQ.height*0.15,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            kTextButton(
-                onPressed: (){
-                  Get.to(()=> CreateRecipeAi());
-                },
-                btnText: AppStrings.usingFocoFitPro,
-                useGradient: true
-            ),
-            10.height,
-            KOutlineButton(
-                onTap: (){
-                  Get.to(()=>CreateRecipeManual());
-                },
-                btnText: AppStrings.createManually,
-                textGradient: AppColor.blackGradient,
-                gradient: AppColor.blackGradient)
-          ],
+        padding: EdgeInsets.symmetric(horizontal: 3.w),
+        child: SafeArea(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              kTextButton(
+                  onPressed: (){
+                    Get.to(()=> CreateRecipeAi());
+                  },
+                  btnText: AppStrings.usingFocoFitPro,
+                  useGradient: true
+              ),
+              1.ySpace,
+              KOutlineButton(
+                  onTap: (){
+                    Get.to(()=>CreateRecipeManual());
+                  },
+                  btnText: AppStrings.createManually,
+                  textGradient: AppColor.blackGradient,
+                  gradient: AppColor.blackGradient)
+            ],
+          ),
         ),
       ),
     );

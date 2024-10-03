@@ -200,6 +200,16 @@
     "viewRecipe": "Ver receita",
     "recipeAddedConsultAnyTime": "Parabéns! Sua nova receita foi salva com sucesso! Agora você pode consultar ela a qualquer momento na tela inicial.",
     "toLookFor": "Pesquisar",
-    "filterBy": "Filtrar por"
+    "filterBy": "Filtrar por",
+    "historicalEditor": "Editor historico",
+    "alter": "Alterar",
+    "setting": "Configurações",
+    "weightLoss": "Peso perdido",
+    "accessData": "Dados de acesso",
+    "personalData": "Dados pessoais",
+    "on": "Sobre",
+    "logOutOfAccount": "Sair da conta",
+    "years": "anos",
+    "of": "de"
 
 }

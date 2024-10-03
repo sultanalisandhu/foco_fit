@@ -11,3 +11,8 @@ class PreparationDetails {
 
   PreparationDetails(this.preparationDetails);
 }
+class ActivityLevelList{
+  String? title;
+  String? subTitle;
+  ActivityLevelList({this.title,this.subTitle});
+}

@@ -10,6 +10,7 @@ import 'package:focofit/utils/app_strings.dart';
 import 'package:focofit/utils/asset_utils.dart';
 import 'package:focofit/utils/k_text_styles.dart';
 import 'package:get/get.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class KFastBottomSheet {
   static void show({
@@ -29,7 +30,7 @@ class KFastBottomSheet {
       backgroundColor: AppColor.whiteColor,
       builder: (BuildContext context) {
         return SizedBox(
-          height: context.isKeyboardVisible ? mQ.height : mQ.height * heightFactor,
+          height: mQ.height * heightFactor,
           width: mQ.width,
           child: Padding(
             padding: const EdgeInsets.all(20.0),
@@ -38,14 +39,15 @@ class KFastBottomSheet {
               children: [
                 context.isKeyboardVisible ? 30.height : 2.height,
                 _buildHeader(),
-                20.height,
+                1.ySpace,
                 _buildTitle(title),
                 const Divider(color: AppColor.greyColor),
-                10.height,
+                1.ySpace,
                 ...content,
                 const Spacer(),
-                onConfirmTap!=null?
-                _buildConfirmButton(onConfirmTap):const SizedBox.shrink(),
+                onConfirmTap !=null
+                    ? _buildConfirmButton(onConfirmTap)
+                    : const SizedBox.shrink(),
               ],
             ),
           ),
@@ -63,7 +65,7 @@ class KFastBottomSheet {
         Align(
             alignment: Alignment.center,
             child: Text(AppStrings.chooseTimeToStartFast,style: primaryTextStyle(fontSize: 14,fontWeight: FontWeight.w400),)),
-        10.height,
+
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -88,15 +90,15 @@ class KFastBottomSheet {
                           ? GradientText(
                         text: (index + 1).toString(),
                         gradient: AppColor.primaryGradient,
-                        style: primaryTextStyle(
-                          fontSize: 40,
+                        style: kTextStyle(
+                          fontSize: 18,
                           fontWeight: FontWeight.w600,
                         ),
                       )
                           : Text(
                         (index + 1).toString(),
-                        style: primaryTextStyle(
-                          fontSize: 32,
+                        style: kTextStyle(
+                          fontSize: 18,
                           fontWeight: FontWeight.w600,
                           color: Colors.black.withOpacity(0.6),
                         ),
@@ -106,7 +108,7 @@ class KFastBottomSheet {
                 ),
               ),
             ),
-            Text(':', style: primaryTextStyle(fontSize: 40)),
+            KText(text: ':',fontSize: 10),
             // Min ScrollView
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.25,
@@ -128,15 +130,15 @@ class KFastBottomSheet {
                           ? GradientText(
                         text: (index + 1).toString(),
                         gradient: AppColor.primaryGradient,
-                        style: primaryTextStyle(
-                          fontSize: 40,
+                        style: kTextStyle(
+                          fontSize: 18,
                           fontWeight: FontWeight.w600,
                         ),
                       )
                           : Text(
                         (index + 1).toString(),
-                        style: primaryTextStyle(
-                          fontSize: 32,
+                        style: kTextStyle(
+                          fontSize: 18,
                           fontWeight: FontWeight.w600,
                           color: Colors.black.withOpacity(0.6),
                         ),
@@ -150,7 +152,7 @@ class KFastBottomSheet {
         ),
       ],
       onConfirmTap: onConfirmTap,
-      heightFactor: 0.55,
+      heightFactor: 0.53,
     );
   }
 
@@ -163,9 +165,11 @@ class KFastBottomSheet {
       content: [
         Align(
             alignment: Alignment.center,
-            child: Text(AppStrings.counterWillRestAndStartAgain,
+            child: KText(
+              text:  AppStrings.counterWillRestAndStartAgain,
               textAlign: TextAlign.center,
-              style: primaryTextStyle(fontSize: 14,fontWeight: FontWeight.w400),)),
+            )
+        ),
         const Spacer(),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -174,12 +178,14 @@ class KFastBottomSheet {
                onPressed: onConfirmTap,
                useGradient: true,
                btnText: AppStrings.yesInterrupt,
+             fontSize: 14
            ),
             KOutlineButton(
               onTap: onCancelTap,
               btnText: AppStrings.noContinue,
               gradient: AppColor.blackGradient,
             textGradient: AppColor.blackGradient,
+              fonstSize: 14,
             )
 
           ],
@@ -203,12 +209,10 @@ class KFastBottomSheet {
   static Widget _buildTitle(String title) {
     return Align(
       alignment: Alignment.center,
-      child: Text(
-        title,
-        style: primaryTextStyle(
-          fontSize: 20.0,
+      child: KText(
+        text: title,
+          fontSize: 17,
           fontWeight: FontWeight.w600,
-        ),
       ),
     );
   }
@@ -216,6 +220,8 @@ class KFastBottomSheet {
 
   static Widget _buildConfirmButton(Function()? onConfirmTap) {
     return kTextButton(
+      height: 5,
+      fontSize: 14,
       width: mQ.width,
       onPressed: onConfirmTap!,
       btnText: AppStrings.confirmTime,

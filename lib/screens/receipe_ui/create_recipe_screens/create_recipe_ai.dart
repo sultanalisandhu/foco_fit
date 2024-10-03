@@ -17,18 +17,18 @@ class CreateRecipeAi extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: kAppBar(
-        title: AppStrings.chopTomatoes,
+        title: AppStrings.createRecipe,
         onTap: (){
           Get.back();
         },
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 25,vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(AppStrings.recipeName,style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w600),),
-            10.height,
+            KText(text: AppStrings.recipeName, fontSize: 16,fontWeight: FontWeight.w600),
+            1.ySpace,
             CustomTextField(
               context: context,
               controller: controller.recipeNameC,
@@ -37,36 +37,35 @@ class CreateRecipeAi extends StatelessWidget {
               textInputType: TextInputType.text,
               borderColor: AppColor.greyColor,
             ),
-            20.height,
-            Text(AppStrings.recipeDescriptionOptional,style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w600),),
-            10.height,
+            2.ySpace,
+            KText(text: AppStrings.recipeDescriptionOptional, fontSize: 16,fontWeight: FontWeight.w600),
+            1.ySpace,
             CustomTextField(
               context: context,
               controller: controller.recipeDescriptionC,
               hintText: '${AppStrings.example}: ${AppStrings.recipeDemand}',
-              maxLines: 6,
+              maxLines: 5,
               textInputAction: TextInputAction.done,
               textInputType: TextInputType.text,
               color: Colors.white,
               borderColor: AppColor.greyColor,
             ),
-            20.height,
 
           ],
         ),
       ),
       bottomNavigationBar: Container(
-        height: mQ.height*0.15,
         padding: const EdgeInsets.symmetric(horizontal: 25,vertical: 10),
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             Row(
               children: [
                 const Icon(Icons.info,color: AppColor.greyColor,),
                 15.width,
-                Expanded(child: Text(AppStrings.nutritionalInformationBasedOnIngredients,
-                  style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w400),
-                ))
+                Expanded(child: KText(text:  AppStrings.nutritionalInformationBasedOnIngredients,
+                  fontSize: 15),
+                )
               ],
             ),
             5.height,

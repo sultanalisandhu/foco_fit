@@ -28,7 +28,7 @@ AppBar kAppBar({
       ),
   ): const SizedBox.shrink(),
     title: title!=null
-        ? Text(title,style: primaryTextStyle(fontSize: 24,fontWeight: FontWeight.w600),)
+        ? KText(text:title,fontSize: 18,fontWeight: FontWeight.w600)
         : const SizedBox.shrink(),
     centerTitle: true,
     actions: [

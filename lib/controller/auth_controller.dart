@@ -14,6 +14,9 @@ class AuthController extends GetxController{
 
 
 
+
+
+  ///Functions
   void togglePassword() {
     showPassword.value = !showPassword.value;
     update();

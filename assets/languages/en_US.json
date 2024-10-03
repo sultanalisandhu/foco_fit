@@ -67,7 +67,7 @@
     "fat": "Fat (g)",
     "exercise": "Exercise",
     "snack": "Snack",
-    "quickCalorieLog": "Quick calorie log",
+    "quickCalorieLog": "Quick Calorie Log",
     "quickExerciseLog": "Quick Exercise Log",
     "activityName": "Activity name",
     "exRace": "Ex: race",
@@ -197,5 +197,15 @@
     "viewRecipe": "View Recipe",
     "recipeAddedConsultAnyTime": "Congratulations! Your new recipe has been saved successfully! Now you can consult it at any time on the home screen.",
     "toLookFor": "To Look For",
-    "filterBy": "filterBy"
+    "filterBy": "filterBy",
+    "historicalEditor": "Historical Editor",
+    "alter": "To Alter",
+    "setting": "Setting",
+    "weightLoss": "Weight Loss",
+    "accessData": "Access Data",
+    "personalData": "Personal Data",
+    "on": "On",
+    "logOutOfAccount": "LogOut Of Account",
+    "years": "Years",
+    "of": "Of"
 }

@@ -193,7 +193,7 @@ class AppStrings {
   static String  createRecipe = "createRecipe".tr;
   static String  recipeName = "recipeName".tr;
   static String  sugarFreeCake = "sugarFreeCake".tr;
-  static String  recipeDescriptionOptional = "RecipeDescriptionOptional".tr;
+  static String  recipeDescriptionOptional = "recipeDescriptionOptional".tr;
   static String  recipeDemand = "recipeDemand".tr;
   static String  saveRecipe = "saveRecipe".tr;
   static String  addIngredient = "addIngredient".tr;
@@ -202,4 +202,14 @@ class AppStrings {
   static String  recipeAddedConsultAnyTime = "recipeAddedConsultAnyTime".tr;
   static String  toLookFor = "toLookFor".tr;
   static String  filterBy = "filterBy".tr;
+  static String  historicalEditor = "historicalEditor".tr;
+  static String  alter = "alter".tr;
+  static String  setting = "setting".tr;
+  static String  weightLoss = "weightLoss".tr;
+  static String  accessData = "accessData".tr;
+  static String  personalData = "personalData".tr;
+  static String  on = "on".tr;
+  static String  logOutOfAccount = "logOutOfAccount".tr;
+  static String  years = "years".tr;
+  static String  of = "of".tr;
 }

@@ -12,6 +12,7 @@ import 'package:focofit/utils/k_text_styles.dart';
 import 'package:focofit/widgets/k_app_bar.dart';
 import 'package:focofit/widgets/recipe_widgets/k_circular_progress_bar.dart';
 import 'package:get/get.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class EditRecipeScreen extends StatelessWidget {
   const EditRecipeScreen({super.key});
@@ -34,7 +35,7 @@ class EditRecipeScreen extends StatelessWidget {
                 children: [
                   Container(
                     width: mQ.width,
-                    height: 250,
+                    height: 30.h,
                     padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 15),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
@@ -55,7 +56,7 @@ class EditRecipeScreen extends StatelessWidget {
                                 color: AppColor.whiteColor.withOpacity(0.8),
                                 borderRadius: BorderRadius.circular(22),
                               ),
-                              child: Text('10 ${AppStrings.min}',style: primaryTextStyle(fontSize: 14,fontWeight: FontWeight.w400),),
+                              child: KText(text:  '10 ${AppStrings.min}'),
                             ),
                             5.width,
                             Container(
@@ -64,11 +65,11 @@ class EditRecipeScreen extends StatelessWidget {
                                 color: AppColor.whiteColor.withOpacity(0.8),
                                 borderRadius: BorderRadius.circular(22),
                               ),
-                              child: Text('319 ${AppStrings.kcal}',style: primaryTextStyle(fontSize: 14,fontWeight: FontWeight.w500),),
+                              child: KText(text: '319 ${AppStrings.kcal}'),
                             ),
                             const Spacer(),
                             GestureDetector(
-
+                              onTap: (){},
                               child: Container(
                                 padding: const EdgeInsets.all(10),
                                 decoration:  BoxDecoration(
@@ -85,12 +86,14 @@ class EditRecipeScreen extends StatelessWidget {
                   ),
                   5.height,
                   Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Expanded(child: Text(AppStrings.sugarFreeAvocadoPudding,style: primaryTextStyle(fontSize: 18,fontWeight: FontWeight.w600),)),
-                      showSvgIconWidget(iconPath: AppIcons.editIcon,onTap: (){
-                        Get.to(()=> CreateRecipeManual());
-                      },color: AppColor.blackColor),
+                      Expanded(
+                        child: KText(text: AppStrings.sugarFreeAvocadoPudding,fontSize: 18,fontWeight: FontWeight.w600),),
+                      showSvgIconWidget(iconPath: AppIcons.editIcon,
+                          onTap: (){    Get.to(()=> CreateRecipeManual());   },
+                          color: AppColor.blackColor
+                      ),
                     ],
                   ),
                   20.height,
@@ -105,35 +108,44 @@ class EditRecipeScreen extends StatelessWidget {
                         AppColor.shadow
                       ],
                     ),
-                    child: Column(children: [
+                    child: Column(
+                      children: [
                       Row(
                         children: [
                           showSvgIconWidget(iconPath: AppIcons.chartIcon,color: AppColor.blackColor),
-                          5.width,
-                          Text(AppStrings.macronutrients,style: primaryTextStyle(fontSize: 18,fontWeight: FontWeight.w600),),
+                          2.xSpace,
+                          KText(text: AppStrings.macronutrients,fontSize: 16,fontWeight: FontWeight.w600)
                         ],
                       ),
-                      20.height,
+                      3.ySpace,
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          KCircularProgressBar(
-                            consumed: '190',
-                            dietName: AppStrings.carbohydrate,
-                            lineGradient: AppColor.greenGradient,
-                            progressValue: 0.6,
+                          Expanded(
+                            child: KCircularProgressBar(
+                              consumed: '190',
+                              dietName: AppStrings.carbohydrate,
+                              lineGradient: AppColor.greenGradient,
+                              progressValue: 0.6,
+                            ),
                           ),
-                          KCircularProgressBar(
-                            consumed: '90',
-                            dietName: AppStrings.protein,
-                            lineGradient: AppColor.redGradient,
-                            progressValue: 0.4,
+                          5.xSpace,
+                          Expanded(
+                            child: KCircularProgressBar(
+                              consumed: '90',
+                              dietName: AppStrings.protein,
+                              lineGradient: AppColor.redGradient,
+                              progressValue: 0.4,
+                            ),
                           ),
-                          KCircularProgressBar(
-                            consumed: '169',
-                            dietName: AppStrings.fat,
-                            lineGradient: AppColor.primaryGradient,
-                            progressValue: 0.3,
+                          5.xSpace,
+                          Expanded(
+                            child: KCircularProgressBar(
+                              consumed: '169',
+                              dietName: AppStrings.fat,
+                              lineGradient: AppColor.primaryGradient,
+                              progressValue: 0.3,
+                            ),
                           ),
                         ],
                       ),

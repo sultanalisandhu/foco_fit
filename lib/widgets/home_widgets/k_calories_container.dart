@@ -64,12 +64,12 @@ class CaloriesContainer extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(title, style: primaryTextStyle(fontSize: 14, fontWeight: FontWeight.w500)),
-                  Text(totalCalories, style: primaryTextStyle(fontSize: 26, fontWeight: FontWeight.w700)),
-                  Text(consumedTitle, style: primaryTextStyle(fontSize: 14, fontWeight: FontWeight.w500)),
-                  Text(consumed, style: primaryTextStyle(fontSize: 26, fontWeight: FontWeight.w700)),
-                  Text(burnTitle, style: primaryTextStyle(fontSize: 14, fontWeight: FontWeight.w500)),
-                  Text(burned, style: primaryTextStyle(fontSize: 26, fontWeight: FontWeight.w700)),
+                  KText(text: title,fontWeight: FontWeight.w500),
+                  KText(text: totalCalories,fontWeight: FontWeight.w700,fontSize: 18),
+                  KText(text: consumedTitle,fontWeight: FontWeight.w500),
+                  KText(text: consumed,fontWeight: FontWeight.w700,fontSize: 18),
+                  KText(text: burnTitle,fontWeight: FontWeight.w500),
+                  KText(text: burned,fontWeight: FontWeight.w700,fontSize: 18),
                 ],
               ),
               CircularPercentIndicator(
@@ -89,8 +89,8 @@ class CaloriesContainer extends StatelessWidget {
                 center: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    GradientText(text: totalCalories, gradient: AppColor.primaryGradient, style: primaryTextStyle(fontSize: 22, fontWeight: FontWeight.w800)),
-                    Text(calories, style: primaryTextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
+                    GradientText(text: totalCalories, gradient: AppColor.primaryGradient, style: kTextStyle(fontSize: 20, fontWeight: FontWeight.w800)),
+                    KText(text: calories ,fontWeight: FontWeight.w600)
                   ],
                 ),
               ),
@@ -104,9 +104,9 @@ class CaloriesContainer extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(AppStrings.carbohydrate, style: primaryTextStyle(fontSize: 12, fontWeight: FontWeight.w500)),
-                    Text(carbohydrate, style: primaryTextStyle(fontSize: 14, fontWeight: FontWeight.w500)),
-                    const SizedBox(height: 5),
+                    KText(text: AppStrings.carbohydrate,fontSize: 12, fontWeight: FontWeight.w500),
+                    KText(text: carbohydrate, fontWeight: FontWeight.w500),
+                    1.ySpace,
                     LinearPercentIndicator(
                       animation: true,
                       padding: EdgeInsets.zero,
@@ -126,9 +126,9 @@ class CaloriesContainer extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(AppStrings.protein, style: primaryTextStyle(fontSize: 12, fontWeight: FontWeight.w500)),
-                    Text(protein, style: primaryTextStyle(fontSize: 14, fontWeight: FontWeight.w500)),
-                    const SizedBox(height: 5),
+                    KText(text: AppStrings.protein,fontSize: 12, fontWeight: FontWeight.w500),
+                    KText(text: protein, fontWeight: FontWeight.w500),
+                    1.ySpace,
                     LinearPercentIndicator(
                       animation: true,
                       padding: EdgeInsets.zero,
@@ -148,8 +148,8 @@ class CaloriesContainer extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(AppStrings.fat, style: primaryTextStyle(fontSize: 12, fontWeight: FontWeight.w500)),
-                    Text(fat, style: primaryTextStyle(fontSize: 14, fontWeight: FontWeight.w500)),
+                    KText(text: AppStrings.fat,fontSize: 12, fontWeight: FontWeight.w500),
+                    KText(text: fat, fontWeight: FontWeight.w500),
                     LinearPercentIndicator(
                       animation: true,
                       padding: EdgeInsets.zero,

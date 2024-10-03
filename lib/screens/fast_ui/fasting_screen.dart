@@ -9,6 +9,7 @@ import 'package:focofit/utils/app_strings.dart';
 import 'package:focofit/utils/k_text_styles.dart';
 import 'package:focofit/widgets/k_app_bar.dart';
 import 'package:get/get.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class FastingScreen extends StatelessWidget {
   const FastingScreen({super.key});
@@ -27,10 +28,9 @@ class FastingScreen extends StatelessWidget {
             children: [
               Expanded(
                 child: ListView.builder(
-                  itemCount: 5,
+                  itemCount: 8,
                   itemBuilder: (context, index) {
-                    return Obx(
-                          () => GestureDetector(
+                    return Obx(() => GestureDetector(
                         onTap: () => controller.selectedFasting.value = index,
                         child: _buildFastingOption(controller, index),
                       ),
@@ -40,7 +40,7 @@ class FastingScreen extends StatelessWidget {
               ),
               Obx(() => _buildConfirmButton(controller, context))
             ],
-          ).paddingSymmetric(horizontal: 25, vertical: 15);
+          ).paddingSymmetric(horizontal: 2.h, vertical: 0.5.h);
         },
       ),
     );
@@ -63,9 +63,9 @@ class FastingScreen extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(
-            '12 - 12',
-            style: primaryTextStyle(fontSize: 30, fontWeight: FontWeight.w600),
+          KText(
+            text: '12 - 12',
+          fontSize: 20, fontWeight: FontWeight.w600
           ),
           _buildDivider(),
           _buildFastingDetails(),
@@ -76,8 +76,8 @@ class FastingScreen extends StatelessWidget {
 
   Widget _buildDivider() {
     return Container(
-      width: 2,
-      height: 30,
+      width: 0.5.w,
+      height: 5.h,
       decoration: BoxDecoration(
         color: AppColor.greyColor,
         borderRadius: BorderRadius.circular(12),
@@ -97,19 +97,21 @@ class FastingScreen extends StatelessWidget {
 
   Widget _buildFastingRow(String text) {
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Container(
-          height: 8,
-          width: 8,
+          height: 2.h,
+          width: 2.w,
           decoration: const BoxDecoration(
-            gradient: AppColor.primaryGradient,
             shape: BoxShape.circle,
+            gradient: AppColor.primaryGradient
           ),
         ),
-        5.width,
-        Text(
-          text,
-          style: primaryTextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+        2.xSpace,
+        KText(
+          text: text,
+          fontSize: 16,
         ),
       ],
     );
@@ -125,6 +127,7 @@ class FastingScreen extends StatelessWidget {
         KFastBottomSheet.selectTimeSheet(
           context,
           onConfirmTap: () {
+            Navigator.pop(context);
             Get.to(() => SeeFasting());
           },
         );
@@ -132,6 +135,7 @@ class FastingScreen extends StatelessWidget {
           : null,
       color: isSelectionValid ? null : AppColor.greyColor,
       useGradient: isSelectionValid,
+      fontSize: 16
     );
   }
 }

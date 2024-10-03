@@ -7,6 +7,7 @@ import 'package:focofit/screens/home_ui/add_physical_activity/all_physical_activ
 import 'package:focofit/screens/home_ui/subscribed_screen.dart';
 import 'package:focofit/utils/app_strings.dart';
 import 'package:focofit/utils/enums.dart';
+import 'package:focofit/utils/k_text_styles.dart';
 import 'package:focofit/widgets/k_bottom_sheets/home_bottom_sheets.dart';
 import 'package:focofit/screens/profile_ui/notification_screen.dart';
 import 'package:focofit/screens/profile_ui/profile_setting_ui/profile_setting.dart';
@@ -18,6 +19,7 @@ import 'package:focofit/controller/home_controller.dart';
 import 'package:focofit/utils/app_colors.dart';
 import 'package:focofit/widgets/k_app_bar.dart';
 import 'package:intl/intl.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 
 class HomeScreen extends StatelessWidget {
@@ -43,7 +45,7 @@ class HomeScreen extends StatelessWidget {
               notificationCount: '9'
           ),
           body: SingleChildScrollView(
-            padding: const EdgeInsets.all(12.0),
+            padding: const EdgeInsets.all(10.0),
             child: Column(
               children: [
                 SubScribedContainer(
@@ -51,9 +53,9 @@ class HomeScreen extends StatelessWidget {
                     title: AppStrings.becomeProSubscriber,
                     subTitle: AppStrings.subscribeBenefit
                 ),
-                20.height,
+                2.ySpace,
                 SizedBox(
-                  height: 100,
+                  height: 10.h,
                   child: Obx(() {
                     return ListView.builder(
                       scrollDirection: Axis.horizontal,
@@ -75,13 +77,13 @@ class HomeScreen extends StatelessWidget {
                           },
                           child: Column(
                             children: [
-                              Text(
-                                dayOfWeek,
-                                style: const TextStyle(fontWeight: FontWeight.bold),
+                              KText(
+                                text: dayOfWeek,
+                                fontSize: 12,fontWeight: FontWeight.w500,
                               ),
                               Container(
-                                width: 50,
-                                height: 50,
+                                width: 10.w,
+                                height: 5.h,
                                 margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
@@ -90,12 +92,12 @@ class HomeScreen extends StatelessWidget {
                                       : null,
                                 ),
                                 child: Center(
-                                  child: Text(
-                                    day.toString(),
-                                    style: TextStyle(
-                                      color: isSelected ? Colors.white : Colors.black,
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                                  child:
+                                  KText(
+                                    text:  day.toString(),
+                                    color: isSelected ? Colors.white : Colors.black,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w500,
                                   ),
                                 ),
                               ),
@@ -106,7 +108,7 @@ class HomeScreen extends StatelessWidget {
                     );
                   }),
                 ),
-                15.height,
+
                 CaloriesContainer(
                   title: AppStrings.dailyGoal,
                   totalCalories: '1252',
@@ -123,7 +125,7 @@ class HomeScreen extends StatelessWidget {
                   fat: '200 / 1000',
                   fatPercent: 0.4,
                 ),
-                20.height,
+                2.ySpace,
                 kTextButton(
                     onPressed: (){
                       KHomeBottomSheet.quickRegistration(
@@ -155,7 +157,7 @@ class HomeScreen extends StatelessWidget {
                     btnText: AppStrings.quickCalorieLog,
                   useGradient: true
                 ),
-                20.height,
+                2.ySpace,
                 ListView.builder(
                   itemCount: homeDataList.length,
                   shrinkWrap: true,

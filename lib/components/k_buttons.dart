@@ -3,6 +3,7 @@ import 'package:focofit/components/k_svg_icon.dart';
 import 'package:focofit/utils/app_colors.dart';
 import 'package:focofit/utils/asset_utils.dart';
 import 'package:focofit/utils/k_text_styles.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 Widget kTextButton( {
   Color? color,
@@ -22,9 +23,9 @@ Widget kTextButton( {
   return GestureDetector(
     onTap: onPressed,
     child: Container(
-      alignment: Alignment.center,
-      height: height??50,
+      height: height != null ? height.h : 6.h,
       width: width,
+      alignment: Alignment.center,
       padding:  EdgeInsets.symmetric(horizontal: padding??15),
       decoration: BoxDecoration(
         gradient: useGradient
@@ -32,12 +33,12 @@ Widget kTextButton( {
             : null,
         color: useGradient ? null : (color ?? AppColor.primaryColor),
         border: Border.all(width: 1, color: borderColor??Colors.transparent),
-        borderRadius: BorderRadius.circular(borderRadius??26),
+        borderRadius: BorderRadius.circular(borderRadius!=null?borderRadius.h:26.h),
       ),
       child: widget?? Text(
         btnText,
         textAlign: TextAlign.center,
-        style: primaryTextStyle(fontSize: fontSize??16,
+        style: kTextStyle(fontSize: fontSize??16.sp,
           fontWeight: FontWeight.w600,
           color: textColor??AppColor.whiteColor),),
     ),
@@ -135,6 +136,7 @@ class KOutlineButton extends StatelessWidget {
   final _GradientPainter _painter;
   final Function() onTap;
   final String btnText;
+  final double? fonstSize;
   final double? height;
   final double? width;
   final Gradient? textGradient;
@@ -147,6 +149,7 @@ class KOutlineButton extends StatelessWidget {
     this.textGradient,
     this.height,
     this.width,
+    this.fonstSize,
   })
       : _painter = _GradientPainter(strokeWidth: 1, radius: 26, gradient: gradient);
 
@@ -167,7 +170,7 @@ class KOutlineButton extends StatelessWidget {
                 onTextTap: onTap,
                 text: btnText,
                 gradient: textGradient?? AppColor.primaryGradient,
-                style: primaryTextStyle(fontSize: 16,
+                style: kTextStyle(fontSize: fonstSize?? 16,
                   fontWeight: FontWeight.w600,
                   color: AppColor.blackColor),),
         ),

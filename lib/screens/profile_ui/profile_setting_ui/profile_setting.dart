@@ -9,11 +9,13 @@ import 'package:focofit/screens/profile_ui/profile_setting_ui/medical_conditions
 import 'package:focofit/screens/profile_ui/profile_setting_ui/privacy_policy.dart';
 import 'package:focofit/screens/profile_ui/profile_setting_ui/terms_service.dart';
 import 'package:focofit/utils/app_colors.dart';
+import 'package:focofit/utils/app_strings.dart';
 import 'package:focofit/utils/asset_utils.dart';
 import 'package:focofit/utils/k_text_styles.dart';
 import 'package:focofit/models/k_models/profile_setting_data.dart';
 import 'package:focofit/widgets/k_app_bar.dart';
 import 'package:get/get.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 import '../profile_bottom_sheets/access_data_sheet.dart';
 import '../profile_bottom_sheets/personal_data_sheets.dart';
@@ -30,7 +32,7 @@ class ProfileSetting extends StatelessWidget {
           backgroundColor: AppColor.whiteColor,
           appBar: kAppBar(
             onTap: (){Navigator.pop(context);},
-            title: 'Configurações'
+            title: AppStrings.setting
           ),
           body: SingleChildScrollView(
             padding: const EdgeInsets.symmetric(horizontal: 18,vertical: 15),
@@ -39,12 +41,12 @@ class ProfileSetting extends StatelessWidget {
               children: [
               SizedBox(
                 width: 160,
-                height: 160,
+                height: 150,
                 child: Stack(children: [
                   Container(
-                    height: 150,
+                    height: 140,
                     width: 150,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                         color: Colors.blue,
                         shape: BoxShape.circle,
                         image: DecorationImage(
@@ -61,25 +63,26 @@ class ProfileSetting extends StatelessWidget {
                   )
                 ],),
               ),
-                15.height,
+                5.ySpace,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('Weslei Vicentini',style: primaryTextStyle(fontSize: 24,fontWeight: FontWeight.w500),),
-                    10.width,
+                    KText(text: 'Weslei Vicentini', fontSize: 20,fontWeight: FontWeight.w500),
+                    2.xSpace,
                     showSvgIconWidget(iconPath: AppIcons.editIcon,height: 20,onTap: (){}),
                   ],
                 ),
-                15.height,
+                KText(text: '25 ${AppStrings.years}', fontSize: 16,fontWeight: FontWeight.w500),
+                2.ySpace,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('Peso perdido',style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w600),),
-                    10.width,
+                    KText(text: AppStrings.weightLoss, fontSize: 16,fontWeight: FontWeight.w500),
+                    2.xSpace,
                     showSvgIconWidget(iconPath: AppIcons.editIcon,height: 20,onTap: (){}),
                   ],
                 ),
-                15.height,
+                2.ySpace,
                 const StepProgressIndicator(
                   totalSteps: 10,
                   currentStep: 4,
@@ -93,19 +96,22 @@ class ProfileSetting extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('3,250  kg',style: primaryTextStyle(fontSize: 12,fontWeight: FontWeight.w500),),
-                    Text('de',style: primaryTextStyle(fontSize: 12,fontWeight: FontWeight.w500),),
-                    Text('12,400  kg',style: primaryTextStyle(fontSize: 12,fontWeight: FontWeight.w500),),
+                    KText(text:  '3,250  kg',fontWeight: FontWeight.w500),
+                    KText(text:  AppStrings.of,fontWeight: FontWeight.w500),
+                    KText(text:  '12,400  kg',fontWeight: FontWeight.w500),
                   ],
                 ),
-                30.height,
+                5.ySpace,
                 /// Access Container
                 Align(
                     alignment: Alignment.topLeft,
-                    child: Text('Dados de acesso',style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w600),)),
-                15.height,
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 3.w),
+                      child: Text(AppStrings.accessData,style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w600),),
+                    )),
+                1.ySpace,
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 16,vertical: 13),
+                  padding:  EdgeInsets.symmetric(horizontal: 3.w,vertical: 1.h),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(16),
                       border: Border.all(color: AppColor.greyColor,width: 0.5)
@@ -134,7 +140,6 @@ class ProfileSetting extends StatelessWidget {
                                     KBottomSheet.editPhone(context,onConfirmTap: (){Navigator.pop(context);});
                                     break;
                                 }
-
                           }),
                           contentPadding: EdgeInsets.zero,
                           titleTextStyle: primaryTextStyle(fontSize: 14,fontWeight: FontWeight.w500),
@@ -146,11 +151,11 @@ class ProfileSetting extends StatelessWidget {
                       }),
                 ),
                 ///Personal Data Container
-                20.height,
+                2.ySpace,
                 Align(
                     alignment: Alignment.topLeft,
-                    child: Text('Dados pessoais',style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w600),)),
-                15.height,
+                    child: Text(AppStrings.personalData,style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w600),)),
+                1.ySpace,
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 16,vertical: 13),
                   decoration: BoxDecoration(
@@ -239,7 +244,7 @@ class ProfileSetting extends StatelessWidget {
                 /// On Container
                 Align(
                     alignment: Alignment.topLeft,
-                    child: Text('Sobre',style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w600),)),
+                    child: Text(AppStrings.on,style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w600),)),
                 15.height,
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 16,vertical: 13),
@@ -265,9 +270,7 @@ class ProfileSetting extends StatelessWidget {
                               case 'Termos de serviço':
                                 Get.to(()=> TermsAndService());
                                 break;
-
                             }
-
                           },
                           leading: showSvgIconWidget(iconPath: profileSettingOnList[index].iconPath.toString()),
                           title: Text(profileSettingOnList[index].title.toString()),
@@ -285,7 +288,7 @@ class ProfileSetting extends StatelessWidget {
                 20.height,
                 kTextButton(
                   onPressed: (){},
-                  btnText: 'Sair da conta',
+                  btnText: AppStrings.logOutOfAccount,
                   useGradient: true
                 )
                 ],),

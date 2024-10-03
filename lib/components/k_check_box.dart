@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:focofit/components/k_buttons.dart';
 import 'package:focofit/components/k_text_fields.dart';
 import 'package:focofit/extensions/extension.dart';
 import 'package:focofit/screens/auth_ui/forgot_password/forgot_password.dart';
@@ -6,6 +7,7 @@ import 'package:focofit/utils/app_colors.dart';
 import 'package:focofit/utils/app_strings.dart';
 import 'package:focofit/utils/k_text_styles.dart';
 import 'package:get/get.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class CustomCheckbox extends StatelessWidget {
   final Color? chkBorderColor;
@@ -145,9 +147,10 @@ class CustomSwitchTile extends StatelessWidget {
     return Obx(()=> SwitchListTile(
         value: value.value,
         onChanged: onChanged,
-        title: Text(title,style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w500),),
+        title: KText(text:  title,fontSize: 15,fontWeight: FontWeight.w500),
         shape: RoundedRectangleBorder(side: const BorderSide(color: AppColor.greyColor),borderRadius: BorderRadius.circular(10)),
         activeTrackColor: AppColor.startGradient,
+        contentPadding: EdgeInsets.only(left: 1.h),
         activeColor: AppColor.whiteColor,
         inactiveTrackColor: AppColor.greyColor.withOpacity(0.4),
         inactiveThumbColor: AppColor.whiteColor,

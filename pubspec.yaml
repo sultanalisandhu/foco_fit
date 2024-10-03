@@ -25,6 +25,8 @@ dependencies:
   confetti: ^0.7.0
   fl_chart: ^0.69.0
   syncfusion_flutter_datepicker: ^27.1.50
+  responsive_sizer: ^3.3.1
+  device_preview: ^1.2.0
 
 dev_dependencies:
   flutter_test:

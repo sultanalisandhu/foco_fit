@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:focofit/models/k_models/recipe_data.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
-import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 class ProfileController extends GetxController{
+  ///Wheel Scroll Controller
   final FixedExtentScrollController dateController = FixedExtentScrollController();
   final FixedExtentScrollController monthController = FixedExtentScrollController();
   final FixedExtentScrollController yearController = FixedExtentScrollController();
@@ -12,6 +12,10 @@ class ProfileController extends GetxController{
   final FixedExtentScrollController inchController = FixedExtentScrollController();
   final FixedExtentScrollController kgController = FixedExtentScrollController();
   final FixedExtentScrollController grController = FixedExtentScrollController();
+
+
+
+
   ///Variables
   final RxInt selectedWeightKg = 0.obs;
   final RxInt selectedWeightGr = 0.obs;
@@ -28,6 +32,8 @@ class ProfileController extends GetxController{
   final int currentYearValue = DateTime.now().year;
   final RxString selectedDateRange = ''.obs;
 
+
+  ///CustomLists
   final RxList<String> genderList= ['Masculino','Feminino','Prefiro não dizer'].obs;
   final RxList<ActivityLevelList> activityLevelList= [
     ActivityLevelList(
@@ -47,17 +53,4 @@ class ProfileController extends GetxController{
         subTitle: 'Trabalho físico pesado (ex: academia)'
     )
   ].obs;
-
-
-
-
-
-
-
-
-}
-class ActivityLevelList{
-  String? title;
-  String? subTitle;
-  ActivityLevelList({this.title,this.subTitle});
 }

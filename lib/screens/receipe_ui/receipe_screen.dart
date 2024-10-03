@@ -14,6 +14,7 @@ import 'package:focofit/utils/asset_utils.dart';
 import 'package:focofit/utils/k_text_styles.dart';
 import 'package:focofit/widgets/k_app_bar.dart';
 import 'package:get/get.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class RecipeScreen extends StatelessWidget {
   const RecipeScreen({super.key});
@@ -55,7 +56,7 @@ class RecipeScreen extends StatelessWidget {
                           KRecipeFilterSheet.filter(context, onConfirmTap: (){});
                         },
                         child: Container(
-                          height: 60,width: 60,
+                          height: 9.h,width: 18.w,
                           alignment: Alignment.center,
                           decoration: const BoxDecoration(
                             shape: BoxShape.circle,
@@ -108,76 +109,11 @@ class RecipeScreen extends StatelessWidget {
                       children: [
                         /// Tab 1: GridView for 'Todas'
                         GridView.builder(
-                          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisSpacing: 10,
                             mainAxisSpacing: 5,
                             crossAxisCount: 2,
-                          ),
-                          padding: const EdgeInsets.symmetric(vertical: 10),
-                          itemCount: 13,
-                          itemBuilder: (context, index) {
-                            return GestureDetector(
-                              onTap: () {
-                                Get.to(() => RecipeDetailScreen());
-                              },
-                              child: Column(
-                                children: [
-                                  Container(
-                                    height: 150,
-                                    padding: const EdgeInsets.only(bottom: 5),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(12),
-                                      image: const DecorationImage(
-                                        image: AssetImage(AppImages.recipeImg),
-                                        fit: BoxFit.contain,
-                                      ),
-                                    ),
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                      crossAxisAlignment: CrossAxisAlignment.end,
-                                      children: [
-                                        Container(
-                                          height: 30,
-                                          width: 80,
-                                          alignment: Alignment.center,
-                                          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(26),
-                                            color: AppColor.whiteColor,
-                                          ),
-                                          child: Text('10 ${AppStrings.min}'),
-                                        ),
-                                        Container(
-                                          height: 30,
-                                          width: 80,
-                                          alignment: Alignment.center,
-                                          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(26),
-                                            color: AppColor.whiteColor,
-                                          ),
-                                          child: Text('319 ${AppStrings.kcal}'),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                 5.height,
-                                   Text(
-                                    AppStrings.smokedSalmon,
-                                    overflow: TextOverflow.ellipsis,
-                                    maxLines: 2,
-                                  ),
-                                ],
-                              ),
-                            );
-                          },
-                        ),
-                        /// Tab 2: GridView for 'Favoritas'
-                        GridView.builder(
-                          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisSpacing: 10,
-                            mainAxisSpacing: 5,
-                            crossAxisCount: 2,
+                            mainAxisExtent: 30.h,
                           ),
                           padding: const EdgeInsets.symmetric(vertical: 10),
                           itemCount: 3,
@@ -186,120 +122,212 @@ class RecipeScreen extends StatelessWidget {
                               onTap: () {
                                 Get.to(() => RecipeDetailScreen());
                               },
-                              child: Column(
-                                children: [
-                                  Container(
-                                    height: 150,
-                                    padding: const EdgeInsets.only(bottom: 5),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(12),
-                                      image: const DecorationImage(
-                                        image: AssetImage(AppImages.recipeImg),
-                                        fit: BoxFit.contain,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(12),
+                                  color: Colors.lightBlue,
+                                ),
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      height: 21.h,
+                                      padding: const EdgeInsets.only(bottom: 5,left: 5,right: 5),
+                                      decoration: BoxDecoration(
+                                        color: AppColor.blackColor,
+                                        borderRadius: BorderRadius.circular(12),
+                                        image: const DecorationImage(
+                                          image: NetworkImage('https://www.nutricia.ie/patients-carers/recipes/porridge/_jcr_content/_cq_featuredimage.coreimg.jpeg/1697714492069/neocate-syneo-porridge-recipe-image.jpeg'),
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.end,
+                                        children: [
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Container(
+                                                alignment: Alignment.center,
+                                                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                                                decoration: BoxDecoration(
+                                                  borderRadius: BorderRadius.circular(26),
+                                                  color: AppColor.whiteColor,
+                                                ),
+                                                child: KText(text:  '10 ${AppStrings.min}'),
+                                              ),
+                                              Container(
+                                                alignment: Alignment.center,
+                                                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                                                decoration: BoxDecoration(
+                                                  borderRadius: BorderRadius.circular(26),
+                                                  color: AppColor.whiteColor,
+                                                ),
+                                                child: KText(text:'319 ${AppStrings.kcal}'),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
                                       ),
                                     ),
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                      crossAxisAlignment: CrossAxisAlignment.end,
-                                      children: [
-                                        Container(
-                                          height: 30,
-                                          width: 80,
-                                          alignment: Alignment.center,
-                                          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(26),
-                                            color: AppColor.whiteColor,
-                                          ),
-                                          child: Text('10 ${AppStrings.min}'),
-                                        ),
-                                        Container(
-                                          height: 30,
-                                          width: 80,
-                                          alignment: Alignment.center,
-                                          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(26),
-                                            color: AppColor.whiteColor,
-                                          ),
-                                          child: Text('319 ${AppStrings.kcal}'),
-                                        ),
-                                      ],
+                                   1.ySpace,
+                                     KText(
+                                       text: AppStrings.smokedSalmon,
+                                      overflow: TextOverflow.ellipsis,
+                                      maxLines: 2,
+                                       fontSize: 15,
                                     ),
-                                  ),
-                                  const SizedBox(height: 5),
-                                  Text(
-                                    AppStrings.smokedSalmon,
-                                    overflow: TextOverflow.ellipsis,
-                                    maxLines: 2,
-                                  ),
-                                ],
+                                  ],
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                        /// Tab 2: GridView for 'Favoritas'
+                        GridView.builder(
+                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisSpacing: 10,
+                            mainAxisSpacing: 5,
+                            crossAxisCount: 2,
+                            mainAxisExtent: 30.h,
+                          ),
+                          padding: const EdgeInsets.symmetric(vertical: 10),
+                          itemCount: 3,
+                          itemBuilder: (context, index) {
+                            return GestureDetector(
+                              onTap: () {
+                                Get.to(() => RecipeDetailScreen());
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(12),
+                                  color: Colors.lightBlue,
+                                ),
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      height: 21.h,
+                                      padding: const EdgeInsets.only(bottom: 5,left: 5,right: 5),
+                                      decoration: BoxDecoration(
+                                        color: AppColor.blackColor,
+                                        borderRadius: BorderRadius.circular(12),
+                                        image: const DecorationImage(
+                                          image: AssetImage(AppImages.recipeImg),
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.end,
+                                        children: [
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Container(
+                                                alignment: Alignment.center,
+                                                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                                                decoration: BoxDecoration(
+                                                  borderRadius: BorderRadius.circular(26),
+                                                  color: AppColor.whiteColor,
+                                                ),
+                                                child: KText(text:  '10 ${AppStrings.min}'),
+                                              ),
+                                              Container(
+                                                alignment: Alignment.center,
+                                                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                                                decoration: BoxDecoration(
+                                                  borderRadius: BorderRadius.circular(26),
+                                                  color: AppColor.whiteColor,
+                                                ),
+                                                child: KText(text:'319 ${AppStrings.kcal}'),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    1.ySpace,
+                                    KText(
+                                      text: AppStrings.smokedSalmon,
+                                      overflow: TextOverflow.ellipsis,
+                                      maxLines: 2,
+                                      fontSize: 15,
+                                    ),
+                                  ],
+                                ),
                               ),
                             );
                           },
                         ),
                         /// Tab 3: Placeholder for 'Criadas'
                         GridView.builder(
-                          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisSpacing: 10,
                             mainAxisSpacing: 5,
                             crossAxisCount: 2,
+                            mainAxisExtent: 30.h,
                           ),
                           padding: const EdgeInsets.symmetric(vertical: 10),
-                          itemCount: 1,
+                          itemCount: 3,
                           itemBuilder: (context, index) {
                             return GestureDetector(
                               onTap: () {
                                 Get.to(() => EditRecipeScreen());
                               },
-                              child: Column(
-                                children: [
-                                  Container(
-                                    height: 150,
-                                    padding: const EdgeInsets.only(bottom: 5),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(12),
-                                      image: const DecorationImage(
-                                        image: AssetImage(AppImages.recipeImg),
-                                        fit: BoxFit.contain,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(12),
+                                  color: Colors.lightBlue,
+                                ),
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      height: 21.h,
+                                      padding: const EdgeInsets.only(bottom: 5,left: 5,right: 5),
+                                      decoration: BoxDecoration(
+                                        color: AppColor.blackColor,
+                                        borderRadius: BorderRadius.circular(12),
+                                        image: const DecorationImage(
+                                          image: NetworkImage('https://www.nutricia.ie/patients-carers/recipes/porridge/_jcr_content/_cq_featuredimage.coreimg.jpeg/1697714492069/neocate-syneo-porridge-recipe-image.jpeg'),
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.end,
+                                        children: [
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Container(
+                                                alignment: Alignment.center,
+                                                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                                                decoration: BoxDecoration(
+                                                  borderRadius: BorderRadius.circular(26),
+                                                  color: AppColor.whiteColor,
+                                                ),
+                                                child: KText(text:  '10 ${AppStrings.min}'),
+                                              ),
+                                              Container(
+                                                alignment: Alignment.center,
+                                                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                                                decoration: BoxDecoration(
+                                                  borderRadius: BorderRadius.circular(26),
+                                                  color: AppColor.whiteColor,
+                                                ),
+                                                child: KText(text:'319 ${AppStrings.kcal}'),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
                                       ),
                                     ),
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                      crossAxisAlignment: CrossAxisAlignment.end,
-                                      children: [
-                                        Container(
-                                          height: 30,
-                                          width: 80,
-                                          alignment: Alignment.center,
-                                          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(26),
-                                            color: AppColor.whiteColor,
-                                          ),
-                                          child: Text('10 ${AppStrings.min}'),
-                                        ),
-                                        Container(
-                                          height: 30,
-                                          width: 80,
-                                          alignment: Alignment.center,
-                                          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(26),
-                                            color: AppColor.whiteColor,
-                                          ),
-                                          child: Text('319 ${AppStrings.kcal}'),
-                                        ),
-                                      ],
+                                    1.ySpace,
+                                    KText(
+                                      text: AppStrings.smokedSalmon,
+                                      overflow: TextOverflow.ellipsis,
+                                      maxLines: 2,
+                                      fontSize: 15,
                                     ),
-                                  ),
-                                  const SizedBox(height: 5),
-                                  Text(
-                                    AppStrings.smokedSalmon,
-                                    overflow: TextOverflow.ellipsis,
-                                    maxLines: 2,
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             );
                           },

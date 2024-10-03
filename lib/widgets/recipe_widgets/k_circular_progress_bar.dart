@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:focofit/components/k_buttons.dart';
 import 'package:focofit/utils/app_colors.dart';
 import 'package:focofit/utils/k_text_styles.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class KCircularProgressBar extends StatelessWidget {
   final String consumed;
@@ -21,7 +23,7 @@ class KCircularProgressBar extends StatelessWidget {
       backgroundColor: AppColor.lightGreyColor,
       fillColor: Colors.transparent,
       circularStrokeCap: CircularStrokeCap.round,
-      radius: 55,
+      radius: 7.5.h,
       lineWidth: 6,
       backgroundWidth: 8,
       percent: progressValue,
@@ -31,9 +33,7 @@ class KCircularProgressBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           GradientText(text: consumed, gradient: lineGradient, style: primaryTextStyle(fontSize: 18, fontWeight: FontWeight.w800)),
-          Text(dietName,
-              textAlign: TextAlign.center,
-              style: primaryTextStyle(fontSize: 14, fontWeight: FontWeight.w400,)),
+          KText(text:  dietName, textAlign: TextAlign.center,),
         ],
       ),
     );

@@ -5,6 +5,7 @@ import 'package:focofit/utils/app_colors.dart';
 import 'package:focofit/utils/k_text_styles.dart';
 import 'package:focofit/widgets/k_app_bar.dart';
 import 'package:get/get.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class MedicalConditions extends StatelessWidget {
   MedicalConditions({super.key});
@@ -31,27 +32,6 @@ class MedicalConditions extends StatelessWidget {
         },
         title: 'Condições médicas',
       ),
-      bottomNavigationBar: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height * 0.09,
-        alignment: Alignment.center,
-        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-        child: kTextButton(
-          onPressed: () {
-            // Add your logic to handle saving the selected conditions here
-            List<String> selectedMedicalConditions = [];
-            for (int i = 0; i < medicalConditions.length; i++) {
-              if (selectedConditions[i]) {
-                selectedMedicalConditions.add(medicalConditions[i]);
-              }
-            }
-            // Print the selected conditions
-            print("Selected Conditions: $selectedMedicalConditions");
-          },
-          btnText: 'Salvar',
-          useGradient: true,
-        ),
-      ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(12.0),
         child: Column(
@@ -68,10 +48,9 @@ class MedicalConditions extends StatelessWidget {
                     margin: const EdgeInsets.symmetric(vertical: 10),
                     child: ListTile(
                       onTap: () {
-                        // Toggle the selection state of the item
                         selectedConditions[index] = !selectedConditions[index];
                       },
-                      contentPadding: const EdgeInsets.all(15),
+                      contentPadding:  EdgeInsets.symmetric(horizontal: 3.w,vertical: 0),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                         side: BorderSide(
@@ -81,8 +60,8 @@ class MedicalConditions extends StatelessWidget {
                           width: selectedConditions[index] ? 2 : 1,
                         ),
                       ),
-                      titleTextStyle: primaryTextStyle(
-                        fontSize: 18,
+                      titleTextStyle: kTextStyle(
+                        fontSize: 14,
                         fontWeight: FontWeight.w500,
                         color: AppColor.blackColor,
                       ),
@@ -93,6 +72,26 @@ class MedicalConditions extends StatelessWidget {
               },
             ),
           ],
+        ),
+      ),
+
+      bottomNavigationBar: Container(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height * 0.09,
+        alignment: Alignment.center,
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+        child: kTextButton(
+          onPressed: () {
+            List<String> selectedMedicalConditions = [];
+            for (int i = 0; i < medicalConditions.length; i++) {
+              if (selectedConditions[i]) {
+                selectedMedicalConditions.add(medicalConditions[i]);
+              }
+            }
+            print("Selected Conditions: $selectedMedicalConditions");
+          },
+          btnText: 'Salvar',
+          useGradient: true,
         ),
       ),
     );

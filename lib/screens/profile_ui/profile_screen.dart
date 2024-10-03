@@ -35,7 +35,6 @@ class ProfileScreen extends StatelessWidget {
                 'df5d8c90eb262717d2a532974732ce0c847b84a167232fe9b051e093d9d3bc61&w=1380',
             title: 'Boa tarde,',
             subTitle: 'Weslei Vicentini',
-
           ),
           body:SingleChildScrollView(
             child: Column(
@@ -47,8 +46,8 @@ class ProfileScreen extends StatelessWidget {
                   subTitle: 'Aproveite nossos recursos exclusivos!',
                 gradient: AppColor.primaryGradient,
               ),
-              Text('Historico de paiso',style: primaryTextStyle(color: AppColor.blackColor,fontSize: 20),),
-                10.height,
+              KText(text:  'Historico de paiso',fontSize: 18),
+                3.ySpace,
                 CaloriesGraphScreen(
                   controller: c,
                   onButtonTap: (){
@@ -57,13 +56,13 @@ class ProfileScreen extends StatelessWidget {
                   btnText: 'Editor Historico',
                 ),
                 10.height,
-                Text('Histórico de ICM',style: primaryTextStyle(color: AppColor.blackColor,fontSize: 20),),
+                KText(text:  'Histórico de ICM',fontSize: 18),
                 IcmHistoryChart(
                   controller: c,
                   onButtonTap: (){},
                   btnText: 'Editor Historico',),
                 10.height,
-                Text('Histórico de água',style: primaryTextStyle(color: AppColor.blackColor,fontSize: 20),),
+                KText(text:  'Histórico de água',fontSize: 18),
                 AquaChart(
                   controller: c,
                   onButtonTap: (){
@@ -72,8 +71,7 @@ class ProfileScreen extends StatelessWidget {
                   btnText: 'Editor Historico',
                 ),
                 10.height,
-                10.height,
-                Text('Histórico de atividades',style: primaryTextStyle(color: AppColor.blackColor,fontSize: 20),),
+                KText(text:  'Histórico de atividades',fontSize: 18),
                 ActivityChart(
                   controller: c,
                   onButtonTap: (){
@@ -82,7 +80,7 @@ class ProfileScreen extends StatelessWidget {
                   btnText: 'Editor Historico',
                 ),
                 10.height,
-                Text('Histórico de alimentação',style: primaryTextStyle(color: AppColor.blackColor,fontSize: 20),),
+                KText(text:  'Histórico de alimentação',fontSize: 18),
                 10.height,
                 FeedingChart(
                   controller: c,
@@ -92,13 +90,13 @@ class ProfileScreen extends StatelessWidget {
                   btnText: 'Editor Historico',
                 ),
                 10.height,
-                Text('Histórico de macronutrientes',style: primaryTextStyle(color: AppColor.blackColor,fontSize: 20),),
+                KText(text:  'Histórico de macronutrientes',fontSize: 18),
                 10.height,
                 NutrientsCharts(
                   controller: c,
                 ),
                 10.height,
-                Text('Histórico de jejum',style: primaryTextStyle(color: AppColor.blackColor,fontSize: 20),),
+                KText(text:  'Histórico de jejum',fontSize: 18),
                 10.height,
                 FastingChart(
                   controller: c,
