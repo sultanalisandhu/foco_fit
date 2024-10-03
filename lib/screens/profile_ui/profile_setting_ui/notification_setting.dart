@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:focofit/components/k_buttons.dart';
+import 'package:focofit/components/k_check_box.dart';
 import 'package:focofit/components/k_text_fields.dart';
+import 'package:focofit/controller/profile_controller.dart';
 import 'package:focofit/extensions/extension.dart';
 import 'package:focofit/utils/app_colors.dart';
+import 'package:focofit/utils/app_strings.dart';
 import 'package:focofit/utils/k_text_styles.dart';
 import 'package:focofit/widgets/k_app_bar.dart';
 import 'package:get/get.dart';
@@ -17,111 +20,93 @@ class NotificationSetting extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColor.whiteColor,
       appBar: kAppBar(
-        onTap: (){
-          Navigator.pop(context);
-        },
-        title: 'Notificações'
+          onTap: (){
+            Navigator.pop(context);
+          },
+          title: AppStrings.notifications
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 15),
         child: Column(
           children: [
-            Obx(()=> SwitchListTile(
-                  value: _enableNotification.value,
-                  onChanged: (value){
-                    _enableNotification.value= value;
-                  },
-                title: Text('Habilitar todas as notificações',style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w500),),
-                shape: RoundedRectangleBorder(side: const BorderSide(color: AppColor.greyColor),borderRadius: BorderRadius.circular(10)),
-                activeTrackColor: AppColor.startGradient,
-                activeColor: AppColor.whiteColor,
-              inactiveTrackColor: AppColor.greyColor.withOpacity(0.4),
-              inactiveThumbColor: AppColor.whiteColor,
-              trackOutlineColor: const WidgetStatePropertyAll(Colors.transparent),
-              
-        
-                  ),),
+            CustomSwitchTile(
+              value: _enableNotification,
+              onChanged: (v) {
+                _enableNotification.value = v;
+              },
+              title: AppStrings.enableAllNotifications,
+            ),
             Container(
               margin: const EdgeInsets.symmetric(vertical: 15),
               decoration: BoxDecoration(
-                color: AppColor.whiteColor,
-                borderRadius: BorderRadius.circular(10),
-                border: Border.all(color: AppColor.greyColor),
-                boxShadow: [
-                  BoxShadow(
-                    color: AppColor.lightGreyColor,
-                    spreadRadius: 5,
-                    blurRadius: 5
-                  )
-                ]
+                  color: AppColor.whiteColor,
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(color: AppColor.lightGreyBorder),
+                  boxShadow: const [
+                    AppColor.shadow
+                  ]
               ),
               child: Column(children: [
-                Obx(()=> SwitchListTile(
-                  value: _eatingReminder.value,
-                  onChanged: (value){
-                    _eatingReminder.value= value;
+                CustomSwitchTile(
+                  value: _eatingReminder,
+                  onChanged: (v) {
+                    _eatingReminder.value = v;
                   },
-                  title: Text('Habilitar todas as notificações',style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w500),),
-                  // shape: RoundedRectangleBorder(side: const BorderSide(color: AppColor.greyColor),borderRadius: BorderRadius.circular(10)),
-                  activeTrackColor: AppColor.startGradient,
-                  activeColor: AppColor.whiteColor,
-                  inactiveTrackColor: AppColor.greyColor.withOpacity(0.4),
-                  inactiveThumbColor: AppColor.whiteColor,
-                  trackOutlineColor: const WidgetStatePropertyAll(Colors.transparent),
-                ),),
+                  title: AppStrings.mealEatingReminder,
+                ),
                 Divider(color: AppColor.greyColor.withOpacity(0.5),),
                 ListTile(
-                  title: Text(' Café da manhã'),
+                  title: Text(AppStrings.breakFast),
                   titleTextStyle: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w500),
                   subtitle: Divider( color: AppColor.greyColor.withOpacity(0.5),),
                   trailing: Container(
                     margin: EdgeInsets.only(bottom: 15),
                     padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 10),
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(color: AppColor.greyColor.withOpacity(0.4))
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: AppColor.greyColor.withOpacity(0.4))
                     ),
                     child: Text('08:00',style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w500),),
                   ),
                 ),
                 ListTile(
-                  title: Text('Almoço'),
+                  title: Text(AppStrings.lunch),
                   titleTextStyle: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w500),
                   subtitle: Divider( color: AppColor.greyColor.withOpacity(0.5),),
                   trailing: Container(
                     margin: EdgeInsets.only(bottom: 15),
                     padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 10),
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(color: AppColor.greyColor.withOpacity(0.4))
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: AppColor.greyColor.withOpacity(0.4))
                     ),
                     child: Text('12:00',style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w500),),
                   ),
                 ),
                 ListTile(
-                  title: Text('Jantar'),
+                  title: Text(AppStrings.toHaveLunch),
                   titleTextStyle: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w500),
                   subtitle: Divider( color: AppColor.greyColor.withOpacity(0.5),),
                   trailing: Container(
                     margin: EdgeInsets.only(bottom: 15),
                     padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 10),
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(color: AppColor.greyColor.withOpacity(0.4))
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: AppColor.greyColor.withOpacity(0.4))
                     ),
                     child: Text('18:00',style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w500),),
                   ),
                 ),
                 ListTile(
-                  title: Text('Lanches'),
+                  title: Text(AppStrings.snacks),
                   titleTextStyle: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w500),
                   subtitle: Divider( color: AppColor.greyColor.withOpacity(0.5),),
                   trailing: Container(
                     margin: EdgeInsets.only(bottom: 15),
                     padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 10),
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(color: AppColor.greyColor.withOpacity(0.4))
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: AppColor.greyColor.withOpacity(0.4))
                     ),
                     child: Text('15:00',style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w500),),
                   ),
@@ -131,55 +116,46 @@ class NotificationSetting extends StatelessWidget {
             Container(
               margin: const EdgeInsets.symmetric(vertical: 15),
               decoration: BoxDecoration(
-                color: AppColor.whiteColor,
-                borderRadius: BorderRadius.circular(10),
-                border: Border.all(color: AppColor.greyColor),
-                boxShadow: const [
-                  BoxShadow(
-                    color: AppColor.lightGreyColor,
-                    spreadRadius: 5,
-                    blurRadius: 5
-                  )
-                ]
+                  color: AppColor.whiteColor,
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(color: AppColor.lightGreyBorder),
+                  boxShadow: const [
+                    AppColor.shadow
+                  ]
               ),
               child: Column(children: [
-                Obx(()=> SwitchListTile(
-                  value: _waterReminder.value,
-                  onChanged: (value){
-                    _waterReminder.value= value;
+                CustomSwitchTile(
+                  value: _waterReminder,
+                  onChanged: (v) {
+                    _waterReminder.value = v;
                   },
-                  title: Text('Lembrete de beber água',style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w500),),
-                  activeTrackColor: AppColor.startGradient,
-                  activeColor: AppColor.whiteColor,
-                  inactiveTrackColor: AppColor.greyColor.withOpacity(0.4),
-                  inactiveThumbColor: AppColor.whiteColor,
-                  trackOutlineColor: const WidgetStatePropertyAll(Colors.transparent),
-                ),),
+                  title: AppStrings.drinkWaterReminder,
+                ),
                 Divider(color: AppColor.greyColor.withOpacity(0.5),),
                 ListTile(
-                  title: Text('Lembrar a cada'),
+                  title: Text(AppStrings.rememberEvery),
                   titleTextStyle: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w500),
                   subtitle: Divider( color: AppColor.greyColor.withOpacity(0.5),),
                   trailing: Container(
                     margin: const EdgeInsets.only(bottom: 15),
                     padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 10),
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(color: AppColor.greyColor.withOpacity(0.4))
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: AppColor.greyColor.withOpacity(0.4))
                     ),
                     child: Text('6 horas',style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w500),),
                   ),
                 ),
                 ListTile(
-                  title: Text('Lembrar a partir de'),
+                  title: Text(AppStrings.rememberFrom),
                   titleTextStyle: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w500),
                   subtitle: Divider( color: AppColor.greyColor.withOpacity(0.5),),
                   trailing: Container(
                     margin: EdgeInsets.only(bottom: 15),
                     padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 10),
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(color: AppColor.greyColor.withOpacity(0.4))
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: AppColor.greyColor.withOpacity(0.4))
                     ),
                     child: Text('08:00',style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w500),),
                   ),
@@ -189,7 +165,7 @@ class NotificationSetting extends StatelessWidget {
             30.height,
             kTextButton(
               onPressed: (){},
-              btnText: 'Salvar',
+              btnText: AppStrings.save,
               useGradient: true,
             )
 

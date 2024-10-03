@@ -3,6 +3,7 @@ import 'package:focofit/controller/profile_controller.dart';
 import 'package:focofit/extensions/extension.dart';
 import 'package:focofit/screens/profile_ui/profile_bottom_sheets/k_profile_sheets.dart';
 import 'package:focofit/utils/app_colors.dart';
+import 'package:focofit/utils/app_strings.dart';
 import 'package:focofit/utils/k_text_styles.dart';
 import 'package:focofit/widgets/k_app_bar.dart';
 import 'package:get/get.dart';
@@ -18,7 +19,7 @@ class WeightHistoryScreen extends StatelessWidget {
         return Scaffold(
           appBar: kAppBar(
             onTap: ()=>Navigator.pop(context),
-            title: 'Historico de paiso',
+            title: AppStrings.countryHistory,
           ),
           body: Column(
             children: [
@@ -36,7 +37,7 @@ class WeightHistoryScreen extends StatelessWidget {
                     Obx(() => Text(
                       c.selectedDateRange.value.isNotEmpty
                           ? c.selectedDateRange.value
-                          : 'No date selected',
+                          : AppStrings.noDateSelected,
                       style: primaryTextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w500,

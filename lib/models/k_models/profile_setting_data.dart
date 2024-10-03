@@ -1,3 +1,4 @@
+import 'package:focofit/utils/app_strings.dart';
 import 'package:focofit/utils/asset_utils.dart';
 
 class ProfileSettingData{
@@ -8,92 +9,92 @@ class ProfileSettingData{
 }
 List<ProfileSettingData> profileSettingAccessList= [
   ProfileSettingData(
-    title: 'Email',
-    subTitle: 'loremipsum@gmail.com',
+    title: AppStrings.email,
+    subTitle: AppStrings.loremIpsumEmail,
     iconPath: AppIcons.emailIcon,
   ),
   ProfileSettingData(
-    title: 'Senha',
+    title: AppStrings.password,
     subTitle: '**************',
     iconPath: AppIcons.keyBoardIcon,
   ),
   ProfileSettingData(
-    title: 'Celular',
+    title: AppStrings.cellPhone,
     subTitle: '(16) 99999-9999',
     iconPath: AppIcons.phoneIcon,
   ),
 ];
 List<ProfileSettingData> profileSettingDataList= [
   ProfileSettingData(
-    title: 'Data de nascimento',
+    title: AppStrings.dateOfBirth,
     subTitle: '01/12/1998',
     iconPath: AppIcons.cakeIcon,
   ),
   ProfileSettingData(
-    title: 'Gênero',
-    subTitle: 'Homem',
+    title: AppStrings.gender,
+    subTitle: AppStrings.man,
     iconPath: AppIcons.genderIcon,
   ),
   ProfileSettingData(
-    title: 'Altura',
+    title: AppStrings.height,
     subTitle: '60 cm',
     iconPath: AppIcons.heightIcon,
   ),
   ProfileSettingData(
-    title: 'Peso atual',
+    title: AppStrings.currentWeight,
     subTitle: '67 kg',
     iconPath: AppIcons.weightIcon,
   ),
   ProfileSettingData(
-    title: 'Peso meta',
+    title: AppStrings.goalWeight,
     subTitle: '60 kg',
     iconPath: AppIcons.goalWeightIcon,
   ),
   ProfileSettingData(
-    title: 'Nível de atividade',
-    subTitle: 'Sedentário',
+    title: AppStrings.activityLevel,
+    subTitle: AppStrings.sedentary,
     iconPath: AppIcons.shoeIcon,
   ),
   ProfileSettingData(
-    title: 'Minha dieta',
-    subTitle: 'Vegetariana',
+    title: AppStrings.myDiet,
+    subTitle: AppStrings.vegetarian,
     iconPath: AppIcons.saladIcon,
   ),
   ProfileSettingData(
-    title: 'Meta de calorias',
-    subTitle: 'Café da manhã: 33%, Almoço: 33%, Jantar: 33%, Lanches: 33%',
+    title: AppStrings.calorieGoal,
+    subTitle: AppStrings.calorieGoalDescription,
     iconPath: AppIcons.chartIcon,
   ),
   ProfileSettingData(
-    title: 'Meta de macronutrientes',
-    subTitle: 'Carb: 1000g, Prot: 1000g, Gord: 1000g',
+    title: AppStrings.macronutrientGoal,
+    subTitle: AppStrings.macronutrientGoalDescription,
     iconPath: AppIcons.chartIcon,
   ),
   ProfileSettingData(
-    title: 'Condições médicas',
-    subTitle: 'Hipertensão, diabetes, colesterol alto...',
+    title: AppStrings.medicalConditions,
+    subTitle: AppStrings.hypertensionDiabetes,
     iconPath: AppIcons.medicalIcon,
   ),
 ];
 List<ProfileSettingData> profileSettingOnList= [
   ProfileSettingData(
-    title: 'Minha assinatura',
+    title: AppStrings.mySignature,
     iconPath: AppIcons.badgeIcon,
   ),
   ProfileSettingData(
-    title: 'Políticas de privacidade',
+    title: AppStrings.privacyPolicies,
     iconPath: AppIcons.shieldIcon,
   ),
   ProfileSettingData(
-    title: 'Termos de serviço',
+    title: AppStrings.termsOfService,
     iconPath: AppIcons.termsIcon,
   ),
   ProfileSettingData(
-    title: 'Fonte de recomendações',
+    title: AppStrings.sourceOfRecommendations,
     iconPath: AppIcons.bookIcon,
   ),
   ProfileSettingData(
-    title: 'Enviar email ao suporte',
+    title: AppStrings.sendEmailToSupport,
     iconPath: AppIcons.envelopeIcon,
   ),
 ];

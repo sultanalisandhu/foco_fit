@@ -30,7 +30,7 @@ class SelectWeight extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              AppStrings.currentWeight,
+              AppStrings.whatYourCurrentWeight,
               style: primaryTextStyle(
                 fontSize: 24.0,
                 fontWeight: FontWeight.w700,

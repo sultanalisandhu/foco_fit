@@ -4,6 +4,7 @@ import 'package:focofit/components/k_svg_icon.dart';
 import 'package:focofit/components/k_text_fields.dart';
 import 'package:focofit/extensions/extension.dart';
 import 'package:focofit/utils/app_colors.dart';
+import 'package:focofit/utils/app_strings.dart';
 import 'package:focofit/utils/asset_utils.dart';
 import 'package:focofit/utils/k_text_styles.dart';
 
@@ -52,11 +53,11 @@ class KBottomSheet {
   static void editEmail(BuildContext context, {Function()? onConfirmTap}) {
     show(
       context: context,
-      title: 'Alterar email',
+      title: AppStrings.changeEmail,
       content: [
-        _buildTextField(context: context, label: "Novo email", hintText: 'Novo email', ),
+        _buildTextField(context: context, label: AppStrings.newEmail, hintText: AppStrings.newEmail, ),
         10.height,
-        _buildTextField(context: context, label: "Confirme o email", hintText: 'Confirme o email',textInputAction: TextInputAction.done ),
+        _buildTextField(context: context, label: AppStrings.confirmEmail, hintText: AppStrings.confirmEmail,textInputAction: TextInputAction.done ),
       ],
       onConfirmTap: onConfirmTap,
       heightFactor: 0.4,
@@ -66,13 +67,13 @@ class KBottomSheet {
   static void editPassword(BuildContext context, {Function()? onConfirmTap}) {
     show(
       context: context,
-      title: 'Alterar senha',
+      title: AppStrings.changePassword,
       content: [
-        _buildTextField(label: "Senha antiga", hintText: 'Senha antiga', context: context),
+        _buildTextField(label: AppStrings.oldPassword, hintText: AppStrings.oldPassword, context: context),
         10.height,
-        _buildTextField(label: "Novo senha", hintText: 'Novo senha', context: context),
+        _buildTextField(label: AppStrings.newPassword, hintText: AppStrings.newPassword, context: context),
         10.height,
-        _buildTextField(label: "Confirme a senha", hintText: 'Confirme a senha', context: context,textInputAction: TextInputAction.done),
+        _buildTextField(label: AppStrings.confirmPassword, hintText: AppStrings.confirmPassword, context: context,textInputAction: TextInputAction.done),
       ],
       onConfirmTap: onConfirmTap,
       heightFactor: 0.5,
@@ -82,7 +83,7 @@ class KBottomSheet {
   static void editPhone(BuildContext context, {Function()? onConfirmTap}) {
     show(
       context: context,
-      title: 'Alterar celular',
+      title: AppStrings.changeCellPhone,
       content: [
         _buildTextField(hintText: '(16) 99999-9999', context: context,textInputAction: TextInputAction.done),
       ],
@@ -144,7 +145,7 @@ class KBottomSheet {
     return kTextButton(
       width: mQ.width,
       onPressed: onConfirmTap!,
-      btnText: 'Salvar',
+      btnText: AppStrings.save,
       useGradient: true,
     );
   }

@@ -128,18 +128,13 @@ class ProfileSetting extends StatelessWidget {
                           subtitle: Text(profileSettingAccessList[index].subTitle.toString(),maxLines: 1,overflow: TextOverflow.ellipsis,),
                           trailing: showSvgIconWidget(iconPath: AppIcons.editIcon,
                               onTap: (){
-                                switch (profileSettingAccessList[index].title)
-                                {
-                                  case 'Email':
-                                    KBottomSheet.editEmail(context,onConfirmTap: (){Navigator.pop(context);});
-                                  break;
-                                  case 'Senha':
-                                    KBottomSheet.editPassword(context,onConfirmTap: (){Navigator.pop(context);});
-                                    break;
-                                  case 'Celular':
-                                    KBottomSheet.editPhone(context,onConfirmTap: (){Navigator.pop(context);});
-                                    break;
-                                }
+                            if(index==0){
+                              KBottomSheet.editEmail(context,onConfirmTap: (){Navigator.pop(context);});
+                            }else if(index==1){
+                              KBottomSheet.editPassword(context,onConfirmTap: (){Navigator.pop(context);});
+                            }else{
+                              KBottomSheet.editPhone(context,onConfirmTap: (){Navigator.pop(context);});
+                            }
                           }),
                           contentPadding: EdgeInsets.zero,
                           titleTextStyle: primaryTextStyle(fontSize: 14,fontWeight: FontWeight.w500),
@@ -174,54 +169,54 @@ class ProfileSetting extends StatelessWidget {
                       subtitle: Text(profileSettingDataList[index].subTitle.toString(),maxLines: 1,overflow: TextOverflow.ellipsis,),
                       trailing: showSvgIconWidget(
                           onTap: (){
-                            switch(profileSettingDataList[index].title){
-                              case 'Data de nascimento':
+                            switch(index){
+                              case 0:
                                 KPersonalDataSheet.editDateBirth(context,
                                     onConfirmTap: (){ Get.back(); },
                                   profileController: c
 
                                 );
                                 break;
-                              case 'Gênero':
+                              case 1:
                                 KPersonalDataSheet.editGender(context,
                                 onConfirmTap: (){Get.back();},
                                     profileController: c
                                 );
                                 break;
-                              case 'Altura':
+                              case 2:
                                 KPersonalDataSheet.editHeight(context,
                                     onConfirmTap: (){Get.back();},
                                     profileController: c
                                 );
                                 break;
-                              case 'Peso atual':
+                              case 3:
                                 KPersonalDataSheet.editCurrentWeight(context,
                                     onConfirmTap: (){Get.back();},
                                     profileController: c
                                 );
                                 break;
-                              case 'Peso meta':
+                              case 4:
                                 KPersonalDataSheet.editGoalWeight(context,
                                     onConfirmTap: (){Get.back();},
                                     profileController: c
                                 );
                                 break;
-                              case 'Nível de atividade':
+                              case 5:
                                 KPersonalDataSheet.editActivityLevel(context,
                                     onConfirmTap: (){Get.back();},
                                     profileController: c
                                 );
                                 break;
-                              case 'Minha dieta':
+                              case 6:
                                 Get.to(()=> MyDiet());
                                 break;
-                              case 'Meta de calorias':
+                              case 7:
                                 Get.to(()=> CalorieGoalScreen());
                                 break;
-                              case 'Meta de macronutrientes':
+                              case 8:
                                 Get.to(()=> MacroNeutrients());
                                 break;
-                            case 'Condições médicas':
+                            case 9:
                             Get.to(()=> MedicalConditions());
                             break;
                             }
@@ -260,14 +255,14 @@ class ProfileSetting extends StatelessWidget {
                       itemBuilder: (context,index){
                         return ListTile(
                           onTap: (){
-                            switch(profileSettingOnList[index].title){
-                              case 'Minha assinatura':
+                            switch(index){
+                              case 0:
                                 Get.to(()=> PrivacyPolicy());
                                 break;
-                              case 'Políticas de privacidade':
+                              case 1:
                                 Get.to(()=> PrivacyPolicy());
                                 break;
-                              case 'Termos de serviço':
+                              case 2:
                                 Get.to(()=> TermsAndService());
                                 break;
                             }
@@ -287,7 +282,9 @@ class ProfileSetting extends StatelessWidget {
                 ),
                 20.height,
                 kTextButton(
-                  onPressed: (){},
+                  onPressed: (){
+                    Get.back();
+                  },
                   btnText: AppStrings.logOutOfAccount,
                   useGradient: true
                 )

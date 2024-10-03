@@ -136,7 +136,7 @@ class KOutlineButton extends StatelessWidget {
   final _GradientPainter _painter;
   final Function() onTap;
   final String btnText;
-  final double? fonstSize;
+  final double? fontSize;
   final double? height;
   final double? width;
   final Gradient? textGradient;
@@ -149,7 +149,7 @@ class KOutlineButton extends StatelessWidget {
     this.textGradient,
     this.height,
     this.width,
-    this.fonstSize,
+    this.fontSize,
   })
       : _painter = _GradientPainter(strokeWidth: 1, radius: 26, gradient: gradient);
 
@@ -170,7 +170,7 @@ class KOutlineButton extends StatelessWidget {
                 onTextTap: onTap,
                 text: btnText,
                 gradient: textGradient?? AppColor.primaryGradient,
-                style: kTextStyle(fontSize: fonstSize?? 16,
+                style: kTextStyle(fontSize: fontSize?? 16,
                   fontWeight: FontWeight.w600,
                   color: AppColor.blackColor),),
         ),

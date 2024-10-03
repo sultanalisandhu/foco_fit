@@ -148,7 +148,7 @@ class CustomSwitchTile extends StatelessWidget {
         value: value.value,
         onChanged: onChanged,
         title: KText(text:  title,fontSize: 15,fontWeight: FontWeight.w500),
-        shape: RoundedRectangleBorder(side: const BorderSide(color: AppColor.greyColor),borderRadius: BorderRadius.circular(10)),
+        shape: RoundedRectangleBorder(side: const BorderSide(color: AppColor.lightGreyBorder),borderRadius: BorderRadius.circular(10)),
         activeTrackColor: AppColor.startGradient,
         contentPadding: EdgeInsets.only(left: 1.h),
         activeColor: AppColor.whiteColor,

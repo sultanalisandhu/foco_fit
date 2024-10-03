@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:focofit/models/k_models/recipe_data.dart';
+import 'package:focofit/utils/app_strings.dart';
 import 'package:get/get.dart';
 
 class ProfileController extends GetxController{
@@ -34,23 +35,23 @@ class ProfileController extends GetxController{
 
 
   ///CustomLists
-  final RxList<String> genderList= ['Masculino','Feminino','Prefiro não dizer'].obs;
+  final RxList<String> genderList= [AppStrings.masculine,AppStrings.feminine,AppStrings.iPreferNotToSay].obs;
   final RxList<ActivityLevelList> activityLevelList= [
     ActivityLevelList(
-      title: 'Baixa',
-      subTitle: 'Escritório, trabalho remoto ou sedentário'
+      title: AppStrings.low,
+      subTitle: AppStrings.officeRemoteWork
     ),
     ActivityLevelList(
-        title: 'Moderada',
-        subTitle: 'Trabalho em pé (ex: garçom, entregador)'
+        title: AppStrings.moderate,
+        subTitle: AppStrings.standingWork
     ),
     ActivityLevelList(
-        title: 'Alta',
-        subTitle: 'Trabalho de exigência física (ex: pedreiro)'
+        title: AppStrings.high,
+        subTitle: AppStrings.physicallyDemandingWork
     ),
     ActivityLevelList(
-        title: 'xima',
-        subTitle: 'Trabalho físico pesado (ex: academia)'
+        title: AppStrings.xima,
+        subTitle: AppStrings.heavyPhysicalWork
     )
   ].obs;
 }

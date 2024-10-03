@@ -13,6 +13,7 @@ import 'package:focofit/screens/profile_ui/k_bar_charts/neutrients_charts.dart';
 import 'package:focofit/screens/profile_ui/profile_setting_ui/profile_setting.dart';
 import 'package:focofit/screens/profile_ui/weight_history_screen.dart';
 import 'package:focofit/utils/app_colors.dart';
+import 'package:focofit/utils/app_strings.dart';
 import 'package:focofit/utils/k_text_styles.dart';
 import 'package:focofit/widgets/k_app_bar.dart';
 import 'package:get/get.dart';
@@ -42,68 +43,68 @@ class ProfileScreen extends StatelessWidget {
               children: [
               SubScribedContainer(
                   onTap: ()=>Get.to(()=> SubscribedScreen(),),
-                  title: 'Seja um assinante FocoFit Pro',
-                  subTitle: 'Aproveite nossos recursos exclusivos!',
+                  title: AppStrings.becomeProSubscriber,
+                  subTitle: AppStrings.subscribeBenefit,
                 gradient: AppColor.primaryGradient,
               ),
-              KText(text:  'Historico de paiso',fontSize: 18),
+              KText(text:  AppStrings.countryHistory,fontSize: 18),
                 3.ySpace,
                 CaloriesGraphScreen(
                   controller: c,
                   onButtonTap: (){
                     Get.to(()=> WeightHistoryScreen());
                   },
-                  btnText: 'Editor Historico',
+                  btnText: AppStrings.historicalEditor,
                 ),
                 10.height,
-                KText(text:  'Histórico de ICM',fontSize: 18),
+                KText(text:  AppStrings.icmHistory,fontSize: 18),
                 IcmHistoryChart(
                   controller: c,
                   onButtonTap: (){},
-                  btnText: 'Editor Historico',),
+                  btnText: AppStrings.historicalEditor,),
                 10.height,
-                KText(text:  'Histórico de água',fontSize: 18),
+                KText(text:  AppStrings.waterHistory,fontSize: 18),
                 AquaChart(
                   controller: c,
                   onButtonTap: (){
                     Get.to(()=> WeightHistoryScreen());
                   },
-                  btnText: 'Editor Historico',
+                  btnText: AppStrings.historicalEditor,
                 ),
                 10.height,
-                KText(text:  'Histórico de atividades',fontSize: 18),
+                KText(text:  AppStrings.activityHistory,fontSize: 18),
                 ActivityChart(
                   controller: c,
                   onButtonTap: (){
                     Get.to(()=> WeightHistoryScreen());
                   },
-                  btnText: 'Editor Historico',
+                  btnText: AppStrings.historicalEditor,
                 ),
                 10.height,
-                KText(text:  'Histórico de alimentação',fontSize: 18),
+                KText(text:  AppStrings.foodHistory,fontSize: 18),
                 10.height,
                 FeedingChart(
                   controller: c,
                   onButtonTap: (){
                     Get.to(()=> WeightHistoryScreen());
                   },
-                  btnText: 'Editor Historico',
+                  btnText: AppStrings.historicalEditor,
                 ),
                 10.height,
-                KText(text:  'Histórico de macronutrientes',fontSize: 18),
+                KText(text:  AppStrings.macronutrientHistory,fontSize: 18),
                 10.height,
                 NutrientsCharts(
                   controller: c,
                 ),
                 10.height,
-                KText(text:  'Histórico de jejum',fontSize: 18),
+                KText(text:  AppStrings.fastingHistory,fontSize: 18),
                 10.height,
                 FastingChart(
                   controller: c,
                   onButtonTap: (){
                     Get.to(()=> WeightHistoryScreen());
                   },
-                  btnText: 'Editor Historico',
+                  btnText: AppStrings.fastingHistory,
                 ),
             ],).paddingSymmetric(horizontal: 15,vertical: 15),
           ),

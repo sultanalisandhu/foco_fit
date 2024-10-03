@@ -4,10 +4,12 @@ import 'package:focofit/components/k_svg_icon.dart';
 import 'package:focofit/extensions/extension.dart';
 import 'package:focofit/screens/profile_ui/profile_setting_ui/notification_setting.dart';
 import 'package:focofit/utils/app_colors.dart';
+import 'package:focofit/utils/app_strings.dart';
 import 'package:focofit/utils/asset_utils.dart';
 import 'package:focofit/utils/k_text_styles.dart';
 import 'package:focofit/widgets/k_app_bar.dart';
 import 'package:get/get.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class NotificationScreen extends StatelessWidget {
   const NotificationScreen({super.key});
@@ -23,7 +25,7 @@ class NotificationScreen extends StatelessWidget {
           trailingOnTap: (){
           Get.to(()=> NotificationSetting());
           },
-        title: 'Notificações'
+        title: AppStrings.notifications
       ),
       body: Column(children: [
         Expanded(
@@ -73,7 +75,7 @@ class NotificationScreen extends StatelessWidget {
       backgroundColor: AppColor.whiteColor,
       builder: (BuildContext context) {
         return SizedBox(
-          height: mQ.height * 0.4,
+          height: mQ.height * 0.35,
           width: mQ.width,
           child: Padding(
             padding: const EdgeInsets.all(20.0),
@@ -82,7 +84,7 @@ class NotificationScreen extends StatelessWidget {
                 showSvgIconWidget(iconPath: AppIcons.dashIcon),
                 20.height,
                 Text(
-                  'Excluir notificação',
+                  AppStrings.deleteNotification,
                   style: primaryTextStyle(
                     fontSize: 20.0,
                     fontWeight: FontWeight.w600,
@@ -90,7 +92,7 @@ class NotificationScreen extends StatelessWidget {
                 ),
                 10.height,
                 Text(
-                  "Deseja realmente excluir esta notificação?Essa ação não pode ser desfeita.",
+                  AppStrings.reallyDeleteNotification,
                   textAlign: TextAlign.center,
                   style: primaryTextStyle(
                     fontSize: 18.0,
@@ -99,18 +101,24 @@ class NotificationScreen extends StatelessWidget {
                 ),
                 const Spacer(),
                kTextButton(
-                  height: 60.0,
+                  height: 6,
                   width: mQ.width,
-                  borderRadius: 30.0,
+                  borderRadius: 2.5,
                   onPressed: onConfirmTap!,
-                  btnText: 'Não, quero voltar',
+                  btnText: AppStrings.noGoWantToBack,
+                 fontSize: 14,
                  useGradient: true
                 ),
-                SizedBox(height: mQ.height * 0.02),
+               1.ySpace,
                 KOutlineButton(
+                  height:6.h,
                   onTap: onCancelTap!,
                   gradient: AppColor.blackGradient,
-                  btnText: 'Sim quero excluir',)
+                  btnText: AppStrings.yesWantToDelete,
+                  textGradient: AppColor.blackGradient,
+                  fontSize: 14,
+
+                )
               ],
             ),
           ),

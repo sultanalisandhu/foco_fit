@@ -185,7 +185,7 @@ class KFastBottomSheet {
               btnText: AppStrings.noContinue,
               gradient: AppColor.blackGradient,
             textGradient: AppColor.blackGradient,
-              fonstSize: 14,
+              fontSize: 14,
             )
 
           ],

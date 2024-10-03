@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:focofit/controller/profile_controller.dart';
 import 'package:focofit/screens/auth_ui/registeration_progress_screens/select_height.dart';
+import 'package:focofit/utils/app_strings.dart';
 import 'package:get/get.dart';
 import 'package:focofit/components/k_buttons.dart';
 import 'package:focofit/components/k_svg_icon.dart';
@@ -53,7 +54,7 @@ class KPersonalDataSheet {
   static void editHeight(BuildContext context, {Function()? onConfirmTap, required ProfileController profileController}) {
     show(
       context: context,
-      title: 'Altura',
+      title: AppStrings.height,
       content: [
         Obx(() => Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -211,7 +212,7 @@ class KPersonalDataSheet {
 
     show(
       context: context,
-      title: 'Data de nascimento',
+      title: AppStrings.dateOfBirth,
       content: [
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -346,7 +347,7 @@ class KPersonalDataSheet {
   static void editGender(BuildContext context, {Function()? onConfirmTap,required ProfileController profileController}) {
     show(
       context: context,
-      title: 'Gênero',
+      title: AppStrings.gender,
       content: [
         for (int i = 0; i < profileController.genderList.length; i++)
           Obx(() => Container(
@@ -381,7 +382,7 @@ class KPersonalDataSheet {
   static void editCurrentWeight(BuildContext context, {Function()? onConfirmTap,required ProfileController profileController}) {
     show(
       context: context,
-      title: 'Peso atual',
+      title: AppStrings.currentWeight,
       content: [
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -470,7 +471,7 @@ class KPersonalDataSheet {
   static void editGoalWeight(BuildContext context, {Function()? onConfirmTap,required ProfileController profileController}) {
     show(
       context: context,
-      title: 'Peso meta',
+      title: AppStrings.goalWeight,
       content: [
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -560,7 +561,7 @@ class KPersonalDataSheet {
 
     show(
       context: context,
-      title: 'Nível de atividade',
+      title: AppStrings.activityLevel,
       content: [
         for (int i = 0; i < profileController.activityLevelList.length; i++)
           Obx(() => Container(

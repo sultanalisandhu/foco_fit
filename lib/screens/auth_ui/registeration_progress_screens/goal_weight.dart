@@ -31,7 +31,7 @@ class GoalWeight extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              AppStrings.goalWeight,
+              AppStrings.whatYourGoalWeight,
               style: primaryTextStyle(
                 fontSize: 24.0,
                 fontWeight: FontWeight.w700,
