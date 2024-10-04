@@ -280,6 +280,10 @@
     "whatToDoWithHistory": "O que deseja fazer com este histórico?",
     "home": "Inicial",
     "current": "Atual",
-    "goal": "Meta"
+    "goal": "Meta",
+    "diabetesResistance": "Diabetes ou resistência a insulina",
+    "asthma": "Asma",
+    "macroTarget": "Meta de macros",
+    "automaticallyRecalculateLimit": "Recalcular limite automaticamente"
 
 }

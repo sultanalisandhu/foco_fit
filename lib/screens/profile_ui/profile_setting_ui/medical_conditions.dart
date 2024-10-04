@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:focofit/components/k_buttons.dart';
 import 'package:focofit/extensions/extension.dart';
 import 'package:focofit/utils/app_colors.dart';
+import 'package:focofit/utils/app_strings.dart';
 import 'package:focofit/utils/k_text_styles.dart';
 import 'package:focofit/widgets/k_app_bar.dart';
 import 'package:get/get.dart';
@@ -11,16 +12,11 @@ class MedicalConditions extends StatelessWidget {
   MedicalConditions({super.key});
 
   final List<String> medicalConditions = [
-    'Hipertensão',
-    'Diabetes ou resistência a insulina',
-    'Asma',
-    'Colesterol alto',
-    'Arritmia',
-    'Doenças de tireóide',
-    'Não tenho nenhuma'
+    AppStrings.hypertension,
+    AppStrings.diabetesResistance,
+    AppStrings.asthma,
   ];
 
-  // List to track the selected state of each condition
   final RxList<bool> selectedConditions = List<bool>.filled(7, false).obs;
 
   @override
@@ -30,7 +26,7 @@ class MedicalConditions extends StatelessWidget {
         onTap: () {
           Navigator.pop(context);
         },
-        title: 'Condições médicas',
+        title: AppStrings.medicalConditions,
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(12.0),
@@ -38,36 +34,28 @@ class MedicalConditions extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             20.height,
-            ListView.builder(
+            ListView.separated(
               itemCount: medicalConditions.length,
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
+              separatorBuilder: (BuildContext context, int index) { return 2.ySpace; },
               itemBuilder: (context, index) {
-                return Obx(
-                      () => Container(
-                    margin: const EdgeInsets.symmetric(vertical: 10),
-                    child: ListTile(
-                      onTap: () {
-                        selectedConditions[index] = !selectedConditions[index];
-                      },
-                      contentPadding:  EdgeInsets.symmetric(horizontal: 3.w,vertical: 0),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                        side: BorderSide(
-                          color: selectedConditions[index]
-                              ? AppColor.startGradient
-                              : AppColor.greyColor,
-                          width: selectedConditions[index] ? 2 : 1,
-                        ),
-                      ),
-                      titleTextStyle: kTextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
-                        color: AppColor.blackColor,
-                      ),
-                      title: Text(medicalConditions[index]),
+                return Obx(() => ListTile(
+                  onTap: () {
+                    selectedConditions[index] = !selectedConditions[index];
+                  },
+                  contentPadding:  EdgeInsets.symmetric(horizontal: 3.w,vertical: 0),
+                  shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(12),
+                    side: BorderSide(
+                      color: selectedConditions[index]
+                          ? AppColor.startGradient
+                          : AppColor.greyColor,
+                      width: selectedConditions[index] ? 1.5 : 1,
                     ),
                   ),
+                  titleTextStyle: kTextStyle( fontWeight: FontWeight.w500,),
+                  title: Text(medicalConditions[index]),
+                ),
                 );
               },
             ),
@@ -79,7 +67,7 @@ class MedicalConditions extends StatelessWidget {
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height * 0.09,
         alignment: Alignment.center,
-        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+        padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 2.h),
         child: kTextButton(
           onPressed: () {
             List<String> selectedMedicalConditions = [];
@@ -90,7 +78,7 @@ class MedicalConditions extends StatelessWidget {
             }
             print("Selected Conditions: $selectedMedicalConditions");
           },
-          btnText: 'Salvar',
+          btnText: AppStrings.save,
           useGradient: true,
         ),
       ),

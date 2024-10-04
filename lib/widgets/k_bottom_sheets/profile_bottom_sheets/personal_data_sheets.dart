@@ -565,7 +565,7 @@ class KPersonalDataSheet {
       content: [
         for (int i = 0; i < profileController.activityLevelList.length; i++)
           Obx(() => Container(
-            margin: EdgeInsets.symmetric(vertical: 10),
+            margin: const EdgeInsets.symmetric(vertical: 10),
             child: ListTile(
               title: Text(
                 profileController.activityLevelList[i].title.toString(),

@@ -107,7 +107,7 @@ class ProfileSetting extends StatelessWidget {
                     alignment: Alignment.topLeft,
                     child: Padding(
                       padding: EdgeInsets.only(left: 3.w),
-                      child: Text(AppStrings.accessData,style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w600),),
+                      child: KText(text:  AppStrings.accessData,fontSize: 16,fontWeight: FontWeight.w600),
                     )),
                 1.ySpace,
                 Container(
@@ -137,8 +137,8 @@ class ProfileSetting extends StatelessWidget {
                             }
                           }),
                           contentPadding: EdgeInsets.zero,
-                          titleTextStyle: primaryTextStyle(fontSize: 14,fontWeight: FontWeight.w500),
-                          subtitleTextStyle: primaryTextStyle(fontSize: 14,fontWeight: FontWeight.w400),
+                          titleTextStyle: kTextStyle(fontSize: 14,fontWeight: FontWeight.w500),
+                          subtitleTextStyle: kTextStyle(),
                           shape: index != profileSettingAccessList.length - 1
                               ? Border( bottom: BorderSide(color: AppColor.greyColor.withOpacity(0.4)),)
                               : null,
@@ -149,7 +149,10 @@ class ProfileSetting extends StatelessWidget {
                 2.ySpace,
                 Align(
                     alignment: Alignment.topLeft,
-                    child: Text(AppStrings.personalData,style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w600),)),
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 3.w),
+                      child: KText(text:  AppStrings.personalData,fontSize: 16,fontWeight: FontWeight.w600),
+                    )),
                 1.ySpace,
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 16,vertical: 13),
@@ -214,7 +217,7 @@ class ProfileSetting extends StatelessWidget {
                                 Get.to(()=> CalorieGoalScreen());
                                 break;
                               case 8:
-                                Get.to(()=> MacroNeutrients());
+                                Get.to(()=> MacroNutrients());
                                 break;
                             case 9:
                             Get.to(()=> MedicalConditions());
@@ -235,12 +238,15 @@ class ProfileSetting extends StatelessWidget {
                   },
                   ),
                 ),
-                20.height,
+                2.ySpace,
                 /// On Container
                 Align(
                     alignment: Alignment.topLeft,
-                    child: Text(AppStrings.on,style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w600),)),
-                15.height,
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 3.w),
+                      child: KText(text:  AppStrings.on,fontSize: 16,fontWeight: FontWeight.w600),
+                    )),
+                1.ySpace,
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 16,vertical: 13),
                   decoration: BoxDecoration(
@@ -256,13 +262,13 @@ class ProfileSetting extends StatelessWidget {
                         return ListTile(
                           onTap: (){
                             switch(index){
-                              case 0:
-                                Get.to(()=> PrivacyPolicy());
-                                break;
                               case 1:
                                 Get.to(()=> PrivacyPolicy());
                                 break;
                               case 2:
+                                Get.to(()=> PrivacyPolicy());
+                                break;
+                              case 3:
                                 Get.to(()=> TermsAndService());
                                 break;
                             }
@@ -280,7 +286,7 @@ class ProfileSetting extends StatelessWidget {
                         );
                       }),
                 ),
-                20.height,
+                2.ySpace,
                 kTextButton(
                   onPressed: (){
                     Get.back();

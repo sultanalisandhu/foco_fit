@@ -246,7 +246,7 @@
     "high": "High",
     "physicallyDemandingWork": "Physically demanding work (e.g. bricklayer)",
     "xima": "Xima",
-    "heavyPhysicalWork": "heavyPhysicalWork",
+    "heavyPhysicalWork": "Heavy Physical Work",
     "countryHistory": "Country History",
     "noDateSelected": "No Date Selected",
     "icmHistory": "ICM History",
@@ -278,6 +278,11 @@
     "whatToDoWithHistory": "What do you want to do with this history?",
     "Home": "Home",
     "current": "Current",
-    "goal": "Goal"
+    "goal": "Goal",
+    "diabetesResistance": "Diabetes or insulin resistance",
+    "asthma": "Asthma",
+    "macroTarget": "Macro target",
+    "automaticallyRecalculateLimit": "Automatically Recalculate Limit"
+
 
 }

@@ -15,7 +15,8 @@ AppBar kAppBar({
   scrolledUnderElevation: 0.0,
   elevation: 0.0,
   backgroundColor: Colors.transparent,
-  leading: onTap != null ?GestureDetector(
+  leading: onTap != null
+      ? GestureDetector(
     onTap: onTap,
     child: Container(
       margin: const EdgeInsets.only(left: 20,top: 5,bottom: 5),
@@ -23,10 +24,11 @@ AppBar kAppBar({
       alignment: Alignment.center,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: AppColor.greyBorder)),
+            border: Border.all(color: AppColor.blackColor)),
       child: const Icon(Icons.arrow_back_ios),
       ),
-  ): const SizedBox.shrink(),
+  )
+      : const SizedBox.shrink(),
     title: title!=null
         ? KText(text:title,fontSize: 18,fontWeight: FontWeight.w600)
         : const SizedBox.shrink(),
@@ -42,14 +44,16 @@ AppBar kAppBar({
           alignment: Alignment.center,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: AppColor.greyBorder)),
-          child: showSvgIconWidget(iconPath: trailingIcon??AppIcons.settingIcon,onTap: trailingOnTap),
+              border: Border.all(color: AppColor.blackColor)),
+          child: showSvgIconWidget( onTap: trailingOnTap, iconPath: trailingIcon??AppIcons.settingIcon,color: AppColor.blackColor),
         ),
       )
           : const SizedBox.shrink()
     ],
   );
 }
+
+
 
 AppBar kProfileAppBar({
   final Function()? onTileTap,
@@ -77,13 +81,17 @@ AppBar kProfileAppBar({
       subtitle: Text(subTitle!),
       titleTextStyle: primaryTextStyle(fontWeight: FontWeight.w500,fontSize: 14,color: AppColor.blackColor),
       subtitleTextStyle: primaryTextStyle(fontWeight: FontWeight.w600,fontSize: 16,color: AppColor.blackColor),
-      trailing: notificationCount!=null?Stack(
+      trailing: notificationCount!=null
+          ? Stack(
         alignment: Alignment.center,
         children: [
-          SizedBox(
-              height: 60,
-              width: 70,
-              child: Center(child: showSvgIconWidget(iconPath: AppIcons.bellIcon,onTap: trailingOnTap))),
+          GestureDetector(
+            onTap: trailingOnTap,
+            child: SizedBox(
+                height: 50,
+                width: 70,
+                child: showSvgIconWidget(iconPath: AppIcons.bellIcon,onTap: trailingOnTap)),
+          ),
           Container(
             padding: const EdgeInsets.all(3),
             decoration: const BoxDecoration(
@@ -93,7 +101,8 @@ AppBar kProfileAppBar({
             child: Text(notificationCount,style: primaryTextStyle(fontSize: 10,fontWeight: FontWeight.w600),),
           )
         ],
-      ):GestureDetector(
+      )
+          : GestureDetector(
         onTap: trailingOnTap,
         child: Container(
           height: 50,
@@ -102,8 +111,8 @@ AppBar kProfileAppBar({
           alignment: Alignment.center,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: AppColor.greyBorder)),
-          child: showSvgIconWidget(iconPath: AppIcons.settingIcon,onTap: trailingOnTap),
+              border: Border.all(color: AppColor.blackColor)),
+          child: showSvgIconWidget(onTap: trailingOnTap, iconPath: AppIcons.settingIcon,color: AppColor.blackColor),
         ),
       ),
     ),

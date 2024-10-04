@@ -283,4 +283,8 @@ class AppStrings {
   static String  home = "home".tr;
   static String  current = "current".tr;
   static String  goal = "goal".tr;
+  static String  diabetesResistance = "diabetesResistance".tr;
+  static String  asthma = "asthma".tr;
+  static String  macroTarget = "macroTarget".tr;
+  static String  automaticallyRecalculateLimit = "automaticallyRecalculateLimit".tr;
 }
