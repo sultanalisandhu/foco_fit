@@ -56,7 +56,7 @@ class EditRecipeScreen extends StatelessWidget {
                                 color: AppColor.whiteColor.withOpacity(0.8),
                                 borderRadius: BorderRadius.circular(22),
                               ),
-                              child: KText(text:  '10 ${AppStrings.min}'),
+                              child: KText(text: '10 ${AppStrings.min}'),
                             ),
                             5.width,
                             Container(
@@ -84,7 +84,7 @@ class EditRecipeScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                  5.height,
+                  1.ySpace,
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -96,7 +96,7 @@ class EditRecipeScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  20.height,
+                  4.ySpace,
                   //MacroNutrients  ---------------------------------------------------
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 15),
@@ -151,7 +151,7 @@ class EditRecipeScreen extends StatelessWidget {
                       ),
                     ],),
                   ),
-                  20.height,
+                  3.ySpace,
                   //Ingredients  ---------------------------------------------------
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 15),
@@ -168,10 +168,10 @@ class EditRecipeScreen extends StatelessWidget {
                         children: [
                           showSvgIconWidget(iconPath: AppIcons.ingredientesIcon),
                           5.width,
-                          Text(AppStrings.ingredients,style: primaryTextStyle(fontSize: 18,fontWeight: FontWeight.w600),),
+                          KText(text: AppStrings.ingredients,fontSize: 16,fontWeight: FontWeight.w600),
                         ],
                       ),
-                      20.height,
+                      3.ySpace,
                       ListView.builder(
                           itemCount: c.ingredients.length,
                           shrinkWrap: true,
@@ -180,18 +180,18 @@ class EditRecipeScreen extends StatelessWidget {
                             return SizedBox(
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.end,
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   // ingredient name
-                                  Text(c.ingredients[index].name.toString(),style: primaryTextStyle(fontWeight: FontWeight.w600,fontSize: 18),),
-                                  const Expanded(child: Text('  ---------------------------------------------------------------------------------------   ',maxLines: 1,)),
-                                  Text(c.ingredients[index].quantity.toString(),style: primaryTextStyle(fontWeight: FontWeight.w600,fontSize: 16),),
+                                  KText(text: c.ingredients[index].name.toString(),fontSize: 16,fontWeight: FontWeight.w600),
+                                  const Expanded(child: Text('  ---------------------------------------------------------------------------------------     ',maxLines: 1,)),
+                                  KText(text: c.ingredients[index].quantity.toString(),fontWeight: FontWeight.w600),
                                 ],),
                             );
                           })
                     ],),
                   ),
-                  20.height,
+                  3.ySpace,
                   //preparation method ---------------------------------------------------
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 15),
@@ -208,10 +208,10 @@ class EditRecipeScreen extends StatelessWidget {
                         children: [
                           showSvgIconWidget(iconPath: AppIcons.ingredientesIcon),
                           5.width,
-                          Text(AppStrings.preparationMethod,style: primaryTextStyle(fontSize: 18,fontWeight: FontWeight.w600),),
+                          KText(text: AppStrings.preparationMethod,fontSize: 16,fontWeight: FontWeight.w600),
                         ],
                       ),
-                      20.height,
+                      3.ySpace,
                       ListView.builder(
                         itemCount: c.ingredients.length,
                         shrinkWrap: true,
@@ -219,14 +219,9 @@ class EditRecipeScreen extends StatelessWidget {
                         itemBuilder: (context, index) {
                           return Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: c.ingredients[index].preparationList!
-                                .map((prep) => Text(
-                              '${index+1}. ${prep.preparationDetails}',
-                              style: const TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w400),
-                            ))
-                                .toList(),
+                            children: c.ingredients[index].preparationList!.map((prep) =>
+                                KText(text: '${index+1}. ${prep.preparationDetails}',fontSize: 16
+                            ),).toList(),
                           );
                         },
                       )

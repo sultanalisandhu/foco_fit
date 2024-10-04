@@ -137,11 +137,7 @@ class _GeneratingRecipeState extends State<GeneratingRecipe> with SingleTickerPr
                 position: _slideAnimation,
                 child: FadeTransition(
                   opacity: _fadeAnimation,
-                  child: Text(
-                    _loadingTexts[_currentTextIndex.value],
-                    style: primaryTextStyle(fontSize: 16, fontWeight: FontWeight.w400),
-                    textAlign: TextAlign.center,
-                  ),
+                  child: KText(text: _loadingTexts[_currentTextIndex.value],fontSize: 16,textAlign: TextAlign.center,),
                 ),
               )
           ],

@@ -12,7 +12,7 @@ class ChartsController extends GetxController {
   var initialWeight = 70.0.obs;
   var currentWeight = 72.0.obs;
   var goalWeight = 68.0.obs;
-  var icmChartData = <double>[].obs;
+  var icmChartData = <double>[3.0, 4.0, 5.0, 2.5, 6.0, 7.0, 4.0].obs;
   final semanaData = [3.0, 4.0, 5.0, 2.5, 6.0, 7.0, 4.0];
   final mesData = [10.0, 12.0, 15.0, 9.0];
   final anoData = [40.0, 50.0, 45.0, 60.0];
@@ -49,7 +49,7 @@ class ChartsController extends GetxController {
   //Fasting variables
   var selectedFastingPeriod = 'Semana'.obs;
   var fastingHistory = 0.obs;
-  var fastingChartData = <double>[].obs;
+  var fastingChartData = <double>[3.0, 4.0, 5.0, 2.5, 6.0, 7.0, 4.0].obs;
   final semanaFastingData = [16, 18, 17, 15, 20, 16, 18];
   final mesFastingData = [500, 520, 540, 560];
   final anoFastingData = [6000, 6200, 6400, 6600];

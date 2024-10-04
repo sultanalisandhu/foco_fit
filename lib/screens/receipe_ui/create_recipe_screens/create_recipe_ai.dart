@@ -9,10 +9,12 @@ import 'package:focofit/utils/app_strings.dart';
 import 'package:focofit/utils/k_text_styles.dart';
 import 'package:focofit/widgets/k_app_bar.dart';
 import 'package:get/get.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class CreateRecipeAi extends StatelessWidget {
   CreateRecipeAi({super.key});
-  final RecipeController controller= Get.put(RecipeController(), tag: 'recipeController');
+  final RecipeController controller= Get.find(tag: 'recipeController');
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,7 +57,7 @@ class CreateRecipeAi extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 25,vertical: 10),
+        padding: EdgeInsets.symmetric(horizontal: 4.w,vertical: 2.h),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -68,7 +70,7 @@ class CreateRecipeAi extends StatelessWidget {
                 )
               ],
             ),
-            5.height,
+            3.ySpace,
             kTextButton(
               onPressed: (){
                 Get.to(()=> GeneratingRecipe());

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:focofit/controller/profile_controller.dart';
 import 'package:focofit/screens/profile_ui/calender_ui.dart';
+import 'package:focofit/utils/app_strings.dart';
 import 'package:get/get.dart';
 import 'package:focofit/components/k_buttons.dart';
 import 'package:focofit/components/k_svg_icon.dart';
@@ -56,11 +57,11 @@ class KProfileSheets {
     required Function() onCancelTap}) {
     show(
       context: context,
-      title: 'Editar histórico',
+      title: AppStrings.historicalEditor,
       content: [
         Align(
             alignment: Alignment.center,
-            child: Text('O que deseja fazer com este histórico?',
+            child: Text(AppStrings.whatToDoWithHistory,
               textAlign: TextAlign.center,
               style: primaryTextStyle(fontSize: 14,fontWeight: FontWeight.w400),)),
         const Spacer(),
@@ -69,14 +70,14 @@ class KProfileSheets {
           children: [
             KOutlineButton(
               onTap: onCancelTap,
-              btnText: 'Excluir',
+              btnText: AppStrings.delete,
               gradient: AppColor.blackGradient,
               textGradient: AppColor.blackGradient,
               width:120,
             ),
             kTextButton(
               onPressed: onConfirmTap,
-              btnText: 'Alterar',
+              btnText: AppStrings.alter,
               useGradient: true,
               width:120,
             ),
@@ -101,7 +102,7 @@ class KProfileSheets {
     final c = Get.put(ProfileController());
     show(
       context: context,
-      title: 'Peso atual',
+      title: AppStrings.currentWeight,
       content: [
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -212,7 +213,7 @@ class KProfileSheets {
     return onConfirmTap!=null?kTextButton(
       width: mQ.width,
       onPressed: onConfirmTap,
-      btnText: 'Salvar',
+      btnText: AppStrings.save,
       useGradient: true,
     ):const SizedBox.shrink();
   }

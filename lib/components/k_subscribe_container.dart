@@ -10,8 +10,7 @@ class SubScribedContainer extends StatelessWidget {
   final VoidCallback onTap;
   final String title;
   final String subTitle;
-  final Gradient? gradient;
-  const SubScribedContainer({super.key, required this.onTap, required this.title, required this.subTitle,this.gradient});
+  const SubScribedContainer({super.key, required this.onTap, required this.title, required this.subTitle});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +21,7 @@ class SubScribedContainer extends StatelessWidget {
         padding: EdgeInsets.symmetric(vertical: 0.2.h,horizontal: 0.5.h),
 
         decoration: BoxDecoration(
-          gradient: gradient?? AppColor.redGradient,
+          gradient: AppColor.primaryGradient,
           borderRadius: BorderRadius.circular(16),
         ),
         child: ListTile(

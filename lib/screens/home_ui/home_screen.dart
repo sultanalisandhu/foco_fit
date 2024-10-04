@@ -125,7 +125,7 @@ class HomeScreen extends StatelessWidget {
                   fat: '200 / 1000',
                   fatPercent: 0.4,
                 ),
-                2.ySpace,
+                4.ySpace,
                 kTextButton(
                     onPressed: (){
                       KHomeBottomSheet.quickRegistration(
@@ -157,7 +157,7 @@ class HomeScreen extends StatelessWidget {
                     btnText: AppStrings.quickCalorieLog,
                   useGradient: true
                 ),
-                2.ySpace,
+                4.ySpace,
                 ListView.builder(
                   itemCount: homeDataList.length,
                   shrinkWrap: true,
@@ -169,6 +169,7 @@ class HomeScreen extends StatelessWidget {
                         subtitle: 'Meta: dynamic value',
                         imageUrl: homeDataList[index].iconPath,
                         borderColor: AppColor.redColor,
+
                       );
                     } else {
                       // Render your CustomExpandableContainer for other items

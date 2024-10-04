@@ -8,8 +8,9 @@ import 'package:focofit/utils/app_colors.dart';
 import 'package:focofit/utils/app_strings.dart';
 import 'package:focofit/utils/k_text_styles.dart';
 import 'package:focofit/widgets/k_app_bar.dart';
-import 'package:focofit/widgets/recipe_widgets/k_create_recipe_sheet.dart';
+import 'package:focofit/widgets/k_bottom_sheets/recipe_bottom_sheet.dart';
 import 'package:get/get.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class CreateRecipeManual extends StatelessWidget {
   CreateRecipeManual({super.key});
@@ -23,37 +24,13 @@ class CreateRecipeManual extends StatelessWidget {
           Navigator.pop(context);
         },
       ),
-      bottomNavigationBar: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 25,vertical: 10),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Row(
-              children: [
-                const Icon(Icons.info,color: AppColor.greyColor,),
-                15.width,
-                Expanded(child: Text(AppStrings.nutritionalInformationBasedOnIngredients,style:
-                primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w400)
-                  ,))
-              ],
-            ),
-            5.height,
-            kTextButton(
-              onPressed: (){
-                Get.to(()=>RecipeAdded());
-              },
-              btnText: AppStrings.saveRecipe,
-              gradient: AppColor.blackGradient,
-            ),
-          ],
-        ),
-      ),
+
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 25,vertical: 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(AppStrings.recipeName,style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w600),),
+            KText(text: AppStrings.recipeName,fontSize: 16,fontWeight: FontWeight.w600),
             10.height,
             CustomTextField(
               context: context,
@@ -70,11 +47,11 @@ class CreateRecipeManual extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(AppStrings.ingredients,style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w600),),
-                    Text(AppStrings.amount,style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w600),),
+                    KText(text: AppStrings.ingredients,fontSize: 16,fontWeight: FontWeight.w600),
+                    KText(text: AppStrings.amount,fontSize: 16,fontWeight: FontWeight.w600),
                   ],
                 ),
-                10.height,
+                1.ySpace,
                 Row(
                   children: [
                     Expanded(
@@ -99,18 +76,24 @@ class CreateRecipeManual extends StatelessWidget {
 
                   ],
                 ),
-              20.height,
+              2.ySpace,
               KOutlineButton(
-                  onTap: (){},
+                  onTap: (){
+                    KRecipeBottomSheets.addQuantityType(
+                      onConfirmTap: (){},
+                      c: controller,
+                      context,
+                    );
+                  },
                   btnText: AppStrings.addIngredient,
                   gradient: AppColor.blackGradient,
                 textGradient: AppColor.blackGradient,
               ),
               ],
             ),
-            20.height,
+            4.ySpace,
             Text(AppStrings.preparationMethod,style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w600),),
-            10.height,
+            1.ySpace,
             CustomTextField(
               context: context,
               controller: controller.recipeDescriptionC,
@@ -120,7 +103,30 @@ class CreateRecipeManual extends StatelessWidget {
               textInputAction: TextInputAction.done,
 
             ),
-
+          ],
+        ),
+      ),
+      bottomNavigationBar: Container(
+        padding: EdgeInsets.symmetric(horizontal: 4.w,vertical: 2.h),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(
+              children: [
+                const Icon(Icons.info,color: AppColor.greyColor,),
+                15.width,
+                Expanded(child: KText(text: AppStrings.nutritionalInformationBasedOnIngredients,
+                  fontSize: 16,color: AppColor.greyColor,)),
+              ],
+            ),
+            3.ySpace,
+            kTextButton(
+              onPressed: (){
+                Get.to(()=>RecipeAdded());
+              },
+              btnText: AppStrings.saveRecipe,
+              gradient: AppColor.blackGradient,
+            ),
           ],
         ),
       ),

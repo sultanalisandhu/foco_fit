@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
                   seedColor: AppColor.primaryColor),
               useMaterial3: true,
             ),
-            home: SplashScreen(),
+            home: CustomBottomBar(),
             // for checking the responsiveness of the app
             useInheritedMediaQuery: true,
           );

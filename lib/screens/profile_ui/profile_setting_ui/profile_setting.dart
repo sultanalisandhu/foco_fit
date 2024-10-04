@@ -14,11 +14,11 @@ import 'package:focofit/utils/asset_utils.dart';
 import 'package:focofit/utils/k_text_styles.dart';
 import 'package:focofit/models/k_models/profile_setting_data.dart';
 import 'package:focofit/widgets/k_app_bar.dart';
+import 'package:focofit/widgets/k_bottom_sheets/profile_bottom_sheets/access_data_sheet.dart';
+import 'package:focofit/widgets/k_bottom_sheets/profile_bottom_sheets/personal_data_sheets.dart';
 import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
-import '../profile_bottom_sheets/access_data_sheet.dart';
-import '../profile_bottom_sheets/personal_data_sheets.dart';
 import 'my_diet.dart';
 class ProfileSetting extends StatelessWidget {
   const ProfileSetting({super.key});

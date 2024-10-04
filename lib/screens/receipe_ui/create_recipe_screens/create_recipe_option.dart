@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:focofit/components/k_buttons.dart';
-import 'package:focofit/extensions/extension.dart';
 import 'package:focofit/screens/receipe_ui/create_recipe_screens/create_recipe_ai.dart';
 import 'package:focofit/screens/receipe_ui/create_recipe_screens/create_recipe_manual.dart';
 import 'package:focofit/utils/app_colors.dart';
@@ -27,36 +26,31 @@ class CreateRecipeOption extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Image(image: AssetImage(AppImages.yellowStartImg),height: 250,width: 250,),
-          Text(AppStrings.registerRecipeManualAiDescription,
-            style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w400),
-            textAlign: TextAlign.center,
-          ),
+          KText(text: AppStrings.registerRecipeManualAiDescription,fontSize: 16,textAlign: TextAlign.center,)
         ],
       ).paddingSymmetric(horizontal: 15,vertical: 10),
       bottomNavigationBar: Container(
-        padding: EdgeInsets.symmetric(horizontal: 3.w),
-        child: SafeArea(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              kTextButton(
-                  onPressed: (){
-                    Get.to(()=> CreateRecipeAi());
-                  },
-                  btnText: AppStrings.usingFocoFitPro,
-                  useGradient: true
-              ),
-              1.ySpace,
-              KOutlineButton(
-                  onTap: (){
-                    Get.to(()=>CreateRecipeManual());
-                  },
-                  btnText: AppStrings.createManually,
-                  textGradient: AppColor.blackGradient,
-                  gradient: AppColor.blackGradient)
-            ],
-          ),
+        padding: EdgeInsets.symmetric(horizontal: 4.w,vertical: 2.h),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            kTextButton(
+                onPressed: (){
+                  Get.to(()=> CreateRecipeAi());
+                },
+                btnText: AppStrings.usingFocoFitPro,
+                useGradient: true
+            ),
+            SizedBox(height: 1.5.h,),
+            KOutlineButton(
+                onTap: (){
+                  Get.to(()=>CreateRecipeManual());
+                },
+                btnText: AppStrings.createManually,
+                textGradient: AppColor.blackGradient,
+                gradient: AppColor.blackGradient)
+          ],
         ),
       ),
     );

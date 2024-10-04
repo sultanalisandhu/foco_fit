@@ -23,7 +23,7 @@ class KCircularProgressBar extends StatelessWidget {
       backgroundColor: AppColor.lightGreyColor,
       fillColor: Colors.transparent,
       circularStrokeCap: CircularStrokeCap.round,
-      radius: 7.5.h,
+      radius: 6.4.h,
       lineWidth: 6,
       backgroundWidth: 8,
       percent: progressValue,
@@ -33,7 +33,7 @@ class KCircularProgressBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           GradientText(text: consumed, gradient: lineGradient, style: primaryTextStyle(fontSize: 18, fontWeight: FontWeight.w800)),
-          KText(text:  dietName, textAlign: TextAlign.center,),
+          KText(text: dietName, textAlign: TextAlign.center,),
         ],
       ),
     );

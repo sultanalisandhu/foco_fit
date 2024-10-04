@@ -17,7 +17,7 @@ class RecipeController extends GetxController {
   final FixedExtentScrollController quantityController = FixedExtentScrollController();
 
   ///Custom Lists
-  final RxList<String> quantityTypeList= ['colher de sobremesa','colher de chá','colher de sopa','ml','gramas','xícara de chá','xícara de café'].obs;
+  final RxList<String> quantityTypeList= [AppStrings.dessertSpoon,AppStrings.teaSpoon,AppStrings.tableSpoon,'ml',AppStrings.grams,AppStrings.cupOfTea,AppStrings.cupOfCoffee].obs;
   RxList<RecipeDetails> ingredients = [
     RecipeDetails(AppStrings.tomato, AppStrings.pcs2, [
       PreparationDetails(AppStrings.chopTomatoes),
@@ -33,6 +33,10 @@ class RecipeController extends GetxController {
   RxBool focused = false.obs;
   RxBool searching = false.obs;
   RxDouble currentCalories = 0.0.obs;
+  RxDouble currentTime = 0.0.obs;
+  RxInt selectedSnack = (-1).obs;
+  RxInt selectedDiet = (-1).obs;
+  RxInt selectedDifficulty = (-1).obs;
 
 
 

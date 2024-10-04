@@ -108,7 +108,7 @@ class KFastBottomSheet {
                 ),
               ),
             ),
-            KText(text: ':',fontSize: 10),
+            const KText(text: ':',fontSize: 18),
             // Min ScrollView
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.25,
@@ -174,24 +174,29 @@ class KFastBottomSheet {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-           kTextButton(
-               onPressed: onConfirmTap,
-               useGradient: true,
-               btnText: AppStrings.yesInterrupt,
-             fontSize: 14
+           Expanded(
+             child: kTextButton(
+                 onPressed: onConfirmTap,
+                 useGradient: true,
+                 btnText: AppStrings.yesInterrupt,
+               fontSize: 14
+             ),
            ),
-            KOutlineButton(
-              onTap: onCancelTap,
-              btnText: AppStrings.noContinue,
-              gradient: AppColor.blackGradient,
-            textGradient: AppColor.blackGradient,
-              fontSize: 14,
+            2.xSpace,
+            Expanded(
+              child: KOutlineButton(
+                onTap: onCancelTap,
+                btnText: AppStrings.noContinue,
+                gradient: AppColor.blackGradient,
+              textGradient: AppColor.blackGradient,
+                fontSize: 14,
+              ),
             )
 
           ],
         ),
       ],
-      heightFactor: 0.3,
+      heightFactor: 0.25,
     );
   }
 

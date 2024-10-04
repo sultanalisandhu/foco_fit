@@ -266,6 +266,20 @@
     "drinkWaterReminder": "Lembrete de beber água",
     "rememberEvery": "Lembrar a cada",
     "rememberFrom": "Lembrar a partir de",
-    "mealEatingReminder": " Lembrete de comer refeição"
+    "mealEatingReminder": " Lembrete de comer refeição",
+    "dessertSpoon": "colher de sobremesa",
+    "teaSpoon": "colher de chá",
+    "tableSpoon": "colher de sopa",
+    "cupOfTea": "xícara de chá",
+    "cupOfCoffee": "xícara de café",
+    "diets": "Dietas",
+    "difficultyInPreparation": "Dificuldade de preparo",
+    "preparationTime": "Tempo de preparo",
+    "selectTheMeasurement": "Selecione a medida",
+    "delete": "Excluir",
+    "whatToDoWithHistory": "O que deseja fazer com este histórico?",
+    "home": "Inicial",
+    "current": "Atual",
+    "goal": "Meta"
 
 }

@@ -7,6 +7,7 @@ import 'package:focofit/utils/asset_utils.dart';
 import 'package:focofit/utils/k_text_styles.dart';
 import 'package:focofit/widgets/k_app_bar.dart';
 import 'package:get/get.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class RecipeAdded extends StatelessWidget {
   const RecipeAdded({super.key});
@@ -20,8 +21,19 @@ class RecipeAdded extends StatelessWidget {
         },
         title: AppStrings.createRecipe,
       ),
+      body: Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Column(
+          children: [
+          const Image(image: AssetImage(AppImages.greenCheckImg),height: 250,width: 250,),
+            KText(text: AppStrings.recipeAddedConsultAnyTime,
+              fontSize: 16,textAlign: TextAlign.center,),
+        ],).paddingSymmetric(horizontal: 25,vertical: 10)
+    ],),
       bottomNavigationBar: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 25,vertical: 10),
+        padding: EdgeInsets.symmetric(horizontal: 4.w,vertical: 2.h),
         child: kTextButton(
           onPressed: (){
             Get.to(()=> EditRecipeScreen());
@@ -30,19 +42,6 @@ class RecipeAdded extends StatelessWidget {
           gradient: AppColor.blackGradient,
         ),
       ),
-      body:
-    Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Column(
-          children: [
-          const Image(image: AssetImage(AppImages.greenCheckImg),height: 250,width: 250,),
-          Text(AppStrings.recipeAddedConsultAnyTime,
-            textAlign: TextAlign.center,
-            style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w400),),
-        ],).paddingSymmetric(horizontal: 25,vertical: 10)
-
-    ],),);
+    );
   }
 }

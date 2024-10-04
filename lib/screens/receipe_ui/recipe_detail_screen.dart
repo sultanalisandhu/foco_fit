@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:focofit/components/k_buttons.dart';
 import 'package:focofit/components/k_svg_icon.dart';
 import 'package:focofit/controller/recipe_controller.dart';
 import 'package:focofit/extensions/extension.dart';
@@ -10,6 +11,7 @@ import 'package:focofit/widgets/k_app_bar.dart';
 import 'package:focofit/widgets/recipe_widgets/k_circular_progress_bar.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class RecipeDetailScreen extends StatelessWidget {
   const RecipeDetailScreen({super.key});
@@ -32,7 +34,7 @@ class RecipeDetailScreen extends StatelessWidget {
               children: [
                 Container(
                   width: mQ.width,
-                  height: 250,
+                  height: 30.h,
                   padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 15),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
@@ -53,7 +55,7 @@ class RecipeDetailScreen extends StatelessWidget {
                               color: AppColor.whiteColor.withOpacity(0.8),
                               borderRadius: BorderRadius.circular(22),
                             ),
-                            child: Text('10 ${AppStrings.min}',style: primaryTextStyle(fontSize: 14,fontWeight: FontWeight.w400),),
+                            child: KText(text:  '10 ${AppStrings.min}'),
                           ),
                           5.width,
                           Container(
@@ -62,7 +64,7 @@ class RecipeDetailScreen extends StatelessWidget {
                               color: AppColor.whiteColor.withOpacity(0.8),
                               borderRadius: BorderRadius.circular(22),
                             ),
-                            child: Text('319 ${AppStrings.kcal}',style: primaryTextStyle(fontSize: 14,fontWeight: FontWeight.w500),),
+                            child: KText(text: '329 ${AppStrings.kcal}',),
                           ),
                           const Spacer(),
                           GestureDetector(
@@ -81,9 +83,9 @@ class RecipeDetailScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-            5.height,
-            Text(AppStrings.smokedSalmon,style: primaryTextStyle(fontSize: 18,fontWeight: FontWeight.w600),),
-                20.height,
+            2.ySpace,
+            KText(text:  AppStrings.smokedSalmon,fontSize: 16,fontWeight: FontWeight.w600),
+                4.ySpace,
                 //MacroNutrients  ---------------------------------------------------
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 15),
@@ -100,10 +102,10 @@ class RecipeDetailScreen extends StatelessWidget {
                       children: [
                         showSvgIconWidget(iconPath: AppIcons.chartIcon,color: AppColor.blackColor),
                         5.width,
-                        Text(AppStrings.macronutrients,style: primaryTextStyle(fontSize: 18,fontWeight: FontWeight.w600),),
+                        KText(text:  AppStrings.macronutrients,fontSize: 16,fontWeight: FontWeight.w600),
                       ],
                     ),
-                    20.height,
+                    3.ySpace,
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -129,7 +131,7 @@ class RecipeDetailScreen extends StatelessWidget {
                     ),
                   ],),
                 ),
-                20.height,
+                3.ySpace,
                 //Ingredients  ---------------------------------------------------
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 15),
@@ -146,10 +148,10 @@ class RecipeDetailScreen extends StatelessWidget {
                       children: [
                         showSvgIconWidget(iconPath: AppIcons.ingredientesIcon),
                         5.width,
-                        Text(AppStrings.ingredients,style: primaryTextStyle(fontSize: 18,fontWeight: FontWeight.w600),),
+                        KText(text:  AppStrings.ingredients,fontSize: 16,fontWeight: FontWeight.w600),
                       ],
                     ),
-                    20.height,
+                    3.ySpace,
                     ListView.builder(
                         itemCount: c.ingredients.length,
                         shrinkWrap: true,
@@ -161,15 +163,15 @@ class RecipeDetailScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             // ingredient name
-                          Text(c.ingredients[index].name.toString(),style: primaryTextStyle(fontWeight: FontWeight.w600,fontSize: 18),),
+                          KText(text: c.ingredients[index].name.toString(),fontWeight: FontWeight.w600,fontSize: 16),
                           const Expanded(child: Text('---------------------------------------------------------------------------------',maxLines: 1,)),
-                          Text(c.ingredients[index].quantity.toString(),style: primaryTextStyle(fontWeight: FontWeight.w600,fontSize: 16),),
+                          KText(text: c.ingredients[index].quantity.toString(),fontWeight: FontWeight.w600,fontSize: 16),
                         ],),
                       );
                     })
                   ],),
                 ),
-                20.height,
+                3.ySpace,
                 //preparation method ---------------------------------------------------
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 15),
@@ -186,10 +188,10 @@ class RecipeDetailScreen extends StatelessWidget {
                       children: [
                         showSvgIconWidget(iconPath: AppIcons.ingredientesIcon),
                         5.width,
-                        Text(AppStrings.preparationMethod,style: primaryTextStyle(fontSize: 18,fontWeight: FontWeight.w600),),
+                        KText(text:  AppStrings.preparationMethod,fontSize: 16,fontWeight: FontWeight.w600),
                       ],
                     ),
-                    20.height,
+                    3.ySpace,
                     ListView.builder(
                       itemCount: c.ingredients.length,
                       shrinkWrap: true,
@@ -198,11 +200,9 @@ class RecipeDetailScreen extends StatelessWidget {
                         return Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: c.ingredients[index].preparationList!
-                              .map((prep) => Text(
+                              .map((prep) => KText( text:
                                 '${index+1}. ${prep.preparationDetails}',
-                                style: const TextStyle(
                                     fontSize: 16,
-                                    fontWeight: FontWeight.w400),
                               ))
                               .toList(),
                         );

@@ -101,7 +101,7 @@ class KHomeBottomSheet {
           ],
         )
       ],
-      heightFactor: 0.35,
+      heightFactor: 0.28,
     );
   }
 

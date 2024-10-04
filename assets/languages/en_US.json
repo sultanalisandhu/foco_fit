@@ -264,6 +264,20 @@
     "drinkWaterReminder": "Drink Water Reminder",
     "rememberEvery": "Remember Every",
     "rememberFrom": "Remember From",
-    "mealEatingReminder": "Meal Eating Reminder"
+    "mealEatingReminder": "Meal Eating Reminder",
+    "dessertSpoon": "Dessert Spoon",
+    "teaSpoon": "Tea Spoon",
+    "tableSpoon": "Table Spoon",
+    "cupOfTea": "Cup Of Tea",
+    "cupOfCoffee": "Cup Of Coffee",
+    "diets": "Diets",
+    "difficultyInPreparation": "Difficulty in preparation",
+    "preparationTime": "Preparation Time",
+    "selectTheMeasurement": "Select The Measurement",
+    "delete": "Delete",
+    "whatToDoWithHistory": "What do you want to do with this history?",
+    "Home": "Home",
+    "current": "Current",
+    "goal": "Goal"
 
 }

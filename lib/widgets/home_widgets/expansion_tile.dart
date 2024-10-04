@@ -4,6 +4,7 @@ import 'package:focofit/extensions/extension.dart';
 import 'package:focofit/utils/app_colors.dart';
 import 'package:focofit/utils/app_strings.dart';
 import 'package:focofit/utils/k_text_styles.dart';
+import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class CustomExpandableContainer extends StatelessWidget {
@@ -67,7 +68,7 @@ class CustomExpandableContainer extends StatelessWidget {
         ),
         backgroundColor: Colors.transparent,
         expandedAlignment: Alignment.topRight,
-        tilePadding: EdgeInsets.symmetric( horizontal: 2.w),
+        tilePadding: EdgeInsets.symmetric( horizontal: 2.w,vertical: 1.h),
         childrenPadding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
         collapsedBackgroundColor: Colors.transparent,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
@@ -113,14 +114,18 @@ class KHomeListTile extends StatelessWidget {
   final VoidCallback? onPlusTap;
   final VoidCallback? onMinusTap;
 
-  const KHomeListTile({
+  KHomeListTile({
     super.key,
     required this.title,
     required this.subtitle,
     required this.imageUrl,
-    this.onPlusTap, this.onMinusTap, required this.borderColor,
-
+    this.onPlusTap,
+    this.onMinusTap,
+    required this.borderColor,
   });
+
+  final FixedExtentScrollController kgController = FixedExtentScrollController();
+  final RxInt selectedWeightKg = 0.obs;
 
   @override
   Widget build(BuildContext context) {
@@ -137,22 +142,47 @@ class KHomeListTile extends StatelessWidget {
         ],
       ),
       child: ListTile(
-        contentPadding: EdgeInsets.symmetric(horizontal: 2.w),
+        contentPadding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 1.h),
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            KText(text: title, fontSize: 14,fontWeight: FontWeight.w600,),
-            KText(text: subtitle, fontSize: 12,fontWeight: FontWeight.w500,color: AppColor.greyColor),
-            const Icon(Icons.keyboard_arrow_down_rounded,color: Colors.black,)
+            KText(
+              text: title,
+              fontSize: 14,
+              fontWeight: FontWeight.w600,
+            ),
+            KText(
+              text: subtitle,
+              fontSize: 12,
+              fontWeight: FontWeight.w500,
+              color: AppColor.greyColor,
+            ),
+            const Icon(
+              Icons.keyboard_arrow_down_rounded,
+              color: Colors.black,
+            ),
           ],
         ),
-        leading: Image(image: AssetImage(imageUrl),),
+        leading: Image(
+          image: AssetImage(imageUrl),
+        ),
         trailing: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
+            /// Decrement in ListWheelScrollView
             GestureDetector(
-              onTap: onMinusTap,
+              onTap: () {
+                // Decrement the selected index
+                if (selectedWeightKg.value > 0) {
+                  selectedWeightKg.value--;
+                  kgController.animateToItem(
+                    selectedWeightKg.value,
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.easeInOut,
+                  );
+                }
+              },
               child: Container(
                 height: 4.5.h,
                 width: 10.w,
@@ -166,11 +196,50 @@ class KHomeListTile extends StatelessWidget {
                 ),
               ),
             ),
-            2.xSpace,
-            KText(text: '500',),
-            2.xSpace,
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.2,
+              width: MediaQuery.of(context).size.width * 0.15,
+              child: ListWheelScrollView.useDelegate(
+                controller: kgController,
+                onSelectedItemChanged: (value) {
+                  selectedWeightKg.value = value;
+                },
+                itemExtent: 20,
+                perspective: 0.006,
+                diameterRatio: 1.6,
+                physics: const FixedExtentScrollPhysics(),
+                childDelegate: ListWheelChildBuilderDelegate(
+                  childCount: 120,
+                  builder: (context, index) {
+                    return Obx(
+                          () => Center(
+                        child: KText(
+                          text: index.toString(),
+                          fontSize: index == selectedWeightKg.value ? 16 : 15,
+                          fontWeight: index == selectedWeightKg.value
+                              ? FontWeight.w600
+                              : FontWeight.w400,
+                          color: AppColor.greyColor,
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ),
+            /// Increment in ListWheelScrollView
             GestureDetector(
-              onTap: onPlusTap,
+              onTap: () {
+                // Increment the selected index
+                if (selectedWeightKg.value < 119) {
+                  selectedWeightKg.value++;
+                  kgController.animateToItem(
+                    selectedWeightKg.value,
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.easeInOut,
+                  );
+                }
+              },
               child: Container(
                 height: 4.5.h,
                 width: 10.w,

@@ -1,12 +1,14 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:focofit/components/k_buttons.dart';
 import 'package:focofit/controller/fasting_controller.dart';
 import 'package:focofit/extensions/extension.dart';
-import 'package:focofit/screens/fast_ui/fasting_bottom_sheets.dart';
+import 'package:focofit/utils/k_text_styles.dart';
+import 'package:focofit/widgets/k_bottom_sheets/fasting_bottom_sheets.dart';
 import 'package:focofit/screens/fast_ui/see_fasting.dart';
 import 'package:focofit/utils/app_colors.dart';
 import 'package:focofit/utils/app_strings.dart';
-import 'package:focofit/utils/k_text_styles.dart';
 import 'package:focofit/widgets/k_app_bar.dart';
 import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -18,33 +20,51 @@ class FastingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: kAppBar(
-          title: AppStrings.intermittentFasting
+        title: AppStrings.intermittentFasting,
       ),
       body: GetBuilder<FastingController>(
-        init: Get.put(FastingController(),),
+        init: Get.put(FastingController()),
         tag: 'fastingController',
         builder: (controller) {
           return Column(
             children: [
               Expanded(
-                child: ListView.builder(
-                  itemCount: 8,
-                  itemBuilder: (context, index) {
-                    return Obx(() => GestureDetector(
-                        onTap: () => controller.selectedFasting.value = index,
-                        child: _buildFastingOption(controller, index),
+                child: Stack(
+                  alignment: Alignment.bottomCenter,
+                  children: [
+                    ListView.builder(
+                      itemCount: 8,
+                      itemBuilder: (context, index) {
+                        return Obx(() => GestureDetector(
+                          onTap: () => controller.selectedFasting.value = index,
+                          child: _buildFastingOption(controller, index),
+                        ));
+                      },
+                    ),
+                    SizedBox(
+                      width: double.infinity,
+                      height: 60,
+                      child: ClipRect(
+                        child: BackdropFilter(
+                          filter: ImageFilter.blur(sigmaX: 3.0, sigmaY: 3.0), // Adjust the blur strength here
+                          child: Container(
+                            color: AppColor.whiteColor.withOpacity(0.3), // Adjust opacity for better visibility
+                          ),
+                        ),
                       ),
-                    );
-                  },
+                    )                  ],
                 ),
               ),
-              Obx(() => _buildConfirmButton(controller, context))
+              Obx(() => _buildConfirmButton(controller, context)),
+              2.ySpace
+
             ],
           ).paddingSymmetric(horizontal: 2.h, vertical: 0.5.h);
         },
       ),
     );
   }
+
 
   Widget _buildFastingOption(FastingController controller, int index) {
     final isSelected = controller.selectedFasting.value == index;
@@ -63,9 +83,10 @@ class FastingScreen extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          KText(
+          const KText(
             text: '12 - 12',
-          fontSize: 20, fontWeight: FontWeight.w600
+            fontSize: 20,
+            fontWeight: FontWeight.w600,
           ),
           _buildDivider(),
           _buildFastingDetails(),
@@ -105,7 +126,7 @@ class FastingScreen extends StatelessWidget {
           width: 2.w,
           decoration: const BoxDecoration(
             shape: BoxShape.circle,
-            gradient: AppColor.primaryGradient
+            gradient: AppColor.primaryGradient,
           ),
         ),
         2.xSpace,
@@ -119,7 +140,6 @@ class FastingScreen extends StatelessWidget {
 
   Widget _buildConfirmButton(FastingController controller, BuildContext context) {
     final isSelectionValid = controller.selectedFasting.value != -1;
-
     return kTextButton(
       btnText: AppStrings.confirmSelection,
       onPressed: isSelectionValid
@@ -135,7 +155,7 @@ class FastingScreen extends StatelessWidget {
           : null,
       color: isSelectionValid ? null : AppColor.greyColor,
       useGradient: isSelectionValid,
-      fontSize: 16
+      fontSize: 16,
     );
   }
 }

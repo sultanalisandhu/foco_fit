@@ -269,4 +269,18 @@ class AppStrings {
   static String  rememberEvery = "rememberEvery".tr;
   static String  rememberFrom = "rememberFrom".tr;
   static String  mealEatingReminder = "mealEatingReminder".tr;
+  static String  dessertSpoon = "dessertSpoon".tr;
+  static String  teaSpoon = "teaSpoon".tr;
+  static String  tableSpoon = "tableSpoon".tr;
+  static String  cupOfTea = "cupOfTea".tr;
+  static String  cupOfCoffee = "cupOfCoffee".tr;
+  static String  diets = "diets".tr;
+  static String  difficultyInPreparation = "difficultyInPreparation".tr;
+  static String  preparationTime = "preparationTime".tr;
+  static String  selectTheMeasurement = "selectTheMeasurement".tr;
+  static String  delete = "delete".tr;
+  static String  whatToDoWithHistory = "whatToDoWithHistory".tr;
+  static String  home = "home".tr;
+  static String  current = "current".tr;
+  static String  goal = "goal".tr;
 }

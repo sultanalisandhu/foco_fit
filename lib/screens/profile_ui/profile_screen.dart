@@ -12,7 +12,6 @@ import 'package:focofit/screens/profile_ui/k_bar_charts/calories_chart.dart';
 import 'package:focofit/screens/profile_ui/k_bar_charts/neutrients_charts.dart';
 import 'package:focofit/screens/profile_ui/profile_setting_ui/profile_setting.dart';
 import 'package:focofit/screens/profile_ui/weight_history_screen.dart';
-import 'package:focofit/utils/app_colors.dart';
 import 'package:focofit/utils/app_strings.dart';
 import 'package:focofit/utils/k_text_styles.dart';
 import 'package:focofit/widgets/k_app_bar.dart';
@@ -45,10 +44,10 @@ class ProfileScreen extends StatelessWidget {
                   onTap: ()=>Get.to(()=> SubscribedScreen(),),
                   title: AppStrings.becomeProSubscriber,
                   subTitle: AppStrings.subscribeBenefit,
-                gradient: AppColor.primaryGradient,
               ),
-              KText(text:  AppStrings.countryHistory,fontSize: 18),
                 3.ySpace,
+              KText(text:  AppStrings.countryHistory,fontSize: 18),
+                2.ySpace,
                 CaloriesGraphScreen(
                   controller: c,
                   onButtonTap: (){
@@ -56,14 +55,16 @@ class ProfileScreen extends StatelessWidget {
                   },
                   btnText: AppStrings.historicalEditor,
                 ),
-                10.height,
+                2.ySpace,
                 KText(text:  AppStrings.icmHistory,fontSize: 18),
+                1.ySpace,
                 IcmHistoryChart(
                   controller: c,
                   onButtonTap: (){},
                   btnText: AppStrings.historicalEditor,),
-                10.height,
+                2.ySpace,
                 KText(text:  AppStrings.waterHistory,fontSize: 18),
+                1.ySpace,
                 AquaChart(
                   controller: c,
                   onButtonTap: (){
@@ -71,8 +72,9 @@ class ProfileScreen extends StatelessWidget {
                   },
                   btnText: AppStrings.historicalEditor,
                 ),
-                10.height,
+                2.ySpace,
                 KText(text:  AppStrings.activityHistory,fontSize: 18),
+                1.ySpace,
                 ActivityChart(
                   controller: c,
                   onButtonTap: (){
@@ -80,9 +82,9 @@ class ProfileScreen extends StatelessWidget {
                   },
                   btnText: AppStrings.historicalEditor,
                 ),
-                10.height,
+                2.ySpace,
                 KText(text:  AppStrings.foodHistory,fontSize: 18),
-                10.height,
+                1.ySpace,
                 FeedingChart(
                   controller: c,
                   onButtonTap: (){
@@ -90,15 +92,15 @@ class ProfileScreen extends StatelessWidget {
                   },
                   btnText: AppStrings.historicalEditor,
                 ),
-                10.height,
+                2.ySpace,
                 KText(text:  AppStrings.macronutrientHistory,fontSize: 18),
-                10.height,
+                1.ySpace,
                 NutrientsCharts(
                   controller: c,
                 ),
-                10.height,
+                2.ySpace,
                 KText(text:  AppStrings.fastingHistory,fontSize: 18),
-                10.height,
+                1.ySpace,
                 FastingChart(
                   controller: c,
                   onButtonTap: (){

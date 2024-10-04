@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:focofit/components/k_buttons.dart';
 import 'package:focofit/extensions/extension.dart';
-import 'package:focofit/screens/fast_ui/fasting_bottom_sheets.dart';
+import 'package:focofit/widgets/k_bottom_sheets/fasting_bottom_sheets.dart';
 import 'package:focofit/utils/app_colors.dart';
 import 'package:focofit/utils/app_strings.dart';
 import 'package:focofit/utils/k_text_styles.dart';
@@ -49,7 +49,7 @@ class SeeFasting extends StatelessWidget {
                   widgetIndicator: Container(
                       margin: const EdgeInsets.only(right: 20),
                       child: const Icon(Icons.circle,color: Colors.white,size: 12,)),
-                  radius: 17.h,
+                  radius: 15.h,
                   lineWidth: 20,
                   backgroundWidth: 22,
                   percent: 0.4,
@@ -105,10 +105,9 @@ class SeeFasting extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  KText(text:  '${AppStrings.currentFastingPlan}: (17/08)',fontWeight: FontWeight.w500,),
+                  KText(text:  '${AppStrings.currentFastingPlan}: (17/08)',fontSize: 16,fontWeight: FontWeight.w500,),
                   GradientText(
                     onTextTap: (){
-                      Navigator.pop(context);
                       Navigator.pop(context);
                     },
                     text: AppStrings.alter,
@@ -122,7 +121,7 @@ class SeeFasting extends StatelessWidget {
       ),
 
       bottomNavigationBar: Container(
-        padding: EdgeInsets.symmetric(horizontal: 1.h,vertical: 1.h),
+        padding: EdgeInsets.symmetric(horizontal: 1.5.h,vertical: 2.h),
         child: kTextButton(
             onPressed: (){
               KFastBottomSheet.breakFastSheet(context,
