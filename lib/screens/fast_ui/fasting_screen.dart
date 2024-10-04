@@ -14,10 +14,22 @@ import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class FastingScreen extends StatelessWidget {
-  const FastingScreen({super.key});
+  FastingScreen({super.key});
+
+  final ScrollController _scrollController = ScrollController();
+  final RxBool isBlurVisible = true.obs;
 
   @override
   Widget build(BuildContext context) {
+    _scrollController.addListener(() {
+      if (_scrollController.position.atEdge) {
+        bool isBottom = _scrollController.position.pixels == _scrollController.position.maxScrollExtent;
+        isBlurVisible.value = !isBottom;
+      } else {
+        isBlurVisible.value = true;
+      }
+    });
+
     return Scaffold(
       appBar: kAppBar(
         title: AppStrings.intermittentFasting,
@@ -33,6 +45,7 @@ class FastingScreen extends StatelessWidget {
                   alignment: Alignment.bottomCenter,
                   children: [
                     ListView.builder(
+                      controller: _scrollController, // Attach the ScrollController
                       itemCount: 8,
                       itemBuilder: (context, index) {
                         return Obx(() => GestureDetector(
@@ -41,23 +54,30 @@ class FastingScreen extends StatelessWidget {
                         ));
                       },
                     ),
-                    SizedBox(
-                      width: double.infinity,
-                      height: 60,
-                      child: ClipRect(
-                        child: BackdropFilter(
-                          filter: ImageFilter.blur(sigmaX: 3.0, sigmaY: 3.0), // Adjust the blur strength here
-                          child: Container(
-                            color: AppColor.whiteColor.withOpacity(0.3), // Adjust opacity for better visibility
+                    // Use Obx only for controlling the blur visibility
+                    Obx(() {
+                      return AnimatedOpacity(
+                        opacity: isBlurVisible.value ? 1.0 : 0.0,
+                        duration: const Duration(milliseconds: 300),
+                        child: SizedBox(
+                          width: double.infinity,
+                          height: 70,
+                          child: ClipRRect(
+                            child: BackdropFilter(
+                              filter: ImageFilter.blur(sigmaX: 3.0, sigmaY: 3.0),
+                              child: Container(
+                                color: AppColor.whiteColor.withOpacity(0.3),
+                              ),
+                            ),
                           ),
                         ),
-                      ),
-                    )                  ],
+                      );
+                    }),
+                  ],
                 ),
               ),
               Obx(() => _buildConfirmButton(controller, context)),
-              2.ySpace
-
+              2.ySpace,
             ],
           ).paddingSymmetric(horizontal: 2.h, vertical: 0.5.h);
         },
@@ -66,17 +86,19 @@ class FastingScreen extends StatelessWidget {
   }
 
 
+
+
   Widget _buildFastingOption(FastingController controller, int index) {
     final isSelected = controller.selectedFasting.value == index;
 
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 15),
+      margin: EdgeInsets.only(bottom: 3.h),
       padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
       decoration: BoxDecoration(
         color: AppColor.whiteColor,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-          color: isSelected ? AppColor.startGradient : AppColor.greyBorder,
+          color: isSelected ? AppColor.startGradient : AppColor.lightGreyBorder,
         ),
         boxShadow: const [AppColor.shadow],
       ),
@@ -97,10 +119,10 @@ class FastingScreen extends StatelessWidget {
 
   Widget _buildDivider() {
     return Container(
-      width: 0.5.w,
+      width: 0.2.w,
       height: 5.h,
       decoration: BoxDecoration(
-        color: AppColor.greyColor,
+        color: AppColor.lightGreyBorder,
         borderRadius: BorderRadius.circular(12),
       ),
     );
@@ -111,6 +133,7 @@ class FastingScreen extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         _buildFastingRow('12 ${AppStrings.fastingHours}'),
+        1.ySpace,
         _buildFastingRow('12 ${AppStrings.hoursEating}'),
       ],
     );
@@ -122,8 +145,8 @@ class FastingScreen extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Container(
-          height: 2.h,
-          width: 2.w,
+          height: 1.5.h,
+          width: 1.5.w,
           decoration: const BoxDecoration(
             shape: BoxShape.circle,
             gradient: AppColor.primaryGradient,
@@ -132,7 +155,7 @@ class FastingScreen extends StatelessWidget {
         2.xSpace,
         KText(
           text: text,
-          fontSize: 16,
+          fontSize: 15,
         ),
       ],
     );

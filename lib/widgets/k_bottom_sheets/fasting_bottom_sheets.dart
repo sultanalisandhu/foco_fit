@@ -91,24 +91,21 @@ class KFastBottomSheet {
                         text: (index + 1).toString(),
                         gradient: AppColor.primaryGradient,
                         style: kTextStyle(
-                          fontSize: 18,
+                          fontSize: 22,
                           fontWeight: FontWeight.w600,
                         ),
                       )
-                          : Text(
-                        (index + 1).toString(),
-                        style: kTextStyle(
+                          : KText(text: (index + 1).toString(),
                           fontSize: 18,
                           fontWeight: FontWeight.w600,
                           color: Colors.black.withOpacity(0.6),
-                        ),
                       ),
                     ));
                   },
                 ),
               ),
             ),
-            const KText(text: ':',fontSize: 18),
+            const KText(text: ':',fontSize: 20),
             // Min ScrollView
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.25,
@@ -131,17 +128,14 @@ class KFastBottomSheet {
                         text: (index + 1).toString(),
                         gradient: AppColor.primaryGradient,
                         style: kTextStyle(
-                          fontSize: 18,
+                          fontSize: 22,
                           fontWeight: FontWeight.w600,
                         ),
                       )
-                          : Text(
-                        (index + 1).toString(),
-                        style: kTextStyle(
+                          : KText(text: (index + 1).toString(),
                           fontSize: 18,
                           fontWeight: FontWeight.w600,
                           color: Colors.black.withOpacity(0.6),
-                        ),
                       ),
                     ));
                   },

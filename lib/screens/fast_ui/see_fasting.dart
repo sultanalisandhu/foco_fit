@@ -121,7 +121,7 @@ class SeeFasting extends StatelessWidget {
       ),
 
       bottomNavigationBar: Container(
-        padding: EdgeInsets.symmetric(horizontal: 1.5.h,vertical: 2.h),
+        padding: EdgeInsets.symmetric(horizontal: 4.w,vertical: 2.h),
         child: kTextButton(
             onPressed: (){
               KFastBottomSheet.breakFastSheet(context,
@@ -136,7 +136,7 @@ class SeeFasting extends StatelessWidget {
             },
             useGradient: true,
             btnText: AppStrings.startFasting,
-            fontSize: 14
+            fontSize: 16
         ),
       ),
     );
