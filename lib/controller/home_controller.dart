@@ -1,18 +1,25 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 
 class HomeController extends GetxController {
   /// TextEditingControllers
   final TextEditingController searchController = TextEditingController();
   final TextEditingController foodNameController = TextEditingController();
   final TextEditingController ingredientsController = TextEditingController();
+  final FixedExtentScrollController kgController = FixedExtentScrollController();
+  final FixedExtentScrollController grController = FixedExtentScrollController();
+  final FixedExtentScrollController waterController = FixedExtentScrollController();
+  final FixedExtentScrollController waterLiterController = FixedExtentScrollController();
+
 
   /// Variables
   final currentDate = DateTime.now().obs;
   final selectedDay = Rx<int?>(DateTime.now().day);
   final daysInMonth = <int>[].obs;
-
+  final RxInt selectedWeightKg = 60.obs;
+  final RxInt selectedWeightGr = 600.obs;
+  final RxInt selectedWater = 60.obs;
+  final RxInt selectedWaterLiter = 600.obs;
   /// Methods
   @override
   void onInit() {

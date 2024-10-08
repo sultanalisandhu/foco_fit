@@ -18,17 +18,14 @@ class SubScribedContainer extends StatelessWidget {
       onTap: onTap,
       child: Container(
         width: mQ.width,
-        padding: EdgeInsets.symmetric(vertical: 0.2.h,horizontal: 0.5.h),
-
         decoration: BoxDecoration(
           gradient: AppColor.primaryGradient,
           borderRadius: BorderRadius.circular(16),
         ),
         child: ListTile(
-          contentPadding: EdgeInsets.zero,
           leading: const Image(image: AssetImage(AppImages.crownImg)),
-          title:  KText(text: title, fontSize: 15,color: AppColor.whiteColor,),
-          subtitle:   KText(text: subTitle, fontSize: 13,color: AppColor.whiteColor,),
+          title:  KText(text: title,color: AppColor.whiteColor,fontWeight: FontWeight.w600,fontSize: 15,),
+          subtitle:   KText(text: subTitle,color: AppColor.whiteColor,fontWeight: FontWeight.w500,),
         ),
       ),
     );

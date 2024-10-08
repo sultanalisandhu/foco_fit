@@ -377,8 +377,6 @@ class KPersonalDataSheet {
     );
   }
 
-
-
   static void editCurrentWeight(BuildContext context, {Function()? onConfirmTap,required ProfileController profileController}) {
     show(
       context: context,

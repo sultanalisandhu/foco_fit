@@ -2,15 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:focofit/components/k_buttons.dart';
 import 'package:focofit/components/k_svg_icon.dart';
 import 'package:focofit/components/k_text_fields.dart';
+import 'package:focofit/controller/home_controller.dart';
 import 'package:focofit/extensions/extension.dart';
 import 'package:focofit/screens/home_ui/search_recipe_manually.dart';
 import 'package:focofit/utils/app_colors.dart';
-import 'package:focofit/models/k_models/home_data.dart';
 import 'package:focofit/utils/app_strings.dart';
 import 'package:focofit/utils/asset_utils.dart';
 import 'package:focofit/utils/k_text_styles.dart';
 import 'package:focofit/widgets/recipe_widgets/k_circular_progress_bar.dart';
 import 'package:get/get.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class KHomeBottomSheet {
   // Common method to show the bottom sheet
@@ -42,7 +43,6 @@ class KHomeBottomSheet {
                 _buildHeader(),
                 20.height,
                 _buildTitle(title),
-                const Divider(color: AppColor.greyColor),
                 10.height,
                 ...content,
                 const Spacer(),
@@ -63,37 +63,46 @@ class KHomeBottomSheet {
       context: context,
       title: AppStrings.quickRegistration,
       content: [
+        20.height,
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             GestureDetector(
               onTap: onExerciseTap,
               child: Container(
-                padding: const EdgeInsets.symmetric(vertical: 20,horizontal: 15),
+                height: 17.h,
+                width: 29.w,
+                padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 15),
                 decoration: BoxDecoration(
                   border: Border.all(color: AppColor.greyBorder),
                   borderRadius: BorderRadius.circular(12)
                 ),
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Image.asset(AppImages.dumbellImg,height: 50,width: 50,),
-                    Text(AppStrings.exercise,style: primaryTextStyle(fontSize: 14,fontWeight: FontWeight.w500),)
+                    Image.asset(AppImages.dumbellImg,height: 90,width: 110,),
+                    KText(text:  AppStrings.exercise,fontWeight: FontWeight.w400,fontSize: 18,)
                   ],
                 ),
               ),
             ),
+            30.width,
             GestureDetector(
               onTap: onSnackTap,
               child: Container(
+                height: 17.h,
+                width: 29.w,
                 padding: const EdgeInsets.symmetric(vertical: 20,horizontal: 15),
                 decoration: BoxDecoration(
                   border: Border.all(color: AppColor.greyBorder),
                   borderRadius: BorderRadius.circular(12)
                 ),
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.asset(AppImages.choclateImg,height: 50,width: 50,),
-                    Text(AppStrings.snack,style: primaryTextStyle(fontSize: 14,fontWeight: FontWeight.w500),)
+                    Image.asset(AppImages.choclateImg,height: 80,width: 110,),
+                    2.height,
+                    KText(text:  AppStrings.snack,fontWeight: FontWeight.w400,fontSize: 18,)
                   ],
                 ),
               ),
@@ -101,7 +110,7 @@ class KHomeBottomSheet {
           ],
         )
       ],
-      heightFactor: 0.28,
+      heightFactor: 0.35,
     );
   }
 
@@ -171,23 +180,19 @@ class KHomeBottomSheet {
       context: context,
       title: AppStrings.recordMeal,
       content: [
-        SizedBox(
-          height: mQ.height*0.15,
-          child: ListView.builder(
-            itemCount: registerRecipeList.length,
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (context, index) {
-              return Obx(() => GestureDetector(
-                onTap: () {
-                  if(index==0){
-                    Get.back();
-                    Get.to((()=> SearchRecipeManually()));
-                  }else{
-                  }
+        3.ySpace,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Expanded(
+              flex: 1,
+              child: GestureDetector(
+                onTap: (){
+                  Get.to(()=>SearchRecipeManually());
                 },
                 child: Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 5),
-                  padding: const EdgeInsets.symmetric(horizontal: 15),
+                  height: 17.h,
+                  padding:  EdgeInsets.symmetric(horizontal: 2.w,vertical: 1.h),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     border: Border.all(
@@ -197,23 +202,82 @@ class KHomeBottomSheet {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Image(
-                        image: AssetImage(registerRecipeList[index].iconPath.toString()),
-                        height: 50,
-                        width: 50,
+                     const  Image(
+                        image: AssetImage(AppImages.blueSearchImg),
+                        height: 70,
+                        width: 70,
                       ),
-                      Text(
-                        registerRecipeList[index].title.toString(),
+                      KText( text: AppStrings.searchManually,
                         textAlign: TextAlign.center,
-                        style: primaryTextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16,
                       ),
                     ],
                   ),
                 ),
-              ));
-            },
-          ),
+              ),
+            ),
+            5.xSpace,
+            Expanded(
+              flex: 1,
+              child: Container(
+                height: 17.h,
+                padding:  EdgeInsets.symmetric(horizontal: 2.w,vertical: 1.h),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(
+                    color: AppColor.greyColor,
+                  ),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Image(
+                      image: AssetImage(AppImages.blueCameraImg),
+                      height: 70,
+                      width: 70,
+                    ),
+                    KText( text: AppStrings.identifyWithAI,
+                      textAlign: TextAlign.center,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 16,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            5.xSpace,
+            Expanded(
+              flex: 1,
+              child: Container(
+                height: 17.h,
+                padding:  EdgeInsets.symmetric(horizontal: 2.w,vertical: 1.h),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(
+                    color: AppColor.greyColor,
+                  ),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                   const  Image(
+                      image: AssetImage(AppImages.blueBarcodeImg),
+                      height: 80,
+                      width: 80,
+                    ),
+                    KText( text: AppStrings.barcode,
+                      textAlign: TextAlign.center,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 16,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
         ),
+
       ],
       heightFactor: 0.35,
     );
@@ -289,7 +353,181 @@ class KHomeBottomSheet {
     );
   }
 
+  static void goalWeight(BuildContext context, {Function()? onConfirmTap,required HomeController homeController}) {
+    show(
+      context: context,
+      title: '${AppStrings.register} ${AppStrings.currentWeight}',
+      content: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.25,
+              width: MediaQuery.of(context).size.width * 0.25,
+              child: ListWheelScrollView.useDelegate(
+                controller: homeController.kgController,
+                onSelectedItemChanged: (value) {
+                  homeController.selectedWeightKg.value = value;
+                },
+                itemExtent: 55,
+                perspective: 0.004,
+                diameterRatio: 1.6,
+                physics: const FixedExtentScrollPhysics(),
+                childDelegate: ListWheelChildBuilderDelegate(
+                  childCount: 120,
+                  builder: (context, index) {
+                    return Obx(()=> Center(
+                      child: index == homeController.selectedWeightKg.value
+                          ? GradientText(text: index.toString(), gradient: AppColor.primaryGradient,style: primaryTextStyle(
+                          fontSize: 35,
+                          fontWeight: FontWeight.w600
+                      ),)
+                          : Text(
+                        index.toString(),
+                        style:  primaryTextStyle(fontSize: 25, fontWeight: FontWeight.w500,color: Colors.black.withOpacity(0.7)),
+                      ),
+                    ),
+                    );
+                  },
+                ),
+              ),
+            ),
+            Text(
+              'Kg',
+              textAlign: TextAlign.end,
+              style: primaryTextStyle(fontSize: 20.0, fontWeight: FontWeight.w400, color: Colors.black,),
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.25,
+              width: MediaQuery.of(context).size.width * 0.25,
+              child: ListWheelScrollView.useDelegate(
+                controller: homeController.grController,
+                onSelectedItemChanged: (value) {
+                  homeController.selectedWeightGr.value = value;
+                },
+                itemExtent: 55,
+                perspective: 0.004,
+                diameterRatio: 1.6,
+                physics: const FixedExtentScrollPhysics(),
+                childDelegate: ListWheelChildBuilderDelegate(
+                  childCount: 1000,
+                  builder: (context, index) {
+                    return Obx(()=> Center(
+                      child: index == homeController.selectedWeightGr.value
+                          ? GradientText(text: index.toString(), gradient: AppColor.primaryGradient,style: primaryTextStyle(
+                          fontSize: 35,
+                          fontWeight: FontWeight.w600
+                      ),)
+                          : Text(
+                        index.toString(),
+                        style:  primaryTextStyle(fontSize: 25, fontWeight: FontWeight.w500,color: Colors.black.withOpacity(0.7)),
+                      ),
+                    ),
+                    );
+                  },
+                ),
+              ),
+            ),
+            Text(
+              'Gr',
+              textAlign: TextAlign.end,
+              style: primaryTextStyle(fontSize: 20.0, fontWeight: FontWeight.w400, color: Colors.black,),
+            ),
+          ],
+        ),
+      ],
+      onConfirmTap: onConfirmTap,
+      heightFactor: 0.48,
+    );
+  }
 
+  static void recordWaterConsumption(BuildContext context, {Function()? onConfirmTap,required HomeController homeController}) {
+    show(
+      context: context,
+      title: AppStrings.recordWaterConsumption,
+      content: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.25,
+              width: MediaQuery.of(context).size.width * 0.2,
+              child: ListWheelScrollView.useDelegate(
+                controller: homeController.waterController,
+                onSelectedItemChanged: (value) {
+                  homeController.selectedWater.value = value;
+                },
+                itemExtent: 55,
+                perspective: 0.004,
+                diameterRatio: 1.6,
+                physics: const FixedExtentScrollPhysics(),
+                childDelegate: ListWheelChildBuilderDelegate(
+                  childCount: 120,
+                  builder: (context, index) {
+                    return Obx(()=> Center(
+                      child: index == homeController.selectedWater.value
+                          ? GradientText(text: index.toString(), gradient: AppColor.primaryGradient,style: primaryTextStyle(
+                          fontSize: 35,
+                          fontWeight: FontWeight.w600
+                      ),)
+                          : Text(
+                        index.toString(),
+                        style:  primaryTextStyle(fontSize: 25, fontWeight: FontWeight.w500,color: Colors.black.withOpacity(0.7)),
+                      ),
+                    ),
+                    );
+                  },
+                ),
+              ),
+            ),
+           const  KText(
+              text: ',',
+             fontSize: 20,
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.25,
+              width: MediaQuery.of(context).size.width * 0.25,
+              child: ListWheelScrollView.useDelegate(
+                controller: homeController.waterLiterController,
+                onSelectedItemChanged: (value) {
+                  homeController.selectedWaterLiter.value = value;
+                },
+                itemExtent: 55,
+                perspective: 0.004,
+                diameterRatio: 1.6,
+                physics: const FixedExtentScrollPhysics(),
+                childDelegate: ListWheelChildBuilderDelegate(
+                  childCount: 1000,
+                  builder: (context, index) {
+                    return Obx(()=> Center(
+                      child: index == homeController.selectedWaterLiter.value
+                          ? GradientText(text: index.toString(), gradient: AppColor.primaryGradient,style: primaryTextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.w600
+                      ),)
+                          : Text(
+                        index.toString(),
+                        style:  primaryTextStyle(fontSize: 25, fontWeight: FontWeight.w500,color: Colors.black.withOpacity(0.7)),
+                      ),
+                    ),
+                    );
+                  },
+                ),
+              ),
+            ),
+            Text(
+              AppStrings.liter,
+              textAlign: TextAlign.end,
+              style: primaryTextStyle(fontSize: 20.0, fontWeight: FontWeight.w400, color: Colors.black,),
+            ),
+            10.height,
+          ],
+        ),
+      ],
+      onConfirmTap: onConfirmTap,
+      heightFactor: 0.48,
+    );
+  }
 
   static Widget _buildHeader() {
     return Align(
@@ -319,6 +557,7 @@ class KHomeBottomSheet {
       onPressed: onConfirmTap!,
       btnText: AppStrings.save,
       useGradient: true,
+      fontSize: 16
     );
   }
 }

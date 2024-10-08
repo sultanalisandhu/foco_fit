@@ -38,6 +38,7 @@ class AppIcons{
   static const String heartIcon= 'assets/icons/heartIcon.svg';
   static const String searchIcon= 'assets/icons/searchIcon.svg';
   static const String barIcon= 'assets/icons/barIcon.svg';
+  static const String arrowDownIcon= 'assets/icons/arrowDownIcon.svg';
 }
 
 
@@ -71,5 +72,6 @@ class AppImages{
   static const String blueCameraImg= 'assets/images/blueCameraImg.png';
   static const String blueBarcodeImg= 'assets/images/blueBarcodeImg.png';
   static const String crownImg= 'assets/images/crownImg.png';
+  static const String waterDropImg= 'assets/images/waterDropImg.png';
 
 }

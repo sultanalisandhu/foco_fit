@@ -74,13 +74,13 @@ AppBar kProfileAppBar({
       onTap: onTileTap,
       contentPadding: const EdgeInsets.symmetric(horizontal: 10,vertical: 10),
       leading: CircleAvatar(
-        radius: 30,
+        radius: 25,
         backgroundImage: NetworkImage(imgPath!,),
       ),
       title: Text(title!),
       subtitle: Text(subTitle!),
-      titleTextStyle: primaryTextStyle(fontWeight: FontWeight.w500,fontSize: 14,color: AppColor.blackColor),
-      subtitleTextStyle: primaryTextStyle(fontWeight: FontWeight.w600,fontSize: 16,color: AppColor.blackColor),
+      titleTextStyle: kTextStyle(),
+      subtitleTextStyle: kTextStyle(fontWeight: FontWeight.w600,fontSize: 15),
       trailing: notificationCount!=null
           ? Stack(
         alignment: Alignment.center,
@@ -90,7 +90,7 @@ AppBar kProfileAppBar({
             child: SizedBox(
                 height: 50,
                 width: 70,
-                child: showSvgIconWidget(iconPath: AppIcons.bellIcon,onTap: trailingOnTap)),
+                child: Center(child: showSvgIconWidget(iconPath: AppIcons.bellIcon,onTap: trailingOnTap))),
           ),
           Container(
             padding: const EdgeInsets.all(3),

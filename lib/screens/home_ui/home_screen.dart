@@ -6,6 +6,7 @@ import 'package:focofit/extensions/extension.dart';
 import 'package:focofit/screens/home_ui/add_physical_activity/all_physical_activity.dart';
 import 'package:focofit/screens/home_ui/subscribed_screen.dart';
 import 'package:focofit/utils/app_strings.dart';
+import 'package:focofit/utils/asset_utils.dart';
 import 'package:focofit/utils/enums.dart';
 import 'package:focofit/utils/k_text_styles.dart';
 import 'package:focofit/widgets/k_bottom_sheets/home_bottom_sheets.dart';
@@ -77,10 +78,7 @@ class HomeScreen extends StatelessWidget {
                           },
                           child: Column(
                             children: [
-                              KText(
-                                text: dayOfWeek,
-                                fontSize: 12,fontWeight: FontWeight.w500,
-                              ),
+                              KText(text: dayOfWeek, fontSize: 16,fontWeight: FontWeight.w600,),
                               Container(
                                 width: 10.w,
                                 height: 5.h,
@@ -96,8 +94,8 @@ class HomeScreen extends StatelessWidget {
                                   KText(
                                     text:  day.toString(),
                                     color: isSelected ? Colors.white : Colors.black,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w500,
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 16,
                                   ),
                                 ),
                               ),
@@ -108,7 +106,6 @@ class HomeScreen extends StatelessWidget {
                     );
                   }),
                 ),
-
                 CaloriesContainer(
                   title: AppStrings.dailyGoal,
                   totalCalories: '1252',
@@ -155,7 +152,8 @@ class HomeScreen extends StatelessWidget {
                       );
                     },
                     btnText: AppStrings.quickCalorieLog,
-                  useGradient: true
+                  useGradient: true,
+                  fontSize: 15
                 ),
                 4.ySpace,
                 ListView.builder(
@@ -163,17 +161,39 @@ class HomeScreen extends StatelessWidget {
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   itemBuilder: (context, index) {
-                    if (index >= homeDataList.length - 2) {
+                    final randomColor = Color((Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0);
+                    if (index == homeDataList.length - 2) {
                       return KHomeListTile(
                         title: homeDataList[index].title,
-                        subtitle: 'Meta: dynamic value',
+                        subtitle: 'Meta: 0 / 7,0 l',
                         imageUrl: homeDataList[index].iconPath,
-                        borderColor: AppColor.redColor,
-
+                        borderColor: randomColor,
+                        subImageUrl: AppImages.waterDropImg,
+                        onPressed: (){
+                          KHomeBottomSheet.recordWaterConsumption(
+                              context,
+                              homeController: HomeController(),
+                              onConfirmTap: (){
+                                Navigator.pop(context);
+                              });
+                        },
                       );
-                    } else {
-                      // Render your CustomExpandableContainer for other items
-                      final randomColor = Color((Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0);
+                    } else if (index ==homeDataList.length - 1){
+                      return KHomeListTile(
+                        title: homeDataList[index].title,
+                        subtitle: 'Meta: 65,5 / 60,5 kg',
+                        imageUrl: homeDataList[index].iconPath,
+                        borderColor: randomColor,
+                        onPressed: (){
+                          KHomeBottomSheet.goalWeight(
+                              context,
+                              homeController: HomeController(),
+                              onConfirmTap: (){
+                            Navigator.pop(context);
+                          });
+                        },
+                      );
+                    }else {
                       return CustomExpandableContainer(
                         title: homeDataList[index].title,
                         subtitle: 'Meta diária: 100/1000 kcal',
@@ -184,27 +204,27 @@ class HomeScreen extends StatelessWidget {
                           {'name': 'Cafe com leite, 200ml ', 'calories': ' 120 kcal'},
                           {'name': 'Pão integral, 50g ', 'calories': ' 150 kcal'},
                         ],
-                          onTapTrailing: () {
-                            switch (homeDataList[index].type) {
-                              case HomeItemType.breakFast:
-                                KHomeBottomSheet.recordMeal(context);
-                                break;
-                              case HomeItemType.lunch:
-                                KHomeBottomSheet.recordMeal(context);
-                                break;
-                              case HomeItemType.toHaveLunch:
-                                KHomeBottomSheet.recordMeal(context);
-                                break;
-                              case HomeItemType.snacks:
-                                KHomeBottomSheet.recordMeal(context);
-                                break;
-                              case HomeItemType.physicalActivity:
-                                Get.to(() => AllPhysicalActivity());
-                                break;
-                              default:
-                                print('No matching action for ${homeDataList[index].title}');
-                            }
-                          },
+                        onTapTrailing: () {
+                          switch (homeDataList[index].type) {
+                            case HomeItemType.breakFast:
+                              KHomeBottomSheet.recordMeal(context);
+                              break;
+                            case HomeItemType.lunch:
+                              KHomeBottomSheet.recordMeal(context);
+                              break;
+                            case HomeItemType.toHaveLunch:
+                              KHomeBottomSheet.recordMeal(context);
+                              break;
+                            case HomeItemType.snacks:
+                              KHomeBottomSheet.recordMeal(context);
+                              break;
+                            case HomeItemType.physicalActivity:
+                              Get.to(() => AllPhysicalActivity());
+                              break;
+                            default:
+                              print('No matching action for ${homeDataList[index].title}');
+                          }
+                        },
                         onEditPressed: () {
                           print('Editor historico tapped');
                         },
@@ -212,7 +232,6 @@ class HomeScreen extends StatelessWidget {
                     }
                   },
                 )
-
               ],
             ),
           ),

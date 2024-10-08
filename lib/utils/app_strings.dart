@@ -287,4 +287,8 @@ class AppStrings {
   static String  asthma = "asthma".tr;
   static String  macroTarget = "macroTarget".tr;
   static String  automaticallyRecalculateLimit = "automaticallyRecalculateLimit".tr;
+  static String  remove = "remove".tr;
+  static String  register = "register".tr;
+  static String  recordWaterConsumption = "recordWaterConsumption".tr;
+  static String  liter = "liter".tr;
 }

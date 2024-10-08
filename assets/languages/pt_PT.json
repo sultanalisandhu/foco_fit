@@ -108,7 +108,7 @@
     "physicalActivity": "Atividades físicas",
     "water": "Água",
     "weight": "Peso",
-    "searchManually": "Pesquisar\nmanualmente",
+    "searchManually": "Pesquisar manualmente",
     "identifyWithAI": "Identificar\ncom IA",
     "barcode": "Código\nde barras",
     "recordMeal": "Registrar refeição",
@@ -284,6 +284,10 @@
     "diabetesResistance": "Diabetes ou resistência a insulina",
     "asthma": "Asma",
     "macroTarget": "Meta de macros",
-    "automaticallyRecalculateLimit": "Recalcular limite automaticamente"
+    "automaticallyRecalculateLimit": "Recalcular limite automaticamente",
+    "remove": "Remover",
+    "register": "Registrar",
+    "recordWaterConsumption": "Registrar consumo de água",
+    "liter": "litro"
 
 }

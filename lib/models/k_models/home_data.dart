@@ -54,19 +54,6 @@ class KHomeData {
   ),
 ].obs;
 
-RxList<KHomeData> registerRecipeList= [
-  KHomeData(
-    title: AppStrings.searchManually,
-    iconPath: AppImages.blueSearchImg,
-  ),
-  KHomeData(
-    title: AppStrings.identifyWithAI,
-    iconPath: AppImages.blueCameraImg,  ),
-  KHomeData(
-    title: AppStrings.barcode,
-    iconPath: AppImages.blueBarcodeImg,  ),
-].obs;
-
 RxList subscriptionList= [
  AppStrings.addFreeExperience,
   AppStrings.fullAccessToPremiumFeatures,

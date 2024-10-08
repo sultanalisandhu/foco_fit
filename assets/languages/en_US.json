@@ -256,7 +256,7 @@
     "macronutrientHistory": "Macronutrient History",
     "fastingHistory": "Fasting History",
     "notifications": "Notifications",
-    "deleteNotification": "deleteNotification",
+    "deleteNotification": "Delete Notification",
     "reallyDeleteNotification": "Do you really want to delete this notification? This action cannot be undone.",
     "noGoWantToBack": "No, I want to go back",
     "yesWantToDelete": "Yes I want to delete",
@@ -282,7 +282,10 @@
     "diabetesResistance": "Diabetes or insulin resistance",
     "asthma": "Asthma",
     "macroTarget": "Macro target",
-    "automaticallyRecalculateLimit": "Automatically Recalculate Limit"
-
-
+    "automaticallyRecalculateLimit": "Automatically Recalculate Limit",
+    "remove": "Remove",
+    "register": "Register",
+    "recordWaterConsumption": "Record Water Consumption",
+    "liter": "Liter",
+    "quickRegistration": "Quick Registration"
 }

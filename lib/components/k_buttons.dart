@@ -38,7 +38,7 @@ Widget kTextButton( {
       child: widget?? Text(
         btnText,
         textAlign: TextAlign.center,
-        style: kTextStyle(fontSize: fontSize??16.sp,
+        style: kTextStyle(fontSize: fontSize??14.sp,
           fontWeight: FontWeight.w600,
           color: textColor??AppColor.whiteColor),),
     ),

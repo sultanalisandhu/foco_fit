@@ -47,16 +47,17 @@ class NotificationScreen extends StatelessWidget {
               ),
               child: ListTile(
                 leading: showSvgIconWidget(iconPath: AppIcons.blackBellIcon),
-                title: const Text('Lorem notificatins here you can check'),
-                trailing: showSvgIconWidget(iconPath: AppIcons.blackDeleteIcon,
-                onTap: (){
+                title: const KText(text:  'Lorem notificatins here you can check',fontSize: 15),
+                trailing: GradientText(onTextTap: (){
                   _showBottomSheet(context,
-                  onConfirmTap: (){},
-                  onCancelTap: (){Navigator.pop(context);}
-                  );
-                }),
-                contentPadding: const EdgeInsets.symmetric(horizontal: 10,vertical: 5),
-                titleTextStyle: primaryTextStyle(fontSize: 14,fontWeight: FontWeight.w500),
+                    onConfirmTap: (){Navigator.pop(context);},
+                    onCancelTap: (){Navigator.pop(context);}
+                );},
+                  text: AppStrings.remove,
+                  gradient: AppColor.primaryGradient,
+                  style: kTextStyle(fontWeight: FontWeight.w500),
+                ),
+                contentPadding:  EdgeInsets.symmetric(horizontal: 4.w,vertical: 5),
               ),
             );
           }),
