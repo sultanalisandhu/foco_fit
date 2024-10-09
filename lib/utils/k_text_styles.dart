@@ -46,7 +46,7 @@ TextStyle kTextStyle({double? fontSize, FontWeight? fontWeight,Color? color,Text
   return GoogleFonts.inter(
       textStyle: TextStyle(
         decoration:textDecoration?? TextDecoration.none,
-        fontSize: fontSize!=null ? fontSize.sp: 14.sp,
+        fontSize: fontSize!=null ? fontSize.sp: 16.sp,
         fontWeight: fontWeight??FontWeight.w400,
         color: color??Colors.black,
       )

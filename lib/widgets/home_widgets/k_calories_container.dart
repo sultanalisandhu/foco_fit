@@ -45,7 +45,7 @@ class CaloriesContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 26, vertical: 24),
+      padding: const EdgeInsets.symmetric(horizontal: 26, vertical: 20),
       decoration: BoxDecoration(
         color: AppColor.whiteColor,
         borderRadius: BorderRadius.circular(12),

@@ -80,7 +80,7 @@ AppBar kProfileAppBar({
       title: Text(title!),
       subtitle: Text(subTitle!),
       titleTextStyle: kTextStyle(),
-      subtitleTextStyle: kTextStyle(fontWeight: FontWeight.w600,fontSize: 15),
+      subtitleTextStyle: kTextStyle(fontWeight: FontWeight.w600,fontSize: 16),
       trailing: notificationCount!=null
           ? Stack(
         alignment: Alignment.center,

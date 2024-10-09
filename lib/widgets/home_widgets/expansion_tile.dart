@@ -47,12 +47,12 @@ class CustomExpandableContainer extends StatelessWidget {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            KText(text: title, fontSize: 15,fontWeight: FontWeight.w600,),
+            KText(text: title, fontSize: 16,fontWeight: FontWeight.w600,),
             2.xSpace,
             showSvgIconWidget(iconPath: AppIcons.arrowDownIcon)
           ],
         ),
-        subtitle: KText(text: subtitle, fontSize: 13,fontWeight: FontWeight.w500,color: AppColor.greyColor,),
+        subtitle: KText(text: subtitle, fontSize: 14,fontWeight: FontWeight.w500,color: AppColor.greyColor,),
         leading: Image(image: AssetImage(imageUrl),),
         trailing: GestureDetector(
           onTap: onTapTrailing,
@@ -151,12 +151,12 @@ class KHomeListTile extends StatelessWidget {
           children: [
             KText(
               text: title,
-              fontSize: 15,
+              fontSize: 16,
               fontWeight: FontWeight.w600,
             ),
             KText(
               text: subtitle,
-              fontSize: 13,
+              fontSize: 14,
               fontWeight: FontWeight.w500,
               color: AppColor.greyColor,
             ),

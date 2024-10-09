@@ -72,7 +72,7 @@ class KHomeBottomSheet {
               child: Container(
                 height: 17.h,
                 width: 29.w,
-                padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 15),
+                padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 5),
                 decoration: BoxDecoration(
                   border: Border.all(color: AppColor.greyBorder),
                   borderRadius: BorderRadius.circular(12)
@@ -92,7 +92,7 @@ class KHomeBottomSheet {
               child: Container(
                 height: 17.h,
                 width: 29.w,
-                padding: const EdgeInsets.symmetric(vertical: 20,horizontal: 15),
+                padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 5),
                 decoration: BoxDecoration(
                   border: Border.all(color: AppColor.greyBorder),
                   borderRadius: BorderRadius.circular(12)
@@ -191,8 +191,8 @@ class KHomeBottomSheet {
                   Get.to(()=>SearchRecipeManually());
                 },
                 child: Container(
-                  height: 17.h,
-                  padding:  EdgeInsets.symmetric(horizontal: 2.w,vertical: 1.h),
+                  height: 16.h,
+                  // padding:  EdgeInsets.symmetric(horizontal: 2.w,vertical: 1.h),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     border: Border.all(
@@ -210,7 +210,7 @@ class KHomeBottomSheet {
                       KText( text: AppStrings.searchManually,
                         textAlign: TextAlign.center,
                         fontWeight: FontWeight.w600,
-                        fontSize: 16,
+                        fontSize: 15,
                       ),
                     ],
                   ),
@@ -221,7 +221,7 @@ class KHomeBottomSheet {
             Expanded(
               flex: 1,
               child: Container(
-                height: 17.h,
+                height: 16.h,
                 padding:  EdgeInsets.symmetric(horizontal: 2.w,vertical: 1.h),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
@@ -240,7 +240,7 @@ class KHomeBottomSheet {
                     KText( text: AppStrings.identifyWithAI,
                       textAlign: TextAlign.center,
                       fontWeight: FontWeight.w600,
-                      fontSize: 16,
+                      fontSize: 15,
                     ),
                   ],
                 ),
@@ -250,7 +250,7 @@ class KHomeBottomSheet {
             Expanded(
               flex: 1,
               child: Container(
-                height: 17.h,
+                height: 16.h,
                 padding:  EdgeInsets.symmetric(horizontal: 2.w,vertical: 1.h),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
@@ -263,13 +263,13 @@ class KHomeBottomSheet {
                   children: [
                    const  Image(
                       image: AssetImage(AppImages.blueBarcodeImg),
-                      height: 80,
-                      width: 80,
+                      height: 70,
+                      width: 70,
                     ),
                     KText( text: AppStrings.barcode,
                       textAlign: TextAlign.center,
                       fontWeight: FontWeight.w600,
-                      fontSize: 16,
+                      fontSize: 15,
                     ),
                   ],
                 ),
