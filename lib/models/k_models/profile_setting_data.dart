@@ -82,6 +82,10 @@ List<ProfileSettingData> profileSettingOnList= [
     iconPath: AppIcons.badgeIcon,
   ),
   ProfileSettingData(
+    title: AppStrings.switchLanguage,
+    iconPath: AppIcons.languageIcon,
+  ),
+  ProfileSettingData(
     title: AppStrings.privacyPolicies,
     iconPath: AppIcons.shieldIcon,
   ),

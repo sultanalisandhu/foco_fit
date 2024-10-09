@@ -288,6 +288,8 @@
     "remove": "Remover",
     "register": "Registrar",
     "recordWaterConsumption": "Registrar consumo de água",
-    "liter": "litro"
+    "liter": "litro",
+    "switchLanguage": "Mudar idioma",
+    "switchLanguageToEnjoyTHeApp": "mude o idioma para aproveitar o aplicativo"
 
 }

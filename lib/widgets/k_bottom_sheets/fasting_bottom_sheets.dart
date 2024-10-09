@@ -41,7 +41,7 @@ class KFastBottomSheet {
                 _buildHeader(),
                 1.ySpace,
                 _buildTitle(title),
-                const Divider(color: AppColor.greyColor),
+                const Divider(color: AppColor.lightGreyColor),
                 1.ySpace,
                 ...content,
                 const Spacer(),
@@ -64,8 +64,13 @@ class KFastBottomSheet {
       content: [
         Align(
             alignment: Alignment.center,
-            child: Text(AppStrings.chooseTimeToStartFast,style: primaryTextStyle(fontSize: 14,fontWeight: FontWeight.w400),)),
-
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12.0),
+              child: Text(
+                AppStrings.chooseTimeToStartFast,
+                textAlign: TextAlign.center,
+                style: primaryTextStyle(fontSize: 14,fontWeight: FontWeight.w400),),
+            )),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -91,7 +96,7 @@ class KFastBottomSheet {
                         text: (index + 1).toString(),
                         gradient: AppColor.primaryGradient,
                         style: kTextStyle(
-                          fontSize: 22,
+                          fontSize: 26,
                           fontWeight: FontWeight.w600,
                         ),
                       )
@@ -128,7 +133,7 @@ class KFastBottomSheet {
                         text: (index + 1).toString(),
                         gradient: AppColor.primaryGradient,
                         style: kTextStyle(
-                          fontSize: 22,
+                          fontSize: 26,
                           fontWeight: FontWeight.w600,
                         ),
                       )
@@ -219,8 +224,8 @@ class KFastBottomSheet {
 
   static Widget _buildConfirmButton(Function()? onConfirmTap) {
     return kTextButton(
-      height: 5,
-      fontSize: 14,
+      height: 6,
+      fontSize: 16,
       width: mQ.width,
       onPressed: onConfirmTap!,
       btnText: AppStrings.confirmTime,

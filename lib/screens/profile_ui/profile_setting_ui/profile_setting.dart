@@ -4,6 +4,7 @@ import 'package:focofit/components/k_svg_icon.dart';
 import 'package:focofit/controller/profile_controller.dart';
 import 'package:focofit/extensions/extension.dart';
 import 'package:focofit/screens/profile_ui/profile_setting_ui/calorie_goal_screen.dart';
+import 'package:focofit/screens/profile_ui/profile_setting_ui/change_app_language.dart';
 import 'package:focofit/screens/profile_ui/profile_setting_ui/macro_nutrients.dart';
 import 'package:focofit/screens/profile_ui/profile_setting_ui/medical_conditions.dart';
 import 'package:focofit/screens/profile_ui/profile_setting_ui/privacy_policy.dart';
@@ -262,11 +263,11 @@ class ProfileSetting extends StatelessWidget {
                         return ListTile(
                           onTap: (){
                             switch(index){
-                              case 1:
+                              case 0:
                                 Get.to(()=> PrivacyPolicy());
                                 break;
-                              case 2:
-                                Get.to(()=> PrivacyPolicy());
+                              case 1:
+                                Get.to(()=> ChangeAppLanguage());
                                 break;
                               case 3:
                                 Get.to(()=> TermsAndService());

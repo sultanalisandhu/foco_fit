@@ -4,7 +4,9 @@ import 'package:get_storage/get_storage.dart';
 class LocalStorage{
   static final GetStorage _storage= GetStorage();
   static const String bearerToken = 'bearerToken';
-  static const String userId = 'userId';
+  static const String languageName = 'languageName';
+  static const String languageCode = 'languageCode';
+  static const String languageCountryCode = 'languageCountryCode';
 
 
 

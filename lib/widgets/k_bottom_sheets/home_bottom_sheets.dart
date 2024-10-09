@@ -72,7 +72,7 @@ class KHomeBottomSheet {
               child: Container(
                 height: 17.h,
                 width: 29.w,
-                padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 5),
+                padding: const EdgeInsets.symmetric(horizontal: 5),
                 decoration: BoxDecoration(
                   border: Border.all(color: AppColor.greyBorder),
                   borderRadius: BorderRadius.circular(12)

@@ -33,7 +33,7 @@ AppBar kAppBar({
   )
       : const SizedBox.shrink(),
     title: title!=null
-        ? KText(text:title,fontSize: 18,fontWeight: FontWeight.w600)
+        ? KText(text:title,fontSize: 20,fontWeight: FontWeight.w600)
         : const SizedBox.shrink(),
     centerTitle: true,
     actions: [
@@ -92,7 +92,7 @@ AppBar kProfileAppBar({
             onTap: trailingOnTap,
             child: SizedBox(
                 height: 50,
-                width: 70,
+                width: 50,
                 child: Center(child: showSvgIconWidget(iconPath: AppIcons.bellIcon,onTap: trailingOnTap))),
           ),
           Container(

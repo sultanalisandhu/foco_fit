@@ -291,4 +291,6 @@ class AppStrings {
   static String  register = "register".tr;
   static String  recordWaterConsumption = "recordWaterConsumption".tr;
   static String  liter = "liter".tr;
+  static String  switchLanguage = "switchLanguage".tr;
+  static String  switchLanguageToEnjoyTHeApp = "switchLanguageToEnjoyTHeApp".tr;
 }

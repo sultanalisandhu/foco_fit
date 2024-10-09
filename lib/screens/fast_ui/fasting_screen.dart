@@ -33,6 +33,7 @@ class FastingScreen extends StatelessWidget {
     return Scaffold(
       appBar: kAppBar(
         title: AppStrings.intermittentFasting,
+        shadowColor: AppColor.blackColor.withOpacity(0.5)
       ),
       body: GetBuilder<FastingController>(
         init: Get.put(FastingController()),
@@ -40,6 +41,7 @@ class FastingScreen extends StatelessWidget {
         builder: (controller) {
           return Column(
             children: [
+              3.ySpace,
               Expanded(
                 child: Stack(
                   alignment: Alignment.bottomCenter,
@@ -107,7 +109,7 @@ class FastingScreen extends StatelessWidget {
         children: [
           const KText(
             text: '12 - 12',
-            fontSize: 20,
+            fontSize: 22,
             fontWeight: FontWeight.w600,
           ),
           _buildDivider(),
@@ -155,7 +157,7 @@ class FastingScreen extends StatelessWidget {
         2.xSpace,
         KText(
           text: text,
-          fontSize: 15,
+          fontSize: 16,
         ),
       ],
     );
@@ -176,7 +178,7 @@ class FastingScreen extends StatelessWidget {
         );
       }
           : null,
-      color: isSelectionValid ? null : AppColor.greyColor,
+      color: isSelectionValid ? null : AppColor.lightGreyBorder,
       useGradient: isSelectionValid,
       fontSize: 16,
     );

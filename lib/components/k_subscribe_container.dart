@@ -24,8 +24,8 @@ class SubScribedContainer extends StatelessWidget {
         ),
         child: ListTile(
           leading: const Image(image: AssetImage(AppImages.crownImg)),
-          title:  KText(text: title,color: AppColor.whiteColor,fontWeight: FontWeight.w600,fontSize: 15,),
-          subtitle:   KText(text: subTitle,color: AppColor.whiteColor,fontWeight: FontWeight.w500,),
+          title:  KText(text: title,color: AppColor.whiteColor,fontWeight: FontWeight.w700,),
+          subtitle:   KText(text: subTitle,color: AppColor.whiteColor,fontWeight: FontWeight.w600,fontSize: 12,),
         ),
       ),
     );
