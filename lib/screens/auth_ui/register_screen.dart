@@ -6,7 +6,6 @@ import 'package:focofit/components/k_text_fields.dart';
 import 'package:focofit/controller/auth_controller.dart';
 import 'package:focofit/extensions/extension.dart';
 import 'package:focofit/screens/auth_ui/login_screen.dart';
-import 'package:focofit/screens/auth_ui/registeration_progress_screens/select_datebirth.dart';
 import 'package:focofit/screens/auth_ui/registeration_progress_screens/select_name.dart';
 import 'package:focofit/utils/app_colors.dart';
 import 'package:focofit/utils/app_strings.dart';

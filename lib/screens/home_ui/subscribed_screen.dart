@@ -93,6 +93,8 @@ class _SubscribedScreenState extends State<SubscribedScreen> {
                     style: primaryTextStyle(fontSize: 16, fontWeight: FontWeight.w400),
                   ),
                 ),
+
+
               Divider(
                 height: 30,
                 color: AppColor.lightGreyColor.withOpacity(0.2),
@@ -121,9 +123,9 @@ class _SubscribedScreenState extends State<SubscribedScreen> {
           btnText: AppStrings.startExploringFeatures,
           useGradient: true,
           gradient: AppColor.redGradient,
-          height: 50,
           width: MediaQuery.of(context).size.width,
-          borderRadius: 26,
+          fontSize: 15
+
         ),
       ),
     );

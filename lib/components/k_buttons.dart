@@ -38,14 +38,59 @@ Widget kTextButton( {
       child: widget?? Text(
         btnText,
         textAlign: TextAlign.center,
-        style: kTextStyle(fontSize: fontSize??14.sp,
+        style: kTextStyle(fontSize: fontSize,
           fontWeight: FontWeight.w600,
           color: textColor??AppColor.whiteColor),),
     ),
   );
 }
 
+class KOutlineButton extends StatelessWidget {
+  final _GradientPainter _painter;
+  final Function() onTap;
+  final String btnText;
+  final double? fontSize;
+  final double? height;
+  final double? width;
+  final Gradient? textGradient;
 
+  KOutlineButton({
+    super.key,
+    required this.onTap,
+    required this.btnText,
+    required Gradient gradient,
+    this.textGradient,
+    this.height,
+    this.width,
+    this.fontSize,
+  })
+      : _painter = _GradientPainter(strokeWidth: 1, radius: 26, gradient: gradient);
+
+
+  @override
+  Widget build(BuildContext context) {
+    return CustomPaint(
+      painter: _painter,
+      child: GestureDetector(
+        onTap: onTap,
+        child: Container(
+          alignment: Alignment.center,
+          height: height != null ? height?.h : 6.h,
+          padding: const EdgeInsets.symmetric(horizontal: 15),
+          width: width,
+          child:
+          GradientText(
+            onTextTap: onTap,
+            text: btnText,
+            gradient: textGradient?? AppColor.primaryGradient,
+            style: kTextStyle(fontSize: fontSize,
+                fontWeight: FontWeight.w600,
+                color: AppColor.blackColor),),
+        ),
+      ),
+    );
+  }
+}
 
 
 Widget kNumberButton( {
@@ -132,52 +177,7 @@ Widget kSocialButton({
 }
 
 
-class KOutlineButton extends StatelessWidget {
-  final _GradientPainter _painter;
-  final Function() onTap;
-  final String btnText;
-  final double? fontSize;
-  final double? height;
-  final double? width;
-  final Gradient? textGradient;
 
-  KOutlineButton({
-    super.key,
-    required this.onTap,
-    required this.btnText,
-    required Gradient gradient,
-    this.textGradient,
-    this.height,
-    this.width,
-    this.fontSize,
-  })
-      : _painter = _GradientPainter(strokeWidth: 1, radius: 26, gradient: gradient);
-
-
-  @override
-  Widget build(BuildContext context) {
-    return CustomPaint(
-      painter: _painter,
-      child: GestureDetector(
-        onTap: onTap,
-        child: Container(
-          alignment: Alignment.center,
-          height: height??50,
-          padding: const EdgeInsets.symmetric(horizontal: 15),
-          width: width,
-          child:
-              GradientText(
-                onTextTap: onTap,
-                text: btnText,
-                gradient: textGradient?? AppColor.primaryGradient,
-                style: kTextStyle(fontSize: fontSize?? 16,
-                  fontWeight: FontWeight.w600,
-                  color: AppColor.blackColor),),
-        ),
-      ),
-    );
-  }
-}
 
 class _GradientPainter extends CustomPainter {
   final Paint _paint = Paint();

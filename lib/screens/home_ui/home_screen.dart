@@ -24,11 +24,13 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+  HomeScreen({super.key});
 
+  final ScrollController scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
+
     return GetBuilder(
       init: Get.put(HomeController()),
       tag: 'homeController',
@@ -50,13 +52,13 @@ class HomeScreen extends StatelessWidget {
             child: Column(
               children: [
                 SubScribedContainer(
-                onTap: ()=>Get.to(()=> SubscribedScreen(),),
+                onTap: () => Get.to(()=> const SubscribedScreen(),),
                     title: AppStrings.becomeProSubscriber,
                     subTitle: AppStrings.subscribeBenefit
                 ),
                 2.ySpace,
                 SizedBox(
-                  height: 10.h,
+                  height: 100, // Adjust height as needed
                   child: Obx(() {
                     return ListView.builder(
                       scrollDirection: Axis.horizontal,
@@ -68,37 +70,39 @@ class HomeScreen extends StatelessWidget {
                           c.currentDate.value.month,
                           day,
                         ));
-
-                        // Check if this is the selected day
-                        final isSelected = day == c.selectedDay.value;
-
                         return GestureDetector(
                           onTap: () {
-                            c.selectDay(day);
+                            c.selectedDay.value = day;
+                            print('Selected day: ${c.selectedDay.value}');
                           },
                           child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              KText(text: dayOfWeek, fontSize: 16,fontWeight: FontWeight.w600,),
-                              Container(
-                                width: 10.w,
-                                height: 5.h,
-                                margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+                              Text(
+                                dayOfWeek,
+                                style: kTextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+                              ),
+                              Obx(() => Container(
+                                width: 40, // Adjust width as needed
+                                height: 40, // Adjust height as needed
+                                alignment: Alignment.center,
+                                margin:
+                                const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
-                                  gradient: isSelected
-                                      ? AppColor.primaryGradient
-                                      : null,
+                                  gradient:
+                                  day == c.selectedDay.value ? AppColor.primaryGradient : null,
                                 ),
-                                child: Center(
-                                  child:
-                                  KText(
-                                    text:  day.toString(),
-                                    color: isSelected ? Colors.white : Colors.black,
+                                child: Text(
+                                  day.toString(),
+                                  style: kTextStyle(
+                                    color:
+                                    day == c.selectedDay.value ? Colors.white : Colors.black,
                                     fontWeight: FontWeight.w400,
-                                    fontSize: 16,
+                                    fontSize: 15,
                                   ),
                                 ),
-                              ),
+                              )),
                             ],
                           ),
                         );
@@ -106,6 +110,7 @@ class HomeScreen extends StatelessWidget {
                     );
                   }),
                 ),
+                2.ySpace,
                 CaloriesContainer(
                   title: AppStrings.dailyGoal,
                   totalCalories: '1252',
@@ -122,7 +127,7 @@ class HomeScreen extends StatelessWidget {
                   fat: '200 / 1000',
                   fatPercent: 0.4,
                 ),
-                4.ySpace,
+                5.ySpace,
                 kTextButton(
                     onPressed: (){
                       KHomeBottomSheet.quickRegistration(
@@ -155,7 +160,7 @@ class HomeScreen extends StatelessWidget {
                   useGradient: true,
                   fontSize: 15
                 ),
-                4.ySpace,
+                5.ySpace,
                 ListView.builder(
                   itemCount: homeDataList.length,
                   shrinkWrap: true,

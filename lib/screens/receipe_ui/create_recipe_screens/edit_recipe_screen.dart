@@ -27,12 +27,14 @@ class EditRecipeScreen extends StatelessWidget {
                 onTap: (){
                   Get.back();
                 },
-                title: AppStrings.recipes
+                title: AppStrings.recipes,
+              shadowColor: AppColor.blackColor.withOpacity(0.5)
             ),
             body: SingleChildScrollView(
               padding: const EdgeInsets.all(15),
               child: Column(
                 children: [
+                  2.ySpace,
                   Container(
                     width: mQ.width,
                     height: 30.h,
@@ -177,17 +179,18 @@ class EditRecipeScreen extends StatelessWidget {
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
                           itemBuilder: (context,index){
-                            return SizedBox(
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  // ingredient name
-                                  KText(text: c.ingredients[index].name.toString(),fontSize: 16,fontWeight: FontWeight.w600),
-                                  const Expanded(child: Text('  ---------------------------------------------------------------------------------------     ',maxLines: 1,)),
-                                  KText(text: c.ingredients[index].quantity.toString(),fontWeight: FontWeight.w600),
-                                ],),
-                            );
+                            return Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                // ingredient name
+                                KText(text: c.ingredients[index].name.toString(),fontSize: 16,fontWeight: FontWeight.w500),
+                                const Expanded(child: KText(text:  '  ---------------------------------------------------------------------------------------     ',
+                                  maxLines: 1,
+                                color: AppColor.greyColor,
+                                )),
+                                KText(text: c.ingredients[index].quantity.toString(),fontWeight: FontWeight.w500),
+                              ],);
                           })
                     ],),
                   ),
@@ -220,7 +223,9 @@ class EditRecipeScreen extends StatelessWidget {
                           return Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: c.ingredients[index].preparationList!.map((prep) =>
-                                KText(text: '${index+1}. ${prep.preparationDetails}',fontSize: 16
+                                KText(
+                                    text: '${index+1}. ${prep.preparationDetails}',
+                                    fontSize: 16
                             ),).toList(),
                           );
                         },

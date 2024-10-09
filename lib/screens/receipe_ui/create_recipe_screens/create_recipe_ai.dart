@@ -25,11 +25,12 @@ class CreateRecipeAi extends StatelessWidget {
         },
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 10),
+        padding: EdgeInsets.symmetric(horizontal: 4.w,),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            KText(text: AppStrings.recipeName, fontSize: 16,fontWeight: FontWeight.w600),
+            2.ySpace,
+            KText(text: AppStrings.recipeName, fontSize: 16,fontWeight: FontWeight.w500),
             1.ySpace,
             CustomTextField(
               context: context,
@@ -40,7 +41,7 @@ class CreateRecipeAi extends StatelessWidget {
               borderColor: AppColor.greyColor,
             ),
             2.ySpace,
-            KText(text: AppStrings.recipeDescriptionOptional, fontSize: 16,fontWeight: FontWeight.w600),
+            KText(text: AppStrings.recipeDescriptionOptional, fontSize: 16,fontWeight: FontWeight.w400),
             1.ySpace,
             CustomTextField(
               context: context,
@@ -66,7 +67,10 @@ class CreateRecipeAi extends StatelessWidget {
                 const Icon(Icons.info,color: AppColor.greyColor,),
                 15.width,
                 Expanded(child: KText(text:  AppStrings.nutritionalInformationBasedOnIngredients,
-                  fontSize: 15),
+                  fontSize: 15,
+                  color: AppColor.greyColor,
+
+                ),
                 )
               ],
             ),

@@ -190,7 +190,7 @@ class KFastBottomSheet {
           ],
         ),
       ],
-      heightFactor: 0.25,
+      heightFactor: 0.27,
     );
   }
 

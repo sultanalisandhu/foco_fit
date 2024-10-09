@@ -2,7 +2,6 @@ class AppIcons{
   static const String emailIcon= 'assets/icons/emailIcon.svg';
   static const String keyBoardIcon= 'assets/icons/keyBoardIcon.svg';
   static const String homeIcon= 'assets/icons/homeIcon.svg';
-  static const String alarmIcon= 'assets/icons/alarmIcon.svg';
   static const String recipeIcon= 'assets/icons/recipeIcon.svg';
   static const String profileIcon= 'assets/icons/profileIcon.svg';
   static const String filledAlarmIcon= 'assets/icons/filledAlarmIcon.svg';
@@ -39,6 +38,7 @@ class AppIcons{
   static const String searchIcon= 'assets/icons/searchIcon.svg';
   static const String barIcon= 'assets/icons/barIcon.svg';
   static const String arrowDownIcon= 'assets/icons/arrowDownIcon.svg';
+  static const String newAlarmIcon= 'assets/icons/newAlarmIcon.svg';
 }
 
 

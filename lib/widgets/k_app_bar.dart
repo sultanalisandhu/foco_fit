@@ -9,12 +9,15 @@ AppBar kAppBar({
   final Function()? trailingOnTap,
   final String? title,
   final String? trailingIcon,
+  final Color? shadowColor,
 }){
   return AppBar(
     leadingWidth: 70,
   scrolledUnderElevation: 0.0,
-  elevation: 0.0,
-  backgroundColor: Colors.transparent,
+  elevation: shadowColor!=null? 5:0.0,
+  backgroundColor: shadowColor!=null? AppColor.whiteColor:Colors.transparent,
+    surfaceTintColor: shadowColor!=null? AppColor.whiteColor:Colors.transparent,
+    shadowColor: shadowColor!=null?AppColor.blackColor.withOpacity(0.5):Colors.transparent,
   leading: onTap != null
       ? GestureDetector(
     onTap: onTap,
@@ -24,7 +27,7 @@ AppBar kAppBar({
       alignment: Alignment.center,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: AppColor.blackColor)),
+            border: Border.all(color: AppColor.greyColor)),
       child: const Icon(Icons.arrow_back_ios),
       ),
   )
@@ -40,12 +43,12 @@ AppBar kAppBar({
         child: Container(
           height: 50,
           width: 50,
-          margin: const EdgeInsets.only(right: 10),
+          margin: const EdgeInsets.only(right: 10,bottom: 10),
           alignment: Alignment.center,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: AppColor.blackColor)),
-          child: showSvgIconWidget( onTap: trailingOnTap, iconPath: trailingIcon??AppIcons.settingIcon,color: AppColor.blackColor),
+              border: Border.all(color: AppColor.greyColor)),
+          child: showSvgIconWidget( onTap: trailingOnTap, iconPath: trailingIcon??AppIcons.settingIcon,color: AppColor.greyColor),
         ),
       )
           : const SizedBox.shrink()
