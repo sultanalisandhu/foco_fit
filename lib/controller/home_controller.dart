@@ -13,9 +13,12 @@ class HomeController extends GetxController {
 
 
   /// Variables
-  final currentDate = DateTime.now().obs;
-  final selectedDay = Rx<int?>(DateTime.now().day);
+  final Rx<DateTime> currentDate = DateTime.now().obs;
+  final RxInt selectedDay = DateTime.now().day.obs;
   final daysInMonth = <int>[].obs;
+
+
+
   final RxInt selectedWeightKg = 60.obs;
   final RxInt selectedWeightGr = 600.obs;
   final RxInt selectedWater = 60.obs;
@@ -24,14 +27,12 @@ class HomeController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    calculateDaysInMonth(DateTime.now());
+    calculateDaysInMonth(currentDate.value);
   }
 
   void calculateDaysInMonth(DateTime date) {
     final daysInMonthCount = DateTime(date.year, date.month + 1, 0).day;
     daysInMonth.value = List.generate(daysInMonthCount, (index) => index + 1);
   }
-  void selectDay(int day) {
-    selectedDay.value = day;
-  }
+
 }

@@ -30,7 +30,7 @@ class CreateRecipeManual extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            KText(text: AppStrings.recipeName,fontSize: 16,fontWeight: FontWeight.w600),
+            KText(text: AppStrings.recipeName,fontSize: 16,fontWeight: FontWeight.w500),
             10.height,
             CustomTextField(
               context: context,
@@ -47,8 +47,8 @@ class CreateRecipeManual extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    KText(text: AppStrings.ingredients,fontSize: 16,fontWeight: FontWeight.w600),
-                    KText(text: AppStrings.amount,fontSize: 16,fontWeight: FontWeight.w600),
+                    KText(text: AppStrings.ingredients,fontSize: 16,fontWeight: FontWeight.w500),
+                    KText(text: AppStrings.amount,fontSize: 16,fontWeight: FontWeight.w500),
                   ],
                 ),
                 1.ySpace,
@@ -88,11 +88,12 @@ class CreateRecipeManual extends StatelessWidget {
                   btnText: AppStrings.addIngredient,
                   gradient: AppColor.blackGradient,
                 textGradient: AppColor.blackGradient,
+                fontSize: 15,
               ),
               ],
             ),
             4.ySpace,
-            Text(AppStrings.preparationMethod,style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w600),),
+            Text(AppStrings.preparationMethod,style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w500),),
             1.ySpace,
             CustomTextField(
               context: context,
@@ -115,8 +116,7 @@ class CreateRecipeManual extends StatelessWidget {
               children: [
                 const Icon(Icons.info,color: AppColor.greyColor,),
                 15.width,
-                Expanded(child: KText(text: AppStrings.nutritionalInformationBasedOnIngredients,
-                  fontSize: 16,color: AppColor.greyColor,)),
+                Expanded(child: KText(text: AppStrings.nutritionalInformationBasedOnIngredients,color: AppColor.greyColor,)),
               ],
             ),
             3.ySpace,

@@ -48,7 +48,7 @@ class CaloriesContainer extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 26, vertical: 24),
       decoration: BoxDecoration(
         color: AppColor.whiteColor,
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(22),
         boxShadow: const [
           BoxShadow(
             color: AppColor.lightGreyColor,
@@ -62,11 +62,9 @@ class CaloriesContainer extends StatelessWidget {
           Stack(
             alignment: Alignment.bottomCenter,
             children: [
-              ColoredBox(
-                  color: AppColor.whiteColor,
-                  child: _buildDistanceTrackerExample()),
+              _buildDistanceTrackerExample(),
               Positioned(
-                top: 30,
+                top: 10,
                 left: 1,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -74,12 +72,14 @@ class CaloriesContainer extends StatelessWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        KText(text: title,fontWeight: FontWeight.w500,fontSize: 15 ,),
-                        KText(text: totalCalories,fontWeight: FontWeight.w700,fontSize: 18),
-                        KText(text: consumedTitle,fontWeight: FontWeight.w500,fontSize: 15 ,),
-                        KText(text: consumed,fontWeight: FontWeight.w700,fontSize: 18),
-                        KText(text: burnTitle,fontWeight: FontWeight.w500,fontSize: 15 ,),
-                        KText(text: burned,fontWeight: FontWeight.w700,fontSize: 18),
+                        KText(text: title,fontWeight: FontWeight.w500,),
+                        KText(text: totalCalories,fontWeight: FontWeight.w700,fontSize: 20),
+                        1.ySpace,
+                        KText(text: consumedTitle,fontWeight: FontWeight.w500,),
+                        KText(text: consumed,fontWeight: FontWeight.w700,fontSize: 20),
+                        1.ySpace,
+                        KText(text: burnTitle,fontWeight: FontWeight.w500,),
+                        KText(text: burned,fontWeight: FontWeight.w700,fontSize: 20),
                       ],
                     ),
                   ],
@@ -177,7 +177,7 @@ class CaloriesContainer extends StatelessWidget {
             startAngle: 145,
             minimum: 0,
             centerX: 0.7,
-            centerY: 0.4,
+            centerY: 0.35,
             axisLineStyle: const AxisLineStyle(
               cornerStyle: CornerStyle.bothCurve,
               thickness: 12,
@@ -198,9 +198,9 @@ class CaloriesContainer extends StatelessWidget {
             ],
             pointers: const <GaugePointer>[
                RangePointer(
-                value: 60,
+                value: 100,
                 width: 15,
-                pointerOffset: -5,
+                pointerOffset: -1,
                 cornerStyle: CornerStyle.bothCurve,
                 gradient: SweepGradient(
                   colors: <Color>[AppColor.startGradient, AppColor.endGradient],

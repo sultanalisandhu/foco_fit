@@ -201,6 +201,7 @@ class CustomTextField extends StatelessWidget {
   final TextInputType? textInputType;
   final TextInputAction? textInputAction;
   final int? maxLines;
+  final double? fieldBorderRadius;
 
 
   const CustomTextField({super.key,
@@ -216,6 +217,7 @@ class CustomTextField extends StatelessWidget {
     this.maxLines,
     this.textInputType,
     this.textInputAction,
+    this.fieldBorderRadius,
     });
 
   @override
@@ -248,11 +250,11 @@ class CustomTextField extends StatelessWidget {
         fillColor: color?? AppColor.lightGreyColor,
         contentPadding: const EdgeInsets.all(20),
         enabledBorder:  OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(fieldBorderRadius??12),
           borderSide:  BorderSide(color: borderColor?? Colors.transparent),
         ),
         focusedBorder:  OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(fieldBorderRadius??12),
           borderSide: BorderSide(color: borderColor??Colors.transparent,),
         ),
       ),

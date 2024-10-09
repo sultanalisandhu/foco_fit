@@ -10,6 +10,7 @@ import 'package:focofit/utils/k_text_styles.dart';
 import 'package:get/get_core/get_core.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:get/get_utils/src/extensions/export.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -17,44 +18,50 @@ class WelcomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+      bottomNavigationBar: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
-         const Spacer(),
-        Column(
-          children: [
-          const SizedBox(
-              height: 180,
-              width: 180,
-              child: Image(image: AssetImage(AppImages.blackLogoImage))),
-          Text(AppStrings.welcomeNote,
-            style: primaryTextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.w600
-          ),),
-          Text(AppStrings.loginNote,
-            style: primaryTextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.w600
-          ),),
-        ],),
-          const Spacer(),
           kTextButton(
-            onPressed: (){
-              Get.to(()=> RegisterScreen());
-            },
-            btnText: AppStrings.createAccount,
-            useGradient: true
+              onPressed: (){
+                Get.to(()=> RegisterScreen());
+              },
+              btnText: AppStrings.createAccount,
+              useGradient: true,
+            fontSize: 16,
           ),
-          5.height,
+          2.ySpace,
           KOutlineButton(
             onTap: (){
               Get.to(()=> LoginScreen());
             },
-
             btnText:AppStrings.login,
-            gradient: AppColor.primaryGradient,),
-      ],).paddingSymmetric(horizontal: 20,vertical: 15),
+            gradient: AppColor.primaryGradient,
+            fontSize: 16,
+          ),
+      ],).paddingSymmetric(horizontal: 4.w,vertical: 4.h),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+          SizedBox(
+             height: 40.h,
+             width: 40.w,
+             child: const Image(image: AssetImage(AppImages.blackLogoImage))),
+            5.ySpace,
+            KText(
+                text:  AppStrings.welcomeNote,
+                fontSize: 20,
+                fontWeight: FontWeight.w700
+            ),
+
+            KText(
+                text:AppStrings.loginNote,
+                fontSize: 18,
+                fontWeight: FontWeight.w600
+            ),
+
+        ],),
+      ),
     );
   }
 }

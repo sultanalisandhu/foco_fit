@@ -26,9 +26,10 @@ class CreateRecipeOption extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Image(image: AssetImage(AppImages.yellowStartImg),height: 250,width: 250,),
-          KText(text: AppStrings.registerRecipeManualAiDescription,fontSize: 16,textAlign: TextAlign.center,)
+          KText(text: AppStrings.registerRecipeManualAiDescription,fontSize: 16,textAlign: TextAlign.center,color: AppColor.greyColor,)
         ],
-      ).paddingSymmetric(horizontal: 15,vertical: 10),
+      ).paddingSymmetric(horizontal: 4.w,),
+
       bottomNavigationBar: Container(
         padding: EdgeInsets.symmetric(horizontal: 4.w,vertical: 2.h),
         child: Column(
@@ -40,7 +41,8 @@ class CreateRecipeOption extends StatelessWidget {
                   Get.to(()=> CreateRecipeAi());
                 },
                 btnText: AppStrings.usingFocoFitPro,
-                useGradient: true
+                useGradient: true,
+              fontSize: 15
             ),
             SizedBox(height: 1.5.h,),
             KOutlineButton(
@@ -49,7 +51,9 @@ class CreateRecipeOption extends StatelessWidget {
                 },
                 btnText: AppStrings.createManually,
                 textGradient: AppColor.blackGradient,
-                gradient: AppColor.blackGradient)
+                gradient: AppColor.blackGradient,
+                fontSize: 15
+            )
           ],
         ),
       ),

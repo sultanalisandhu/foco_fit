@@ -84,7 +84,7 @@ class CustomBottomBar extends StatelessWidget {
   ];
   final  List listOfIcons = [
   AppIcons.homeIcon,
-  AppIcons.alarmIcon,
+  AppIcons.newAlarmIcon,
   AppIcons.recipeIcon,
   AppIcons.profileIcon,
   ];
