@@ -224,13 +224,10 @@ class HeightContainer extends StatelessWidget {
           color: isSelected ? AppColor.primaryColor : AppColor.whiteColor,
           borderRadius: BorderRadius.circular(12),
         ),
-        child: Text(
-          text,
-          style: primaryTextStyle(
-            fontWeight: FontWeight.w400,
+        child: KText(text: text,
+            fontSize: 15,
             color: isSelected ? AppColor.whiteColor : Colors.black,
           ),
-        ),
       ),
     );
   }

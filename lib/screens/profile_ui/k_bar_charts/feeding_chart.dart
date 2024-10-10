@@ -33,18 +33,24 @@ class FeedingChart extends StatelessWidget {
           20.height,
           _buildLegend(),
           _buildBarChart(),
-          20.height,
+          2.ySpace,
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('Refeição', style: primaryTextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
-              Text('Participação', style: primaryTextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
-              Text('Calorias', style: primaryTextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
+             const  KText(text:  'Refeição',fontSize: 15, fontWeight: FontWeight.w600),
+              Row(
+                children: [
+                  const KText(text:  'Participação',fontSize: 15, fontWeight: FontWeight.w600),
+                  10.xSpace,
+                  const KText(text:  'Calorias',fontSize: 15, fontWeight: FontWeight.w600),
+
+                ],
+              ),
             ],
           ),
           10.height,
           _buildNutrientDetails(),
-          10.height,
+          2.ySpace,
           kTextButton(btnText: btnText, onPressed: onButtonTap, useGradient: true),
         ],
       ),
@@ -72,11 +78,11 @@ class FeedingChart extends StatelessWidget {
   Widget _buildFeedingInfo(String label, RxInt value) {
     return Column(
       children: [
-        Text(label, style: primaryTextStyle(fontSize: 16)),
-        Obx(() => Text(
+        KText(text:  label,fontSize: 15,),
+        Obx(() => KText(text:
           '${value.value} kcal',
-          style: primaryTextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-        )),
+          fontSize: 20, fontWeight: FontWeight.w700),
+        ),
       ],
     );
   }
@@ -109,13 +115,10 @@ class FeedingChart extends StatelessWidget {
             gradient: isSelected ? AppColor.primaryGradient : null,
             borderRadius: BorderRadius.circular(20),
           ),
-          child: Text(
-            period,
-            style: primaryTextStyle(
+          child: KText(text: period,
               color: isSelected ? Colors.white : Colors.orange,
-              fontWeight: FontWeight.bold,
-              fontSize: 16,
-            ),
+              fontWeight: FontWeight.w600,
+              fontSize: 14,
           ),
         ),
       ),

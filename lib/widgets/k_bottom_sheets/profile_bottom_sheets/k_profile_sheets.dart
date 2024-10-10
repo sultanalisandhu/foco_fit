@@ -38,7 +38,6 @@ class KProfileSheets {
               children: [
                 context.isKeyboardVisible ? 30.height : 2.height,
                 _buildHeader(),
-                20.height,
                 title!=null?_buildTitle(title):SizedBox.shrink(),
                 const Divider(color: AppColor.lightGreyColor,),
                 10.height,
@@ -108,7 +107,7 @@ class KProfileSheets {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.25,
+              height: MediaQuery.of(context).size.height * 0.22,
               width: MediaQuery.of(context).size.width * 0.25,
               child: ListWheelScrollView.useDelegate(
                 controller: c.kgController,
@@ -124,28 +123,23 @@ class KProfileSheets {
                   builder: (context, index) {
                     return Obx(()=> Center(
                       child: index == c.selectedWeightKg.value
-                          ? GradientText(text: index.toString(), gradient: AppColor.primaryGradient,style: primaryTextStyle(
-                          fontSize: 40,
+                          ? GradientText(text: index.toString(), gradient: AppColor.primaryGradient,style: kTextStyle(
+                          fontSize: 26,
                           fontWeight: FontWeight.w600
                       ),)
-                          : Text(
+                          : KText(text:
                         index.toString(),
-                        style:  primaryTextStyle(fontSize: 32, fontWeight: FontWeight.w500,color: Colors.black.withOpacity(0.7)),
-                      ),
+                        fontSize: 20, fontWeight: FontWeight.w500,color: Colors.black.withOpacity(0.7)),
                     ),
                     );
                   },
                 ),
               ),
             ),
-            Text(
-              'Kg',
-              textAlign: TextAlign.end,
-              style: primaryTextStyle(fontSize: 20.0, fontWeight: FontWeight.w400, color: Colors.black,),
-            ),
+            const KText(text: 'Kg',),
             20.width,
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.25,
+              height: MediaQuery.of(context).size.height * 0.22,
               width: MediaQuery.of(context).size.width * 0.25,
               child: ListWheelScrollView.useDelegate(
                 controller: c.grController,
@@ -161,25 +155,20 @@ class KProfileSheets {
                   builder: (context, index) {
                     return Obx(()=> Center(
                       child: index == c.selectedWeightGr.value
-                          ? GradientText(text: index.toString(), gradient: AppColor.primaryGradient,style: primaryTextStyle(
-                          fontSize: 40,
+                          ? GradientText(text: index.toString(), gradient: AppColor.primaryGradient,style: kTextStyle(
+                          fontSize: 26,
                           fontWeight: FontWeight.w600
                       ),)
-                          : Text(
+                          : KText(text:
                         index.toString(),
-                        style:  primaryTextStyle(fontSize: 32, fontWeight: FontWeight.w500,color: Colors.black.withOpacity(0.7)),
-                      ),
+                        fontSize: 20, fontWeight: FontWeight.w500,color: Colors.black.withOpacity(0.7)),
                     ),
                     );
                   },
                 ),
               ),
             ),
-            Text(
-              'Gr',
-              textAlign: TextAlign.end,
-              style: primaryTextStyle(fontSize: 20.0, fontWeight: FontWeight.w400, color: Colors.black,),
-            ),
+           const  KText(text: 'Gr'),
           ],
         ),
       ],

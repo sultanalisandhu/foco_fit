@@ -33,7 +33,8 @@ class ProfileSetting extends StatelessWidget {
           backgroundColor: AppColor.whiteColor,
           appBar: kAppBar(
             onTap: (){Navigator.pop(context);},
-            title: AppStrings.setting
+            title: AppStrings.setting,
+            titleSize: 18
           ),
           body: SingleChildScrollView(
             padding: const EdgeInsets.symmetric(horizontal: 18,vertical: 15),
@@ -68,7 +69,7 @@ class ProfileSetting extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    KText(text: 'Weslei Vicentini', fontSize: 20,fontWeight: FontWeight.w500),
+                    const KText(text: 'Weslei Vicentini', fontSize: 20,fontWeight: FontWeight.w500),
                     2.xSpace,
                     showSvgIconWidget(iconPath: AppIcons.editIcon,height: 20,onTap: (){}),
                   ],
@@ -97,9 +98,9 @@ class ProfileSetting extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    KText(text:  '3,250  kg',fontWeight: FontWeight.w500),
-                    KText(text:  AppStrings.of,fontWeight: FontWeight.w500),
-                    KText(text:  '12,400  kg',fontWeight: FontWeight.w500),
+                    KText(text:  '3,250  kg',fontWeight: FontWeight.w500,fontSize: 13,),
+                    KText(text:  AppStrings.of,fontWeight: FontWeight.w500,fontSize: 13,),
+                    KText(text:  '12,400  kg',fontWeight: FontWeight.w500,fontSize: 13,),
                   ],
                 ),
                 5.ySpace,
@@ -108,7 +109,7 @@ class ProfileSetting extends StatelessWidget {
                     alignment: Alignment.topLeft,
                     child: Padding(
                       padding: EdgeInsets.only(left: 3.w),
-                      child: KText(text:  AppStrings.accessData,fontSize: 16,fontWeight: FontWeight.w600),
+                      child: KText(text:  AppStrings.accessData,fontWeight: FontWeight.w600),
                     )),
                 1.ySpace,
                 Container(
@@ -117,16 +118,17 @@ class ProfileSetting extends StatelessWidget {
                       borderRadius: BorderRadius.circular(16),
                       border: Border.all(color: AppColor.greyColor,width: 0.5)
                   ),
-                  child: ListView.builder(
+                  child: ListView.separated(
                       itemCount: profileSettingAccessList.length,
                       shrinkWrap: true,
                       padding: EdgeInsets.zero,
                       physics: const NeverScrollableScrollPhysics(),
+                    separatorBuilder: (BuildContext context, int index) { return Container(height: 1, color: AppColor.lightGreyBorder,); },
                       itemBuilder: (context,index){
                         return ListTile(
                           leading: showSvgIconWidget(iconPath: profileSettingAccessList[index].iconPath.toString(),),
-                          title: Text(profileSettingAccessList[index].title.toString()),
-                          subtitle: Text(profileSettingAccessList[index].subTitle.toString(),maxLines: 1,overflow: TextOverflow.ellipsis,),
+                          title: KText(text:  profileSettingAccessList[index].title.toString(),fontSize: 14,fontWeight: FontWeight.w500),
+                          subtitle: KText(text:  profileSettingAccessList[index].subTitle.toString(),maxLines: 1,overflow: TextOverflow.ellipsis,fontSize: 14,),
                           trailing: showSvgIconWidget(iconPath: AppIcons.editIcon,
                               onTap: (){
                             if(index==0){
@@ -138,14 +140,9 @@ class ProfileSetting extends StatelessWidget {
                             }
                           }),
                           contentPadding: EdgeInsets.zero,
-                          titleTextStyle: kTextStyle(fontSize: 14,fontWeight: FontWeight.w500),
-                          subtitleTextStyle: kTextStyle(),
-                          shape: index != profileSettingAccessList.length - 1
-                              ? Border( bottom: BorderSide(color: AppColor.greyColor.withOpacity(0.4)),)
-                              : null,
                         );
-                      }),
-                ),
+                      },
+                ),),
                 ///Personal Data Container
                 2.ySpace,
                 Align(
@@ -161,16 +158,17 @@ class ProfileSetting extends StatelessWidget {
                       borderRadius: BorderRadius.circular(16),
                       border: Border.all(color: AppColor.greyColor,width: 0.5)
                   ),
-                  child: ListView.builder(
+                  child: ListView.separated(
                       itemCount: profileSettingDataList.length,
                       shrinkWrap: true,
                       padding: EdgeInsets.zero,
                       physics: const NeverScrollableScrollPhysics(),
+                    separatorBuilder: (BuildContext context, int index) { return Container(height: 1, color: AppColor.lightGreyBorder,); },
                       itemBuilder: (context,index){
                     return ListTile(
                       leading: showSvgIconWidget(iconPath: profileSettingDataList[index].iconPath.toString()),
-                      title: Text(profileSettingDataList[index].title.toString()),
-                      subtitle: Text(profileSettingDataList[index].subTitle.toString(),maxLines: 1,overflow: TextOverflow.ellipsis,),
+                      title: KText(text:  profileSettingDataList[index].title.toString(),fontSize: 14,fontWeight: FontWeight.w500),
+                      subtitle: KText(text:  profileSettingDataList[index].subTitle.toString(),maxLines: 1,overflow: TextOverflow.ellipsis,fontSize: 14,fontWeight: FontWeight.w400),
                       trailing: showSvgIconWidget(
                           onTap: (){
                             switch(index){
@@ -228,13 +226,6 @@ class ProfileSetting extends StatelessWidget {
                           height: 20,
                           iconPath: AppIcons.editIcon),
                       contentPadding: EdgeInsets.zero,
-                      titleTextStyle: primaryTextStyle(fontSize: 14,fontWeight: FontWeight.w500),
-                      subtitleTextStyle: primaryTextStyle(fontSize: 14,fontWeight: FontWeight.w400),
-                      shape: index != profileSettingDataList.length - 1
-                          ? Border(
-                        bottom: BorderSide(color: AppColor.greyColor.withOpacity(0.4)),
-                      )
-                          : null,
                     );
                   },
                   ),
@@ -254,11 +245,12 @@ class ProfileSetting extends StatelessWidget {
                       borderRadius: BorderRadius.circular(16),
                       border: Border.all(color: AppColor.greyColor,width: 0.5)
                   ),
-                  child: ListView.builder(
+                  child: ListView.separated(
                       itemCount: profileSettingOnList.length,
                       shrinkWrap: true,
                       padding: EdgeInsets.zero,
                       physics: const NeverScrollableScrollPhysics(),
+                      separatorBuilder: (BuildContext context, int index) { return Container(height: 1, color: AppColor.lightGreyBorder,); },
                       itemBuilder: (context,index){
                         return ListTile(
                           onTap: (){
@@ -275,15 +267,9 @@ class ProfileSetting extends StatelessWidget {
                             }
                           },
                           leading: showSvgIconWidget(iconPath: profileSettingOnList[index].iconPath.toString()),
-                          title: Text(profileSettingOnList[index].title.toString()),
+                          title: KText(text: profileSettingOnList[index].title.toString(),fontSize: 14,fontWeight: FontWeight.w500),
                           trailing: const Icon(Icons.arrow_forward_ios,color: AppColor.greyColor,),
                           contentPadding: EdgeInsets.zero,
-                          titleTextStyle: primaryTextStyle(fontSize: 14,fontWeight: FontWeight.w500),
-                          shape: index != profileSettingOnList.length - 1
-                              ? Border(
-                            bottom: BorderSide(color: AppColor.greyColor.withOpacity(0.4)),
-                          )
-                              : null,
                         );
                       }),
                 ),

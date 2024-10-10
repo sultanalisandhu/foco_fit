@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:focofit/components/k_buttons.dart';
 import 'package:focofit/components/k_svg_icon.dart';
 import 'package:focofit/controller/recipe_controller.dart';
 import 'package:focofit/extensions/extension.dart';
@@ -10,7 +9,6 @@ import 'package:focofit/utils/k_text_styles.dart';
 import 'package:focofit/widgets/k_app_bar.dart';
 import 'package:focofit/widgets/recipe_widgets/k_circular_progress_bar.dart';
 import 'package:get/get.dart';
-import 'package:percent_indicator/percent_indicator.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class RecipeDetailScreen extends StatelessWidget {

@@ -46,11 +46,10 @@ class AquaChart extends StatelessWidget {
   Widget _buildAquaInfo(String label, RxInt value) {
     return Column(
       children: [
-        Text(label, style: primaryTextStyle(fontSize: 16)),
-        Obx(() => Text(
-          '${value.value} L', // Display in liters
-          style: primaryTextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-        )),
+        KText(text:  label,fontSize: 15,),
+        Obx(() => KText(text: '${value.value} L',
+          fontSize: 20, fontWeight: FontWeight.w700),
+        ),
       ],
     );
   }
@@ -83,12 +82,10 @@ class AquaChart extends StatelessWidget {
             gradient: isSelected ? AppColor.primaryGradient : null,
             borderRadius: BorderRadius.circular(20),
           ),
-          child: Text(
-            period,
-            style: primaryTextStyle(
+          child: KText(text: period,
                 color: isSelected ? Colors.white : Colors.orange,
-                fontWeight: FontWeight.bold,
-                fontSize: 16),
+                fontWeight: FontWeight.w600,
+                fontSize: 14,
           ),
         ),
       ),

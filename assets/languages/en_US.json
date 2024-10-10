@@ -85,8 +85,8 @@
     "proteinsOptional": "Proteins (optional)",
     "proteins": "Proteins",
     "fatOptional": "Fats (optional)",
-    "fats": "Fats:",
-    "carbohydrates": "Carbohydrates:",
+    "fats": "Fats",
+    "carbohydrates": "Carbohydrates",
     "congratulation": "Congratulations!",
     "upgradedToYearlySubscription": "You've upgraded to the Yearly subscription!",
     "benefitsUnlock": "Benefits Unlocked",
@@ -289,5 +289,7 @@
     "liter": "Liter",
     "quickRegistration": "Quick Registration",
     "switchLanguage": "Switch Language",
-    "switchLanguageToEnjoyTHeApp": "Switch Language To Enjoy The App"
+    "switchLanguageToEnjoyTHeApp": "Switch Language To Enjoy The App",
+    "toAdd": "To Add",
+    "confirm": "Confirm"
 }

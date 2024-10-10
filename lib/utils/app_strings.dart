@@ -293,4 +293,6 @@ class AppStrings {
   static String  liter = "liter".tr;
   static String  switchLanguage = "switchLanguage".tr;
   static String  switchLanguageToEnjoyTHeApp = "switchLanguageToEnjoyTHeApp".tr;
+  static String  toAdd = "toAdd".tr;
+  static String  confirm = "confirm".tr;
 }

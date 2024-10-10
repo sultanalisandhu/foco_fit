@@ -87,10 +87,10 @@
     "carbohydrateOptional": "Carboidratos (opcional)",
     "grams": "gramas",
     "proteinsOptional": "Proteínas (opcional)",
-    "proteins": "Proteínas:",
+    "proteins": "Proteínas",
     "fatOptional": "Gorduras (opcional)",
-    "fats": "Gorduras:",
-    "carbohydrates": "Carboidratos:",
+    "fats": "Gorduras",
+    "carbohydrates": "Carboidratos",
     "congratulation": "Parabéns!",
     "upgradedToYearlySubscription": "Você atualizou para a assinatura anual!",
     "benefitsUnlock": "Benefícios desbloqueados:",
@@ -235,6 +235,7 @@
     "sendEmailToSupport": "Enviar email ao suporte",
     "changeEmail": "Alterar email",
     "newEmail": "Novo email",
+    "oldPassword": "Senha Antiga",
     "confirmEmail": "Confirme o email",
     "changePassword": "Alterar senha",
     "changeCellPhone": "Alterar celular",
@@ -290,6 +291,8 @@
     "recordWaterConsumption": "Registrar consumo de água",
     "liter": "litro",
     "switchLanguage": "Mudar idioma",
-    "switchLanguageToEnjoyTHeApp": "mude o idioma para aproveitar o aplicativo"
+    "switchLanguageToEnjoyTHeApp": "mude o idioma para aproveitar o aplicativo",
+    "toAdd": "Adicionar",
+    "confirm": "confirmar"
 
 }

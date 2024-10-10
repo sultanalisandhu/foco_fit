@@ -20,6 +20,7 @@ class MyDiet extends StatelessWidget {
           Navigator.pop(context);
         },
         title:AppStrings.myDiet,
+        titleSize: 18
       ),
       body: Container(
         padding: EdgeInsets.symmetric(horizontal: 4.w,vertical: 2.h),
@@ -41,17 +42,16 @@ class MyDiet extends StatelessWidget {
                     boxShadow: const [ AppColor.shadow ]
                 ),
                 child: ListTile(
-                  title: const KText(text:  'Dieta Cetogenica',fontSize: 16,fontWeight: FontWeight.w600),
+                  title: const KText(text:  'Dieta Cetogenica',fontSize: 16,fontWeight: FontWeight.w500),
                   subtitle: const Column(
                     children: [
                       Divider(
                         color: AppColor.lightGreyBorder,
                         endIndent: 20,
                       ),
-                      const KText(text: 'Dieta Cetogenica Plano elimentar alto teor de gordura e baixo teor de '),
+                      KText(text: 'Dieta Cetogenica Plano elimentar alto teor de gordura e baixo teor de ',fontSize: 14,fontWeight: FontWeight.w400),
                     ],
                   ),
-                  subtitleTextStyle: primaryTextStyle(fontSize: 14,fontWeight: FontWeight.w400),
                   shape:  RoundedRectangleBorder(borderRadius: BorderRadius.circular(10),
                       side:  const BorderSide(color: Colors.transparent,)),
                   contentPadding: const EdgeInsets.symmetric(horizontal: 10,vertical: 12),
@@ -62,17 +62,11 @@ class MyDiet extends StatelessWidget {
           },),
       ),
 
-      bottomNavigationBar: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height * 0.09,
-        alignment: Alignment.center,
-        padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 2.h),
-        child: kTextButton(
-          onPressed: () { Get.back();},
-          btnText: AppStrings.save,
-          useGradient: true,
-        ),
-      ),
+      bottomNavigationBar: kTextButton(
+        onPressed: () { Get.back();},
+        btnText: AppStrings.save,
+        useGradient: true,
+      ).paddingSymmetric(horizontal: 5.w,vertical: 3.h),
     );
   }
 }

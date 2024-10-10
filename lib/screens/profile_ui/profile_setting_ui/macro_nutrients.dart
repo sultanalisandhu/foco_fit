@@ -22,6 +22,7 @@ class MacroNutrients extends StatelessWidget {
           Navigator.pop(context);
         },
         title: AppStrings.macroTarget,
+        titleSize: 18
       ),
       body: Column(
         children: [
@@ -71,17 +72,11 @@ class MacroNutrients extends StatelessWidget {
           )
         ],
       ).paddingSymmetric(horizontal: 4.w,vertical: 2.h),
-      bottomNavigationBar: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height * 0.09,
-        alignment: Alignment.center,
-        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-        child: kTextButton(
-          onPressed: () {},
-          btnText: AppStrings.save,
-          useGradient: true,
-        ),
-      ),
+      bottomNavigationBar: kTextButton(
+        onPressed: () {},
+        btnText: AppStrings.save,
+        useGradient: true,
+      ).paddingSymmetric(horizontal: 5.w,vertical: 3.h),
     );
   }
   Widget _macroDetailBox({required bool isActive,required String text,required String unit}){

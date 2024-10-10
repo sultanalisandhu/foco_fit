@@ -18,7 +18,7 @@ class NutrientsCharts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
       decoration: _containerDecoration(),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -28,14 +28,20 @@ class NutrientsCharts extends StatelessWidget {
           _buildPeriodButtons(),
           20.height,
           _buildLegend(),
+          1.ySpace,
           _buildBarChart(),
           20.height,
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('Macronutriente', style: primaryTextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
-              Text('Consumido', style: primaryTextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
-              Text('Meta', style: primaryTextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
+              const  KText(text: 'Macronutriente',fontSize: 15, fontWeight: FontWeight.w600),
+              Row(
+                children: [
+                  const KText(text: 'Consumido',fontSize: 15, fontWeight: FontWeight.w600),
+                  10.xSpace,
+                  const KText(text: 'Meta',fontSize: 15, fontWeight: FontWeight.w600),
+                ],
+              ),
             ],
           ),
           10.height,
@@ -67,11 +73,10 @@ class NutrientsCharts extends StatelessWidget {
   Widget _buildNutrientsInfo(String label, RxInt value) {
     return Column(
       children: [
-        Text(label, style: primaryTextStyle(fontSize: 16)),
-        Obx(() => Text(
-          '${value.value} g',
-          style: primaryTextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-        )),
+        KText(text:  label,),
+        Obx(() => KText(text: '${value.value} g',
+         fontSize: 20, fontWeight: FontWeight.w700),
+        ),
       ],
     );
   }
@@ -104,13 +109,10 @@ class NutrientsCharts extends StatelessWidget {
             gradient: isSelected ? AppColor.primaryGradient : null,
             borderRadius: BorderRadius.circular(20),
           ),
-          child: Text(
-            period,
-            style: primaryTextStyle(
+          child: KText(text: period,
               color: isSelected ? Colors.white : Colors.orange,
-              fontWeight: FontWeight.bold,
-              fontSize: 16,
-            ),
+              fontWeight: FontWeight.w600,
+              fontSize: 14,
           ),
         ),
       ),
@@ -122,9 +124,9 @@ class NutrientsCharts extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         _buildLegendItem(AppColor.greenColor, 'Carboidrato'),
-        10.width,
+        1.xSpace,
         _buildLegendItem(AppColor.redColor, 'Proteína'),
-        10.width,
+        1.xSpace,
         _buildLegendItem(AppColor.endGradient, 'Gordura'),
       ],
     );
@@ -134,7 +136,7 @@ class NutrientsCharts extends StatelessWidget {
     return Row(
       children: [
         Icon(Icons.linear_scale, color: color),
-        Text(label, style: primaryTextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
+        KText(text:  label,fontSize: 14, fontWeight: FontWeight.w500),
       ],
     );
   }

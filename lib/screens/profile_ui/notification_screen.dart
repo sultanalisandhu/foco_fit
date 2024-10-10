@@ -28,6 +28,7 @@ class NotificationScreen extends StatelessWidget {
         title: AppStrings.notifications
       ),
       body: Column(children: [
+        1.ySpace,
         Expanded(
           child: ListView.builder(
               itemCount: 5,
@@ -47,7 +48,7 @@ class NotificationScreen extends StatelessWidget {
               ),
               child: ListTile(
                 leading: showSvgIconWidget(iconPath: AppIcons.blackBellIcon),
-                title: const KText(text:  'Lorem notificatins here you can check',fontSize: 15),
+                title: const KText(text:  'Lorem notificatins here you can check',fontSize: 13),
                 trailing: GradientText(onTextTap: (){
                   _showBottomSheet(context,
                     onConfirmTap: (){Navigator.pop(context);},
@@ -55,7 +56,7 @@ class NotificationScreen extends StatelessWidget {
                 );},
                   text: AppStrings.remove,
                   gradient: AppColor.primaryGradient,
-                  style: kTextStyle(fontWeight: FontWeight.w500),
+                  style: kTextStyle(fontSize: 13),
                 ),
                 contentPadding:  EdgeInsets.symmetric(horizontal: 4.w,vertical: 5),
               ),
@@ -76,50 +77,53 @@ class NotificationScreen extends StatelessWidget {
       backgroundColor: AppColor.whiteColor,
       builder: (BuildContext context) {
         return SizedBox(
-          height: mQ.height * 0.35,
+          height: mQ.height * 0.31,
           width: mQ.width,
           child: Padding(
             padding: const EdgeInsets.all(20.0),
             child: Column(
               children: [
                 showSvgIconWidget(iconPath: AppIcons.dashIcon),
-                20.height,
-                Text(
-                  AppStrings.deleteNotification,
-                  style: primaryTextStyle(
-                    fontSize: 20.0,
+                1.ySpace,
+                KText(text: AppStrings.deleteNotification,
+                    fontSize: 18.0,
                     fontWeight: FontWeight.w600,
-                  ),
                 ),
-                10.height,
-                Text(
+                const Divider(color: AppColor.lightGreyBorder,),
+                1.ySpace,
+                KText(text:
                   AppStrings.reallyDeleteNotification,
                   textAlign: TextAlign.center,
-                  style: primaryTextStyle(
-                    fontSize: 18.0,
                     fontWeight: FontWeight.w400,
-                  ),
                 ),
                 const Spacer(),
-               kTextButton(
-                  height: 6,
-                  width: mQ.width,
-                  borderRadius: 2.5,
-                  onPressed: onConfirmTap!,
-                  btnText: AppStrings.noGoWantToBack,
-                 fontSize: 14,
-                 useGradient: true
-                ),
-               1.ySpace,
-                KOutlineButton(
-                  height:6.h,
-                  onTap: onCancelTap!,
-                  gradient: AppColor.blackGradient,
-                  btnText: AppStrings.yesWantToDelete,
-                  textGradient: AppColor.blackGradient,
-                  fontSize: 14,
+               Row(
+                 children: [
+                   Expanded(
+                     child: kTextButton(
+                        height: 6,
+                        width: mQ.width,
+                        onPressed: onConfirmTap!,
+                        btnText: AppStrings.noGoWantToBack,
+                       fontSize: 14,
+                       useGradient: true
+                      ),
+                   ),
+                   1.xSpace,
+                   Expanded(
+                     child: KOutlineButton(
+                       height:6,
+                       onTap: onCancelTap!,
+                       gradient: AppColor.blackGradient,
+                       btnText: AppStrings.yesWantToDelete,
+                       textGradient: AppColor.blackGradient,
+                       fontSize: 14,
 
-                )
+                     ),
+                   )
+                 ],
+               ),
+                1.ySpace,
               ],
             ),
           ),

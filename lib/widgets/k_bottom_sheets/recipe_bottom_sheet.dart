@@ -57,11 +57,9 @@ class KRecipeBottomSheets {
       context: context,
       title: '${AppStrings.filterBy}:',
       content: [
-        Text(
-          AppStrings.calories,
-          style: primaryTextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+        KText(text: AppStrings.calories, fontWeight: FontWeight.w600
         ),
-        10.height,
+        1.ySpace,
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -84,12 +82,10 @@ class KRecipeBottomSheets {
             },
           ),
         ),
-        20.height,
-        Text(
-          AppStrings.snack,
-          style: primaryTextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+        2.ySpace,
+        KText(text:AppStrings.snack,fontWeight: FontWeight.w600
         ),
-        10.height,
+        1.ySpace,
         SizedBox(
           height: 4.h,
           child: ListView.builder(
@@ -116,12 +112,10 @@ class KRecipeBottomSheets {
             );
           }),
         ),
-        20.height,
-        Text(
-          AppStrings.diets,
-          style: primaryTextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+        2.ySpace,
+        KText(text: AppStrings.diets,fontWeight: FontWeight.w600
         ),
-        10.height,
+        1.ySpace,
         Wrap(
           spacing: 1.w,
           runSpacing: 1.h,
@@ -144,17 +138,15 @@ class KRecipeBottomSheets {
                   ),
                   borderRadius: BorderRadius.circular(8),
                 ),
-                child: KText(text: AppStrings.vegetarian),
+                child: KText(text: AppStrings.vegetarian,fontSize: 13,),
               ),
             ));
           }),
         ),
-        20.height,
-        Text(
-          AppStrings.difficultyInPreparation,
-          style: primaryTextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+        2.ySpace,
+        KText(text: AppStrings.difficultyInPreparation,fontWeight: FontWeight.w600
         ),
-        10.height,
+        1.ySpace,
         SizedBox(
           height: 4.h,
           child: ListView.builder(
@@ -181,19 +173,17 @@ class KRecipeBottomSheets {
                 );
               }),
         ),
-        20.height,
-        Text(
-          AppStrings.preparationTime,
-          style: primaryTextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+        2.ySpace,
+        KText(text:
+          AppStrings.preparationTime,fontWeight: FontWeight.w600
         ),
-        10.height,
+        1.ySpace,
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text('5 ${AppStrings.min}', style: primaryTextStyle(fontSize: 14)),
-            Obx(() => Text(
-              '${recipeController.currentTime.value.toInt()} ${AppStrings.min}',
-              style: primaryTextStyle(fontSize: 14),
+            KText(text:  '5 ${AppStrings.min}',fontSize: 14),
+            Obx(() => KText(text: '${recipeController.currentTime.value.toInt()} ${AppStrings.min}',
+              fontSize: 14
             )),
           ],
         ),

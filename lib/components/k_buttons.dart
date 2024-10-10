@@ -103,7 +103,6 @@ Widget kNumberButton( {
   double? height,
   double ? width,
   double ? borderRadius,
-  double ? fontSize,
   double? padding,
   bool useGradient = false,
   Gradient? gradient,
@@ -112,7 +111,7 @@ Widget kNumberButton( {
     onTap: onPressed,
     child: Container(
       alignment: Alignment.center,
-      height: height??50,
+      height: height != null ? height.h : 6.h,
       width: width,
       padding:  EdgeInsets.symmetric(horizontal: padding??15),
       decoration: BoxDecoration(
@@ -121,25 +120,24 @@ Widget kNumberButton( {
             : null,
         color: useGradient ? null : (color ?? AppColor.primaryColor),
         border: Border.all(width: 1, color: borderColor??Colors.transparent),
-        borderRadius: BorderRadius.circular(borderRadius??26),
+        borderRadius: BorderRadius.circular(borderRadius??32),
       ),
       child: Row(
         children: [
           const Spacer(),
-          Text(
-            btnText,
+          KText(text: btnText,
             textAlign: TextAlign.center,
-            style: primaryTextStyle(fontSize: fontSize??16,
-                fontWeight: FontWeight.w600,
-                color: textColor??AppColor.whiteColor),),
+            fontSize: 16,
+                fontWeight: FontWeight.w700,
+                color: textColor??AppColor.whiteColor),
           const Spacer(),
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 5),
+            padding: const EdgeInsets.symmetric(horizontal: 25,vertical: 10),
             decoration: BoxDecoration(
               color: AppColor.whiteColor,
-              borderRadius: BorderRadius.circular(26),
+              borderRadius: BorderRadius.circular(32),
             ),
-            child: Text(itemCount,style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w600),),
+            child: KText(text:  itemCount,fontSize: 15,fontWeight: FontWeight.w700),
           )
         ],
       ),

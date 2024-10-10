@@ -58,7 +58,7 @@ class CustomBottomBar extends StatelessWidget {
                       onTap: (){
                         BottomBarIndex.currentIndex.value = index;
                       },
-                      height:25,
+                      height:20,
                       iconPath: index== BottomBarIndex.currentIndex.value
                           ? filledIcons[index]
                           : listOfIcons[index],
@@ -78,15 +78,15 @@ class CustomBottomBar extends StatelessWidget {
   }
   final List filledIcons= [
     AppIcons.filledHomeIcon,
-    AppIcons.filledAlarmIcon,
-    AppIcons.filledRecipeIcon,
+    AppIcons.filledAlarmIcn,
+    AppIcons.filledRecipeIcn,
     AppIcons.filledProfileIcon,
   ];
   final  List listOfIcons = [
-  AppIcons.homeIcon,
-  AppIcons.newAlarmIcon,
-  AppIcons.recipeIcon,
-  AppIcons.profileIcon,
+  AppIcons.homeIcn,
+  AppIcons.alarmIcn,
+  AppIcons.recipeIcn,
+  AppIcons.profileIcn,
   ];
   static List listOfTitles = [
     AppStrings.daily,

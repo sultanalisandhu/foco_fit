@@ -58,10 +58,10 @@ class SeeFasting extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       KText(text:  AppStrings.elapsedTime,fontSize: 16,color: AppColor.greyColor,),
-                      Text('00:00:25', style: kTextStyle(fontSize: 16, fontWeight: FontWeight.w700)),
+                      Text('00:00:25', style: kTextStyle(fontSize: 20, fontWeight: FontWeight.w700)),
                       15.height,
                       KText(text:  AppStrings.timeExceeded, fontSize: 16,color: AppColor.greyColor,),
-                      Text('00:00:25', style: kTextStyle(fontSize: 16, fontWeight: FontWeight.w700)),
+                      Text('00:00:25', style: kTextStyle(fontSize: 20, fontWeight: FontWeight.w700)),
                     ],
                   ),
                 ),
@@ -105,14 +105,14 @@ class SeeFasting extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  KText(text:  '${AppStrings.currentFastingPlan}: (17/08)',fontSize: 16,fontWeight: FontWeight.w500,),
+                  KText(text:  '${AppStrings.currentFastingPlan}: (17/08)',fontSize: 15,fontWeight: FontWeight.w500,),
                   GradientText(
                     onTextTap: (){
                       Navigator.pop(context);
                     },
                     text: AppStrings.alter,
                     gradient: AppColor.primaryGradient,
-                    style: kTextStyle(fontSize: 18,fontWeight: FontWeight.w700),),
+                    style: kTextStyle(fontSize: 16,fontWeight: FontWeight.w700),),
                 ],),
             ),
 

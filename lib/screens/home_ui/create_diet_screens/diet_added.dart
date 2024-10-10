@@ -6,6 +6,7 @@ import 'package:focofit/utils/asset_utils.dart';
 import 'package:focofit/utils/k_text_styles.dart';
 import 'package:focofit/widgets/k_app_bar.dart';
 import 'package:get/get.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class DietAdded extends StatelessWidget {
   const DietAdded({super.key});
@@ -16,18 +17,7 @@ class DietAdded extends StatelessWidget {
       appBar: kAppBar(
         title: AppStrings.createFood,
       ),
-      bottomNavigationBar: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 25,vertical: 10),
-        child: kTextButton(
-          onPressed: (){
-            Get.back();
-            Get.back();
-            Get.back();
-          },
-          btnText: AppStrings.confirmAndReturn,
-          gradient: AppColor.blackGradient,
-        ),
-      ),
+
       body:
       Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -36,11 +26,21 @@ class DietAdded extends StatelessWidget {
           Column(
             children: [
               const Image(image: AssetImage(AppImages.greenCheckImg),height: 250,width: 250,),
-              Text(AppStrings.newFoodAdded,
+              KText(text:  AppStrings.newFoodAdded,
                 textAlign: TextAlign.center,
-                style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w600),),
+                fontSize: 16,fontWeight: FontWeight.w400),
             ],).paddingSymmetric(horizontal: 25,vertical: 10)
 
-        ],),);
+        ],),
+      bottomNavigationBar: kTextButton(
+        onPressed: (){
+          Get.back();
+          Get.back();
+          Get.back();
+        },
+        btnText: AppStrings.confirmAndReturn,
+        gradient: AppColor.blackGradient,
+      ).paddingSymmetric(horizontal: 4.w,vertical: 3.h),
+    );
   }
 }

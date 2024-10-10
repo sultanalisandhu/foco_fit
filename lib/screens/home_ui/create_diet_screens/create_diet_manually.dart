@@ -26,15 +26,16 @@ class CreateDietManually extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(AppStrings.foodDescription,style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w500),),
-            30.height,
+            3.ySpace,
+            KText(text:  AppStrings.foodDescription,fontSize: 16,fontWeight: FontWeight.w500),
+            1.ySpace,
             CustomTextField(context: context,
               hintText: AppStrings.carrotCake,
               color: AppColor.whiteColor,
               borderColor: AppColor.greyColor,
               textInputType: TextInputType.text,
             ),
-            10.height,
+            1.ySpace,
             CustomTextField(context: context,
               prefixText: '${AppStrings.portion}:',
               suffixText: AppStrings.grams,
@@ -42,7 +43,7 @@ class CreateDietManually extends StatelessWidget {
               color: AppColor.whiteColor,
               borderColor: AppColor.greyColor,
             ),
-            10.height,
+            1.ySpace,
             CustomTextField(context: context,
               prefixText: '${AppStrings.caloriesPerServing}:',
               suffixText: AppStrings.kcal,
@@ -50,9 +51,9 @@ class CreateDietManually extends StatelessWidget {
               color: AppColor.whiteColor,
               borderColor: AppColor.greyColor,
             ),
-            30.height,
-            Text(AppStrings.macronutrients,style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w500),),
-            10.height,
+            2.ySpace,
+            KText(text: AppStrings.macronutrients,fontSize: 16,fontWeight: FontWeight.w400),
+            1.ySpace,
             CustomTextField(context: context,
               prefixText: '${AppStrings.carbohydrates}:',
               suffixText: AppStrings.grams,
@@ -60,7 +61,7 @@ class CreateDietManually extends StatelessWidget {
               color: AppColor.whiteColor,
               borderColor: AppColor.greyColor,
             ),
-            10.height,
+            1.ySpace,
             CustomTextField(context: context,
               prefixText: '${AppStrings.protein}:',
               suffixText: AppStrings.grams,
@@ -68,7 +69,7 @@ class CreateDietManually extends StatelessWidget {
               color: AppColor.whiteColor,
               borderColor: AppColor.greyColor,
             ),
-            10.height,
+            1.ySpace,
             CustomTextField(context: context,
               prefixText: '${AppStrings.fat}:',
               suffixText: AppStrings.grams,
@@ -84,12 +85,18 @@ class CreateDietManually extends StatelessWidget {
         height: mQ.height * 0.1,
         alignment: Alignment.center,
         padding: const EdgeInsets.symmetric(horizontal: 25),
-        child: kTextButton(
-          onPressed: () {
-            Get.to(()=> DietAdded());
-          },
-          btnText: AppStrings.confirmAndCreate,
-          gradient: AppColor.greenGradient,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+
+            kTextButton(
+              onPressed: () {
+                Get.to(()=> DietAdded());
+              },
+              btnText: AppStrings.confirmAndCreate,
+              gradient: AppColor.greenGradient,
+            ),
+          ],
         ),
       ),
     );

@@ -48,11 +48,10 @@ class CaloriesGraphScreen extends StatelessWidget {
   Widget _buildCaloriesInfo(String label, RxInt value) {
     return Column(
       children: [
-        Text(label, style: primaryTextStyle(fontSize: 16)),
-        Obx(() => Text(
+        KText(text:  label,fontSize: 15,),
+        Obx(() => KText(text:
           '${value.value} kcal',
-          style: primaryTextStyle(
-              fontSize: 20, fontWeight: FontWeight.bold),
+              fontSize: 20, fontWeight: FontWeight.w700
         )),
       ],
     );
@@ -88,13 +87,11 @@ class CaloriesGraphScreen extends StatelessWidget {
             gradient: isSelected?AppColor.primaryGradient:null,
             borderRadius: BorderRadius.circular(20),
           ),
-          child: Text(
+          child: KText(text:
             period,
-            style: primaryTextStyle(
               color: isSelected ? Colors.white : Colors.orange,
-              fontWeight: FontWeight.bold,
-              fontSize: 16
-            ),
+              fontWeight: FontWeight.w600,
+              fontSize: 14
           ),
         ),
       ),

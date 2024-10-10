@@ -20,7 +20,6 @@ import 'package:focofit/controller/home_controller.dart';
 import 'package:focofit/utils/app_colors.dart';
 import 'package:focofit/widgets/k_app_bar.dart';
 import 'package:intl/intl.dart';
-import 'package:responsive_sizer/responsive_sizer.dart';
 
 
 class HomeScreen extends StatelessWidget {
@@ -143,6 +142,8 @@ class HomeScreen extends StatelessWidget {
                                   });
                                 });
                           },
+
+
                         onSnackTap: (){
                           Navigator.pop(context);
                             KHomeBottomSheet.snackRegisterSheet(context,

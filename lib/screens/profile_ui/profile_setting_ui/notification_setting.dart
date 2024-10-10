@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:focofit/components/k_buttons.dart';
 import 'package:focofit/components/k_check_box.dart';
-import 'package:focofit/components/k_text_fields.dart';
-import 'package:focofit/controller/profile_controller.dart';
-import 'package:focofit/extensions/extension.dart';
 import 'package:focofit/utils/app_colors.dart';
 import 'package:focofit/utils/app_strings.dart';
 import 'package:focofit/utils/k_text_styles.dart';
 import 'package:focofit/widgets/k_app_bar.dart';
 import 'package:get/get.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class NotificationSetting extends StatelessWidget {
    NotificationSetting({super.key});
@@ -25,6 +23,11 @@ class NotificationSetting extends StatelessWidget {
           },
           title: AppStrings.notifications
       ),
+      bottomNavigationBar: kTextButton(
+        onPressed: (){},
+        btnText: AppStrings.save,
+        useGradient: true,
+      ).paddingSymmetric(horizontal: 4.w,vertical: 2.h),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 15),
         child: Column(
@@ -162,13 +165,6 @@ class NotificationSetting extends StatelessWidget {
                 ),
               ],),
             ),
-            30.height,
-            kTextButton(
-              onPressed: (){},
-              btnText: AppStrings.save,
-              useGradient: true,
-            )
-
           ],
         ),
       ),

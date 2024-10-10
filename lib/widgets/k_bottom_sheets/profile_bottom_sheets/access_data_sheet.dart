@@ -36,8 +36,9 @@ class KBottomSheet {
               children: [
                 context.isKeyboardVisible ? 30.height : 2.height,
                 _buildHeader(),
-                20.height,
+                1.ySpace,
                 _buildTitle(title),
+                const Divider(color: AppColor.lightGreyBorder,),
                 10.height,
                 ...content,
                 const Spacer(),
@@ -56,11 +57,11 @@ class KBottomSheet {
       title: AppStrings.changeEmail,
       content: [
         _buildTextField(context: context, label: AppStrings.newEmail, hintText: AppStrings.newEmail, ),
-        10.height,
+        1.ySpace,
         _buildTextField(context: context, label: AppStrings.confirmEmail, hintText: AppStrings.confirmEmail,textInputAction: TextInputAction.done ),
       ],
       onConfirmTap: onConfirmTap,
-      heightFactor: 0.4,
+      heightFactor: 0.45,
     );
   }
 
@@ -70,13 +71,13 @@ class KBottomSheet {
       title: AppStrings.changePassword,
       content: [
         _buildTextField(label: AppStrings.oldPassword, hintText: AppStrings.oldPassword, context: context),
-        10.height,
+        1.ySpace,
         _buildTextField(label: AppStrings.newPassword, hintText: AppStrings.newPassword, context: context),
-        10.height,
+        1.ySpace,
         _buildTextField(label: AppStrings.confirmPassword, hintText: AppStrings.confirmPassword, context: context,textInputAction: TextInputAction.done),
       ],
       onConfirmTap: onConfirmTap,
-      heightFactor: 0.5,
+      heightFactor: 0.55,
     );
   }
 
@@ -102,12 +103,9 @@ class KBottomSheet {
   static Widget _buildTitle(String title) {
     return Align(
       alignment: Alignment.center,
-      child: Text(
-        title,
-        style: primaryTextStyle(
-          fontSize: 20.0,
+      child: KText(text: title,
+          fontSize: 18,
           fontWeight: FontWeight.w600,
-        ),
       ),
     );
   }
@@ -122,13 +120,9 @@ class KBottomSheet {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         if (label != null)
-          Text(
-            label,
+          KText(text: label,
             textAlign: TextAlign.center,
-            style: primaryTextStyle(
-              fontSize: 16.0,
               fontWeight: FontWeight.w500,
-            ),
           ),
     CustomTextField(context: context,
     hintText: hintText,

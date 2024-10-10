@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:focofit/components/k_buttons.dart';
 import 'package:focofit/components/k_check_box.dart';
 import 'package:focofit/extensions/extension.dart';
 import 'package:focofit/utils/app_colors.dart';
 import 'package:focofit/utils/app_strings.dart';
 import 'package:focofit/utils/k_text_styles.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 
 
@@ -45,7 +47,7 @@ class CaloriesContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 26, vertical: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 20),
       decoration: BoxDecoration(
         color: AppColor.whiteColor,
         borderRadius: BorderRadius.circular(22),
@@ -62,7 +64,11 @@ class CaloriesContainer extends StatelessWidget {
           Stack(
             alignment: Alignment.bottomCenter,
             children: [
-              _buildDistanceTrackerExample(),
+              ColoredBox(
+                  color: AppColor.whiteColor,
+                  child: SizedBox(
+                      height: 32.h,
+                      child: _buildDistanceTrackerExample())),
               Positioned(
                 top: 10,
                 left: 1,
@@ -189,8 +195,8 @@ class CaloriesContainer extends StatelessWidget {
                 widget: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
-                    KText(text: totalCalories ,fontSize: 19, fontWeight: FontWeight.w800),
-                    KText(text: calories ,fontWeight: FontWeight.w600)
+                    KText(text: totalCalories ,fontSize: 22, fontWeight: FontWeight.w800),
+                    KText(text: calories ,fontWeight: FontWeight.w600,fontSize: 13,)
                   ],
                 ),
                 verticalAlignment: GaugeAlignment.far,

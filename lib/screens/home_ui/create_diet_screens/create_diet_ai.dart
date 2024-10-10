@@ -9,6 +9,7 @@ import 'package:focofit/utils/app_strings.dart';
 import 'package:focofit/utils/k_text_styles.dart';
 import 'package:focofit/widgets/k_app_bar.dart';
 import 'package:get/get.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class CreateDietAi extends StatelessWidget {
   CreateDietAi({super.key});
@@ -23,48 +24,17 @@ class CreateDietAi extends StatelessWidget {
           Get.back();
         },
       ),
-      bottomNavigationBar: Container(
-        height: mQ.height * 0.15,
-        padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
-        child: Column(
-          children: [
-            Row(
-              children: [
-                const Icon(Icons.info, color: AppColor.greyColor),
-                15.width,
-                Expanded(
-                  child: Text(
-                    AppStrings.nutritionalInformationBasedOnIngredients,
-                    style: primaryTextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w400,
-                      color: AppColor.greyColor,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            5.height,
-            kTextButton(
-                onPressed: () {
-                    Get.to(() => GeneratingDiet());
-                },
-                btnText: AppStrings.analyse,
-                gradient: AppColor.greenGradient,
-            ),
-          ],
-        ),
-      ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            3.ySpace,
+            KText(text:
               AppStrings.foodName,
-              style: primaryTextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+              fontSize: 16, fontWeight: FontWeight.w600
             ),
-            10.height,
+            1.ySpace,
             CustomTextField(
               context: context,
               controller: controller.foodNameController,
@@ -73,12 +43,12 @@ class CreateDietAi extends StatelessWidget {
               borderColor:  AppColor.greyColor,
               textInputType: TextInputType.text,
             ),
-            20.height,
-            Text(
+            2.ySpace,
+            KText(text:
               AppStrings.ingredients,
-              style: primaryTextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+             fontSize: 16, fontWeight: FontWeight.w600
             ),
-            10.height,
+            1.ySpace,
           CustomTextField(
               context: context,
               controller: controller.ingredientsController,
@@ -92,6 +62,35 @@ class CreateDietAi extends StatelessWidget {
           ],
         ),
       ),
+      bottomNavigationBar: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Row(
+            children: [
+              const Icon(Icons.info, color: AppColor.greyColor),
+              15.width,
+              Expanded(
+                child: Text(
+                  AppStrings.nutritionalInformationBasedOnIngredients,
+                  style: primaryTextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400,
+                    color: AppColor.greyColor,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          2.ySpace,
+          kTextButton(
+            onPressed: () {
+              Get.to(() => GeneratingDiet());
+            },
+            btnText: AppStrings.analyse,
+            gradient: AppColor.greenGradient,
+          ),
+        ],
+      ).paddingSymmetric(horizontal: 4.w,vertical: 2.h),
     );
   }
 }

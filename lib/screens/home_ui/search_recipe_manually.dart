@@ -12,6 +12,7 @@ import 'package:focofit/utils/k_text_styles.dart';
 import 'package:focofit/widgets/k_app_bar.dart';
 import 'package:focofit/widgets/k_bottom_sheets/home_bottom_sheets.dart';
 import 'package:get/get.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class SearchRecipeManually extends StatelessWidget {
   const SearchRecipeManually({super.key});
@@ -40,6 +41,7 @@ class SearchRecipeManually extends StatelessWidget {
                     controller: controller.searchController,
                     prefixIcon: AppIcons.searchIcon,
                     hintText: AppStrings.whatDidYouEat,
+                    fieldBorderRadius: 32,
                   ),
                   15.height,
                   _buildTabBar(),
@@ -66,7 +68,7 @@ class SearchRecipeManually extends StatelessWidget {
 
   Widget _buildTabBar() {
     return Container(
-      height: 50,
+      height: mQ.height*0.05,
       padding: const EdgeInsets.all(1),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(26),
@@ -74,14 +76,16 @@ class SearchRecipeManually extends StatelessWidget {
       ),
       child: TabBar(
         unselectedLabelColor: AppColor.greyColor,
-        labelStyle: primaryTextStyle(
+        splashBorderRadius: BorderRadius.circular(24),
+        labelStyle: kTextStyle(
           color: AppColor.whiteColor,
-          fontWeight: FontWeight.w600,
-          fontSize: 17,
+          fontWeight: FontWeight.w500,
+          fontSize: 15,
         ),
-        unselectedLabelStyle: primaryTextStyle(
+        unselectedLabelStyle: kTextStyle(
           color: AppColor.blackColor,
-          fontSize: 17,
+          fontWeight: FontWeight.w500,
+          fontSize: 15,
         ),
         indicator: BoxDecoration(
           gradient: AppColor.primaryGradient,
@@ -89,6 +93,7 @@ class SearchRecipeManually extends StatelessWidget {
         ),
         indicatorSize: TabBarIndicatorSize.tab,
         indicatorColor: Colors.transparent,
+        dividerColor: Colors.transparent,
         tabs: [
           Tab(text: AppStrings.all),
           Tab(text: AppStrings.favorites),
@@ -103,10 +108,8 @@ class SearchRecipeManually extends StatelessWidget {
       itemCount: 16,
       itemBuilder: (context, index) {
         return ListTile(
-          title: Text(AppStrings.sweetRice),
-          titleTextStyle: primaryTextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
+          title: KText(text:AppStrings.sweetRice,
+            fontWeight: FontWeight.w500,
           ),
           subtitle: _buildSubtitle(tab),
           trailing: _buildTrailingIcon(context),
@@ -120,7 +123,7 @@ class SearchRecipeManually extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(AppStrings.sweetRiceCalories),
+        KText(text:AppStrings.sweetRiceCalories,fontSize: 13, fontWeight: FontWeight.w500,color: AppColor.greyColor,),
         if (tab == RecipeTab.created) ...[
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -157,17 +160,12 @@ class SearchRecipeManually extends StatelessWidget {
   }
 
   Widget _buildBottomNavigationBar(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 15),
-      alignment: Alignment.center,
-      height: MediaQuery.of(context).size.height * 0.08,
-      width: double.infinity,
-      child: kNumberButton(
-        onPressed: () {},
-        itemCount: '0',
-        btnText: AppStrings.confirmAndSave,
-      ),
-    );
+    return kNumberButton(
+      onPressed: () {Get.back();},
+      itemCount: '0',
+      btnText: AppStrings.addActivity,
+
+    ).paddingSymmetric(horizontal: 5.w,vertical: 2.h);
   }
 }
 

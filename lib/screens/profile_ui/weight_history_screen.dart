@@ -20,6 +20,7 @@ class WeightHistoryScreen extends StatelessWidget {
           appBar: kAppBar(
             onTap: ()=>Navigator.pop(context),
             title: AppStrings.countryHistory,
+            titleSize: 18
           ),
           body: Column(
             children: [

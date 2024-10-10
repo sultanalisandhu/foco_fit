@@ -8,6 +8,7 @@ import 'package:focofit/utils/app_strings.dart';
 import 'package:focofit/utils/k_text_styles.dart';
 import 'package:focofit/widgets/k_app_bar.dart';
 import 'package:get/get.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class CreateActivityManually extends StatelessWidget {
   CreateActivityManually({super.key});
@@ -27,21 +28,23 @@ class CreateActivityManually extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            3.ySpace,
+            KText(text:
               AppStrings.namePhysicalActivity,
-              style: primaryTextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+              fontSize: 16, fontWeight: FontWeight.w600
             ),
-            10.height,
+            1.ySpace,
             CustomTextField(
               context: context,
               hintText: '${AppStrings.example}: ${AppStrings.walking}',
               textInputType: TextInputType.text,
             ),
+            2.ySpace,
             Text(
               AppStrings.totalDuration,
               style: primaryTextStyle(fontSize: 16, fontWeight: FontWeight.w600),
             ),
-            10.height,
+            1.ySpace,
             CustomTextField(
               context: context,
               prefixText: AppStrings.duration,
@@ -49,11 +52,12 @@ class CreateActivityManually extends StatelessWidget {
               textDirection: TextDirection.ltr,
               textInputType: TextInputType.number,
             ),
+            2.ySpace,
             Text(
               AppStrings.caloriesBurned,
               style: primaryTextStyle(fontSize: 16, fontWeight: FontWeight.w600),
             ),
-            10.height,
+            1.ySpace,
             CustomTextField(
               context: context,
               prefixText: AppStrings.calories,
@@ -66,16 +70,13 @@ class CreateActivityManually extends StatelessWidget {
         ),
       ),
 
-      bottomNavigationBar: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
-        child: kTextButton(
-          onPressed: () {
-            Get.to(() => const ActivityEdited());
-          },
-          btnText: AppStrings.confirmAndCreate,
-          useGradient: true
-        ),
-      ),
+      bottomNavigationBar: kTextButton(
+        onPressed: () {
+          Get.to(() => const ActivityEdited());
+        },
+        btnText: AppStrings.confirmAndCreate,
+        useGradient: true
+      ).paddingSymmetric(horizontal: 6.w, vertical: 3.h),
     );
   }
 }

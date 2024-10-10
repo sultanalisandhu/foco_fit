@@ -45,10 +45,9 @@ class ActivityChart extends StatelessWidget {
   Widget _buildActivityInfo(String label, RxInt value, String unit) {
     return Column(
       children: [
-        Text(label, style: primaryTextStyle(fontSize: 16)),
-        Obx(() => Text(
-          '${value.value} $unit', // Add unit here
-          style: primaryTextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        KText(text:  label,fontSize: 15,),
+        Obx(() => KText(text: '${value.value} $unit',
+          fontSize: 20, fontWeight: FontWeight.w700,
         )),
       ],
     );
@@ -83,12 +82,10 @@ class ActivityChart extends StatelessWidget {
             gradient: isSelected ? AppColor.primaryGradient : null,
             borderRadius: BorderRadius.circular(20),
           ),
-          child: Text(
-            period,
-            style: primaryTextStyle(
+          child: KText(text: period,
                 color: isSelected ? Colors.white : Colors.orange,
-                fontWeight: FontWeight.bold,
-                fontSize: 16),
+                fontWeight: FontWeight.w600,
+                fontSize: 14
           ),
         ),
       ),

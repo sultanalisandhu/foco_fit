@@ -9,6 +9,7 @@ import 'package:focofit/extensions/extension.dart';
 import 'package:focofit/utils/app_colors.dart';
 import 'package:focofit/utils/asset_utils.dart';
 import 'package:focofit/utils/k_text_styles.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class KPersonalDataSheet {
   static void show({
@@ -39,6 +40,7 @@ class KPersonalDataSheet {
                 _buildHeader(),
                 20.height,
                 _buildTitle(title),
+                const Divider(color: AppColor.lightGreyBorder,),
                 10.height,
                 ...content,
                 const Spacer(),
@@ -82,7 +84,7 @@ class KPersonalDataSheet {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.25, // Adjusted height
+              height: MediaQuery.of(context).size.height * 0.3,
               width: MediaQuery.of(context).size.width * 0.25,
               child: ListWheelScrollView.useDelegate(
                 controller: profileController.ftController,
@@ -101,26 +103,22 @@ class KPersonalDataSheet {
                             ? GradientText(
                           text: index.toString(),
                           gradient: AppColor.primaryGradient,
-                          style: primaryTextStyle(fontSize: 40, fontWeight: FontWeight.w600),
+                          style: kTextStyle(fontSize: 26, fontWeight: FontWeight.w600),
                         )
-                            : Text(
+                            : KText(text:
                           index.toString(),
-                          style: primaryTextStyle(fontSize: 32, fontWeight: FontWeight.w500, color: Colors.black.withOpacity(0.7)),
-                        ),
+                          fontSize: 18, fontWeight: FontWeight.w500, color: Colors.black.withOpacity(0.7)),
+
                       ),
                     );
                   },
                 ),
               ),
             ),
-            Text(
-              'ft',
-              textAlign: TextAlign.end,
-              style: primaryTextStyle(fontSize: 20.0, fontWeight: FontWeight.w400, color: Colors.black),
-            ),
+            const KText(text:  'ft',),
             20.width,
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.25, // Adjusted height
+              height: MediaQuery.of(context).size.height * 0.3,
               width: MediaQuery.of(context).size.width * 0.25,
               child: ListWheelScrollView.useDelegate(
                 controller: profileController.inchController,
@@ -139,30 +137,25 @@ class KPersonalDataSheet {
                             ? GradientText(
                           text: index.toString(),
                           gradient: AppColor.primaryGradient,
-                          style: primaryTextStyle(fontSize: 40, fontWeight: FontWeight.w600),
+                          style: kTextStyle(fontSize: 26, fontWeight: FontWeight.w600),
                         )
-                            : Text(
+                            : KText(text:
                           index.toString(),
-                          style: primaryTextStyle(fontSize: 32, fontWeight: FontWeight.w500, color: Colors.black.withOpacity(0.7)),
-                        ),
+                          fontSize: 18, fontWeight: FontWeight.w500, color: Colors.black.withOpacity(0.7)),
                       ),
                     );
                   },
                 ),
               ),
             ),
-            Text(
-              'in',
-              textAlign: TextAlign.end,
-              style: primaryTextStyle(fontSize: 20.0, fontWeight: FontWeight.w400, color: Colors.black),
-            ),
+            const KText(text: 'in',),
           ],
         )
             : Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.45,
+              height: MediaQuery.of(context).size.height * 0.3,
               width: MediaQuery.of(context).size.width * 0.25,
               child: ListWheelScrollView.useDelegate(
                 controller: profileController.cmController,
@@ -181,12 +174,11 @@ class KPersonalDataSheet {
                             ? GradientText(
                           text: index.toString(),
                           gradient: AppColor.primaryGradient,
-                          style: primaryTextStyle(fontSize: 40, fontWeight: FontWeight.w600),
+                          style: kTextStyle(fontSize: 26, fontWeight: FontWeight.w600),
                         )
-                            : Text(
+                            : KText(text:
                           index.toString(),
-                          style: primaryTextStyle(fontSize: 32, fontWeight: FontWeight.w500, color: Colors.black.withOpacity(0.7)),
-                        ),
+                          fontSize: 18, fontWeight: FontWeight.w500, color: Colors.black.withOpacity(0.7)),
                       ),
                     );
                   },
@@ -203,10 +195,9 @@ class KPersonalDataSheet {
         ),
       ],
       onConfirmTap: onConfirmTap,
-      heightFactor: 0.75, // Increased heightFactor
+      heightFactor: 0.65, // Increased heightFactor
     );
   }
-
 
   static void editDateBirth(BuildContext context, {Function()? onConfirmTap,required ProfileController profileController}) {
 
@@ -219,8 +210,8 @@ class KPersonalDataSheet {
           children: [
             // Date ScrollView
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.18,
-              width: MediaQuery.of(context).size.width * 0.25,
+              height: MediaQuery.of(context).size.height * 0.2,
+              width: MediaQuery.of(context).size.width * 0.2,
               child: ListWheelScrollView.useDelegate(
                 controller: profileController.dateController,
                 onSelectedItemChanged: (value) {
@@ -238,29 +229,27 @@ class KPersonalDataSheet {
                           ? GradientText(
                         text: (index + 1).toString(),
                         gradient: AppColor.primaryGradient,
-                        style: primaryTextStyle(
-                          fontSize: 40,
+                        style: kTextStyle(
+                          fontSize: 26,
                           fontWeight: FontWeight.w600,
                         ),
                       )
-                          : Text(
+                          : KText(text:
                         (index + 1).toString(),
-                        style: primaryTextStyle(
-                          fontSize: 32,
+                          fontSize: 18,
                           fontWeight: FontWeight.w600,
                           color: Colors.black.withOpacity(0.6),
-                        ),
                       ),
                     ));
                   },
                 ),
               ),
             ),
-            Text('/', style: primaryTextStyle(fontSize: 40)),
+            const KText(text:  '/',fontSize: 20,),
             // Month ScrollView
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.18,
-              width: MediaQuery.of(context).size.width * 0.25,
+              height: MediaQuery.of(context).size.height * 0.2,
+              width: MediaQuery.of(context).size.width * 0.2,
               child: ListWheelScrollView.useDelegate(
                 controller: profileController.monthController,
                 onSelectedItemChanged: (value) {
@@ -278,29 +267,27 @@ class KPersonalDataSheet {
                           ? GradientText(
                         text: (index + 1).toString(),
                         gradient: AppColor.primaryGradient,
-                        style: primaryTextStyle(
-                          fontSize: 40,
+                        style: kTextStyle(
+                          fontSize: 26,
                           fontWeight: FontWeight.w600,
                         ),
                       )
-                          : Text(
+                          : KText(text:
                         (index + 1).toString(),
-                        style: primaryTextStyle(
-                          fontSize: 32,
+                          fontSize: 18,
                           fontWeight: FontWeight.w600,
                           color: Colors.black.withOpacity(0.6),
                         ),
-                      ),
                     ));
                   },
                 ),
               ),
             ),
-            Text('/', style: primaryTextStyle(fontSize: 40)),
+            const KText(text:  '/',fontSize: 20,),
             // Year ScrollView
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.18,
-              width: MediaQuery.of(context).size.width * 0.25,
+              height: MediaQuery.of(context).size.height * 0.2,
+              width: MediaQuery.of(context).size.width * 0.3,
               child: ListWheelScrollView.useDelegate(
                 controller: profileController.yearController,
                 onSelectedItemChanged: (value) {
@@ -318,18 +305,16 @@ class KPersonalDataSheet {
                           ? GradientText(
                         text: (1990 + index).toString(),
                         gradient: AppColor.primaryGradient,
-                        style: primaryTextStyle(
-                          fontSize: 40,
+                        style: kTextStyle(
+                          fontSize: 26,
                           fontWeight: FontWeight.w600,
                         ),
                       )
-                          : Text(
+                          : KText(text:
                         (1990 + index).toString(),
-                        style: primaryTextStyle(
-                          fontSize: 32,
+                          fontSize: 18,
                           fontWeight: FontWeight.w600,
                           color: Colors.black.withOpacity(0.6),
-                        ),
                       ),
                     ));
                   },
@@ -340,7 +325,7 @@ class KPersonalDataSheet {
         ),
       ],
       onConfirmTap: onConfirmTap,
-      heightFactor: 0.4,
+      heightFactor: 0.45,
     );
   }
 
@@ -351,15 +336,15 @@ class KPersonalDataSheet {
       content: [
         for (int i = 0; i < profileController.genderList.length; i++)
           Obx(() => Container(
-            margin: const EdgeInsets.symmetric(vertical: 10),
+            margin:  EdgeInsets.symmetric(vertical: 1.h),
             child: ListTile(
-              title: Text(
-                profileController.genderList[i].toString(),
-                style: primaryTextStyle(fontSize: 14, fontWeight: FontWeight.w500),
-              ),
               onTap: () {
                 profileController.selectedGenderIndex.value = i;
               },
+              title: KText(text:
+                profileController.genderList[i].toString(),
+                fontSize: 14, fontWeight: FontWeight.w500
+              ),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
                 side: BorderSide(
@@ -373,7 +358,7 @@ class KPersonalDataSheet {
           ),
       ],
       onConfirmTap: onConfirmTap,
-      heightFactor: 0.45,
+      heightFactor: 0.5,
     );
   }
 
@@ -386,29 +371,29 @@ class KPersonalDataSheet {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.25,
+              height: MediaQuery.of(context).size.height * 0.22,
               width: MediaQuery.of(context).size.width * 0.25,
               child: ListWheelScrollView.useDelegate(
                 controller: profileController.kgController,
                 onSelectedItemChanged: (value) {
                   profileController.selectedWeightKg.value = value;
                 },
-                itemExtent: 65,
-                perspective: 0.006,
-                diameterRatio: 1.9,
+                itemExtent: 50,
+                perspective: 0.005,
+                diameterRatio: 1.6,
                 physics: const FixedExtentScrollPhysics(),
                 childDelegate: ListWheelChildBuilderDelegate(
                   childCount: 120,
                   builder: (context, index) {
                     return Obx(()=> Center(
                       child: index == profileController.selectedWeightKg.value
-                          ? GradientText(text: index.toString(), gradient: AppColor.primaryGradient,style: primaryTextStyle(
-                          fontSize: 40,
+                          ? GradientText(text: index.toString(), gradient: AppColor.primaryGradient,style: kTextStyle(
+                          fontSize: 26,
                           fontWeight: FontWeight.w600
                       ),)
-                          : Text(
+                          : KText(text:
                         index.toString(),
-                        style:  primaryTextStyle(fontSize: 32, fontWeight: FontWeight.w500,color: Colors.black.withOpacity(0.7)),
+                        fontSize: 18, fontWeight: FontWeight.w500,color: Colors.black.withOpacity(0.7)
                       ),
                     ),
                     );
@@ -416,53 +401,44 @@ class KPersonalDataSheet {
                 ),
               ),
             ),
-            Text(
-              'Kg',
-              textAlign: TextAlign.end,
-              style: primaryTextStyle(fontSize: 20.0, fontWeight: FontWeight.w400, color: Colors.black,),
-            ),
+            const KText(text: 'Kg',),
             20.width,
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.25,
+              height: MediaQuery.of(context).size.height * 0.22,
               width: MediaQuery.of(context).size.width * 0.25,
               child: ListWheelScrollView.useDelegate(
                 controller: profileController.grController,
                 onSelectedItemChanged: (value) {
                   profileController.selectedWeightGr.value = value;
                 },
-                itemExtent: 65,
-                perspective: 0.006,
-                diameterRatio: 1.9,
+                itemExtent: 50,
+                perspective: 0.005,
+                diameterRatio: 1.6,
                 physics: const FixedExtentScrollPhysics(),
                 childDelegate: ListWheelChildBuilderDelegate(
                   childCount: 1000,
                   builder: (context, index) {
                     return Obx(()=> Center(
                       child: index == profileController.selectedWeightGr.value
-                          ? GradientText(text: index.toString(), gradient: AppColor.primaryGradient,style: primaryTextStyle(
-                          fontSize: 40,
+                          ? GradientText(text: index.toString(), gradient: AppColor.primaryGradient,style: kTextStyle(
+                          fontSize: 26,
                           fontWeight: FontWeight.w600
                       ),)
-                          : Text(
+                          : KText(text:
                         index.toString(),
-                        style:  primaryTextStyle(fontSize: 32, fontWeight: FontWeight.w500,color: Colors.black.withOpacity(0.7)),
-                      ),
+                        fontSize: 18, fontWeight: FontWeight.w500,color: Colors.black.withOpacity(0.7)),
                     ),
                     );
                   },
                 ),
               ),
             ),
-            Text(
-              'Gr',
-              textAlign: TextAlign.end,
-              style: primaryTextStyle(fontSize: 20.0, fontWeight: FontWeight.w400, color: Colors.black,),
-            ),
+            const KText(text: 'Gr',),
           ],
         ),
       ],
       onConfirmTap: onConfirmTap,
-      heightFactor: 0.45,
+      heightFactor: 0.5,
     );
   }
 
@@ -475,29 +451,29 @@ class KPersonalDataSheet {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.25,
+              height: MediaQuery.of(context).size.height * 0.22,
               width: MediaQuery.of(context).size.width * 0.25,
               child: ListWheelScrollView.useDelegate(
                 controller: profileController.kgController,
                 onSelectedItemChanged: (value) {
                   profileController.selectedWeightKg.value = value;
                 },
-                itemExtent: 65,
-                perspective: 0.006,
-                diameterRatio: 1.9,
+                itemExtent: 50,
+                perspective: 0.005,
+                diameterRatio: 1.6,
                 physics: const FixedExtentScrollPhysics(),
                 childDelegate: ListWheelChildBuilderDelegate(
                   childCount: 120,
                   builder: (context, index) {
                     return Obx(()=> Center(
                       child: index == profileController.selectedWeightKg.value
-                          ? GradientText(text: index.toString(), gradient: AppColor.primaryGradient,style: primaryTextStyle(
-                          fontSize: 40,
+                          ? GradientText(text: index.toString(), gradient: AppColor.primaryGradient,style: kTextStyle(
+                          fontSize: 26,
                           fontWeight: FontWeight.w600
                       ),)
-                          : Text(
+                          : KText(text:
                         index.toString(),
-                        style:  primaryTextStyle(fontSize: 32, fontWeight: FontWeight.w500,color: Colors.black.withOpacity(0.7)),
+                        fontSize: 18, fontWeight: FontWeight.w500,color: Colors.black.withOpacity(0.7)
                       ),
                     ),
                     );
@@ -505,36 +481,33 @@ class KPersonalDataSheet {
                 ),
               ),
             ),
-            Text(
-              'Kg',
+            const KText(text: 'Kg',
               textAlign: TextAlign.end,
-              style: primaryTextStyle(fontSize: 20.0, fontWeight: FontWeight.w400, color: Colors.black,),
             ),
             20.width,
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.25,
+              height: MediaQuery.of(context).size.height * 0.22,
               width: MediaQuery.of(context).size.width * 0.25,
               child: ListWheelScrollView.useDelegate(
                 controller: profileController.grController,
                 onSelectedItemChanged: (value) {
                   profileController.selectedWeightGr.value = value;
                 },
-                itemExtent: 65,
-                perspective: 0.006,
-                diameterRatio: 1.9,
+                itemExtent: 50,
+                perspective: 0.005,
+                diameterRatio: 1.6,
                 physics: const FixedExtentScrollPhysics(),
                 childDelegate: ListWheelChildBuilderDelegate(
                   childCount: 1000,
                   builder: (context, index) {
                     return Obx(()=> Center(
                       child: index == profileController.selectedWeightGr.value
-                          ? GradientText(text: index.toString(), gradient: AppColor.primaryGradient,style: primaryTextStyle(
-                          fontSize: 40,
+                          ? GradientText(text: index.toString(), gradient: AppColor.primaryGradient,style: kTextStyle(
+                          fontSize: 26,
                           fontWeight: FontWeight.w600
                       ),)
-                          : Text(
-                        index.toString(),
-                        style:  primaryTextStyle(fontSize: 32, fontWeight: FontWeight.w500,color: Colors.black.withOpacity(0.7)),
+                          : KText(text: index.toString(),
+                        fontSize: 18, fontWeight: FontWeight.w500,color: Colors.black.withOpacity(0.7)
                       ),
                     ),
                     );
@@ -542,40 +515,37 @@ class KPersonalDataSheet {
                 ),
               ),
             ),
-            Text(
-              'Gr',
+            const KText(text: 'Gr',
               textAlign: TextAlign.end,
-              style: primaryTextStyle(fontSize: 20.0, fontWeight: FontWeight.w400, color: Colors.black,),
             ),
           ],
         ),
       ],
       onConfirmTap: onConfirmTap,
-      heightFactor: 0.45,
+      heightFactor: 0.5,
     );
   }
 
   static void editActivityLevel(BuildContext context, {Function()? onConfirmTap,required ProfileController profileController}) {
-
     show(
       context: context,
       title: AppStrings.activityLevel,
       content: [
+
         for (int i = 0; i < profileController.activityLevelList.length; i++)
           Obx(() => Container(
             margin: const EdgeInsets.symmetric(vertical: 10),
             child: ListTile(
-              title: Text(
-                profileController.activityLevelList[i].title.toString(),
-                style: primaryTextStyle(fontSize: 14, fontWeight: FontWeight.w500),
-              ),
-              subtitle: Text(
-                profileController.activityLevelList[i].subTitle.toString(),
-                style: primaryTextStyle(fontSize: 14, fontWeight: FontWeight.w500),
-              ),
               onTap: () {
                 profileController.selectedGenderIndex.value = i;
               },
+              title: KText(
+                text: profileController.activityLevelList[i].title.toString(),
+                fontSize: 14, fontWeight: FontWeight.w500
+              ),
+              subtitle: KText(text: profileController.activityLevelList[i].subTitle.toString(),
+                fontSize: 14, fontWeight: FontWeight.w400
+              ),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
                 side: BorderSide(
@@ -589,7 +559,7 @@ class KPersonalDataSheet {
           ),
       ],
       onConfirmTap: onConfirmTap,
-      heightFactor: 0.6,
+      heightFactor: 0.7,
     );
   }
 

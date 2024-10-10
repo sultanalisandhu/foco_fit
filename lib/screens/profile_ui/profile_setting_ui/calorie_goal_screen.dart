@@ -22,6 +22,7 @@ class CalorieGoalScreen extends StatelessWidget {
           Navigator.pop(context);
         },
         title: AppStrings.calorieGoal,
+        titleSize: 18
       ),
       body: Column(
         children: [
@@ -53,7 +54,7 @@ class CalorieGoalScreen extends StatelessWidget {
                     children: [
                       KText(text: AppStrings.breakFast,
                         fontSize: 16,
-                        fontWeight: FontWeight.w600,
+                        fontWeight: FontWeight.w500,
                         color: isActive ? Colors.black : AppColor.greyColor,
                       ),
                       15.height,
@@ -72,17 +73,11 @@ class CalorieGoalScreen extends StatelessWidget {
           )
         ],
       ).paddingSymmetric(horizontal: 4.w,vertical: 2.h),
-      bottomNavigationBar: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height * 0.09,
-        alignment: Alignment.center,
-        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-        child: kTextButton(
-          onPressed: () {},
-          btnText: AppStrings.save,
-          useGradient: true,
-        ),
-      ),
+      bottomNavigationBar: kTextButton(
+        onPressed: () {},
+        btnText: AppStrings.save,
+        useGradient: true,
+      ).paddingSymmetric(horizontal: 5.w,vertical: 3.h),
     );
   }
   Widget _calorieDetailBox({required bool isActive,required String text,required String unit}){
@@ -101,14 +96,14 @@ class CalorieGoalScreen extends StatelessWidget {
           child:
           KText(text: text,
             fontSize: 16,
-            fontWeight: FontWeight.w600,
+            fontWeight: FontWeight.w500,
             color: isActive ? Colors.black : AppColor.greyColor,
           ),
         ),
         5.width,
         KText(text: unit,
           fontSize: 16,
-          fontWeight: FontWeight.w600,
+          fontWeight: FontWeight.w500,
           color: isActive ? Colors.black : AppColor.greyColor,
         ),
       ],

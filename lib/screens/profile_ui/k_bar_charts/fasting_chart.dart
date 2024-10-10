@@ -1,8 +1,11 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:focofit/components/k_buttons.dart';
+import 'package:focofit/components/k_check_box.dart';
 import 'package:focofit/controller/charts_controller.dart';
+import 'package:focofit/extensions/extension.dart';
 import 'package:focofit/utils/app_colors.dart';
+import 'package:focofit/utils/app_strings.dart';
 import 'package:focofit/utils/k_text_styles.dart';
 import 'package:get/get.dart';
 
@@ -30,11 +33,12 @@ class FastingChart extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          _buildFastingInfo('Duração total', controller.fastingHistory),
-          const SizedBox(height: 20),
+          _buildFastingInfo(AppStrings.totalDuration, controller.fastingHistory),
+          2.ySpace,
           _buildPeriodButtons(),
-          const SizedBox(height: 20),
+          2.ySpace,
           _buildBarChart(),
+          2.ySpace,
           kTextButton(
               btnText: btnText,
               onPressed: onButtonTap,
@@ -51,12 +55,11 @@ class FastingChart extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(label, style: primaryTextStyle(fontSize: 16)),
-          Obx(() => Text(
+          KText(text:  label,),
+          Obx(() => KText(text:
             '${value.value} hours',
-            style: primaryTextStyle(
-                fontSize: 20, fontWeight: FontWeight.bold),
-          )),
+                fontSize: 20, fontWeight: FontWeight.w700),
+          ),
         ],
       ),
     );
@@ -95,13 +98,11 @@ class FastingChart extends StatelessWidget {
             gradient: isSelected ? AppColor.primaryGradient : null,
             borderRadius: BorderRadius.circular(20),
           ),
-          child: Text(
+          child: KText(text:
             period,
-            style: primaryTextStyle(
                 color: isSelected ? Colors.white : Colors.orange,
-                fontWeight: FontWeight.bold,
-                fontSize: 16),
-          ),
+                fontWeight: FontWeight.w600,
+                fontSize: 14),
         ),
       ),
     );

@@ -4,7 +4,6 @@ import 'package:focofit/components/k_text_fields.dart';
 import 'package:focofit/controller/auth_controller.dart';
 import 'package:focofit/extensions/extension.dart';
 import 'package:focofit/screens/auth_ui/forgot_password/password_changed.dart';
-import 'package:focofit/screens/auth_ui/forgot_password/receive_otp.dart';
 import 'package:focofit/utils/app_strings.dart';
 import 'package:focofit/utils/asset_utils.dart';
 import 'package:focofit/utils/k_text_styles.dart';
@@ -35,11 +34,11 @@ class ChangePassword extends StatelessWidget {
                 Text(AppStrings.createNewPassword,
                   textAlign: TextAlign.center,
                   style: primaryTextStyle(fontSize: 18,fontWeight: FontWeight.w400),),
-                20.height,
+                2.ySpace,
                 Align(
                     alignment: Alignment.topLeft,
                     child: Text(AppStrings.newPassword,style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w600),)),
-                10.height,
+                1.ySpace,
                 GetTextField(
                   context: context,
                   hintText: AppStrings.enterNewPassword,
@@ -55,7 +54,7 @@ class ChangePassword extends StatelessWidget {
                 Align(
                     alignment: Alignment.topLeft,
                     child: Text(AppStrings.confirmPassword,style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w600),)),
-                10.height,
+                1.ySpace,
                 GetTextField(
                   context: context,
                   hintText: AppStrings.enterNewPassword,

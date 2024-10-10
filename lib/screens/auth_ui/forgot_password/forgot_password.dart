@@ -30,11 +30,11 @@ class ForgotPassword extends StatelessWidget {
           Text(AppStrings.enterEmailReceiveLink,
             textAlign: TextAlign.center,
             style: primaryTextStyle(fontSize: 18,fontWeight: FontWeight.w400),),
-          20.height,
+            2.ySpace,
           Align(
               alignment: Alignment.topLeft,
               child: Text(AppStrings.email,style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w600),)),
-          10.height,
+        1.ySpace,
           GetTextField(
             context: context,
             hintText: AppStrings.enterEmail,

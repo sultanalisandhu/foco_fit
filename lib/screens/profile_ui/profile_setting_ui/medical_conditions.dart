@@ -27,6 +27,7 @@ class MedicalConditions extends StatelessWidget {
           Navigator.pop(context);
         },
         title: AppStrings.medicalConditions,
+        titleSize: 18
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(12.0),
@@ -53,8 +54,8 @@ class MedicalConditions extends StatelessWidget {
                       width: selectedConditions[index] ? 1.5 : 1,
                     ),
                   ),
-                  titleTextStyle: kTextStyle( fontWeight: FontWeight.w500,),
-                  title: Text(medicalConditions[index]),
+                  title: KText(text: medicalConditions[index],fontSize: 15,fontWeight: FontWeight.w500,
+                  ),
                 ),
                 );
               },
@@ -63,25 +64,19 @@ class MedicalConditions extends StatelessWidget {
         ),
       ),
 
-      bottomNavigationBar: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height * 0.09,
-        alignment: Alignment.center,
-        padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 2.h),
-        child: kTextButton(
-          onPressed: () {
-            List<String> selectedMedicalConditions = [];
-            for (int i = 0; i < medicalConditions.length; i++) {
-              if (selectedConditions[i]) {
-                selectedMedicalConditions.add(medicalConditions[i]);
-              }
+      bottomNavigationBar: kTextButton(
+        onPressed: () {
+          List<String> selectedMedicalConditions = [];
+          for (int i = 0; i < medicalConditions.length; i++) {
+            if (selectedConditions[i]) {
+              selectedMedicalConditions.add(medicalConditions[i]);
             }
-            print("Selected Conditions: $selectedMedicalConditions");
-          },
-          btnText: AppStrings.save,
-          useGradient: true,
-        ),
-      ),
+          }
+          print("Selected Conditions: $selectedMedicalConditions");
+        },
+        btnText: AppStrings.save,
+        useGradient: true,
+      ).paddingSymmetric(horizontal: 5.w, vertical: 3.h),
     );
   }
 }

@@ -37,6 +37,7 @@ class ProfileScreen extends StatelessWidget {
             subTitle: 'Weslei Vicentini',
           ),
           body:SingleChildScrollView(
+            padding: EdgeInsets.all(10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -108,7 +109,7 @@ class ProfileScreen extends StatelessWidget {
                   },
                   btnText: AppStrings.fastingHistory,
                 ),
-            ],).paddingSymmetric(horizontal: 15,vertical: 15),
+            ],),
           ),
         );
       }

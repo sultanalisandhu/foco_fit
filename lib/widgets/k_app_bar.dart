@@ -8,8 +8,14 @@ AppBar kAppBar({
   final Function()? onTap,
   final Function()? trailingOnTap,
   final String? title,
+  double? titleSize,
+  final String? subTitle,
   final String? trailingIcon,
   final Color? shadowColor,
+  final Color? trailingBorderColor,
+  final Color? leadingBorderColor,
+  final Color? leadingIconColor,
+  final Color? trailingIconColor,
 }){
   return AppBar(
     leadingWidth: 70,
@@ -27,28 +33,38 @@ AppBar kAppBar({
       alignment: Alignment.center,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: AppColor.greyColor)),
-      child: const Icon(Icons.arrow_back_ios),
+            border: Border.all(color:leadingBorderColor?? AppColor.blackColor)),
+      child: Icon(Icons.arrow_back_ios,color: leadingIconColor?? AppColor.blackColor,),
       ),
   )
       : const SizedBox.shrink(),
-    title: title!=null
-        ? KText(text:title,fontSize: 20,fontWeight: FontWeight.w600)
-        : const SizedBox.shrink(),
+    title: Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+      title != null
+          ? KText(text:title,fontSize: titleSize??20,fontWeight: FontWeight.w600)
+          : const SizedBox.shrink(),
+        subTitle != null
+            ? KText(text: subTitle,fontSize: 17,fontWeight: FontWeight.w500,color: AppColor.greyColor,)
+            :const  SizedBox.shrink()
+    ],),
     centerTitle: true,
     actions: [
-      trailingOnTap!= null
+      trailingOnTap != null
           ? GestureDetector(
         onTap: trailingOnTap,
         child: Container(
           height: 50,
           width: 50,
-          margin: const EdgeInsets.only(right: 10,bottom: 10),
+          margin: const EdgeInsets.only(right: 10,bottom: 5,top: 5),
           alignment: Alignment.center,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: AppColor.greyColor)),
-          child: showSvgIconWidget( onTap: trailingOnTap, iconPath: trailingIcon??AppIcons.settingIcon,color: AppColor.greyColor),
+              border: Border.all(color:trailingBorderColor?? AppColor.blackColor)),
+          child: showSvgIconWidget(
+              onTap: trailingOnTap,
+              iconPath: trailingIcon??AppIcons.settingIcon,
+              color: trailingIconColor?? AppColor.blackColor),
         ),
       )
           : const SizedBox.shrink()
@@ -82,8 +98,8 @@ AppBar kProfileAppBar({
       ),
       title: Text(title!),
       subtitle: Text(subTitle!),
-      titleTextStyle: kTextStyle(),
-      subtitleTextStyle: kTextStyle(fontWeight: FontWeight.w600,fontSize: 16),
+      titleTextStyle: kTextStyle(fontSize: 14),
+      subtitleTextStyle: kTextStyle(fontWeight: FontWeight.w600,),
       trailing: notificationCount!=null
           ? Stack(
         alignment: Alignment.center,

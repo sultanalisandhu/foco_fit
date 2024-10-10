@@ -4,7 +4,6 @@ import 'package:focofit/components/k_text_fields.dart';
 import 'package:focofit/controller/home_controller.dart';
 import 'package:focofit/extensions/extension.dart';
 import 'package:focofit/screens/home_ui/add_physical_activity/generating_activity.dart';
-import 'package:focofit/screens/home_ui/create_diet_screens/generating_diet.dart';
 import 'package:focofit/utils/app_colors.dart';
 import 'package:focofit/utils/app_strings.dart';
 import 'package:focofit/utils/k_text_styles.dart';
@@ -29,11 +28,11 @@ class CreateActivityAi extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              AppStrings.namePhysicalActivity,
-              style: primaryTextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+            3.ySpace,
+            KText(text: AppStrings.namePhysicalActivity,
+              fontSize: 16, fontWeight: FontWeight.w600
             ),
-            10.height,
+            1.ySpace,
             CustomTextField(
               context: context,
               controller: controller.foodNameController,
@@ -66,7 +65,7 @@ class CreateActivityAi extends StatelessWidget {
                 ),
               ],
             ),
-            5.height,
+            2.ySpace,
             kTextButton(
               onPressed: () {
                 Get.to(() => GeneratingActivity());

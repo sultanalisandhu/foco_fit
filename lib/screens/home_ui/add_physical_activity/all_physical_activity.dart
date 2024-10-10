@@ -14,6 +14,7 @@ import 'package:focofit/utils/k_text_styles.dart';
 import 'package:focofit/widgets/k_app_bar.dart';
 import 'package:focofit/widgets/k_bottom_sheets/home_bottom_sheets.dart';
 import 'package:get/get.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class AllPhysicalActivity extends StatelessWidget {
   const AllPhysicalActivity({super.key});
@@ -33,6 +34,7 @@ class AllPhysicalActivity extends StatelessWidget {
               Get.to(() => CreateActivityOptions());
             },
             trailingIcon: AppIcons.plusIcon,
+            subTitle: '0 ${AppStrings.kcal}',
           ),
           body: DefaultTabController(
             length: 3,
@@ -46,8 +48,9 @@ class AllPhysicalActivity extends StatelessWidget {
                     controller: c.searchController,
                     prefixIcon: AppIcons.searchIcon,
                     hintText: AppStrings.whatYouDoToday,
+                    fieldBorderRadius: 32,
                   ),
-                  15.height,
+                  3.ySpace,
                   Container(
                     height: mQ.height*0.05,
                     padding: const EdgeInsets.all(1),
@@ -58,14 +61,14 @@ class AllPhysicalActivity extends StatelessWidget {
                     child: TabBar(
                       unselectedLabelColor: AppColor.greyColor,
                       splashBorderRadius: BorderRadius.circular(24),
-                      labelStyle: primaryTextStyle(
+                      labelStyle: kTextStyle(
                         color: AppColor.whiteColor,
                         fontWeight: FontWeight.w600,
-                        fontSize: 17,
+                        fontSize: 15,
                       ),
-                      unselectedLabelStyle: primaryTextStyle(
+                      unselectedLabelStyle: kTextStyle(
                         color: AppColor.blackColor,
-                        fontSize: 17,
+                        fontSize: 15,
                       ),
                       indicator: BoxDecoration(
                         gradient: AppColor.primaryGradient,
@@ -81,7 +84,7 @@ class AllPhysicalActivity extends StatelessWidget {
                       ],
                     ),
                   ),
-                  10.height,
+                  2.ySpace,
                   Expanded(
                     child: TabBarView(
                       physics: const NeverScrollableScrollPhysics(),
@@ -108,16 +111,8 @@ class AllPhysicalActivity extends StatelessWidget {
                             ],
                           ),
                           child: ListTile(
-                            title: Text(AppStrings.chocolateFilledBiscuit),
-                            titleTextStyle: primaryTextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
-                            ),
-                            subtitle: Text(AppStrings.sweetRiceCalories),
-                            subtitleTextStyle: primaryTextStyle(
-                              fontSize: 14,
-                              color: AppColor.greyColor,
-                            ),
+                            title: KText(text: AppStrings.chocolateFilledBiscuit,fontWeight: FontWeight.w500,),
+                            subtitle: KText(text: '${AppStrings.calories}: ${AppStrings.sweetRiceCalories}',fontSize: 12,fontWeight: FontWeight.w500,color: AppColor.greyColor,),
                             trailing: _trailingButton(onTap: (){
                               KHomeBottomSheet.addPhysicalActivity(context);
                             }),
@@ -131,17 +126,8 @@ class AllPhysicalActivity extends StatelessWidget {
                             itemCount: 16,
                             itemBuilder: (context,index){
                               return ListTile(
-                                title: Text(AppStrings.myPhysicalActivity),
-                                titleTextStyle: primaryTextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                                subtitle: Text(AppStrings.sweetRiceCalories),
-                                subtitleTextStyle: primaryTextStyle(
-                                  fontSize: 14,
-                                  color: AppColor.greyColor,
-                                ),
-
+                                title: KText(text: AppStrings.myPhysicalActivity,fontWeight: FontWeight.w500),
+                                subtitle: KText(text: '${AppStrings.calories}: ${AppStrings.sweetRiceCalories}',fontSize: 12, fontWeight: FontWeight.w500,color: AppColor.greyColor,),
                                 trailing: _trailingButton(onTap: (){
                                   KHomeBottomSheet.addPhysicalActivity(context);
                                 }),
@@ -155,7 +141,8 @@ class AllPhysicalActivity extends StatelessWidget {
                               return ListTile(
                                 title: Row(
                                   children: [
-                                    Expanded(child: Text(AppStrings.myPhysicalActivity,maxLines: 2,overflow: TextOverflow.ellipsis,)),
+                                    Expanded(child: KText(text: AppStrings.myPhysicalActivity,
+                                      fontWeight: FontWeight.w500,maxLines: 2,overflow: TextOverflow.ellipsis,),),
                                   showSvgIconWidget(
                                       onTap: (){
                                         Get.to(()=> EditPhysicalActivity());
@@ -163,18 +150,10 @@ class AllPhysicalActivity extends StatelessWidget {
                                       iconPath: AppIcons.editIcon)
                                   ],
                                 ),
-                                subtitle: Text(AppStrings.sweetRiceCalories),
+                                subtitle: KText(text: '${AppStrings.calories}: ${AppStrings.sweetRiceCalories}',fontWeight: FontWeight.w500,fontSize: 12,color: AppColor.greyColor,),
                                 trailing:_trailingButton(onTap: (){
                                   KHomeBottomSheet.addPhysicalActivity(context);
                                 }),
-                                titleTextStyle: primaryTextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                                subtitleTextStyle: primaryTextStyle(
-                                  fontSize: 14,
-                                  color: AppColor.greyColor,
-                                ),
                                 contentPadding: EdgeInsets.zero,
                               );
                             }),
@@ -185,17 +164,12 @@ class AllPhysicalActivity extends StatelessWidget {
               ),
             ),
           ),
-          bottomNavigationBar: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 15),
-            alignment: Alignment.center,
-            height: mQ.height*0.08,
-            width: mQ.width,
-            child: kNumberButton(
-              onPressed: () {Get.back();},
-              itemCount: '0',
-              btnText: AppStrings.addActivity,
-            ),
-          ),
+          bottomNavigationBar: kNumberButton(
+            onPressed: () {Get.back();},
+            itemCount: '0',
+            btnText: AppStrings.addActivity,
+
+          ).paddingSymmetric(horizontal: 5.w,vertical: 2.h),
         );
       },
     );

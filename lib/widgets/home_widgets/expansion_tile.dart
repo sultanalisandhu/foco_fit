@@ -47,7 +47,7 @@ class CustomExpandableContainer extends StatelessWidget {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            KText(text: title, fontSize: 16,fontWeight: FontWeight.w600,),
+            KText(text: title,fontWeight: FontWeight.w600,),
             2.xSpace,
             showSvgIconWidget(iconPath: AppIcons.arrowDownIcon)
           ],

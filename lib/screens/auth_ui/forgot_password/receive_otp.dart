@@ -34,7 +34,7 @@ class OtpScreen extends StatelessWidget {
                 Text(AppStrings.enterCodeSentByEmail,
                   textAlign: TextAlign.center,
                   style: primaryTextStyle(fontSize: 18,fontWeight: FontWeight.w400),),
-                20.height,
+                2.ySpace,
                 PinCodeFields(controller: c,),
                 const Spacer(),
                 kTextButton(
