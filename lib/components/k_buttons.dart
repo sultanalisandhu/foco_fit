@@ -154,8 +154,8 @@ Widget kSocialButton({
   return GestureDetector(
     onTap: onTap,
     child: Container(
-      height: 50,
-      margin: const EdgeInsets.symmetric(vertical: 10),
+      height: 6.h,
+      margin: EdgeInsets.symmetric(vertical: 1.h),
       padding: const EdgeInsets.only(left: 40),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(26),
@@ -166,7 +166,7 @@ Widget kSocialButton({
         children: [
           Image(image: AssetImage(imgPath!),height: 30,width: 30,),
           const Spacer(),
-          Text(btnText!,style: primaryTextStyle(fontWeight: FontWeight.w500,fontSize: 16),),
+          KText(text: btnText!,fontWeight: FontWeight.w500,fontSize: 16),
           const Spacer(),
         ],
       ),

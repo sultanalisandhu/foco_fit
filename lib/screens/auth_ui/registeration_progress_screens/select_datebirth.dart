@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:focofit/components/k_buttons.dart';
+import 'package:focofit/components/k_check_box.dart';
+import 'package:focofit/extensions/extension.dart';
 import 'package:focofit/screens/auth_ui/registeration_progress_screens/select_height.dart';
 import 'package:focofit/utils/app_colors.dart';
 import 'package:focofit/utils/app_strings.dart';
 import 'package:focofit/utils/k_text_styles.dart';
 import 'package:focofit/widgets/k_app_bar.dart';
 import 'package:get/get.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class SelectDateBirth extends StatelessWidget {
   SelectDateBirth({super.key});
@@ -33,21 +36,18 @@ class SelectDateBirth extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              AppStrings.whatsYourBirthDate,
-              style: primaryTextStyle(
-                fontSize: 24.0,
+            2.ySpace,
+            KText(
+              text: AppStrings.whatsYourBirthDate,
+                fontSize: 20.0,
                 fontWeight: FontWeight.w700,
-              ),
             ),
-            Text(
-              AppStrings.yourAgeHelpReferences,
-              style: primaryTextStyle(
-                fontSize: 16.0,
-                fontWeight: FontWeight.w400,
-              ),
+            1.ySpace,
+            KText(
+              text: AppStrings.yourAgeHelpReferences,
               textAlign: TextAlign.start,
             ),
+            2.ySpace,
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -71,23 +71,22 @@ class SelectDateBirth extends StatelessWidget {
                                     child:  index+1== currentDate.value
                                         ? GradientText(text: (index + 1).toString(),
                                       gradient: AppColor.primaryGradient,
-                                      style: primaryTextStyle(
-                                        fontSize: 40,
+                                      style: kTextStyle(
+                                        fontSize: 24,
                                         fontWeight: FontWeight.w600,),)
-                                        : Text(
+                                        : KText(text:
                                       (index + 1).toString(),
-                                      style: primaryTextStyle(
-                                        fontSize: 32,
+                                        fontSize: 20,
                                         fontWeight: FontWeight.w600,
                                         color:  Colors.black.withOpacity(0.6),
-                                      ),),
+                                      ),
                         )
                         );
                       },
                     ),
                   ),
                 ),
-                Text('/', style: primaryTextStyle(fontSize: 40)),
+                const KText(text:  '/',fontSize: 24,),
                 /// Month ScrollView
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.45,
@@ -108,23 +107,22 @@ class SelectDateBirth extends StatelessWidget {
                                     child:  index+1== currentMonth.value
                                         ? GradientText(text: (index + 1).toString(),
                                       gradient: AppColor.primaryGradient,
-                                      style: primaryTextStyle(
-                                        fontSize: 40,
+                                      style: kTextStyle(
+                                        fontSize: 24,
                                         fontWeight: FontWeight.w600,),)
-                                        : Text(
+                                        : KText(text:
                                       (index + 1).toString(),
-                                      style: primaryTextStyle(
-                                        fontSize: 32,
+                                        fontSize: 20,
                                         fontWeight: FontWeight.w600,
                                         color:  Colors.black.withOpacity(0.6),
-                                      ),),
+                                      ),
                                   ),
                         );
                       },
                     ),
                   ),
                 ),
-                Text('/', style: primaryTextStyle(fontSize: 40)),
+                const KText(text:  '/',fontSize: 24,),
                 // Year ScrollView
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.45,
@@ -145,16 +143,15 @@ class SelectDateBirth extends StatelessWidget {
                             child: 1990 + index== currentYear.value
                                 ? GradientText(text: (1990 + index).toString(),
                                 gradient: AppColor.primaryGradient,
-                            style: primaryTextStyle(
-                              fontSize: 40,
+                            style: kTextStyle(
+                              fontSize: 24,
                               fontWeight: FontWeight.w600,),)
-                                : Text(
+                                : KText(text:
                               (1990 + index).toString(),
-                              style: primaryTextStyle(
-                                fontSize: 32,
+                                fontSize: 20,
                                 fontWeight: FontWeight.w600,
                                 color:  Colors.black.withOpacity(0.6),
-                              ),),
+                              ),
                           ),
                         );
                       },
@@ -164,17 +161,17 @@ class SelectDateBirth extends StatelessWidget {
 
               ],
             ),
-            Spacer(),
-            kTextButton(
-                onPressed: (){
-                  Get.to(()=> SelectHeight());
-                },
-                btnText: AppStrings.continuue,
-                useGradient: true
-            )
           ],
         ),
       ),
+
+      bottomNavigationBar: kTextButton(
+          onPressed: (){
+            Get.to(()=> SelectHeight());
+          },
+          btnText: AppStrings.continuue,
+          useGradient: true
+      ).paddingSymmetric(horizontal: 5.w,vertical: 3.h),
     );
   }
 }

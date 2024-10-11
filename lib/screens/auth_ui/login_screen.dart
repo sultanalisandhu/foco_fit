@@ -34,31 +34,19 @@ class LoginScreen extends StatelessWidget {
               children: [
                 Align(
                   alignment: Alignment.center,
-                  child: Text(
-                    AppStrings.loginToAccount,
-                    style: primaryTextStyle(
-                        fontSize: 24, fontWeight: FontWeight.w700),
-                  ),
+                  child: KText(text: AppStrings.loginToAccount,
+                        fontSize: 20, fontWeight: FontWeight.w700),
                 ),
-                Text(
-                  AppStrings.email,
-                  style: primaryTextStyle(
-                      fontSize: 16, fontWeight: FontWeight.w400),
-                ),
-                5.height,
+                3.ySpace,
+                KText(text: AppStrings.email,),
                 GetTextField(
                   context: context,
                   hintText: AppStrings.enterEmail,
                   obSecureText: false,
                   prefixIcon: AppIcons.emailIcon,
                 ),
-                15.height,
-                Text(
-                  AppStrings.password,
-                  style: primaryTextStyle(
-                      fontSize: 16, fontWeight: FontWeight.w400),
-                ),
-                5.height,
+                2.ySpace,
+                KText(text: AppStrings.password,),
                 GetTextField(
                   context: context,
                   hintText: AppStrings.enterPassword,
@@ -78,7 +66,7 @@ class LoginScreen extends StatelessWidget {
                     c.isTermsAccepted.value = value;
                   },
                 ),
-                15.height,
+                2.ySpace,
                 kTextButton(
                   btnText: AppStrings.login,
                   onPressed: () {
@@ -86,14 +74,14 @@ class LoginScreen extends StatelessWidget {
                   },
                   useGradient: true,
                 ),
-                50.height,
+                4.ySpace,
                 Center(
                   child: RichText(
                     text: TextSpan(
                       children: [
                         TextSpan(
                           text: AppStrings.dontHaveAccount,
-                          style: primaryTextStyle(
+                          style: kTextStyle(
                             color: AppColor.blackColor,
                             fontSize: 14,
                             fontWeight: FontWeight.w400,
@@ -101,11 +89,11 @@ class LoginScreen extends StatelessWidget {
                         ),
                         TextSpan(
                           text: AppStrings.createAccount,
-                          style: primaryTextStyle(
+                          style: kTextStyle(
                             textDecoration: TextDecoration.underline,
                             color: AppColor.startGradient,
                             fontSize: 14,
-                            fontWeight: FontWeight.w400,
+                            fontWeight: FontWeight.w500,
                           ),
                           recognizer: TapGestureRecognizer()..onTap= (){
                             Get.offAll(()=> RegisterScreen());
@@ -122,21 +110,18 @@ class LoginScreen extends StatelessWidget {
                         height: 60,
                         color: AppColor.greyColor,
                         endIndent: 20,
-                        indent: 20,
+                        indent: 10,
                       ),
                     ),
-                    Text(
-                      AppStrings.or,
-                      style: primaryTextStyle(
+                    KText(text: AppStrings.or,
                         color: AppColor.greyColor,
                         fontSize: 14,
                         fontWeight: FontWeight.w400,
-                      ),
                     ),
                     const Expanded(
                       child: Divider(
                         color: AppColor.greyColor,
-                        endIndent: 20,
+                        endIndent: 10,
                         indent: 20,
                       ),
                     ),

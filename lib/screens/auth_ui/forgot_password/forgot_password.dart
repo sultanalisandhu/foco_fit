@@ -8,6 +8,7 @@ import 'package:focofit/utils/asset_utils.dart';
 import 'package:focofit/utils/k_text_styles.dart';
 import 'package:focofit/widgets/k_app_bar.dart';
 import 'package:get/get.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class ForgotPassword extends StatelessWidget {
   const ForgotPassword({super.key});
@@ -22,19 +23,20 @@ class ForgotPassword extends StatelessWidget {
         padding: const EdgeInsets.all(12.0),
         child: Column(
           children: [
-         const SizedBox(
-              height: 150,
-              width: 150,
+            SizedBox(
+              height: 22.h,
+              width: 50.w,
               child: Image(image: AssetImage(AppImages.forgotImage))),
-          Text(AppStrings.forgotPassword,style: primaryTextStyle(fontSize: 24,fontWeight: FontWeight.w700),),
-          Text(AppStrings.enterEmailReceiveLink,
-            textAlign: TextAlign.center,
-            style: primaryTextStyle(fontSize: 18,fontWeight: FontWeight.w400),),
+          3.ySpace,
+          KText(text: AppStrings.forgotPassword,fontSize: 20,fontWeight: FontWeight.w700),
+          1.ySpace,
+          KText(
+            text: AppStrings.enterEmailReceiveLink,
+            textAlign: TextAlign.center,),
             2.ySpace,
           Align(
               alignment: Alignment.topLeft,
-              child: Text(AppStrings.email,style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w600),)),
-        1.ySpace,
+              child: KText(text:  AppStrings.email,)),
           GetTextField(
             context: context,
             hintText: AppStrings.enterEmail,
@@ -42,16 +44,16 @@ class ForgotPassword extends StatelessWidget {
             prefixIcon: AppIcons.emailIcon,
             textInputAction: TextInputAction.done,
           ),
-          const Spacer(),
-          kTextButton(
-            onPressed: (){
-              Get.to(()=> OtpScreen());
-            },
-            btnText: AppStrings.continuue,
-            useGradient: true
-          )
+
         ],),
       ),
+      bottomNavigationBar: kTextButton(
+          onPressed: (){
+            Get.to(()=> OtpScreen());
+          },
+          btnText: AppStrings.continuue,
+          useGradient: true
+      ).paddingSymmetric(horizontal: 5.w,vertical: 3.h),
     );
   }
 }

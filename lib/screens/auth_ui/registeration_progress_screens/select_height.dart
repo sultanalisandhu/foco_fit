@@ -8,6 +8,7 @@ import 'package:focofit/utils/app_strings.dart';
 import 'package:focofit/utils/k_text_styles.dart';
 import 'package:focofit/widgets/k_app_bar.dart';
 import 'package:get/get.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class SelectHeight extends StatelessWidget {
   SelectHeight({super.key});
@@ -34,19 +35,13 @@ class SelectHeight extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-            Text(
-              AppStrings.howTallAreYou,
-              style: primaryTextStyle(
-                fontSize: 24.0,
+            KText(
+              text: AppStrings.howTallAreYou,
+                fontSize: 20.0,
                 fontWeight: FontWeight.w700,
-              ),
             ),
-            Text(
-              AppStrings.yourHeightHelpCalculateMass,
-              style: primaryTextStyle(
-                fontSize: 16.0,
-                fontWeight: FontWeight.w400,
-              ),
+            KText(
+              text: AppStrings.yourHeightHelpCalculateMass,
               textAlign: TextAlign.start,
             ),
               Obx(()=>Row(
@@ -100,11 +95,7 @@ class SelectHeight extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Text(
-                    'ft',
-                    textAlign: TextAlign.end,
-                    style: primaryTextStyle(fontSize: 20.0, fontWeight: FontWeight.w400, color: Colors.black,),
-                  ),
+                  const KText(text: 'ft',),
                   const SizedBox(width: 20), // Added SizedBox
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.45,
@@ -122,26 +113,22 @@ class SelectHeight extends StatelessWidget {
                         childCount: 13,
                         builder: (context, index) {
                           return Obx(()=> Center(
-                            child: index ==heightInCm.value
-                                ? GradientText(text: index.toString(), gradient: AppColor.primaryGradient,style: primaryTextStyle(
-                                fontSize: 40,
+                            child: index ==heightInch.value
+                                ? GradientText(text: index.toString(), gradient: AppColor.primaryGradient,
+                                style: kTextStyle(
+                                fontSize: 24,
                                 fontWeight: FontWeight.w600
                             ),)
-                                : Text(
+                                : KText(text:
                               index.toString(),
-                              style:  primaryTextStyle(fontSize: 32, fontWeight: FontWeight.w500,color: Colors.black.withOpacity(0.7)),
-                            ),
+                              fontSize: 20, fontWeight: FontWeight.w500,color: Colors.black.withOpacity(0.7)),
                           ),
                           );
                         },
                       ),
                     ),
                   ),
-                  Text(
-                    'in',
-                    textAlign: TextAlign.end,
-                    style: primaryTextStyle(fontSize: 20.0, fontWeight: FontWeight.w400, color: Colors.black,),
-                  ),
+                  const KText(text: 'in',),
                 ],
               )
                   : Row(
@@ -164,35 +151,36 @@ class SelectHeight extends StatelessWidget {
                         builder: (context, index) {
                           return  Obx(()=>Center(child:
                             index == heightInCm.value
-                                ? GradientText(text: index.toString(), gradient: AppColor.primaryGradient,style: primaryTextStyle(
-                              fontSize: 40,
+                                ? GradientText(text: index.toString(), gradient: AppColor.primaryGradient,
+                              style: kTextStyle(
+                              fontSize: 24,
                               fontWeight: FontWeight.w600
                             ),)
-                                : Text(
+                                : KText(text:
                               index.toString(),
-                              style:  primaryTextStyle(fontSize: 32, fontWeight: FontWeight.w500,color: Colors.black.withOpacity(0.7)),
-                            )),
+                              fontSize: 20, fontWeight: FontWeight.w500,color: Colors.black.withOpacity(0.7)),
+                            ),
                           );
                         },
                       ),
                     ),
                   ),
-                  Text(
-                    'cm',
-                    textAlign: TextAlign.end,
-                    style: primaryTextStyle(fontSize: 20.0, fontWeight: FontWeight.w400, color: Colors.black,),
+                  const KText(
+                    text: 'cm',
+                    fontSize: 20.0,
                   ),
+
                 ],),
-              const Spacer(),
-              kTextButton(
-                onPressed: (){
-                  Get.to(()=> SelectWeight());
-                },
-                btnText: AppStrings.continuue,
-                useGradient: true,
-              )
           ],),
         ),
+
+      bottomNavigationBar: kTextButton(
+          onPressed: (){
+            Get.to(()=> SelectWeight());
+          },
+          btnText: AppStrings.continuue,
+          useGradient: true
+      ).paddingSymmetric(horizontal: 5.w,vertical: 3.h),
       ),
     );
   }

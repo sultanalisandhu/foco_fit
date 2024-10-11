@@ -50,7 +50,7 @@ class GetTextField extends StatelessWidget {
       controller: controller,
       cursorColor: AppColor.greyColor,
       maxLines: 1,
-      style: primaryTextStyle(color: AppColor.blackColor, fontSize: 18.0,fontWeight: FontWeight.w400),
+      style: kTextStyle( fontSize: 15.0,fontWeight: FontWeight.w400),
       keyboardType: keyboardType ?? TextInputType.text,
       textInputAction: textInputAction??TextInputAction.next,
       obscureText: obSecureText??true,
@@ -83,7 +83,7 @@ class GetTextField extends StatelessWidget {
         )
             : null,
        contentPadding: EdgeInsets.all( 15),
-        hintStyle: primaryTextStyle(color: AppColor.greyColor, fontSize: 16.0,fontWeight: FontWeight.w400),
+        hintStyle: kTextStyle(color: AppColor.greyColor, fontSize: 15.0,fontWeight: FontWeight.w400),
         filled: true,
         isDense: true,
         fillColor: Colors.transparent,
@@ -334,7 +334,7 @@ class _PinCodeFieldsState extends State<PinCodeFields> {
               followingPinTheme:  defaultPinTheme.copyWith(
                 decoration: defaultPinTheme.decoration!.copyWith(
                   borderRadius: BorderRadius.circular(15),
-                  border: Border.all(color: AppColor.lightGreyColor),
+                  border: Border.all(color: AppColor.lightGreyBorder),
                 ),
               ),
               disabledPinTheme: defaultPinTheme.copyWith(

@@ -1,5 +1,6 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
+import 'package:focofit/screens/auth_ui/splash_screen.dart';
 import 'package:focofit/screens/nav_bar/k_bottom_navigation.dart';
 import 'package:focofit/utils/app_colors.dart';
 import 'package:focofit/utils/local_storage.dart';
@@ -17,7 +18,7 @@ void main() async{
   await languages.loadTranslations();
   runApp(
       DevicePreview(
-          enabled: false,
+          enabled: true,
           builder: (context)=> const MyApp())
       );
 }
@@ -45,7 +46,7 @@ class MyApp extends StatelessWidget {
               colorScheme: ColorScheme.fromSeed(seedColor: AppColor.primaryColor),
               useMaterial3: true,
             ),
-            home: CustomBottomBar(),
+            home: SplashScreen(),
             // for checking the responsiveness of the app
             useInheritedMediaQuery: true,
           );

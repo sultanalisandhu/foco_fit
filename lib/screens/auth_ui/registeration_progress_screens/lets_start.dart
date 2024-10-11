@@ -5,6 +5,7 @@ import 'package:focofit/utils/app_strings.dart';
 import 'package:focofit/utils/asset_utils.dart';
 import 'package:focofit/utils/k_text_styles.dart';
 import 'package:get/get.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class LetsStart extends StatelessWidget {
   const LetsStart({super.key});
@@ -17,26 +18,26 @@ class LetsStart extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Spacer(),
           Center(
             child: Column(children: [
-              Text(AppStrings.allSetLetsGo,style: primaryTextStyle(fontSize: 24,fontWeight: FontWeight.w700),),
-              Text(AppStrings.newJourney,
+              KText(text:  AppStrings.allSetLetsGo,fontSize: 20,fontWeight: FontWeight.w700),
+              KText(
+                text: AppStrings.newJourney,
                 textAlign: TextAlign.center,
-                style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w400),),
+                ),
               const Image(image: AssetImage(AppImages.letsStartImg)),
             ],),
           ),
-            const Spacer(),
-            kTextButton(
-                onPressed: (){
-                  Get.offAll(()=> CustomBottomBar());
-                },
-                btnText: AppStrings.letsGo,
-                useGradient: true
-            )
         ],),
-      )
+      ),
+
+      bottomNavigationBar: kTextButton(
+          onPressed: (){
+            Get.offAll(()=> CustomBottomBar());
+          },
+          btnText: AppStrings.letsGo,
+          useGradient: true
+      ).paddingSymmetric(horizontal: 5.w,vertical: 3.h),
     );
   }
 }

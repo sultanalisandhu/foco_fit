@@ -47,13 +47,9 @@ class CustomCheckbox extends StatelessWidget {
             borderRadius: BorderRadius.circular(4),
           ),
         ),
-          Text(
-            AppStrings.rememberMe,
-            style: primaryTextStyle(
+          KText(text: AppStrings.rememberMe,
               fontSize: 14.0,
               color: AppColor.blackColor,
-              fontWeight: FontWeight.w400,
-            ),
           ),
           const Spacer(),
           GradientText(
@@ -62,10 +58,11 @@ class CustomCheckbox extends StatelessWidget {
               Get.to(()=> ForgotPassword());
             },
             gradient: AppColor.primaryGradient,
-            style: primaryTextStyle(
+            style: kTextStyle(
               fontSize: 14.0,
+              textDecoration: TextDecoration.underline,
               color: AppColor.primaryColor,
-              fontWeight: FontWeight.w400,
+              fontWeight: FontWeight.w500,
             ),
           ),
       ],
@@ -111,23 +108,22 @@ class CustomRegisterCheckbox extends StatelessWidget {
             borderRadius: BorderRadius.circular(4),
           ),
         ),
-        Text(
+        KText(text:
           AppStrings.iAgreeWithThe,
-          style: primaryTextStyle(
             fontSize: 14.0,
             color: AppColor.blackColor,
-            fontWeight: FontWeight.w400,
-          ),
+            fontWeight: FontWeight.w500,
         ),
         5.width,
         GradientText(
           text: AppStrings.termsConditions,
           onTextTap: (){},
           gradient: AppColor.primaryGradient,
-          style: primaryTextStyle(
+          style: kTextStyle(
             fontSize: 14.0,
+            textDecoration: TextDecoration.underline,
             color: AppColor.primaryColor,
-            fontWeight: FontWeight.w400,
+            fontWeight: FontWeight.w500,
           ),
         ),
       ],

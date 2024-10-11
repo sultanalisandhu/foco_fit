@@ -9,6 +9,7 @@ import 'package:focofit/utils/asset_utils.dart';
 import 'package:focofit/utils/k_text_styles.dart';
 import 'package:focofit/widgets/k_app_bar.dart';
 import 'package:get/get.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class OtpScreen extends StatelessWidget {
   const OtpScreen({super.key});
@@ -22,30 +23,27 @@ class OtpScreen extends StatelessWidget {
           appBar: kAppBar(
             onTap: () => Navigator.pop(context),
           ),
-          body:Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Column(
-              children: [
-                const SizedBox(
-                    height: 150,
-                    width: 150,
-                    child: Image(image: AssetImage(AppImages.otpImg))),
-                Text(AppStrings.enterVerificationCode,style: primaryTextStyle(fontSize: 24,fontWeight: FontWeight.w700),),
-                Text(AppStrings.enterCodeSentByEmail,
-                  textAlign: TextAlign.center,
-                  style: primaryTextStyle(fontSize: 18,fontWeight: FontWeight.w400),),
-                2.ySpace,
-                PinCodeFields(controller: c,),
-                const Spacer(),
-                kTextButton(
-                    onPressed: (){
-                      Get.to(()=> ChangePassword());
-                    },
-                    btnText: AppStrings.continuue,
-                    useGradient: true
-                )
-              ],),
-          ),
+          body:Column(
+            children: [
+               SizedBox(
+                  height: 22.h,
+                  width: 35.w,
+                  child:const  Image(image: AssetImage(AppImages.otpImg))),
+              4.ySpace,
+              KText(text:  AppStrings.enterVerificationCode,fontSize: 20,fontWeight: FontWeight.w700),
+              1.ySpace,
+              KText(text:  AppStrings.enterCodeSentByEmail,textAlign: TextAlign.center,),
+              3.ySpace,
+              PinCodeFields(controller: c,),
+            ],).paddingSymmetric(horizontal: 3.w,vertical: 1.h),
+
+          bottomNavigationBar: kTextButton(
+              onPressed: (){
+                Get.to(()=> ChangePassword());
+              },
+              btnText: AppStrings.continuue,
+              useGradient: true
+          ).paddingSymmetric(horizontal: 5.w,vertical: 3.h),
         );
       }
     );

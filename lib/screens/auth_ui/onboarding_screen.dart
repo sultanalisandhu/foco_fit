@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:focofit/components/k_buttons.dart';
-import 'package:focofit/controller/splash_controller.dart';
 import 'package:focofit/screens/auth_ui/welcome_screen.dart';
 import 'package:focofit/utils/app_colors.dart';
 import 'package:focofit/utils/app_strings.dart';
@@ -72,23 +71,16 @@ class KOnboardingScreen extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     const Spacer(),
-                    Obx(()=> Text(
-                        tittleText[currentPage.value],
+                    Obx(()=> KText(text: tittleText[currentPage.value],
                         textAlign: TextAlign.center,
-                        style: primaryTextStyle(
-                          fontSize: 24,
+                          fontSize: 20,
                           fontWeight: FontWeight.w700,
-                        ),
                       ),
                     ),
                     const SizedBox(height: 10),
-                    Obx(()=>Text(
-                        subTitleText[currentPage.value],
+                    Obx(()=>KText(text: subTitleText[currentPage.value],
                         textAlign: TextAlign.center,
-                        style: primaryTextStyle(
-                          fontSize: 18,
                           fontWeight: FontWeight.w400,
-                        ),
                       ),
                     ),
                     const Spacer(),

@@ -36,28 +36,20 @@ class RegisterScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Center(
-                      child: Text(
-                        AppStrings.createYourAccount,
-                        style: primaryTextStyle(fontSize: 24, fontWeight: FontWeight.w700),
+                      child: KText(text: AppStrings.createYourAccount,
+                        fontSize: 20, fontWeight: FontWeight.w700,
                       ),
                     ),
-                    Text(
-                      AppStrings.email,
-                      style: primaryTextStyle(fontSize: 16, fontWeight: FontWeight.w400),
-                    ),
-                    5.height,
+                    3.ySpace,
+                    KText(text: AppStrings.email,),
                     GetTextField(
                       context: context,
                       hintText: AppStrings.enterEmail,
                       obSecureText: false,
                       prefixIcon: AppIcons.emailIcon,
                     ),
-                    15.height,
-                    Text(
-                      AppStrings.password,
-                      style: primaryTextStyle(fontSize: 16, fontWeight: FontWeight.w400),
-                    ),
-                    5.height,
+                    2.ySpace,
+                    KText(text: AppStrings.password,),
                     GetTextField(
                       context: context,
                       hintText: AppStrings.enterPassword,
@@ -75,7 +67,7 @@ class RegisterScreen extends StatelessWidget {
                         c.isTermsAccepted.value = value;
                       },
                     ),
-                    15.height,
+                    2.ySpace,
                     kTextButton(
                       btnText: AppStrings.createAccount,
                       onPressed: () {
@@ -85,7 +77,7 @@ class RegisterScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                30.height, // Add space between columns
+                3.ySpace,
                 /// Button column
                 Column(
                   children: [
@@ -96,7 +88,7 @@ class RegisterScreen extends StatelessWidget {
                           children: [
                             TextSpan(
                               text: AppStrings.alreadyHaveAccount,
-                              style: primaryTextStyle(
+                              style: kTextStyle(
                                 color: AppColor.blackColor,
                                 fontSize: 14,
                                 fontWeight: FontWeight.w400,
@@ -105,11 +97,11 @@ class RegisterScreen extends StatelessWidget {
                             ///add on tap on this text span
                             TextSpan(
                               text: AppStrings.login,
-                              style: primaryTextStyle(
+                              style: kTextStyle(
                                 textDecoration: TextDecoration.underline,
                                 color: AppColor.startGradient,
                                 fontSize: 14,
-                                fontWeight: FontWeight.w400,
+                                fontWeight: FontWeight.w500,
                               ),
                               recognizer: TapGestureRecognizer()..onTap= (){
                                 Get.offAll(()=> LoginScreen());
@@ -124,23 +116,21 @@ class RegisterScreen extends StatelessWidget {
                         const Expanded(
                           child: Divider(
                             height: 60,
-                            color: AppColor.greyColor,
+                            color: AppColor.lightGreyBorder,
                             endIndent: 20,
-                            indent: 20,
+                            indent: 10,
                           ),
                         ),
-                        Text(
+                        KText(text:
                           AppStrings.or,
-                          style: primaryTextStyle(
                             color: AppColor.greyColor,
                             fontSize: 14,
                             fontWeight: FontWeight.w400,
-                          ),
                         ),
                         const Expanded(
                           child: Divider(
-                            color: AppColor.greyColor,
-                            endIndent: 20,
+                            color: AppColor.lightGreyBorder,
+                            endIndent: 10,
                             indent: 20,
                           ),
                         ),

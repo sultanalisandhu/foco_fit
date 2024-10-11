@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:focofit/components/k_buttons.dart';
+import 'package:focofit/components/k_check_box.dart';
+import 'package:focofit/extensions/extension.dart';
 import 'package:focofit/screens/auth_ui/registeration_progress_screens/goal_weight.dart';
 import 'package:focofit/utils/app_colors.dart';
 import 'package:focofit/utils/app_strings.dart';
 import 'package:focofit/utils/k_text_styles.dart';
 import 'package:focofit/widgets/k_app_bar.dart';
 import 'package:get/get.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class SelectWeight extends StatelessWidget {
   SelectWeight({super.key});
@@ -29,19 +32,14 @@ class SelectWeight extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              AppStrings.whatYourCurrentWeight,
-              style: primaryTextStyle(
-                fontSize: 24.0,
+            2.ySpace,
+            KText(text: AppStrings.whatYourCurrentWeight,
+                fontSize: 20.0,
                 fontWeight: FontWeight.w700,
-              ),
             ),
-            Text(
-              AppStrings.knowingYourCurrentWeightHelpGoals,
-              style: primaryTextStyle(
-                fontSize: 16.0,
-                fontWeight: FontWeight.w400,
-              ),
+            1.ySpace,
+            KText(
+              text: AppStrings.knowingYourCurrentWeightHelpGoals,
               textAlign: TextAlign.start,
             ),
                 Row(
@@ -64,25 +62,21 @@ class SelectWeight extends StatelessWidget {
                       builder: (context, index) {
                         return Obx(()=> Center(
                           child: index == selectedWeightKg.value
-                              ? GradientText(text: index.toString(), gradient: AppColor.primaryGradient,style: primaryTextStyle(
-                              fontSize: 40,
+                              ? GradientText(text: index.toString(), gradient: AppColor.primaryGradient,
+                            style: kTextStyle(
+                              fontSize: 24,
                               fontWeight: FontWeight.w600
                           ),)
-                              : Text(
-                            index.toString(),
-                            style:  primaryTextStyle(fontSize: 32, fontWeight: FontWeight.w500,color: Colors.black.withOpacity(0.7)),
-                          ),
+                              : KText(
+                            text: index.toString(),
+                            fontSize: 20, fontWeight: FontWeight.w500,color: Colors.black.withOpacity(0.7)),
                         ),
                         );
                       },
                     ),
                   ),
                 ),
-                Text(
-                  'Kg',
-                  textAlign: TextAlign.end,
-                  style: primaryTextStyle(fontSize: 20.0, fontWeight: FontWeight.w400, color: Colors.black,),
-                ),
+                const  KText(text: 'Kg',),
                 const SizedBox(width: 20), // Added SizedBox
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.45,
@@ -101,13 +95,14 @@ class SelectWeight extends StatelessWidget {
                       builder: (context, index) {
                         return Obx(()=> Center(
                           child: index ==selectedWeightGr.value
-                              ? GradientText(text: index.toString(), gradient: AppColor.primaryGradient,style: primaryTextStyle(
-                              fontSize: 40,
+                              ? GradientText(text: index.toString(), gradient: AppColor.primaryGradient,
+                            style: kTextStyle(
+                              fontSize: 24,
                               fontWeight: FontWeight.w600
                           ),)
-                              : Text(
+                              : KText(text:
                             index.toString(),
-                            style:  primaryTextStyle(fontSize: 32, fontWeight: FontWeight.w500,color: Colors.black.withOpacity(0.7)),
+                           fontSize: 20, fontWeight: FontWeight.w500,color: Colors.black.withOpacity(0.7),
                           ),
                         ),
                         );
@@ -115,23 +110,19 @@ class SelectWeight extends StatelessWidget {
                     ),
                   ),
                 ),
-                Text(
-                  'Gr',
-                  textAlign: TextAlign.end,
-                  style: primaryTextStyle(fontSize: 20.0, fontWeight: FontWeight.w400, color: Colors.black,),
-                ),
+               const  KText(text: 'Gr',),
               ],
             ),
-            const Spacer(),
-            kTextButton(
-              onPressed: (){
-                Get.to(()=> GoalWeight());
-              },
-              btnText: AppStrings.continuue,
-              useGradient: true,
-            )
           ],),
       ),
+
+      bottomNavigationBar: kTextButton(
+          onPressed: (){
+            Get.to(()=> GoalWeight());
+          },
+          btnText: AppStrings.continuue,
+          useGradient: true
+      ).paddingSymmetric(horizontal: 5.w,vertical: 3.h),
     );
   }
 }

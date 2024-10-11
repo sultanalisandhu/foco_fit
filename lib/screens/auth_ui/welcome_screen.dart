@@ -18,27 +18,6 @@ class WelcomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          kTextButton(
-              onPressed: (){
-                Get.to(()=> RegisterScreen());
-              },
-              btnText: AppStrings.createAccount,
-              useGradient: true,
-            fontSize: 16,
-          ),
-          2.ySpace,
-          KOutlineButton(
-            onTap: (){
-              Get.to(()=> LoginScreen());
-            },
-            btnText:AppStrings.login,
-            gradient: AppColor.primaryGradient,
-            fontSize: 16,
-          ),
-      ],).paddingSymmetric(horizontal: 4.w,vertical: 4.h),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -62,6 +41,27 @@ class WelcomeScreen extends StatelessWidget {
 
         ],),
       ),
+      bottomNavigationBar: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          kTextButton(
+            onPressed: (){
+              Get.to(()=> RegisterScreen());
+            },
+            btnText: AppStrings.createAccount,
+            useGradient: true,
+            fontSize: 16,
+          ),
+          2.ySpace,
+          KOutlineButton(
+            onTap: (){
+              Get.to(()=> LoginScreen());
+            },
+            btnText:AppStrings.login,
+            gradient: AppColor.primaryGradient,
+            fontSize: 16,
+          ),
+        ],).paddingSymmetric(horizontal: 4.w,vertical: 4.h),
     );
   }
 }

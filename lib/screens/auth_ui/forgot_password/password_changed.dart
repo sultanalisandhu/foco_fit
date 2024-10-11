@@ -10,6 +10,7 @@ import 'package:focofit/utils/asset_utils.dart';
 import 'package:focofit/utils/k_text_styles.dart';
 import 'package:focofit/widgets/k_app_bar.dart';
 import 'package:get/get.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class PasswordChanged extends StatelessWidget {
   const PasswordChanged({super.key});
@@ -25,23 +26,28 @@ class PasswordChanged extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const SizedBox(
-                height: 200,
-                width: 200,
-                child: Image(image: AssetImage(AppImages.greenCheckImg))),
-            Text(AppStrings.passwordChangedSuccessfully,style: primaryTextStyle(fontSize: 24,fontWeight: FontWeight.w700),),
+            SizedBox(
+                height: 20.h,
+                width: 50.w,
+                child:const  Image(image: AssetImage(AppImages.greenCheckImg))),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10.w),
+              child: KText(
+                  text: AppStrings.passwordChangedSuccessfully,
+                  textAlign: TextAlign.center,
+                  fontSize: 20,fontWeight: FontWeight.w700
+              ),
+            ),
 
           ],),
       ),
-      bottomNavigationBar: SizedBox(
-        child:  kTextButton(
-            onPressed: (){
-              Get.offAll(()=> LoginScreen());
-            },
-            btnText: AppStrings.backAndEnter,
-            useGradient: true
-        ),
-      ).paddingSymmetric(horizontal: 20,vertical: 10),
+      bottomNavigationBar: kTextButton(
+          onPressed: (){
+            Get.offAll(()=> LoginScreen());
+          },
+          btnText: AppStrings.backAndEnter,
+          useGradient: true
+      ).paddingSymmetric(horizontal: 5.w,vertical: 3.h),
     );
   }
 }
