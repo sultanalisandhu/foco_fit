@@ -3,7 +3,6 @@ import 'package:get_storage/get_storage.dart';
 
 class LocalStorage{
   static final GetStorage _storage= GetStorage();
-  static const String bearerToken = 'bearerToken';
   static const String languageName = 'languageName';
   static const String languageCode = 'languageCode';
   static const String languageCountryCode = 'languageCountryCode';
@@ -12,11 +11,11 @@ class LocalStorage{
 
   static void write(String key, dynamic value){
     _storage.write(key, value);
-    log('write method key: $key  write value: $value');
+    log('Write to key: $key value: $value');
   }
   static dynamic read(String key) {
     dynamic value = _storage.read(key) ?? '';
-    log('Read method key: $key  read value: $value');
+    log('Read from key: $key value: $value');
     return value;
   }
 

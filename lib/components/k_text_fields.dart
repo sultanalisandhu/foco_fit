@@ -108,86 +108,6 @@ class GetTextField extends StatelessWidget {
   }
 }
 
-class BorderlessTextFiled extends StatelessWidget {
-  final BuildContext context;
-  final String? hintText;
-  final String? prefixText;
-  final String? suffixText;
-  final double? contentPadding;
-  final int? maxLines;
-  final Widget? suffixWidget;
-  final TextInputType? keyboardType;
-  final TextEditingController? controller;
-  final bool? readOnly;
-  final Function(String)? onChanged;
-  final FocusNode? focusNode;
-
-  const BorderlessTextFiled({super.key,
-    required this.context,
-    this.hintText,
-    this.prefixText,
-    this.suffixText,
-    this.keyboardType,
-    this.controller,
-    this.onChanged,
-    this.focusNode,
-    this.readOnly,
-    this.suffixWidget, this.contentPadding, this.maxLines});
-
-  @override
-  Widget build(BuildContext context) {
-    return TextFormField(
-      readOnly: readOnly !=null ?true:false,
-      controller: controller,
-      cursorColor: AppColor.greyColor,
-      maxLines: maxLines??1,
-      style: primaryTextStyle(color: AppColor.blackColor, fontSize: 18.0,fontWeight: FontWeight.w400),
-      keyboardType: keyboardType ?? TextInputType.text,
-      textInputAction: TextInputAction.next,
-      onTapOutside: (event) {context.dismissKeyBoard();},
-      onChanged: onChanged,
-      focusNode: focusNode,
-      decoration: InputDecoration(
-        suffix: suffixWidget,
-        hintText: hintText,
-        prefixText: prefixText,
-        prefixStyle: primaryTextStyle(color: AppColor.blackColor, fontSize: 16.0,fontWeight: FontWeight.w400),
-        suffixText: suffixText,
-        suffixStyle: primaryTextStyle(fontSize: 12,fontWeight: FontWeight.w400,color: AppColor.blackColor),
-        prefixIconConstraints: const BoxConstraints(
-            maxHeight: 25.0,
-            maxWidth: 36.0
-        ),
-        suffixIconConstraints: const BoxConstraints(
-            maxHeight: 25.0,
-            maxWidth: 36.0
-        ),
-        contentPadding:  EdgeInsets.all(contentPadding??15),
-        hintStyle: primaryTextStyle(color: AppColor.greyColor, fontSize: 16.0,fontWeight: FontWeight.w400),
-        filled: true,
-        isDense: true,
-        fillColor: AppColor.lightGreyColor,
-        enabledBorder:  OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide:  const BorderSide(color: Colors.transparent, width: 1.0),
-        ),
-        focusedBorder:  OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: const  BorderSide(color: Colors.transparent, width: 1.0),
-        ),
-        errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide:  const BorderSide(color: Colors.red, width: 1.0),
-        ),
-        focusedErrorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide:  const BorderSide(color: Colors.red, width: 1.0),
-        ),
-      ),
-    );
-  }
-}
-
 class CustomTextField extends StatelessWidget {
   final BuildContext context;
   final TextEditingController? controller;
@@ -226,7 +146,7 @@ class CustomTextField extends StatelessWidget {
       controller: controller,
       cursorColor: AppColor.greyColor,
       maxLines: maxLines?? 1,
-      style: primaryTextStyle(color: AppColor.blackColor, fontSize: 18.0,fontWeight: FontWeight.w400),
+      style: kTextStyle(),
       keyboardType: textInputType?? TextInputType.number,
       textInputAction: textInputAction?? TextInputAction.next,
       onTapOutside: (event) {context.dismissKeyBoard();},
@@ -235,14 +155,14 @@ class CustomTextField extends StatelessWidget {
         prefixIcon:  Padding(
           padding: const EdgeInsets.only(left: 12.0,right: 10),
           child: prefixText != null
-              ? Text(prefixText!,style: primaryTextStyle(fontWeight: FontWeight.w500,fontSize: 16,color: AppColor.greyColor),)
+              ? Text(prefixText!,style: kTextStyle(fontWeight: FontWeight.w500,fontSize: 15,color: AppColor.greyColor),)
               : prefixIcon!=null? showSvgIconWidget(iconPath:  prefixIcon!):null,),
         suffixIcon: suffixText!= null?Padding(
           padding: const EdgeInsets.only(right: 18.0,left: 5),
-          child: Text(suffixText!,style: primaryTextStyle(fontWeight: FontWeight.w500,fontSize: 16,color: AppColor.greyColor),),
+          child: Text(suffixText!,style: kTextStyle(fontWeight: FontWeight.w500,fontSize: 15,color: AppColor.greyColor),),
         ):null,
         hintText: hintText??'',
-        hintStyle: primaryTextStyle(color: AppColor.greyColor, fontSize: 16.0,fontWeight: FontWeight.w400),
+        hintStyle: kTextStyle(color: AppColor.greyColor, fontSize: 15.0,fontWeight: FontWeight.w400),
         prefixIconConstraints: const BoxConstraints(maxHeight: 25.0),
         suffixIconConstraints: const BoxConstraints(maxHeight: 25.0,),
         filled: true,

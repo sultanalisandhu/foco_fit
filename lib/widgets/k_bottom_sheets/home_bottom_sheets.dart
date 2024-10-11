@@ -115,6 +115,26 @@ class KHomeBottomSheet {
     );
   }
 
+  static void exerciseRegisterSheet(BuildContext context, {Function()? onConfirmTap}) {
+    show(
+      context: context,
+      title: AppStrings.quickExerciseLog,
+      content: [
+        const Divider(color: AppColor.lightGreyBorder,),
+        KText(text: AppStrings.activityName,),
+        CustomTextField(context: context,hintText: AppStrings.exRace,textInputType: TextInputType.text,borderColor: AppColor.greyColor,color: AppColor.whiteColor,),
+        1.ySpace,
+        KText(text:  AppStrings.calories),
+        CustomTextField(context: context,prefixText: AppStrings.calories,suffixText: AppStrings.kcal,textDirection: TextDirection.ltr,borderColor: AppColor.greyColor,color: AppColor.whiteColor,),
+        1.ySpace,
+        KText(text:  AppStrings.duration),
+        CustomTextField(context: context,prefixText: AppStrings.duration,suffixText: AppStrings.min,textDirection: TextDirection.ltr,textInputAction: TextInputAction.done,borderColor: AppColor.greyColor,color: AppColor.whiteColor,),
+      ],
+      onConfirmTap: onConfirmTap,
+      heightFactor: 0.58,
+    );
+  }
+
   static void snackRegisterSheet(BuildContext context, {Function()? onConfirmTap}) {
     ///salvar
     show(
@@ -140,26 +160,6 @@ class KHomeBottomSheet {
       ],
       onConfirmTap: onConfirmTap!,
       heightFactor: 0.82,
-    );
-  }
-
-  static void exerciseRegisterSheet(BuildContext context, {Function()? onConfirmTap}) {
-    show(
-      context: context,
-      title: AppStrings.quickExerciseLog,
-      content: [
-        const Divider(color: AppColor.lightGreyBorder,),
-        KText(text: AppStrings.activityName,),
-        CustomTextField(context: context,hintText: AppStrings.exRace,textInputType: TextInputType.text,borderColor: AppColor.greyColor,color: AppColor.whiteColor,),
-        1.ySpace,
-        KText(text:  AppStrings.calories),
-        CustomTextField(context: context,prefixText: AppStrings.calories,suffixText: AppStrings.kcal,textDirection: TextDirection.ltr,borderColor: AppColor.greyColor,color: AppColor.whiteColor,),
-        1.ySpace,
-        KText(text:  AppStrings.duration),
-        CustomTextField(context: context,prefixText: AppStrings.duration,suffixText: AppStrings.min,textDirection: TextDirection.ltr,textInputAction: TextInputAction.done,borderColor: AppColor.greyColor,color: AppColor.whiteColor,),
-      ],
-      onConfirmTap: onConfirmTap,
-      heightFactor: 0.58,
     );
   }
 

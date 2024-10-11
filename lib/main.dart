@@ -18,7 +18,7 @@ void main() async{
   await languages.loadTranslations();
   runApp(
       DevicePreview(
-          enabled: true,
+          enabled: false,
           builder: (context)=> const MyApp())
       );
 }
@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
           return GetMaterialApp(
             title: 'FocoFit',
             debugShowCheckedModeBanner: false,
-            locale: Locale("pt",'PT'),
+            locale: Locale(languageCode, countryCode),
             translations: languages,
             fallbackLocale: const Locale('pt_PT'),
             theme: ThemeData(
@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
               colorScheme: ColorScheme.fromSeed(seedColor: AppColor.primaryColor),
               useMaterial3: true,
             ),
-            home: SplashScreen(),
+            home: CustomBottomBar(),
             // for checking the responsiveness of the app
             useInheritedMediaQuery: true,
           );
