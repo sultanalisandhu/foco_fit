@@ -20,7 +20,8 @@ class SeeFasting extends StatelessWidget {
         onTap: (){
           Navigator.pop(context);
         },
-        title: AppStrings.intermittentFasting
+        title: AppStrings.intermittentFasting,
+        titleSize: 18
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 15),
@@ -49,9 +50,9 @@ class SeeFasting extends StatelessWidget {
                   widgetIndicator: Container(
                       margin: const EdgeInsets.only(right: 20),
                       child: const Icon(Icons.circle,color: Colors.white,size: 12,)),
-                  radius: 15.h,
-                  lineWidth: 20,
-                  backgroundWidth: 22,
+                  radius: 16.h,
+                  lineWidth: 23,
+                  backgroundWidth: 23,
                   percent: 0.4,
                   curve: Curves.easeIn,
                   center: Column(
@@ -59,33 +60,33 @@ class SeeFasting extends StatelessWidget {
                     children: [
                       KText(text:  AppStrings.elapsedTime,fontSize: 16,color: AppColor.greyColor,),
                       Text('00:00:25', style: kTextStyle(fontSize: 20, fontWeight: FontWeight.w700)),
-                      15.height,
+                      2.ySpace,
                       KText(text:  AppStrings.timeExceeded, fontSize: 16,color: AppColor.greyColor,),
                       Text('00:00:25', style: kTextStyle(fontSize: 20, fontWeight: FontWeight.w700)),
                     ],
                   ),
                 ),
-                2.ySpace,
+                3.ySpace,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                   Column(
                     children: [
-                      KText(text:  AppStrings.startAt, fontSize: 16,color: AppColor.greyColor,),
+                      KText(text:  AppStrings.startAt, fontSize: 16,color: AppColor.greyColor,fontWeight: FontWeight.w500),
                       GradientText(text: '22 : 00', gradient: AppColor.primaryGradient,style: kTextStyle(fontSize: 20,fontWeight: FontWeight.w700),),
-                      KText(text:  '${AppStrings.todayAt} (17/08)',fontWeight: FontWeight.w500,color: AppColor.greyColor,),
+                      KText(text:  '${AppStrings.todayAt} (17/08)',fontWeight: FontWeight.w500,fontSize: 14, color: AppColor.greyColor,),
                     ],
                   ),
                   Container(
                     height: 6.h,
                     width: 1,
-                    color: AppColor.greyColor,
+                    color: AppColor.lightGreyBorder,
                   ),
                   Column(
                     children: [
                       KText(text:  AppStrings.endsAt, fontSize: 16,color: AppColor.greyColor,fontWeight: FontWeight.w500),
                       GradientText(text: '22 : 00', gradient: AppColor.primaryGradient,style: kTextStyle(fontSize: 20,fontWeight: FontWeight.w700),),
-                      KText(text:  '${AppStrings.tomorrow} (17/08)',fontWeight: FontWeight.w500,color: AppColor.greyColor,),
+                      KText(text:  '${AppStrings.tomorrow} (17/08)',fontWeight: FontWeight.w500,fontSize: 14,color: AppColor.greyColor,),
                     ],
                   ),
                 ],)
@@ -105,7 +106,12 @@ class SeeFasting extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  KText(text:  '${AppStrings.currentFastingPlan}: (17/08)',fontSize: 15,fontWeight: FontWeight.w500,),
+                  Row(
+                    children: [
+                      KText(text: '${AppStrings.currentFastingPlan}:',fontSize: 15,fontWeight: FontWeight.w400,),
+                      const KText(text: ' (17/08)',fontSize: 15,fontWeight: FontWeight.w500,),
+                    ],
+                  ),
                   GradientText(
                     onTextTap: (){
                       Navigator.pop(context);
@@ -120,25 +126,22 @@ class SeeFasting extends StatelessWidget {
         ),
       ),
 
-      bottomNavigationBar: Container(
-        padding: EdgeInsets.symmetric(horizontal: 4.w,vertical: 2.h),
-        child: kTextButton(
-            onPressed: (){
-              KFastBottomSheet.breakFastSheet(context,
-                  onConfirmTap: (){
-                Get.back();
-                Get.back();},
-                  onCancelTap: (){
-                    Get.back();
-                    Get.back();
-                  }
-              );
-            },
-            useGradient: true,
-            btnText: AppStrings.startFasting,
-            fontSize: 16
-        ),
-      ),
+      bottomNavigationBar: kTextButton(
+          onPressed: (){
+            KFastBottomSheet.breakFastSheet(context,
+                onConfirmTap: (){
+              Get.back();
+              Get.back();},
+                onCancelTap: (){
+                  Get.back();
+                  Get.back();
+                }
+            );
+          },
+          useGradient: true,
+          btnText: AppStrings.startFasting,
+          fontSize: 16
+      ).paddingSymmetric(horizontal: 5.w,vertical: 3.h),
     );
   }
 }

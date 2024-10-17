@@ -106,7 +106,7 @@
     "water": "Water",
     "weight": "Weight",
     "searchManually": "Search Manually",
-    "identifyWithAI": "Identify With AI",
+    "identifyWithAI": "Identify\n With AI",
     "barcode": "Barcode",
     "recordMeal": "Record Meal",
     "confirmAndSave": "Confirm And Save",
@@ -205,7 +205,7 @@
     "accessData": "Access Data",
     "personalData": "Personal Data",
     "on": "On",
-    "logOutOfAccount": "LogOut Of Account",
+    "logOutOfAccount": "Logout of Account",
     "years": "Years",
     "of": "Of",
     "loremIpsumEmail": "loremipsum@gmail.com",
@@ -291,5 +291,6 @@
     "switchLanguage": "Switch Language",
     "switchLanguageToEnjoyTHeApp": "Switch Language To Enjoy The App",
     "toAdd": "To Add",
-    "confirm": "Confirm"
+    "confirm": "Confirm",
+    "chooseDate": "Choose a date"
 }

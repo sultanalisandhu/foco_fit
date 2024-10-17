@@ -34,11 +34,9 @@ class RecipeController extends GetxController {
   RxBool searching = false.obs;
   RxDouble currentCalories = 0.0.obs;
   RxDouble currentTime = 0.0.obs;
-  RxInt selectedSnack = (-1).obs;
-  RxInt selectedDiet = (-1).obs;
-  RxInt selectedDifficulty = (-1).obs;
-
-
+  var selectedSnacks = <int>[].obs;
+  var selectedDiets = <int>[].obs;
+  var selectedDifficulty = <int>[].obs;
 
 }
 

@@ -24,9 +24,12 @@ class SearchRecipeManually extends StatelessWidget {
       builder: (controller) {
         return Scaffold(
           appBar: kAppBar(
-            title: AppStrings.breakFast,
+
             onTap: () => Get.back(),
             trailingOnTap: () => Get.to(() => CreateDietOptions()),
+            title: AppStrings.breakFast,
+            titleSize: 18,
+            subTitle: '0 ${AppStrings.kcal}',
             trailingIcon: AppIcons.plusIcon,
           ),
           body: DefaultTabController(
@@ -123,7 +126,7 @@ class SearchRecipeManually extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        KText(text:AppStrings.sweetRiceCalories,fontSize: 13, fontWeight: FontWeight.w500,color: AppColor.greyColor,),
+        KText(text:AppStrings.sweetRiceCalories,fontSize: 14, fontWeight: FontWeight.w500,color: AppColor.greyColor,),
         if (tab == RecipeTab.created) ...[
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -134,7 +137,7 @@ class SearchRecipeManually extends StatelessWidget {
             child: GradientText(
               text: AppStrings.createdWithFocoFitPro,
               gradient: AppColor.primaryGradient,
-              style: primaryTextStyle(fontSize: 12),
+              style: kTextStyle(fontSize: 12),
             ),
           ),
         ],
@@ -161,11 +164,13 @@ class SearchRecipeManually extends StatelessWidget {
 
   Widget _buildBottomNavigationBar(BuildContext context) {
     return kNumberButton(
-      onPressed: () {Get.back();},
+      onPressed: () {
+        Get.back();
+        Get.back();
+        },
       itemCount: '0',
-      btnText: AppStrings.addActivity,
-
-    ).paddingSymmetric(horizontal: 5.w,vertical: 2.h);
+      btnText: AppStrings.confirmAndSave,
+    ).paddingSymmetric(horizontal: 5.w,vertical: 3.h);
   }
 }
 

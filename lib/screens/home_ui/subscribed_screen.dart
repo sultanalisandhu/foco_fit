@@ -8,6 +8,7 @@ import 'package:focofit/utils/app_strings.dart';
 import 'package:focofit/utils/asset_utils.dart';
 import 'package:focofit/utils/k_text_styles.dart';
 import 'package:get/get.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class SubscribedScreen extends StatefulWidget {
   const SubscribedScreen({super.key});
@@ -67,42 +68,37 @@ class _SubscribedScreenState extends State<SubscribedScreen> {
                 ),
               ),
               20.height,
-              Text(
-                AppStrings.congratulation,
-                style: primaryTextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+              KText(
+                  text: AppStrings.congratulation,
+               fontSize: 20, fontWeight: FontWeight.w600
               ),
               20.height,
-              Text(
+              KText(text:
                 AppStrings.upgradedToYearlySubscription,
-                style: primaryTextStyle(fontSize: 20, fontWeight: FontWeight.w400),
               ),
               10.height,
               Divider(
                 height: 20,
                 color: AppColor.lightGreyColor.withOpacity(0.2),
               ),
-              Text(
-                  AppStrings.benefitsUnlock,
-                style: primaryTextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+              KText(
+                text: AppStrings.benefitsUnlock,
+                fontSize: 20, fontWeight: FontWeight.w600,
               ),
               for (int i = 0; i < subscriptionList.length; i++)
                 ListTile(
                   leading: const Icon(Icons.check),
-                  title: Text(
-                    subscriptionList[i],
-                    style: primaryTextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                  title: KText(
+                    text: subscriptionList[i],
                   ),
                 ),
-
-
               Divider(
                 height: 30,
                 color: AppColor.lightGreyColor.withOpacity(0.2),
               ),
-              Text(
+              KText(text:
                 AppStrings.subscriptionWillRenewAnnually,
                 textAlign: TextAlign.center,
-                style: primaryTextStyle(fontSize: 20, fontWeight: FontWeight.w400),
               ),
               Divider(
                 height: 30,
@@ -112,22 +108,15 @@ class _SubscribedScreenState extends State<SubscribedScreen> {
           ),
         ),
       ),
-      bottomNavigationBar: Container(
-        height: MediaQuery.of(context).size.height * 0.1,
-        padding: const EdgeInsets.symmetric(horizontal: 15),
-        alignment: Alignment.center,
-        child: kTextButton(
-          onPressed: () {
-            Get.back();
-          },
-          btnText: AppStrings.startExploringFeatures,
-          useGradient: true,
-          gradient: AppColor.redGradient,
-          width: MediaQuery.of(context).size.width,
-          fontSize: 15
-
-        ),
-      ),
+      bottomNavigationBar: kTextButton(
+        onPressed: () {
+          Get.back();
+        },
+        btnText: AppStrings.startExploringFeatures,
+        useGradient: true,
+        gradient: AppColor.redGradient,
+        fontSize: 15,
+      ).paddingSymmetric(horizontal: 5.w, vertical: 3.h),
     );
   }
 }

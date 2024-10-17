@@ -22,91 +22,262 @@ class CalorieGoalScreen extends StatelessWidget {
           Navigator.pop(context);
         },
         title: AppStrings.calorieGoal,
-        titleSize: 18
+        titleSize: 18,
       ),
-      body: Column(
-        children: [
-          CustomSwitchTile(
-            value: c.recalculateCalorieLimit,
-            onChanged: (v) {
-              c.recalculateCalorieLimit.value = v;
-            },
-            title: AppStrings.automaticallyRecalculateLimit,
-          ),
-          15.height,
-          Expanded(
-            child: ListView.builder(
-                itemCount: 3,
-                itemBuilder: (context,index){
-              return Obx(() {
-                final bool isActive = !c.recalculateCalorieLimit.value;
-                return Container(
-                  padding:
-                  const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-                  margin: const EdgeInsets.symmetric(vertical: 10),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    border: Border.all(color: isActive ? AppColor.greyBorder : AppColor.greyColor.withOpacity(0.4)),
-                    color: isActive ? Colors.white : AppColor.lightGreyColor,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            // Switch tile to enable/disable recalculation
+            CustomSwitchTile(
+              value: c.recalculateCalorieLimit,
+              onChanged: (v) {
+                c.recalculateCalorieLimit.value = v;
+              },
+              title: AppStrings.automaticallyRecalculateLimit,
+            ),
+            3.ySpace,
+            Obx(() => Container(
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(
+                  color: !c.recalculateCalorieLimit.value
+                      ? AppColor.greyBorder
+                      : AppColor.greyColor.withOpacity(0.4),
+                ),
+                color: !c.recalculateCalorieLimit.value
+                    ? Colors.white : AppColor.lightGreyColor,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  KText(
+                    text: AppStrings.breakFast,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    color: !c.recalculateCalorieLimit.value
+                        ? Colors.black
+                        : AppColor.greyBorder,
                   ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  15.height,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      KText(text: AppStrings.breakFast,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                        color: isActive ? Colors.black : AppColor.greyColor,
+                      _calorieDetailBox(
+                        context: context,
+                        hintText: '33',
+                        unit: '%',
+                        isEnabled: !c.recalculateCalorieLimit.value, // Disable if switch is ON
                       ),
-                      15.height,
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          _calorieDetailBox(isActive: isActive, text: '28', unit: 'Kcal'),
-                          _calorieDetailBox(isActive: isActive, text: '1200', unit: 'Kcal'),
-                        ],
+                      _calorieDetailBox(
+                        context: context,
+                        hintText: '1500',
+                        unit: AppStrings.kcal,
+                        isEnabled: !c.recalculateCalorieLimit.value, // Disable if switch is ON
                       ),
                     ],
                   ),
-                );
-              });
-            }),
-          )
-        ],
-      ).paddingSymmetric(horizontal: 4.w,vertical: 2.h),
+                ],
+              ),
+            )),
+            2.ySpace,
+            Obx(() => Container(
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(
+                  color: !c.recalculateCalorieLimit.value
+                      ? AppColor.greyBorder
+                      : AppColor.greyColor.withOpacity(0.4),
+                ),
+                color: !c.recalculateCalorieLimit.value
+                    ? Colors.white : AppColor.lightGreyColor,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  KText(
+                    text: AppStrings.lunch,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    color: !c.recalculateCalorieLimit.value
+                        ? Colors.black
+                        : AppColor.greyBorder,
+                  ),
+                  15.height,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      _calorieDetailBox(
+                        context: context,
+                        hintText: '33',
+                        unit: '%',
+                        isEnabled: !c.recalculateCalorieLimit.value, // Disable if switch is ON
+                      ),
+                      _calorieDetailBox(
+                        context: context,
+                        hintText: '1500',
+                        unit: AppStrings.kcal,
+                        isEnabled: !c.recalculateCalorieLimit.value, // Disable if switch is ON
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            )),
+            2.ySpace,
+            Obx(() => Container(
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(
+                  color: !c.recalculateCalorieLimit.value
+                      ? AppColor.greyBorder
+                      : AppColor.greyColor.withOpacity(0.4),
+                ),
+                color: !c.recalculateCalorieLimit.value
+                    ? Colors.white : AppColor.lightGreyColor,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  KText(
+                    text: AppStrings.toHaveLunch,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    color: !c.recalculateCalorieLimit.value
+                        ? Colors.black
+                        : AppColor.greyBorder,
+                  ),
+                  15.height,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      _calorieDetailBox(
+                        context: context,
+                        hintText: '33',
+                        unit: '%',
+                        isEnabled: !c.recalculateCalorieLimit.value, // Disable if switch is ON
+                      ),
+                      _calorieDetailBox(
+                        context: context,
+                        hintText: '1500',
+                        unit: AppStrings.kcal,
+                        isEnabled: !c.recalculateCalorieLimit.value, // Disable if switch is ON
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            )),
+            2.ySpace,
+            Obx(() => Container(
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(
+                  color: !c.recalculateCalorieLimit.value
+                      ? AppColor.greyBorder
+                      : AppColor.greyColor.withOpacity(0.4),
+                ),
+                color: !c.recalculateCalorieLimit.value
+                    ? Colors.white : AppColor.lightGreyColor,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  KText(
+                    text: AppStrings.snacks,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    color: !c.recalculateCalorieLimit.value
+                        ? Colors.black
+                        : AppColor.greyBorder,
+                  ),
+                  15.height,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      _calorieDetailBox(
+                        context: context,
+                        hintText: '33',
+                        unit: '%',
+                        isEnabled: !c.recalculateCalorieLimit.value, // Disable if switch is ON
+                      ),
+                      _calorieDetailBox(
+                        context: context,
+                        hintText: '1500',
+                        unit: AppStrings.kcal,
+                        isEnabled: !c.recalculateCalorieLimit.value, // Disable if switch is ON
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            )),
+          ],
+        ).paddingSymmetric(horizontal: 4.w, vertical: 2.h),
+      ),
       bottomNavigationBar: kTextButton(
         onPressed: () {},
         btnText: AppStrings.save,
         useGradient: true,
-      ).paddingSymmetric(horizontal: 5.w,vertical: 3.h),
+      ).paddingSymmetric(horizontal: 5.w, vertical: 3.h),
     );
   }
-  Widget _calorieDetailBox({required bool isActive,required String text,required String unit}){
-    return  Row(
+
+  Widget _calorieDetailBox({
+    required BuildContext context,
+    required String hintText,
+    required String unit,
+    required bool isEnabled,
+  }) {
+    return Row(
       children: [
         Container(
-          padding: const EdgeInsets.symmetric(
-              horizontal: 15, vertical: 10),
+          width: 100,
+          height: 55,
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(6),
             border: Border.all(
-                color: isActive
-                    ? AppColor.greyBorder
-                    : AppColor.greyColor.withOpacity(0.4)),
+              color: isEnabled
+                  ? AppColor.greyBorder
+                  : AppColor.greyColor.withOpacity(0.4),
+            ),
           ),
-          child:
-          KText(text: text,
-            fontSize: 16,
-            fontWeight: FontWeight.w500,
-            color: isActive ? Colors.black : AppColor.greyColor,
+          child: TextFormField(
+            enabled: isEnabled,
+            onTap: () {
+              context.dismissKeyBoard();
+            },
+            textAlign: TextAlign.center,
+            keyboardType: TextInputType.number,
+            decoration: InputDecoration(
+              hintText: hintText,
+              focusedBorder: InputBorder.none,
+              enabledBorder: InputBorder.none,
+              disabledBorder: InputBorder.none,
+              hintStyle: kTextStyle(
+                  color: isEnabled ? Colors.black : AppColor.greyBorder
+              ),
+            ),
           ),
         ),
         5.width,
-        KText(text: unit,
+        KText(
+          text: unit,
           fontSize: 16,
-          fontWeight: FontWeight.w500,
-          color: isActive ? Colors.black : AppColor.greyColor,
+          fontWeight: FontWeight.w600,
+          color: isEnabled ? Colors.black : AppColor.greyBorder,
         ),
       ],
     );
   }
 }
+
+

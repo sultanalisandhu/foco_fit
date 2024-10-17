@@ -6,6 +6,7 @@ import 'package:focofit/extensions/extension.dart';
 import 'package:focofit/utils/app_colors.dart';
 import 'package:focofit/utils/k_text_styles.dart';
 import 'package:get/get.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class FeedingChart extends StatelessWidget {
   final ChartsController controller;
@@ -22,7 +23,7 @@ class FeedingChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+      padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 2.h),
       decoration: _containerDecoration(),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -32,28 +33,75 @@ class FeedingChart extends StatelessWidget {
           _buildPeriodButtons(),
           20.height,
           _buildLegend(),
+          3.ySpace,
           _buildBarChart(),
           2.ySpace,
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-             const  KText(text:  'Refeição',fontSize: 15, fontWeight: FontWeight.w600),
-              Row(
-                children: [
-                  const KText(text:  'Participação',fontSize: 15, fontWeight: FontWeight.w600),
-                  10.xSpace,
-                  const KText(text:  'Calorias',fontSize: 15, fontWeight: FontWeight.w600),
+          Table(
+            columnWidths: const {
+              0: FlexColumnWidth(2), // Column for meal name
+              1: FlexColumnWidth(2), // Column for participation
+              2: FlexColumnWidth(1), // Column for calories
+            },
 
+            border: TableBorder.all(color: Colors.transparent), // No border
+            children: [
+              // Table Header
+              const TableRow(
+                decoration: const BoxDecoration(
+                  border: Border(
+                    bottom: BorderSide(color: AppColor.lightGreyColor), // Border for header
+                  ),
+                ),
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    child: KText(text: 'Refeição', fontSize: 14, fontWeight: FontWeight.w600),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    child: KText(text: 'Participação', fontSize: 14, fontWeight: FontWeight.w600),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    child: KText(text: 'Calorias', fontSize: 14, fontWeight: FontWeight.w600),
+                  ),
                 ],
               ),
+              // Data Rows
+              _buildNutrientDetailRow('Café da manhã', '30 %', '9990 kcal'),
+              _buildNutrientDetailRow('Almoço', '30 %', '9990 kcal'),
+              _buildNutrientDetailRow('jantar', '30 %', '9990 kcal'),
+              _buildNutrientDetailRow('lanches', '10 %', '9990 kcal'),
             ],
           ),
-          10.height,
-          _buildNutrientDetails(),
-          2.ySpace,
+          4.ySpace,
           kTextButton(btnText: btnText, onPressed: onButtonTap, useGradient: true),
         ],
       ),
+    );
+  }
+
+  TableRow _buildNutrientDetailRow(String meal, String participation, String calories) {
+    return TableRow(
+      decoration: const BoxDecoration(
+        border: Border(
+          bottom: BorderSide(color: AppColor.lightGreyColor),
+        ),
+      ),
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical:  8.0),
+          child: KText(text: meal, fontSize: 14, fontWeight: FontWeight.w500),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical:  8.0),
+          child: KText(text: participation, fontSize: 14, fontWeight: FontWeight.w500),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical:  8.0),
+          child: KText(text: calories, fontSize: 14, fontWeight: FontWeight.w500),
+        ),
+      ],
     );
   }
 
@@ -78,7 +126,7 @@ class FeedingChart extends StatelessWidget {
   Widget _buildFeedingInfo(String label, RxInt value) {
     return Column(
       children: [
-        KText(text:  label,fontSize: 15,),
+        KText(text:  label,fontSize: 15,fontWeight: FontWeight.w500,),
         Obx(() => KText(text:
           '${value.value} kcal',
           fontSize: 20, fontWeight: FontWeight.w700),
@@ -111,12 +159,13 @@ class FeedingChart extends StatelessWidget {
         child: Container(
           alignment: Alignment.center,
           padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+          margin: const EdgeInsets.symmetric(vertical: 2.0, horizontal: 2.0),
           decoration: BoxDecoration(
             gradient: isSelected ? AppColor.primaryGradient : null,
             borderRadius: BorderRadius.circular(20),
           ),
           child: KText(text: period,
-              color: isSelected ? Colors.white : Colors.orange,
+              color: isSelected ? Colors.white : AppColor.greyColor,
               fontWeight: FontWeight.w600,
               fontSize: 14,
           ),
@@ -130,8 +179,9 @@ class FeedingChart extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         _buildLegendItem(AppColor.blueColor, 'Consumidas'),
-        10.width,
+        3.xSpace,
         _buildLegendItem(AppColor.startGradient, 'Queimadas'),
+
       ],
     );
   }
@@ -139,8 +189,15 @@ class FeedingChart extends StatelessWidget {
   Widget _buildLegendItem(Color color, String label) {
     return Row(
       children: [
-        Icon(Icons.linear_scale, color: color),
-        Text(label, style: primaryTextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 5,vertical: 3),
+          decoration: BoxDecoration(
+            color: color,
+            borderRadius: BorderRadius.circular(8),
+          ),
+        ),
+        1.xSpace,
+        Text(label, style: kTextStyle(fontSize: 13, fontWeight: FontWeight.w600)),
       ],
     );
   }
@@ -167,9 +224,12 @@ class FeedingChart extends StatelessWidget {
                 showTitles: true,
                 interval: _getIntervalForSelectedPeriod(),
                 getTitlesWidget: (value, meta) {
-                  return Text(
-                    _formatValue(value.toInt()),
-                    style: primaryTextStyle(fontSize: 10),
+                  return Padding(
+                    padding: const EdgeInsets.only(left: 8),
+                    child: Text(
+                      _formatValue(value.toInt()),
+                      style: kTextStyle(fontSize: 14,fontWeight: FontWeight.w500),
+                    ),
                   );
                 },
               ),
@@ -177,7 +237,19 @@ class FeedingChart extends StatelessWidget {
             topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
           ),
           borderData: FlBorderData(show: false),
-          gridData: const FlGridData(show: false),
+          gridData: FlGridData(
+            show: true,
+            horizontalInterval: _getIntervalForSelectedPeriod(),  // Interval for horizontal lines
+            drawVerticalLine: false,
+
+            getDrawingHorizontalLine: (value) {
+              return FlLine(
+                color: AppColor.greyColor.withOpacity(0.2),
+                strokeWidth: 1,
+
+              );
+            },
+          ),
         ),
       )),
     );
@@ -239,7 +311,7 @@ class FeedingChart extends StatelessWidget {
     return SideTitleWidget(
       axisSide: meta.axisSide,
       space: 4.0,
-      child: Text(text, style: primaryTextStyle(fontSize: 12)),
+      child: Text(text, style: kTextStyle(fontSize: 14, fontWeight: FontWeight.w500)),
     );
   }
 
@@ -251,23 +323,5 @@ class FeedingChart extends StatelessWidget {
     return value >= 1000 ? '${(value / 1000).toStringAsFixed(1)}k' : value.toString();
   }
 
-  Widget _buildNutrientDetails() {
-    return Column(
-      children: [
-        _buildNutrientDetailRow('Café da manhã', '30 %', '9999 kcal'),
-        _buildNutrientDetailRow('Almoço', '40 %', '9999 kcal'),
-      ],
-    );
-  }
 
-  Widget _buildNutrientDetailRow(String meal, String participation, String calories) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(meal, style: primaryTextStyle(fontSize: 14, fontWeight: FontWeight.w400)),
-        Text(participation, style: primaryTextStyle(fontSize: 14, fontWeight: FontWeight.w400)),
-        Text(calories, style: primaryTextStyle(fontSize: 14, fontWeight: FontWeight.w400)),
-      ],
-    );
-  }
 }

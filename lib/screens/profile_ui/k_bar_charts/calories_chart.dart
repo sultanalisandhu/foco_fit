@@ -1,10 +1,13 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:focofit/components/k_buttons.dart';
+import 'package:focofit/components/k_check_box.dart';
 import 'package:focofit/controller/charts_controller.dart';
+import 'package:focofit/extensions/extension.dart';
 import 'package:focofit/utils/app_colors.dart';
 import 'package:focofit/utils/k_text_styles.dart';
 import 'package:get/get.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 
 class CaloriesGraphScreen extends StatelessWidget {
@@ -17,7 +20,7 @@ class CaloriesGraphScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 15),
+      padding: EdgeInsets.symmetric(horizontal: 4.w,vertical: 2.h),
       decoration: BoxDecoration(
         color: AppColor.whiteColor,
         borderRadius: BorderRadius.circular(16),
@@ -35,10 +38,11 @@ class CaloriesGraphScreen extends StatelessWidget {
               _buildCaloriesInfo('Kcal queimadas', controller.caloriesBurned),
             ],
           ),
-          const SizedBox(height: 20),
+          3.ySpace,
           _buildPeriodButtons(),
-          const SizedBox(height: 20),
+          3.ySpace,
           _buildBarChart(),
+          3.ySpace,
           kTextButton(btnText: btnText, onPressed: onButtonTap, useGradient: true)
         ],
       ),
@@ -48,7 +52,7 @@ class CaloriesGraphScreen extends StatelessWidget {
   Widget _buildCaloriesInfo(String label, RxInt value) {
     return Column(
       children: [
-        KText(text:  label,fontSize: 15,),
+        KText(text:  label,fontSize: 15,fontWeight: FontWeight.w500,),
         Obx(() => KText(text:
           '${value.value} kcal',
               fontSize: 20, fontWeight: FontWeight.w700
@@ -83,15 +87,16 @@ class CaloriesGraphScreen extends StatelessWidget {
         child: Container(
           alignment: Alignment.center,
           padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+          margin: const EdgeInsets.symmetric( horizontal: 2.0,vertical: 2),
           decoration: BoxDecoration(
             gradient: isSelected?AppColor.primaryGradient:null,
             borderRadius: BorderRadius.circular(20),
           ),
           child: KText(text:
             period,
-              color: isSelected ? Colors.white : Colors.orange,
+              color: isSelected ? Colors.white : AppColor.greyColor,
               fontWeight: FontWeight.w600,
-              fontSize: 14
+              fontSize: 15
           ),
         ),
       ),
@@ -107,7 +112,6 @@ class CaloriesGraphScreen extends StatelessWidget {
           BarChartData(
             alignment: BarChartAlignment.spaceAround,
             barGroups: _buildBarGroups(),
-
             titlesData: FlTitlesData(
               show: true,
               bottomTitles: AxisTitles(
@@ -123,13 +127,17 @@ class CaloriesGraphScreen extends StatelessWidget {
               ),
               rightTitles: AxisTitles(
                 sideTitles: SideTitles(
+                  reservedSize: 33,
                   showTitles: true,   // Enable right titles
                   interval: _getIntervalForSelectedPeriod(),
                   getTitlesWidget: (value, meta) {
                     String formattedValue = _formatYAxisLabels(value);
-                    return Text(
-                      formattedValue,
-                      style: primaryTextStyle(fontSize: 10),
+                    return Padding(
+                      padding: const EdgeInsets.only(left: 8),
+                      child: Text(
+                        formattedValue,
+                        style: kTextStyle(fontSize: 14,fontWeight: FontWeight.w500),
+                      ),
                     );
                   },
                 ),
@@ -141,7 +149,20 @@ class CaloriesGraphScreen extends StatelessWidget {
               ),
             ),
             borderData: FlBorderData(show: false),
-            gridData: const FlGridData(show: false),
+
+            gridData: FlGridData(
+              show: true,
+              horizontalInterval: _getIntervalForSelectedPeriod(),  // Interval for horizontal lines
+              drawVerticalLine: false,
+
+              getDrawingHorizontalLine: (value) {
+                return FlLine(
+                  color: AppColor.greyColor.withOpacity(0.2),
+                  strokeWidth: 1,
+
+                );
+              },
+            ),
           ),
         ),
       ),
@@ -223,7 +244,7 @@ class CaloriesGraphScreen extends StatelessWidget {
       space: 4.0,
       child: Text(
         text,
-        style: primaryTextStyle(fontSize: 12),
+        style: kTextStyle(fontSize: 14,fontWeight: FontWeight.w500),
       ),
     );
   }

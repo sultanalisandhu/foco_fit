@@ -9,6 +9,7 @@ import 'package:focofit/utils/k_text_styles.dart';
 import 'package:focofit/widgets/k_app_bar.dart';
 import 'package:focofit/widgets/recipe_widgets/k_circular_progress_bar.dart';
 import 'package:get/get.dart';
+import 'package:like_button/like_button.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class RecipeDetailScreen extends StatelessWidget {
@@ -48,32 +49,33 @@ class RecipeDetailScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 5),
+                            padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 2),
                             decoration: BoxDecoration(
                               color: AppColor.whiteColor.withOpacity(0.8),
                               borderRadius: BorderRadius.circular(22),
                             ),
-                            child: KText(text:  '10 ${AppStrings.min}'),
+                            child: KText(text: '10 ${AppStrings.min}',fontWeight: FontWeight.w500,),
                           ),
                           5.width,
                           Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 5),
+                            padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 2),
                             decoration: BoxDecoration(
                               color: AppColor.whiteColor.withOpacity(0.8),
                               borderRadius: BorderRadius.circular(22),
                             ),
-                            child: KText(text: '329 ${AppStrings.kcal}',),
+                            child: KText(text: '329 ${AppStrings.kcal}',fontWeight: FontWeight.w500,),
                           ),
+
                           const Spacer(),
                           GestureDetector(
                             onTap: (){},
                             child: Container(
-                              padding: const EdgeInsets.all(10),
+                              padding: const EdgeInsets.all(8),
                               decoration:  BoxDecoration(
                                 color: AppColor.whiteColor.withOpacity(0.8),
                                 shape: BoxShape.circle,
                               ),
-                              child: showSvgIconWidget(iconPath: AppIcons.heartIcon,onTap: (){}),
+                              child: LikeButton(),
                             ),
                           ),
                         ],
@@ -86,7 +88,7 @@ class RecipeDetailScreen extends StatelessWidget {
                 4.ySpace,
                 //MacroNutrients  ---------------------------------------------------
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 15),
+                  padding: const EdgeInsets.symmetric(vertical: 15),
                   decoration: BoxDecoration(
                     color: AppColor.whiteColor,
                     border: Border.all(color: AppColor.greyBorder),
@@ -98,41 +100,56 @@ class RecipeDetailScreen extends StatelessWidget {
                   child: Column(children: [
                     Row(
                       children: [
-                        showSvgIconWidget(iconPath: AppIcons.chartIcon,color: AppColor.blackColor),
+                        showSvgIconWidget(iconPath: AppIcons.outlineChartIcon,color: AppColor.blackColor),
                         5.width,
                         KText(text:  AppStrings.macronutrients,fontSize: 16,fontWeight: FontWeight.w600),
                       ],
-                    ),
+                    ).paddingSymmetric(horizontal: 15),
                     3.ySpace,
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    Column(
                       children: [
-                        KCircularProgressBar(
-                          consumed: '190',
-                          dietName: AppStrings.carbohydrate,
-                          lineGradient: AppColor.greenGradient,
-                          progressValue: 0.6,
-                        ),
-                        KCircularProgressBar(
-                          consumed: '90',
-                          dietName: AppStrings.protein,
-                          lineGradient: AppColor.redGradient,
-                          progressValue: 0.4,
-                        ),
-                        KCircularProgressBar(
-                          consumed: '169',
-                          dietName: AppStrings.fat,
-                          lineGradient: AppColor.primaryGradient,
-                          progressValue: 0.3,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Expanded(
+                              child: KCircularProgressBar(
+                                consumed: '190',
+                                dietName: AppStrings.carbohydrates,
+                                lineGradient: AppColor.greenGradient,
+                                progressValue: 0.6,
+                                radius: 6.h,
+                              ),
+                            ),
+                            10.xSpace,
+                            Expanded(
+                              child: KCircularProgressBar(
+                                consumed: '90',
+                                dietName: AppStrings.proteins,
+                                lineGradient: AppColor.redGradient,
+                                progressValue: 0.4,
+                                radius: 6.h,
+                              ),
+                            ),
+                            10.xSpace,
+                            Expanded(
+                              child: KCircularProgressBar(
+                                consumed: '169',
+                                dietName: AppStrings.fats,
+                                lineGradient: AppColor.primaryGradient,
+                                progressValue: 0.3,
+                                radius: 6.h,
+                              ),
+                            ),
+                          ],
                         ),
                       ],
-                    ),
+                    ).paddingSymmetric(horizontal: 25),
                   ],),
                 ),
                 3.ySpace,
                 //Ingredients  ---------------------------------------------------
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 15),
+                  padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 20),
                   decoration: BoxDecoration(
                     color: AppColor.whiteColor,
                     border: Border.all(color: AppColor.greyBorder),
@@ -149,10 +166,11 @@ class RecipeDetailScreen extends StatelessWidget {
                         KText(text:  AppStrings.ingredients,fontSize: 16,fontWeight: FontWeight.w600),
                       ],
                     ),
-                    3.ySpace,
+                    2.ySpace,
                     ListView.builder(
                         itemCount: c.ingredients.length,
                         shrinkWrap: true,
+                        padding: EdgeInsets.zero,
                         physics: const NeverScrollableScrollPhysics(),
                         itemBuilder: (context,index){
                       return SizedBox(
@@ -161,9 +179,9 @@ class RecipeDetailScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             // ingredient name
-                          KText(text: c.ingredients[index].name.toString(),fontWeight: FontWeight.w600,fontSize: 16),
+                          KText(text: c.ingredients[index].name.toString(),fontSize: 16),
                           const Expanded(child: Text('---------------------------------------------------------------------------------',maxLines: 1,)),
-                          KText(text: c.ingredients[index].quantity.toString(),fontWeight: FontWeight.w600,fontSize: 16),
+                          KText(text: c.ingredients[index].quantity.toString(),fontSize: 16),
                         ],),
                       );
                     })
@@ -172,7 +190,7 @@ class RecipeDetailScreen extends StatelessWidget {
                 3.ySpace,
                 //preparation method ---------------------------------------------------
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 15),
+                  padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 20),
                   decoration: BoxDecoration(
                     color: AppColor.whiteColor,
                     border: Border.all(color: AppColor.greyBorder),
@@ -189,10 +207,11 @@ class RecipeDetailScreen extends StatelessWidget {
                         KText(text:  AppStrings.preparationMethod,fontSize: 16,fontWeight: FontWeight.w600),
                       ],
                     ),
-                    3.ySpace,
+                    2.ySpace,
                     ListView.builder(
                       itemCount: c.ingredients.length,
                       shrinkWrap: true,
+                      padding: EdgeInsets.zero,
                       physics: const NeverScrollableScrollPhysics(),
                       itemBuilder: (context, index) {
                         return Column(

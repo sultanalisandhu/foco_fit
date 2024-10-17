@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:focofit/components/k_svg_icon.dart';
 import 'package:focofit/controller/profile_controller.dart';
 import 'package:focofit/extensions/extension.dart';
 import 'package:focofit/utils/app_colors.dart';
 import 'package:focofit/utils/app_strings.dart';
+import 'package:focofit/utils/asset_utils.dart';
 import 'package:focofit/utils/k_text_styles.dart';
 import 'package:focofit/widgets/k_app_bar.dart';
 import 'package:focofit/widgets/k_bottom_sheets/profile_bottom_sheets/k_profile_sheets.dart';
 import 'package:get/get.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class WeightHistoryScreen extends StatelessWidget {
   const WeightHistoryScreen({super.key});
@@ -26,22 +29,25 @@ class WeightHistoryScreen extends StatelessWidget {
             children: [
               ///show date range
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
                 decoration: BoxDecoration(
-                  border: Border.all(color: Colors.grey),
+                  border: Border.all(color: AppColor.blackColor),
                   borderRadius: BorderRadius.circular(30),
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     // Display selected date range
-                    Obx(() => Text(
-                      c.selectedDateRange.value.isNotEmpty
-                          ? c.selectedDateRange.value
-                          : AppStrings.noDateSelected,
-                      style: primaryTextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
+                    Obx(() => Padding(
+                      padding: EdgeInsets.only(left:  5.w),
+                      child: Text(
+                        c.selectedDateRange.value.isNotEmpty
+                            ? c.selectedDateRange.value
+                            : AppStrings.noDateSelected,
+                        style: kTextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
                     )),
                     GestureDetector(
@@ -49,6 +55,9 @@ class WeightHistoryScreen extends StatelessWidget {
                         KProfileSheets.selectDateRange(
                           context,
                           controller: c,
+                          onConfirmTap: () {
+                            Navigator.pop(context);
+                          },
                         );
                       },
                       child: Container(
@@ -57,11 +66,21 @@ class WeightHistoryScreen extends StatelessWidget {
                         width: 50,
                         decoration: const BoxDecoration(
                           shape: BoxShape.circle,
-                          color: Colors.red,
+                          color: AppColor.blackColor,
                         ),
-                        child: const Icon(
-                          Icons.calendar_today,
-                          color: Colors.white,
+                        child: showSvgIconWidget(
+                          onTap: (){
+                            KProfileSheets.selectDateRange(
+                              context,
+                                controller: c,
+                                onConfirmTap: (){
+                                  Navigator.pop(context);
+                                },
+                            );
+                          },
+                            iconPath: AppIcons.barIcon,
+                          color: AppColor.whiteColor
+
                         ),
                       ),
                     ),
@@ -70,20 +89,28 @@ class WeightHistoryScreen extends StatelessWidget {
               ),
               10.height,
               Expanded(
-                child: ListView.builder(
-                    itemCount: 31,
+                child: ListView.separated(
+                  itemCount: 31,
+
                     itemBuilder: (context, index) {
                   return ListTile(
                     title: Text('88,5 kg'),
                     subtitle: Text('Hoje, 12 de Agosto de 2024, às 10:41'),
-                    subtitleTextStyle: primaryTextStyle(fontSize: 14,color: AppColor.greyColor),
-                    titleTextStyle: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w600),
+                    subtitleTextStyle: kTextStyle(fontSize: 14,color: AppColor.greyColor,fontWeight: FontWeight.w500),
+                    titleTextStyle: kTextStyle(fontSize: 18,fontWeight: FontWeight.w700),
                     trailing: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+
                       mainAxisSize: MainAxisSize.min ,
                       children: [
-                        Text('88,5 kg',style: primaryTextStyle(fontSize: 14,color: AppColor.redColor,fontWeight: FontWeight.w600),),
-                        IconButton(onPressed: (){
+                        GradientText(
+                          text:
+                          index==2?'-0,42':'+1,25'
+                          ,gradient: index==2?AppColor.greenGradient:AppColor.redGradient,
+                          style: kTextStyle(
+                              color: AppColor.redColor,fontSize: 15, fontWeight: FontWeight.w700),
+                        ),
+                        IconButton(
+                            onPressed: (){
                           KProfileSheets.editHistoricoSheet(context,
                               onConfirmTap: (){
                             Navigator.pop(context);
@@ -94,16 +121,21 @@ class WeightHistoryScreen extends StatelessWidget {
                             Navigator.pop(context);
                           });
 
-                        }, icon: Icon(Icons.more_vert))
+                        },
+                            icon: Icon(Icons.more_vert))
 
                       ],
                     ),
                     contentPadding: EdgeInsets.zero,
                   );
-                }),
-              ),
+                },
+
+                  separatorBuilder: (BuildContext context, int index) {
+                    return Divider(endIndent: 40, indent: 20,color: AppColor.lightGreyBorder,);
+                  },
+              ),)
             ],
-          ).paddingSymmetric(horizontal: 15,vertical: 10),
+          ).paddingSymmetric(horizontal: 20,vertical: 10),
         );
       }
     );

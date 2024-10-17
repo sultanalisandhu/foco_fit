@@ -109,7 +109,7 @@ class HomeScreen extends StatelessWidget {
                     );
                   }),
                 ),
-                2.ySpace,
+                1.ySpace,
                 CaloriesContainer(
                   title: AppStrings.dailyGoal,
                   totalCalories: '1252',
@@ -143,7 +143,6 @@ class HomeScreen extends StatelessWidget {
                                 });
                           },
 
-
                         onSnackTap: (){
                           Navigator.pop(context);
                             KHomeBottomSheet.snackRegisterSheet(context,
@@ -159,7 +158,6 @@ class HomeScreen extends StatelessWidget {
                     },
                     btnText: AppStrings.quickCalorieLog,
                   useGradient: true,
-                  fontSize: 15
                 ),
                 5.ySpace,
                 ListView.builder(

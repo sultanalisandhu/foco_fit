@@ -9,6 +9,7 @@ import 'package:focofit/utils/app_strings.dart';
 import 'package:focofit/utils/k_text_styles.dart';
 import 'package:focofit/widgets/k_app_bar.dart';
 import 'package:get/get.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class CreateActivityAi extends StatelessWidget {
   CreateActivityAi({super.key});
@@ -45,7 +46,7 @@ class CreateActivityAi extends StatelessWidget {
       ),
 
       bottomNavigationBar: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
+        padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 3.h),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -54,15 +55,13 @@ class CreateActivityAi extends StatelessWidget {
                 const Icon(Icons.info, color: AppColor.greyColor),
                 15.width,
                 Expanded(
-                  child: Text(
+                  child: KText(text:
                     AppStrings.analyseCaloriesBasedOnDescription,
-                    style: primaryTextStyle(
-                      fontSize: 16,
                       fontWeight: FontWeight.w400,
+                      fontSize: 14,
                       color: AppColor.greyColor,
                     ),
                   ),
-                ),
               ],
             ),
             2.ySpace,

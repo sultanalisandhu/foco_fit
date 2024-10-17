@@ -52,7 +52,7 @@ class ChartsController extends GetxController {
   var fastingChartData = <double>[3.0, 4.0, 5.0, 2.5, 6.0, 7.0, 4.0].obs;
   final semanaFastingData = [16, 18, 17, 15, 20, 16, 18];
   final mesFastingData = [500, 520, 540, 560];
-  final anoFastingData = [6000, 6200, 6400, 6600];
+  final anoFastingData = [1000, 2000, 3000, 3000];
 
   //activity variables
   var selectedActivityPeriod = 'Semana'.obs;
@@ -170,13 +170,13 @@ class ChartsController extends GetxController {
   }          // Fasting functions
   void fetchFastingDataForPeriod(String period) {
     if (period == 'Semana') {
-      fastingChartData.value = [10, 12, 14, 8, 16, 18, 20]; // Example weekly data
+      fastingChartData.value = [10, 12, 14, 8, 16, 18, 20];
       fastingHistory.value = fastingChartData.reduce((a, b) => a + b).toInt();  // Sum of weekly hours
     } else if (period == 'Mês') {
-      fastingChartData.value = [200, 210, 220, 230]; // Example monthly data
+      fastingChartData.value = [200, 210, 220, 230];
       fastingHistory.value = fastingChartData.reduce((a, b) => a + b).toInt();  // Sum of monthly hours
     } else if (period == 'Ano') {
-      fastingChartData.value = [1000, 1100, 1200, 1300, 1400]; // Example annual data
+      fastingChartData.value = [1000, 1100, 1200, 1300, 1400];
       fastingHistory.value = fastingChartData.reduce((a, b) => a + b).toInt();  // Sum of annual hours
     }
   } // Fasting functions

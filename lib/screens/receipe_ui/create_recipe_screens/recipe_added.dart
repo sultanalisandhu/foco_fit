@@ -32,16 +32,14 @@ class RecipeAdded extends StatelessWidget {
               fontSize: 16,textAlign: TextAlign.center,),
         ],).paddingSymmetric(horizontal: 25,vertical: 10)
     ],),
-      bottomNavigationBar: Container(
-        padding: EdgeInsets.symmetric(horizontal: 4.w,vertical: 2.h),
-        child: kTextButton(
-          onPressed: (){
-            Get.to(()=> EditRecipeScreen());
-          },
-          btnText: AppStrings.viewRecipe,
-          gradient: AppColor.blackGradient,
-        ),
-      ),
+      bottomNavigationBar: kTextButton(
+        onPressed: (){
+          Get.to(()=> EditRecipeScreen());
+        },
+        btnText: AppStrings.viewRecipe,
+        gradient: AppColor.blackGradient,
+        fontSize: 16
+      ).paddingSymmetric(horizontal: 5.w,vertical: 3.h),
     );
   }
 }

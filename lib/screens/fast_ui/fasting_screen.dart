@@ -63,10 +63,10 @@ class FastingScreen extends StatelessWidget {
                         duration: const Duration(milliseconds: 300),
                         child: SizedBox(
                           width: double.infinity,
-                          height: 70,
+                          height: 50,
                           child: ClipRRect(
                             child: BackdropFilter(
-                              filter: ImageFilter.blur(sigmaX: 3.0, sigmaY: 3.0),
+                              filter: ImageFilter.blur(sigmaX: 1.0, sigmaY: 1.0),
                               child: Container(
                                 color: AppColor.whiteColor.withOpacity(0.3),
                               ),
@@ -95,10 +95,10 @@ class FastingScreen extends StatelessWidget {
 
     return Container(
       margin: EdgeInsets.only(bottom: 3.h),
-      padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
       decoration: BoxDecoration(
         color: AppColor.whiteColor,
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(16),
         border: Border.all(
           color: isSelected ? AppColor.startGradient : AppColor.lightGreyBorder,
         ),

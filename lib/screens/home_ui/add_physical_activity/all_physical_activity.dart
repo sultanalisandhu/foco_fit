@@ -26,13 +26,15 @@ class AllPhysicalActivity extends StatelessWidget {
       builder: (c) {
         return Scaffold(
           appBar: kAppBar(
-            title: AppStrings.physicalActivity,
+
             onTap: () {
               Get.back();
             },
             trailingOnTap: () {
               Get.to(() => CreateActivityOptions());
             },
+            title: AppStrings.physicalActivity,
+            titleSize: 18,
             trailingIcon: AppIcons.plusIcon,
             subTitle: '0 ${AppStrings.kcal}',
           ),
@@ -90,10 +92,11 @@ class AllPhysicalActivity extends StatelessWidget {
                       physics: const NeverScrollableScrollPhysics(),
                       children: [
                         /// All Physical Activity Tab Bar-----------------------------------
-                    ListView.builder(
-                      itemCount: 16,
-                      itemBuilder: (context, index) {
-                        return Slidable(
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const KText(text: 'Recentes',fontWeight: FontWeight.w600,),
+                        Slidable(
                           direction: Axis.horizontal,
                           startActionPane: ActionPane(
                             motion: const ScrollMotion(),
@@ -111,15 +114,51 @@ class AllPhysicalActivity extends StatelessWidget {
                             ],
                           ),
                           child: ListTile(
-                            title: KText(text: AppStrings.chocolateFilledBiscuit,fontWeight: FontWeight.w500,),
-                            subtitle: KText(text: '${AppStrings.calories}: ${AppStrings.sweetRiceCalories}',fontSize: 12,fontWeight: FontWeight.w500,color: AppColor.greyColor,),
+                            title: KText(text: AppStrings.chocolateFilledBiscuit,fontWeight: FontWeight.w500,fontSize: 15,),
+                            subtitle: KText(text: '${AppStrings.calories}: ${AppStrings.sweetRiceCalories}',fontSize: 14,fontWeight: FontWeight.w500,color: AppColor.greyColor,),
                             trailing: _trailingButton(onTap: (){
                               KHomeBottomSheet.addPhysicalActivity(context);
                             }),
                             contentPadding: EdgeInsets.zero,
                           ),
-                        );
-                      },
+                        ),
+                        const Divider(color: AppColor.lightGreyColor,),
+                        Expanded(
+                          child: ListView.builder(
+                            itemCount: 8,
+                            itemBuilder: (context, index) {
+                              return Slidable(
+                                direction: Axis.horizontal,
+                                startActionPane: ActionPane(
+                                  motion: const ScrollMotion(),
+                                  children: [
+                                    SlidableAction(
+                                      onPressed: (context) {},
+                                      backgroundColor: AppColor.greenColor,
+                                      foregroundColor: Colors.white,
+                                      icon: Icons.favorite,
+                                      label: 'Like',
+                                      autoClose: false,
+                                      borderRadius: BorderRadius.circular(16),
+                          
+                                    ),
+                                  ],
+                                ),
+                                child: ListTile(
+                                  title: KText(text: AppStrings.chocolateFilledBiscuit,fontWeight: FontWeight.w500,
+                                    fontSize: 15,),
+                                  subtitle: KText(text: '${AppStrings.calories}: ${AppStrings.sweetRiceCalories}',
+                                    fontSize: 14,fontWeight: FontWeight.w500,color: AppColor.greyColor,),
+                                  trailing: _trailingButton(onTap: (){
+                                    KHomeBottomSheet.addPhysicalActivity(context);
+                                  }),
+                                  contentPadding: EdgeInsets.zero,
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                      ],
                     ),
                         /// favourites Physical Activity Tab Bar-----------------------------------
                       ListView.builder(
@@ -127,7 +166,8 @@ class AllPhysicalActivity extends StatelessWidget {
                             itemBuilder: (context,index){
                               return ListTile(
                                 title: KText(text: AppStrings.myPhysicalActivity,fontWeight: FontWeight.w500),
-                                subtitle: KText(text: '${AppStrings.calories}: ${AppStrings.sweetRiceCalories}',fontSize: 12, fontWeight: FontWeight.w500,color: AppColor.greyColor,),
+                                subtitle: KText(text: '${AppStrings.calories}: ${AppStrings.sweetRiceCalories}',
+                                  fontSize: 14, fontWeight: FontWeight.w500,color: AppColor.greyColor,),
                                 trailing: _trailingButton(onTap: (){
                                   KHomeBottomSheet.addPhysicalActivity(context);
                                 }),
@@ -168,8 +208,7 @@ class AllPhysicalActivity extends StatelessWidget {
             onPressed: () {Get.back();},
             itemCount: '0',
             btnText: AppStrings.addActivity,
-
-          ).paddingSymmetric(horizontal: 5.w,vertical: 2.h),
+          ).paddingSymmetric(horizontal: 5.w,vertical: 3.h),
         );
       },
     );

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:focofit/components/k_buttons.dart';
+import 'package:focofit/components/k_check_box.dart';
+import 'package:focofit/extensions/extension.dart';
 import 'package:focofit/screens/receipe_ui/create_recipe_screens/create_recipe_ai.dart';
 import 'package:focofit/screens/receipe_ui/create_recipe_screens/create_recipe_manual.dart';
 import 'package:focofit/utils/app_colors.dart';
@@ -31,7 +33,7 @@ class CreateRecipeOption extends StatelessWidget {
       ).paddingSymmetric(horizontal: 4.w,),
 
       bottomNavigationBar: Container(
-        padding: EdgeInsets.symmetric(horizontal: 4.w,vertical: 2.h),
+        padding: EdgeInsets.symmetric(horizontal: 5.w,vertical: 3.h),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
@@ -42,9 +44,9 @@ class CreateRecipeOption extends StatelessWidget {
                 },
                 btnText: AppStrings.usingFocoFitPro,
                 useGradient: true,
-              fontSize: 15
+              fontSize: 16,
             ),
-            SizedBox(height: 1.5.h,),
+            1.ySpace,
             KOutlineButton(
                 onTap: (){
                   Get.to(()=>CreateRecipeManual());
@@ -52,7 +54,7 @@ class CreateRecipeOption extends StatelessWidget {
                 btnText: AppStrings.createManually,
                 textGradient: AppColor.blackGradient,
                 gradient: AppColor.blackGradient,
-                fontSize: 15
+                fontSize: 16,
             )
           ],
         ),

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:focofit/components/k_buttons.dart';
 import 'package:focofit/components/k_text_fields.dart';
@@ -136,21 +137,20 @@ class CustomSwitchTile extends StatelessWidget {
   final RxBool value;
   final Function(bool) onChanged;
   final String title;
-  const CustomSwitchTile({super.key, required this.value, required this.onChanged, required this.title});
+  final double? fontSize;
+  const CustomSwitchTile({super.key, required this.value, required this.onChanged, required this.title, this.fontSize});
 
   @override
   Widget build(BuildContext context) {
-    return Obx(()=> SwitchListTile(
-        value: value.value,
-        onChanged: onChanged,
-        title: KText(text:  title,fontSize: 15,fontWeight: FontWeight.w500),
+    return Obx(()=> ListTile(
+        title: KText(text: title,fontSize: fontSize??15,fontWeight: FontWeight.w500),
+        contentPadding: EdgeInsets.symmetric(horizontal: 5),
         shape: RoundedRectangleBorder(side: const BorderSide(color: AppColor.lightGreyBorder),borderRadius: BorderRadius.circular(10)),
-        activeTrackColor: AppColor.startGradient,
-        contentPadding: EdgeInsets.only(left: 1.h),
-        activeColor: AppColor.whiteColor,
-        inactiveTrackColor: AppColor.greyColor.withOpacity(0.4),
-        inactiveThumbColor: AppColor.whiteColor,
-        trackOutlineColor: const WidgetStatePropertyAll(Colors.transparent),
+        trailing: CupertinoSwitch(
+            value: value.value,
+            onChanged: onChanged,
+          activeColor: AppColor.startGradient,
+        ),
       ),
     );
   }

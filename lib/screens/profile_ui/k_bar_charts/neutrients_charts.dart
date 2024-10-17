@@ -6,6 +6,7 @@ import 'package:focofit/extensions/extension.dart';
 import 'package:focofit/utils/app_colors.dart';
 import 'package:focofit/utils/k_text_styles.dart';
 import 'package:get/get.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class NutrientsCharts extends StatelessWidget {
   final ChartsController controller;
@@ -18,7 +19,7 @@ class NutrientsCharts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+      padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 2.h),
       decoration: _containerDecoration(),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -31,21 +32,46 @@ class NutrientsCharts extends StatelessWidget {
           1.ySpace,
           _buildBarChart(),
           20.height,
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          Table(
+            columnWidths: const {
+              0: FlexColumnWidth(2), // Column for meal name
+              1: FlexColumnWidth(2), // Column for participation
+              2: FlexColumnWidth(1), // Column for calories
+            },
+
+            border: TableBorder.all(color: Colors.transparent), // No border
             children: [
-              const  KText(text: 'Macronutriente',fontSize: 15, fontWeight: FontWeight.w600),
-              Row(
+              // Table Header
+              const TableRow(
+                decoration: const BoxDecoration(
+                  border: Border(
+                    bottom: BorderSide(color: AppColor.lightGreyColor), // Border for header
+                  ),
+                ),
                 children: [
-                  const KText(text: 'Consumido',fontSize: 15, fontWeight: FontWeight.w600),
-                  10.xSpace,
-                  const KText(text: 'Meta',fontSize: 15, fontWeight: FontWeight.w600),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    child: KText(text: 'Macronutriente', fontSize: 14, fontWeight: FontWeight.w600),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    child: KText(text: 'Consumido', fontSize: 14, fontWeight: FontWeight.w600),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    child: KText(text: 'Meta', fontSize: 14, fontWeight: FontWeight.w600),
+                  ),
                 ],
               ),
+              // Data Rows
+              _buildNutrientDetalRow('Café da manhã', '2800 g', '1500 g'),
+              _buildNutrientDetalRow('Almoço', '2800 g', '1500 g'),
+              _buildNutrientDetalRow('jantar', '2800 g', '1500 g'),
+              _buildNutrientDetalRow('lanches', '2800 g', '1500 g'),
+
             ],
           ),
-          10.height,
-          _buildNutrientDetails(),
+          2.ySpace,
         ],
       ),
     );
@@ -56,6 +82,30 @@ class NutrientsCharts extends StatelessWidget {
       color: AppColor.whiteColor,
       borderRadius: BorderRadius.circular(16),
       boxShadow: const [AppColor.shadow],
+    );
+  }
+
+  TableRow _buildNutrientDetalRow(String meal, String participation, String calories) {
+    return TableRow(
+      decoration: const BoxDecoration(
+        border: Border(
+          bottom: BorderSide(color: AppColor.lightGreyColor),
+        ),
+      ),
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical:  8.0),
+          child: KText(text: meal, fontSize: 14, fontWeight: FontWeight.w500),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical:  8.0),
+          child: KText(text: participation, fontSize: 14, fontWeight: FontWeight.w500),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical:  8.0),
+          child: KText(text: calories, fontSize: 14, fontWeight: FontWeight.w500),
+        ),
+      ],
     );
   }
 
@@ -73,7 +123,7 @@ class NutrientsCharts extends StatelessWidget {
   Widget _buildNutrientsInfo(String label, RxInt value) {
     return Column(
       children: [
-        KText(text:  label,),
+        KText(text:  label,fontSize: 15,fontWeight: FontWeight.w500,),
         Obx(() => KText(text: '${value.value} g',
          fontSize: 20, fontWeight: FontWeight.w700),
         ),
@@ -105,12 +155,13 @@ class NutrientsCharts extends StatelessWidget {
         child: Container(
           alignment: Alignment.center,
           padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+          margin: const EdgeInsets.symmetric(vertical: 2.0, horizontal: 2.0),
           decoration: BoxDecoration(
             gradient: isSelected ? AppColor.primaryGradient : null,
             borderRadius: BorderRadius.circular(20),
           ),
           child: KText(text: period,
-              color: isSelected ? Colors.white : Colors.orange,
+              color: isSelected ? Colors.white : AppColor.greyColor,
               fontWeight: FontWeight.w600,
               fontSize: 14,
           ),
@@ -124,9 +175,9 @@ class NutrientsCharts extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         _buildLegendItem(AppColor.greenColor, 'Carboidrato'),
-        1.xSpace,
+        3.xSpace,
         _buildLegendItem(AppColor.redColor, 'Proteína'),
-        1.xSpace,
+        3.xSpace,
         _buildLegendItem(AppColor.endGradient, 'Gordura'),
       ],
     );
@@ -135,8 +186,15 @@ class NutrientsCharts extends StatelessWidget {
   Widget _buildLegendItem(Color color, String label) {
     return Row(
       children: [
-        Icon(Icons.linear_scale, color: color),
-        KText(text:  label,fontSize: 14, fontWeight: FontWeight.w500),
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 5,vertical: 3),
+          decoration: BoxDecoration(
+            color: color,
+            borderRadius: BorderRadius.circular(8),
+          ),
+        ),
+        1.xSpace,
+        KText(text:  label,fontSize: 13, fontWeight: FontWeight.w500),
       ],
     );
   }
@@ -163,9 +221,11 @@ class NutrientsCharts extends StatelessWidget {
                 showTitles: true,
                 interval: _getIntervalForSelectedPeriod(),
                 getTitlesWidget: (value, meta) {
-                  return Text(
-                    _formatValue(value.toInt()),
-                    style: primaryTextStyle(fontSize: 10),
+                  return Padding(
+                    padding: const EdgeInsets.only(left: 8),                    child: Text(
+                      _formatValue(value.toInt()),
+                      style: kTextStyle(fontSize: 14,fontWeight: FontWeight.w500),
+                    ),
                   );
                 },
               ),
@@ -173,7 +233,19 @@ class NutrientsCharts extends StatelessWidget {
             topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
           ),
           borderData: FlBorderData(show: false),
-          gridData: const FlGridData(show: false),
+          gridData: FlGridData(
+            show: true,
+            horizontalInterval: _getIntervalForSelectedPeriod(),  // Interval for horizontal lines
+            drawVerticalLine: false,
+
+            getDrawingHorizontalLine: (value) {
+              return FlLine(
+                color: AppColor.greyColor.withOpacity(0.2),
+                strokeWidth: 1,
+
+              );
+            },
+          ),
         ),
       )),
     );
@@ -247,7 +319,7 @@ class NutrientsCharts extends StatelessWidget {
     return SideTitleWidget(
       axisSide: meta.axisSide,
       space: 4.0,
-      child: Text(text, style: primaryTextStyle(fontSize: 12)),
+      child: Text(text, style: kTextStyle(fontSize: 14, fontWeight: FontWeight.w500)),
     );
   }
 
@@ -259,23 +331,4 @@ class NutrientsCharts extends StatelessWidget {
     return value >= 1000 ? '${(value / 1000).toStringAsFixed(1)}k' : value.toString();
   }
 
-  Widget _buildNutrientDetails() {
-    return Column(
-      children: [
-        _buildNutrientDetailRow('Café da manhã', '2800 g', '1500 g'),
-        _buildNutrientDetailRow('Almoço', '2800 g', '1500 g'),
-      ],
-    );
-  }
-
-  Widget _buildNutrientDetailRow(String meal, String participation, String calories) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(meal, style: primaryTextStyle(fontSize: 14, fontWeight: FontWeight.w400)),
-        Text(participation, style: primaryTextStyle(fontSize: 14, fontWeight: FontWeight.w400)),
-        Text(calories, style: primaryTextStyle(fontSize: 14, fontWeight: FontWeight.w400)),
-      ],
-    );
-  }
 }

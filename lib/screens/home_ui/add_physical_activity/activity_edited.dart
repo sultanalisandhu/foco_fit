@@ -38,7 +38,7 @@ class ActivityEdited extends StatelessWidget {
         },
         btnText: AppStrings.confirmAndCreate,
         gradient: AppColor.blackGradient,
-      ).paddingSymmetric(horizontal: 4.w,vertical: 2.h),
+      ).paddingSymmetric(horizontal: 5.w,vertical: 3.h),
     );
   }
 }

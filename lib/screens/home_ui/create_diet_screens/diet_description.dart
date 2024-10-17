@@ -87,14 +87,12 @@ class DietDescription extends StatelessWidget {
               const Icon(Icons.info, color: AppColor.greyColor),
               15.width,
               Expanded(
-                child: Text(
+                child: KText(text:
                   AppStrings.nutritionalInformationBasedOnIngredients,
-                  style: primaryTextStyle(
-                    fontSize: 16,
+                    fontSize: 15,
                     fontWeight: FontWeight.w400,
                     color: AppColor.greyColor,
                   ),
-                ),
               ),
             ],
           ),
@@ -110,7 +108,7 @@ class DietDescription extends StatelessWidget {
             gradient: AppColor.greenGradient,
           ),
         ],
-      ).paddingSymmetric(horizontal: 4.w,vertical: 2.h),
+      ).paddingSymmetric(horizontal: 5.w,vertical: 3.h),
     );
 
   }

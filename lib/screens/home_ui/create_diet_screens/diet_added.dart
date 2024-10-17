@@ -40,7 +40,7 @@ class DietAdded extends StatelessWidget {
         },
         btnText: AppStrings.confirmAndReturn,
         gradient: AppColor.blackGradient,
-      ).paddingSymmetric(horizontal: 4.w,vertical: 3.h),
+      ).paddingSymmetric(horizontal: 5.w,vertical: 3.h),
     );
   }
 }

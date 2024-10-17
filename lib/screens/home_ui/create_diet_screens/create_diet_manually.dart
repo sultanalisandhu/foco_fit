@@ -8,6 +8,7 @@ import 'package:focofit/utils/app_strings.dart';
 import 'package:focofit/utils/k_text_styles.dart';
 import 'package:focofit/widgets/k_app_bar.dart';
 import 'package:get/get.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class CreateDietManually extends StatelessWidget {
   const CreateDietManually({super.key});
@@ -81,24 +82,13 @@ class CreateDietManually extends StatelessWidget {
 
           ],),
       ),
-      bottomNavigationBar: Container(
-        height: mQ.height * 0.1,
-        alignment: Alignment.center,
-        padding: const EdgeInsets.symmetric(horizontal: 25),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-
-            kTextButton(
-              onPressed: () {
-                Get.to(()=> DietAdded());
-              },
-              btnText: AppStrings.confirmAndCreate,
-              gradient: AppColor.greenGradient,
-            ),
-          ],
-        ),
-      ),
+      bottomNavigationBar: kTextButton(
+        onPressed: () {
+          Get.to(()=> DietAdded());
+        },
+        btnText: AppStrings.confirmAndCreate,
+        gradient: AppColor.greenGradient,
+      ).paddingSymmetric(horizontal: 5.w, vertical: 3.h),
     );
   }
 }

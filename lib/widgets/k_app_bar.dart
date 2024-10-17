@@ -16,61 +16,81 @@ AppBar kAppBar({
   final Color? leadingBorderColor,
   final Color? leadingIconColor,
   final Color? trailingIconColor,
-}){
+}) {
   return AppBar(
-    leadingWidth: 70,
-  scrolledUnderElevation: 0.0,
-  elevation: shadowColor!=null? 5:0.0,
-  backgroundColor: shadowColor!=null? AppColor.whiteColor:Colors.transparent,
-    surfaceTintColor: shadowColor!=null? AppColor.whiteColor:Colors.transparent,
-    shadowColor: shadowColor!=null?AppColor.blackColor.withOpacity(0.5):Colors.transparent,
-  leading: onTap != null
-      ? GestureDetector(
-    onTap: onTap,
-    child: Container(
-      margin: const EdgeInsets.only(left: 20,top: 5,bottom: 5),
-      padding: const EdgeInsets.only(left: 10),
-      alignment: Alignment.center,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
-            border: Border.all(color:leadingBorderColor?? AppColor.blackColor)),
-      child: Icon(Icons.arrow_back_ios,color: leadingIconColor?? AppColor.blackColor,),
+    leading: onTap != null
+        ? GestureDetector(
+      onTap: onTap,
+      child: Container(
+        height: 40,
+        width: 40,
+        margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 10), // Removed bottom/top and added symmetric margin
+        padding: const EdgeInsets.only(left:  10),
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(color: leadingBorderColor ?? AppColor.blackColor),
+        ),
+        child: Icon(
+          Icons.arrow_back_ios,
+          color: leadingIconColor ?? AppColor.blackColor,
+          size: 20, // Adjust icon size if needed
+        ),
       ),
-  )
-      : const SizedBox.shrink(),
+    )
+        : const SizedBox.shrink(),
     title: Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-      title != null
-          ? KText(text:title,fontSize: titleSize??20,fontWeight: FontWeight.w600)
-          : const SizedBox.shrink(),
+        title != null
+            ? KText(
+          text: title,
+          fontSize: titleSize ?? 20,
+          fontWeight: FontWeight.w600,
+        )
+            : const SizedBox.shrink(),
         subTitle != null
-            ? KText(text: subTitle,fontSize: 17,fontWeight: FontWeight.w500,color: AppColor.greyColor,)
-            :const  SizedBox.shrink()
-    ],),
+            ? KText(
+          text: subTitle,
+          fontSize: 17,
+          fontWeight: FontWeight.w500,
+          color: AppColor.greyColor,
+        )
+            : const SizedBox.shrink(),
+      ],
+    ),
     centerTitle: true,
     actions: [
       trailingOnTap != null
           ? GestureDetector(
         onTap: trailingOnTap,
         child: Container(
-          height: 50,
-          width: 50,
-          margin: const EdgeInsets.only(right: 10,bottom: 5,top: 5),
+          height: 40,
+          width: 40,
+          margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
           alignment: Alignment.center,
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
-              border: Border.all(color:trailingBorderColor?? AppColor.blackColor)),
+            borderRadius: BorderRadius.circular(10),
+            border: Border.all(color: trailingBorderColor ?? AppColor.blackColor),
+          ),
           child: showSvgIconWidget(
-              onTap: trailingOnTap,
-              iconPath: trailingIcon??AppIcons.settingIcon,
-              color: trailingIconColor?? AppColor.blackColor),
+            onTap: trailingOnTap,
+            iconPath: trailingIcon ?? AppIcons.settingIcon,
+            color: trailingIconColor ?? AppColor.blackColor,
+          ),
         ),
       )
-          : const SizedBox.shrink()
+          : const SizedBox.shrink(),
     ],
+    leadingWidth: 60,
+    scrolledUnderElevation: 0.0,
+    elevation: shadowColor != null ? 5 : 0.0,
+    backgroundColor: shadowColor != null ? AppColor.whiteColor : Colors.transparent,
+    surfaceTintColor: shadowColor != null ? AppColor.whiteColor : Colors.transparent,
+    shadowColor: shadowColor != null ? AppColor.blackColor.withOpacity(0.5) : Colors.transparent,
   );
 }
+
 
 
 
@@ -98,7 +118,7 @@ AppBar kProfileAppBar({
       ),
       title: Text(title!),
       subtitle: Text(subTitle!),
-      titleTextStyle: kTextStyle(fontSize: 14),
+      titleTextStyle: kTextStyle(fontSize: 16,fontWeight: FontWeight.w500),
       subtitleTextStyle: kTextStyle(fontWeight: FontWeight.w600,),
       trailing: notificationCount!=null
           ? Stack(
@@ -124,12 +144,12 @@ AppBar kProfileAppBar({
           : GestureDetector(
         onTap: trailingOnTap,
         child: Container(
-          height: 50,
-          width: 50,
+          height: 40,
+          width: 40,
           margin: const EdgeInsets.only(right: 10),
           alignment: Alignment.center,
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(10),
               border: Border.all(color: AppColor.blackColor)),
           child: showSvgIconWidget(onTap: trailingOnTap, iconPath: AppIcons.settingIcon,color: AppColor.blackColor),
         ),

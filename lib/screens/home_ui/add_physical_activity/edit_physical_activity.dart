@@ -54,7 +54,7 @@ class EditPhysicalActivity extends StatelessWidget {
           Get.to(()=> ActivityEdited());
         },
         btnText: AppStrings.confirmAndCreate,
-      ).paddingSymmetric(horizontal: 4.w,vertical: 2.h),
+      ).paddingSymmetric(horizontal: 5.w,vertical: 3.h),
     );
   }
 }

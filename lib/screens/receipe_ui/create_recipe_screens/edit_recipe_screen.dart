@@ -12,6 +12,7 @@ import 'package:focofit/utils/k_text_styles.dart';
 import 'package:focofit/widgets/k_app_bar.dart';
 import 'package:focofit/widgets/recipe_widgets/k_circular_progress_bar.dart';
 import 'package:get/get.dart';
+import 'package:like_button/like_button.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class EditRecipeScreen extends StatelessWidget {
@@ -25,6 +26,11 @@ class EditRecipeScreen extends StatelessWidget {
           return Scaffold(
             appBar: kAppBar(
                 onTap: (){
+                  print('object');
+                  Get.back();
+                  Get.back();
+                  Get.back();
+                  Get.back();
                   Get.back();
                 },
                 title: AppStrings.recipes,
@@ -53,7 +59,7 @@ class EditRecipeScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 5),
+                              padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 3),
                               decoration: BoxDecoration(
                                 color: AppColor.whiteColor.withOpacity(0.8),
                                 borderRadius: BorderRadius.circular(22),
@@ -62,7 +68,7 @@ class EditRecipeScreen extends StatelessWidget {
                             ),
                             5.width,
                             Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 5),
+                              padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 3),
                               decoration: BoxDecoration(
                                 color: AppColor.whiteColor.withOpacity(0.8),
                                 borderRadius: BorderRadius.circular(22),
@@ -78,7 +84,7 @@ class EditRecipeScreen extends StatelessWidget {
                                   color: AppColor.whiteColor.withOpacity(0.8),
                                   shape: BoxShape.circle,
                                 ),
-                                child: showSvgIconWidget(iconPath: AppIcons.heartIcon,onTap: (){}),
+                                child: LikeButton(),
                               ),
                             ),
                           ],
@@ -101,7 +107,7 @@ class EditRecipeScreen extends StatelessWidget {
                   4.ySpace,
                   //MacroNutrients  ---------------------------------------------------
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 15),
+                    padding:  EdgeInsets.symmetric(horizontal: 4.w,vertical: 3.h),
                     decoration: BoxDecoration(
                       color: AppColor.whiteColor,
                       border: Border.all(color: AppColor.greyBorder),
@@ -114,28 +120,28 @@ class EditRecipeScreen extends StatelessWidget {
                       children: [
                       Row(
                         children: [
-                          showSvgIconWidget(iconPath: AppIcons.chartIcon,color: AppColor.blackColor),
+                          showSvgIconWidget(iconPath: AppIcons.outlineChartIcon,color: AppColor.blackColor),
                           2.xSpace,
                           KText(text: AppStrings.macronutrients,fontSize: 16,fontWeight: FontWeight.w600)
                         ],
                       ),
-                      3.ySpace,
+                      2.ySpace,
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Expanded(
                             child: KCircularProgressBar(
                               consumed: '190',
-                              dietName: AppStrings.carbohydrate,
+                              dietName: AppStrings.carbohydrates,
                               lineGradient: AppColor.greenGradient,
-                              progressValue: 0.6,
+                              progressValue: 0.55,
                             ),
                           ),
                           5.xSpace,
                           Expanded(
                             child: KCircularProgressBar(
                               consumed: '90',
-                              dietName: AppStrings.protein,
+                              dietName: AppStrings.proteins,
                               lineGradient: AppColor.redGradient,
                               progressValue: 0.4,
                             ),
@@ -144,7 +150,7 @@ class EditRecipeScreen extends StatelessWidget {
                           Expanded(
                             child: KCircularProgressBar(
                               consumed: '169',
-                              dietName: AppStrings.fat,
+                              dietName: AppStrings.fats,
                               lineGradient: AppColor.primaryGradient,
                               progressValue: 0.3,
                             ),
@@ -188,6 +194,7 @@ class EditRecipeScreen extends StatelessWidget {
                                 const Expanded(child: KText(text:  '  ---------------------------------------------------------------------------------------     ',
                                   maxLines: 1,
                                 color: AppColor.greyColor,
+                                  fontSize: 14,
                                 )),
                                 KText(text: c.ingredients[index].quantity.toString(),fontWeight: FontWeight.w500),
                               ],);
@@ -225,7 +232,7 @@ class EditRecipeScreen extends StatelessWidget {
                             children: c.ingredients[index].preparationList!.map((prep) =>
                                 KText(
                                     text: '${index+1}. ${prep.preparationDetails}',
-                                    fontSize: 16
+                                    fontWeight: FontWeight.w500,
                             ),).toList(),
                           );
                         },

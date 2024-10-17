@@ -91,6 +91,7 @@
     "fatOptional": "Gorduras (opcional)",
     "fats": "Gorduras",
     "carbohydrates": "Carboidratos",
+    "subscriptionWillRenewAnnually": "Sua assinatura será renovada automaticamente anualmente, a menos que seja cancelada. Gerencie sua assinatura nas configurações da sua conta.",
     "congratulation": "Parabéns!",
     "upgradedToYearlySubscription": "Você atualizou para a assinatura anual!",
     "benefitsUnlock": "Benefícios desbloqueados:",
@@ -293,6 +294,7 @@
     "switchLanguage": "Mudar idioma",
     "switchLanguageToEnjoyTHeApp": "mude o idioma para aproveitar o aplicativo",
     "toAdd": "Adicionar",
-    "confirm": "confirmar"
+    "confirm": "confirmar",
+    "chooseDate": "Escolha uma data"
 
 }

@@ -9,6 +9,7 @@ import 'package:focofit/extensions/extension.dart';
 import 'package:focofit/utils/app_colors.dart';
 import 'package:focofit/utils/asset_utils.dart';
 import 'package:focofit/utils/k_text_styles.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class KProfileSheets {
   static void show({
@@ -20,33 +21,36 @@ class KProfileSheets {
   }) {
     showModalBottomSheet(
       context: context,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(0.0),
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
+        ),
       ),
       isScrollControlled: true,
       isDismissible: false,
       barrierColor: Colors.grey.withOpacity(0.5),
       backgroundColor: AppColor.whiteColor,
       builder: (BuildContext context) {
-        return SizedBox(
+        return Container(
+          padding: const EdgeInsets.only(top: 2),
           height: context.isKeyboardVisible ? mQ.height : mQ.height * heightFactor,
           width: mQ.width,
-          child: Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                context.isKeyboardVisible ? 30.height : 2.height,
-                _buildHeader(),
-                title!=null?_buildTitle(title):SizedBox.shrink(),
-                const Divider(color: AppColor.lightGreyColor,),
-                10.height,
-                ...content,
-                const Spacer(),
-                _buildConfirmButton(onConfirmTap),
-              ],
-            ),
-          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              context.isKeyboardVisible ? 30.height : 2.height,
+              _buildHeader(),
+              3.ySpace,
+              _buildTitle(title!),
+              const Divider(color: AppColor.lightGreyColor,),
+              10.height,
+              ...content,
+              const Spacer(),
+              onConfirmTap!=null?_buildConfirmButton(onConfirmTap):SizedBox.shrink(),
+              4.ySpace,
+            ],
+          ).paddingSymmetric(horizontal: 4.w),
         );
       },
     );
@@ -60,25 +64,30 @@ class KProfileSheets {
       content: [
         Align(
             alignment: Alignment.center,
-            child: Text(AppStrings.whatToDoWithHistory,
+            child: KText(
+              text:  AppStrings.whatToDoWithHistory,
               textAlign: TextAlign.center,
-              style: primaryTextStyle(fontSize: 14,fontWeight: FontWeight.w400),)),
+              ),
+        ),
         const Spacer(),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            KOutlineButton(
-              onTap: onCancelTap,
-              btnText: AppStrings.delete,
-              gradient: AppColor.blackGradient,
-              textGradient: AppColor.blackGradient,
-              width:120,
+            Expanded(
+              child: KOutlineButton(
+                onTap: onCancelTap,
+                btnText: AppStrings.delete,
+                gradient: AppColor.blackGradient,
+                textGradient: AppColor.blackGradient,
+              ),
             ),
-            kTextButton(
-              onPressed: onConfirmTap,
-              btnText: AppStrings.alter,
-              useGradient: true,
-              width:120,
+            5.xSpace,
+            Expanded(
+              child: kTextButton(
+                onPressed: onConfirmTap,
+                btnText: AppStrings.alter,
+                useGradient: true,
+              ),
             ),
           ],
         ),
@@ -87,15 +96,19 @@ class KProfileSheets {
     );
   }
 
-  static void selectDateRange(BuildContext context, {required ProfileController controller}) {
+  static void selectDateRange(BuildContext context, {required ProfileController controller, Function()? onConfirmTap}) {
     show(
       context: context,
+      title: AppStrings.chooseDate,
       content: [
-      CalenderUi(controller: controller,),
+        CalenderUi(controller: controller),
+        2.ySpace,
       ],
-      heightFactor: 0.46,
+      onConfirmTap: onConfirmTap,
+      heightFactor: 0.59,
     );
   }
+
 
   static void editWeightHistory(BuildContext context, {Function()? onConfirmTap}) {
     final c = Get.put(ProfileController());
@@ -188,22 +201,23 @@ class KProfileSheets {
   static Widget _buildTitle(String title) {
     return Align(
       alignment: Alignment.center,
-      child: Text(
-        title,
-        style: primaryTextStyle(
-          fontSize: 20.0,
+      child: KText(
+        text: title,
+          fontSize: 18.0,
           fontWeight: FontWeight.w600,
-        ),
       ),
     );
   }
 
   static Widget _buildConfirmButton(Function()? onConfirmTap) {
-    return onConfirmTap!=null?kTextButton(
+    return onConfirmTap != null
+        ? kTextButton(
       width: mQ.width,
       onPressed: onConfirmTap,
       btnText: AppStrings.save,
       useGradient: true,
-    ):const SizedBox.shrink();
+      height: 7
+    )
+        : const SizedBox.shrink();
   }
 }

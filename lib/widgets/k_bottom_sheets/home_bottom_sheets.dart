@@ -32,26 +32,26 @@ class KHomeBottomSheet {
       isDismissible: true,
       backgroundColor: AppColor.whiteColor,
       builder: (BuildContext context) {
-        return SizedBox(
+        return Container(
+          padding: const EdgeInsets.only(top: 2),
           height: context.isKeyboardVisible ? mQ.height : mQ.height * heightFactor,
           width: mQ.width,
-          child: Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                context.isKeyboardVisible ? 30.height : 2.height,
-                _buildHeader(),
-                20.height,
-                _buildTitle(title),
-                10.height,
-                ...content,
-                const Spacer(),
-                onConfirmTap!=null?
-                _buildConfirmButton(onConfirmTap,btnText):const SizedBox.shrink(),
-              ],
-            ),
-          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              context.isKeyboardVisible ? 30.height : 2.height,
+              _buildHeader(),
+              3.ySpace,
+              _buildTitle(title),
+              10.height,
+              ...content,
+              const Spacer(),
+              onConfirmTap != null
+                  ? _buildConfirmButton(onConfirmTap,btnText)
+                  : const SizedBox.shrink(),
+              3.ySpace,
+            ],
+          ).paddingSymmetric(horizontal: 4.w),
         );
       },
     );
@@ -87,7 +87,7 @@ class KHomeBottomSheet {
                 ),
               ),
             ),
-            30.width,
+            5.xSpace,
             GestureDetector(
               onTap: onSnackTap,
               child: Container(
@@ -101,7 +101,7 @@ class KHomeBottomSheet {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.asset(AppImages.choclateImg,height: 80,width: 110,),
+                    Image.asset(AppImages.choclateImg,height: 70,width: 110,),
                     2.height,
                     KText(text:  AppStrings.snack,fontSize: 18,)
                   ],
@@ -114,21 +114,35 @@ class KHomeBottomSheet {
       heightFactor: 0.35,
     );
   }
-
+//
   static void exerciseRegisterSheet(BuildContext context, {Function()? onConfirmTap}) {
     show(
       context: context,
       title: AppStrings.quickExerciseLog,
       content: [
         const Divider(color: AppColor.lightGreyBorder,),
+        2.ySpace,
         KText(text: AppStrings.activityName,),
-        CustomTextField(context: context,hintText: AppStrings.exRace,textInputType: TextInputType.text,borderColor: AppColor.greyColor,color: AppColor.whiteColor,),
+        1.ySpace,
+        CustomTextField(context: context,
+          hintText: AppStrings.exRace,textInputType: TextInputType.text,borderColor: AppColor.greyColor,color: AppColor.whiteColor,),
         1.ySpace,
         KText(text:  AppStrings.calories),
-        CustomTextField(context: context,prefixText: AppStrings.calories,suffixText: AppStrings.kcal,textDirection: TextDirection.ltr,borderColor: AppColor.greyColor,color: AppColor.whiteColor,),
+        1.ySpace,
+        CustomTextField(context: context,
+          prefixText: AppStrings.calories,
+          suffixText: AppStrings.kcal,
+          hintText: '0',
+          textDirection: TextDirection.ltr,borderColor: AppColor.greyColor,color: AppColor.whiteColor,),
         1.ySpace,
         KText(text:  AppStrings.duration),
-        CustomTextField(context: context,prefixText: AppStrings.duration,suffixText: AppStrings.min,textDirection: TextDirection.ltr,textInputAction: TextInputAction.done,borderColor: AppColor.greyColor,color: AppColor.whiteColor,),
+        1.ySpace,
+        CustomTextField(context: context,
+          prefixText: AppStrings.duration,
+          suffixText: AppStrings.min,
+          hintText: '0',
+          textDirection: TextDirection.ltr,
+          textInputAction: TextInputAction.done,borderColor: AppColor.greyColor,color: AppColor.whiteColor,),
       ],
       onConfirmTap: onConfirmTap,
       heightFactor: 0.58,
@@ -136,30 +150,51 @@ class KHomeBottomSheet {
   }
 
   static void snackRegisterSheet(BuildContext context, {Function()? onConfirmTap}) {
-    ///salvar
     show(
       context: context,
       title: AppStrings.quickMealLog,
       content: [
         const Divider(color: AppColor.lightGreyBorder,),
-        KText(text: AppStrings.foodName,fontSize: 15,fontWeight: FontWeight.w500),
+        2.ySpace,
+        KText(text: AppStrings.foodName,fontWeight: FontWeight.w500),
         1.ySpace,
         CustomTextField(context: context,hintText: AppStrings.carrotCake,textInputType: TextInputType.text,borderColor: AppColor.greyColor,color: AppColor.whiteColor,),
         1.ySpace,
-        KText(text: AppStrings.calories,fontSize: 15,fontWeight: FontWeight.w500),
-        CustomTextField(context: context,prefixText: AppStrings.calories,suffixText: AppStrings.kcal,textDirection: TextDirection.ltr,borderColor: AppColor.greyColor,color: AppColor.whiteColor,),
+        KText(text: AppStrings.calories,fontWeight: FontWeight.w500),
         1.ySpace,
-        KText(text: AppStrings.carbohydrateOptional,fontSize: 15,fontWeight: FontWeight.w500),
-        CustomTextField(context: context,prefixText: AppStrings.carbohydrates,suffixText: AppStrings.grams,textDirection: TextDirection.ltr,borderColor: AppColor.greyColor,color: AppColor.whiteColor,),
+        CustomTextField(context: context,
+          prefixText: AppStrings.calories,
+          suffixText: AppStrings.kcal,
+          hintText: '0',
+          textDirection: TextDirection.ltr,borderColor: AppColor.greyColor,color: AppColor.whiteColor,),
         1.ySpace,
-        KText(text: AppStrings.proteinsOptional,fontSize: 15,fontWeight: FontWeight.w500),
-        CustomTextField(context: context,prefixText: AppStrings.proteins,suffixText: AppStrings.grams,textDirection: TextDirection.ltr,borderColor: AppColor.greyColor,color: AppColor.whiteColor,),
+        KText(text: AppStrings.carbohydrateOptional,fontWeight: FontWeight.w500),
         1.ySpace,
-        KText(text: AppStrings.fatOptional,fontSize: 15,fontWeight: FontWeight.w500),
-        CustomTextField(context: context,prefixText: AppStrings.fats,suffixText: AppStrings.grams,textDirection: TextDirection.ltr,textInputAction: TextInputAction.done,borderColor: AppColor.greyColor,color: AppColor.whiteColor,),
+        CustomTextField(context: context,
+          prefixText: AppStrings.carbohydrates,
+          suffixText: AppStrings.grams,
+          hintText: '0',
+          textDirection: TextDirection.ltr,borderColor: AppColor.greyColor,color: AppColor.whiteColor,),
+        1.ySpace,
+        KText(text: AppStrings.proteinsOptional,fontWeight: FontWeight.w500),
+        1.ySpace,
+        CustomTextField(context: context,
+          prefixText: AppStrings.proteins,
+          suffixText: AppStrings.grams,
+          hintText: '0',
+          textDirection: TextDirection.ltr,borderColor: AppColor.greyColor,color: AppColor.whiteColor,),
+        1.ySpace,
+        KText(text: AppStrings.fatOptional,fontWeight: FontWeight.w500),
+        1.ySpace,
+        CustomTextField(context: context,
+          prefixText: AppStrings.fats,
+          suffixText: AppStrings.grams,
+          textDirection: TextDirection.ltr,
+          hintText: '0',
+          textInputAction: TextInputAction.done, borderColor: AppColor.greyColor,color: AppColor.whiteColor,),
       ],
       onConfirmTap: onConfirmTap!,
-      heightFactor: 0.82,
+      heightFactor: 0.8,
     );
   }
 
@@ -305,7 +340,7 @@ class KHomeBottomSheet {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(AppStrings.sweetRice,style: primaryTextStyle(fontSize: 20,fontWeight: FontWeight.w500),),
+            Text(AppStrings.sweetRice,style: primaryTextStyle(fontSize: 18,fontWeight: FontWeight.w500),),
             2.xSpace,
             showSvgIconWidget(iconPath: AppIcons.editIcon)
           ],
@@ -320,7 +355,7 @@ class KHomeBottomSheet {
             TextSpan(text: ' Kcal', style: primaryTextStyle(fontSize: 18,fontWeight: FontWeight.w700)),
           ])),
         ),
-        15.height,
+        3.ySpace,
          Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
@@ -328,7 +363,7 @@ class KHomeBottomSheet {
           KCircularProgressBar(consumed: '0', dietName: AppStrings.proteins, lineGradient: AppColor.redGradient, progressValue: 0.2),
           KCircularProgressBar(consumed: '0', dietName: AppStrings.fats, lineGradient: AppColor.primaryGradient, progressValue: 0.2),
         ],),
-        15.height,
+        3.ySpace,
         CustomTextField(
           context: context,
           prefixText: '${AppStrings.amount}:',
@@ -339,7 +374,8 @@ class KHomeBottomSheet {
         ),
       ],
       onConfirmTap: (){Get.back();},
-      heightFactor: 0.55,
+      btnText: AppStrings.toAdd,
+      heightFactor: 0.58,
     );
   }
 
@@ -380,6 +416,7 @@ class KHomeBottomSheet {
       title: '${AppStrings.register} ${AppStrings.currentWeight}',
       content: [
         const Divider(color: AppColor.lightGreyBorder,),
+        3.ySpace,
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -457,9 +494,10 @@ class KHomeBottomSheet {
             ),
           ],
         ),
+        3.ySpace,
       ],
       onConfirmTap: onConfirmTap,
-      heightFactor: 0.48,
+      heightFactor: 0.52,
     );
   }
 
@@ -469,6 +507,7 @@ class KHomeBottomSheet {
       title: AppStrings.recordWaterConsumption,
       content: [
         const Divider(color: AppColor.lightGreyBorder,),
+        3.ySpace,
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -546,9 +585,10 @@ class KHomeBottomSheet {
             10.height,
           ],
         ),
+        3.ySpace,
       ],
       onConfirmTap: onConfirmTap,
-      heightFactor: 0.48,
+      heightFactor: 0.52,
     );
   }
 
@@ -562,12 +602,10 @@ class KHomeBottomSheet {
   static Widget _buildTitle(String title) {
     return Align(
       alignment: Alignment.center,
-      child: Text(
-        title,
-        style: primaryTextStyle(
-          fontSize: 20.0,
+      child: KText(
+        text: title,
+          fontSize: 18.0,
           fontWeight: FontWeight.w600,
-        ),
       ),
     );
   }
@@ -580,7 +618,8 @@ class KHomeBottomSheet {
       onPressed: onConfirmTap!,
       btnText: btnText?? AppStrings.save,
       useGradient: true,
-      fontSize: 16
+      fontSize: 17,
+        height: 7,
     );
   }
 }

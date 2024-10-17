@@ -16,6 +16,7 @@ import 'package:focofit/utils/app_strings.dart';
 import 'package:focofit/utils/k_text_styles.dart';
 import 'package:focofit/widgets/k_app_bar.dart';
 import 'package:get/get.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -37,7 +38,7 @@ class ProfileScreen extends StatelessWidget {
             subTitle: 'Weslei Vicentini',
           ),
           body:SingleChildScrollView(
-            padding: EdgeInsets.all(10),
+            padding: EdgeInsets.symmetric(horizontal: 4.w,vertical:  2.h),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -47,7 +48,7 @@ class ProfileScreen extends StatelessWidget {
                   subTitle: AppStrings.subscribeBenefit,
               ),
                 3.ySpace,
-              KText(text:  AppStrings.countryHistory,fontSize: 18),
+              KText(text:  AppStrings.countryHistory,fontSize: 18,fontWeight: FontWeight.w700,),
                 2.ySpace,
                 CaloriesGraphScreen(
                   controller: c,
@@ -56,16 +57,17 @@ class ProfileScreen extends StatelessWidget {
                   },
                   btnText: AppStrings.historicalEditor,
                 ),
+                3.ySpace,
+                KText(text:  AppStrings.icmHistory,fontSize: 18,fontWeight: FontWeight.w700,),
                 2.ySpace,
-                KText(text:  AppStrings.icmHistory,fontSize: 18),
-                1.ySpace,
                 IcmHistoryChart(
                   controller: c,
                   onButtonTap: (){},
-                  btnText: AppStrings.historicalEditor,),
+                  btnText: AppStrings.historicalEditor,
+                ),
+                3.ySpace,
+                KText(text:  AppStrings.waterHistory,fontSize: 18,fontWeight: FontWeight.w700,),
                 2.ySpace,
-                KText(text:  AppStrings.waterHistory,fontSize: 18),
-                1.ySpace,
                 AquaChart(
                   controller: c,
                   onButtonTap: (){
@@ -73,9 +75,9 @@ class ProfileScreen extends StatelessWidget {
                   },
                   btnText: AppStrings.historicalEditor,
                 ),
+                3.ySpace,
+                KText(text:  AppStrings.activityHistory,fontSize: 18,fontWeight: FontWeight.w700,),
                 2.ySpace,
-                KText(text:  AppStrings.activityHistory,fontSize: 18),
-                1.ySpace,
                 ActivityChart(
                   controller: c,
                   onButtonTap: (){
@@ -83,9 +85,9 @@ class ProfileScreen extends StatelessWidget {
                   },
                   btnText: AppStrings.historicalEditor,
                 ),
+                3.ySpace,
+                KText(text:  AppStrings.foodHistory,fontSize: 18,fontWeight: FontWeight.w700,),
                 2.ySpace,
-                KText(text:  AppStrings.foodHistory,fontSize: 18),
-                1.ySpace,
                 FeedingChart(
                   controller: c,
                   onButtonTap: (){
@@ -93,15 +95,15 @@ class ProfileScreen extends StatelessWidget {
                   },
                   btnText: AppStrings.historicalEditor,
                 ),
+                3.ySpace,
+                KText(text:  AppStrings.macronutrientHistory,fontSize: 18,fontWeight: FontWeight.w700,),
                 2.ySpace,
-                KText(text:  AppStrings.macronutrientHistory,fontSize: 18),
-                1.ySpace,
                 NutrientsCharts(
                   controller: c,
                 ),
+                3.ySpace,
+                KText(text:  AppStrings.fastingHistory,fontSize: 18,fontWeight: FontWeight.w700,),
                 2.ySpace,
-                KText(text:  AppStrings.fastingHistory,fontSize: 18),
-                1.ySpace,
                 FastingChart(
                   controller: c,
                   onButtonTap: (){
@@ -109,7 +111,8 @@ class ProfileScreen extends StatelessWidget {
                   },
                   btnText: AppStrings.fastingHistory,
                 ),
-            ],),
+            ],
+            ),
           ),
         );
       }

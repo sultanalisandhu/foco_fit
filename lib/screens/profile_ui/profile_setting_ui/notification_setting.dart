@@ -1,8 +1,12 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:focofit/components/k_buttons.dart';
 import 'package:focofit/components/k_check_box.dart';
+import 'package:focofit/components/k_svg_icon.dart';
+import 'package:focofit/extensions/extension.dart';
 import 'package:focofit/utils/app_colors.dart';
 import 'package:focofit/utils/app_strings.dart';
+import 'package:focofit/utils/asset_utils.dart';
 import 'package:focofit/utils/k_text_styles.dart';
 import 'package:focofit/widgets/k_app_bar.dart';
 import 'package:get/get.dart';
@@ -21,15 +25,12 @@ class NotificationSetting extends StatelessWidget {
           onTap: (){
             Navigator.pop(context);
           },
-          title: AppStrings.notifications
+          title: AppStrings.notifications,
+          shadowColor: AppColor.blackColor.withOpacity(0.4)
       ),
-      bottomNavigationBar: kTextButton(
-        onPressed: (){},
-        btnText: AppStrings.save,
-        useGradient: true,
-      ).paddingSymmetric(horizontal: 4.w,vertical: 2.h),
+
       body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 15),
+        padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 15),
         child: Column(
           children: [
             CustomSwitchTile(
@@ -38,7 +39,9 @@ class NotificationSetting extends StatelessWidget {
                 _enableNotification.value = v;
               },
               title: AppStrings.enableAllNotifications,
+              fontSize: 16,
             ),
+            2.ySpace,
             Container(
               margin: const EdgeInsets.symmetric(vertical: 15),
               decoration: BoxDecoration(
@@ -56,62 +59,59 @@ class NotificationSetting extends StatelessWidget {
                     _eatingReminder.value = v;
                   },
                   title: AppStrings.mealEatingReminder,
+                  fontSize: 16,
                 ),
-                Divider(color: AppColor.greyColor.withOpacity(0.5),),
+                const Divider(color: AppColor.lightGreyBorder),
                 ListTile(
-                  title: Text(AppStrings.breakFast),
-                  titleTextStyle: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w500),
-                  subtitle: Divider( color: AppColor.greyColor.withOpacity(0.5),),
+                  title: KText(text:  AppStrings.breakFast,fontWeight: FontWeight.w500),
+                  subtitle: const Divider( color: AppColor.lightGreyBorder),
                   trailing: Container(
-                    margin: EdgeInsets.only(bottom: 15),
+                    margin: const EdgeInsets.only(bottom: 15),
                     padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 10),
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(color: AppColor.greyColor.withOpacity(0.4))
+                        borderRadius: BorderRadius.circular(4),
+                        border: Border.all(color: AppColor.lightGreyBorder)
                     ),
-                    child: Text('08:00',style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w500),),
+                    child: const KText(text: '08:00',fontWeight: FontWeight.w500),
                   ),
                 ),
                 ListTile(
-                  title: Text(AppStrings.lunch),
-                  titleTextStyle: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w500),
-                  subtitle: Divider( color: AppColor.greyColor.withOpacity(0.5),),
+                  title: KText(text:  AppStrings.lunch,fontWeight: FontWeight.w500),
+                  subtitle: const Divider( color: AppColor.lightGreyBorder),
                   trailing: Container(
-                    margin: EdgeInsets.only(bottom: 15),
+                    margin: const EdgeInsets.only(bottom: 15),
                     padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 10),
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(4),
                         border: Border.all(color: AppColor.greyColor.withOpacity(0.4))
                     ),
-                    child: Text('12:00',style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w500),),
+                    child: const KText(text: '08:00',fontWeight: FontWeight.w500),
                   ),
                 ),
                 ListTile(
-                  title: Text(AppStrings.toHaveLunch),
-                  titleTextStyle: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w500),
-                  subtitle: Divider( color: AppColor.greyColor.withOpacity(0.5),),
+                  title: KText(text:  AppStrings.toHaveLunch,fontWeight: FontWeight.w500),
+                  subtitle: const Divider( color: AppColor.lightGreyBorder),
                   trailing: Container(
-                    margin: EdgeInsets.only(bottom: 15),
+                    margin: const EdgeInsets.only(bottom: 15),
                     padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 10),
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(color: AppColor.greyColor.withOpacity(0.4))
+                        borderRadius: BorderRadius.circular(4),
+                        border: Border.all(color: AppColor.lightGreyBorder)
                     ),
-                    child: Text('18:00',style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w500),),
+                    child: KText(text: '08:00',fontWeight: FontWeight.w500),
                   ),
                 ),
                 ListTile(
-                  title: Text(AppStrings.snacks),
-                  titleTextStyle: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w500),
-                  subtitle: Divider( color: AppColor.greyColor.withOpacity(0.5),),
+                  title: KText(text:  AppStrings.snacks,fontWeight: FontWeight.w500),
+                  subtitle: const Divider( color: AppColor.lightGreyBorder),
                   trailing: Container(
-                    margin: EdgeInsets.only(bottom: 15),
+                    margin: const EdgeInsets.only(bottom: 15),
                     padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 10),
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(color: AppColor.greyColor.withOpacity(0.4))
+                        borderRadius: BorderRadius.circular(4),
+                        border: Border.all(color: AppColor.lightGreyBorder)
                     ),
-                    child: Text('15:00',style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w500),),
+                    child: const KText(text: '08:00',fontWeight: FontWeight.w500),
                   ),
                 ),
               ],),
@@ -136,31 +136,29 @@ class NotificationSetting extends StatelessWidget {
                 ),
                 Divider(color: AppColor.greyColor.withOpacity(0.5),),
                 ListTile(
-                  title: Text(AppStrings.rememberEvery),
-                  titleTextStyle: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w500),
-                  subtitle: Divider( color: AppColor.greyColor.withOpacity(0.5),),
+                  title: KText(text: AppStrings.rememberEvery,fontWeight: FontWeight.w500),
+                  subtitle: const Divider( color: AppColor.lightGreyBorder),
                   trailing: Container(
                     margin: const EdgeInsets.only(bottom: 15),
                     padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 10),
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(color: AppColor.greyColor.withOpacity(0.4))
+                        borderRadius: BorderRadius.circular(4),
+                        border: Border.all(color: AppColor.lightGreyBorder)
                     ),
-                    child: Text('6 horas',style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w500),),
+                    child: const  KText(text: '6 horas',fontWeight: FontWeight.w500),
                   ),
                 ),
                 ListTile(
-                  title: Text(AppStrings.rememberFrom),
-                  titleTextStyle: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w500),
-                  subtitle: Divider( color: AppColor.greyColor.withOpacity(0.5),),
+                  title: KText(text: AppStrings.rememberFrom,fontWeight: FontWeight.w500),
+                  subtitle: const Divider( color: AppColor.lightGreyBorder),
                   trailing: Container(
-                    margin: EdgeInsets.only(bottom: 15),
+                    margin: const EdgeInsets.only(bottom: 15),
                     padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 10),
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(4),
                         border: Border.all(color: AppColor.greyColor.withOpacity(0.4))
                     ),
-                    child: Text('08:00',style: primaryTextStyle(fontSize: 16,fontWeight: FontWeight.w500),),
+                    child: const KText(text: '08:00',fontWeight: FontWeight.w500,),
                   ),
                 ),
               ],),
@@ -168,6 +166,52 @@ class NotificationSetting extends StatelessWidget {
           ],
         ),
       ),
+
+      bottomNavigationBar: kTextButton(
+        onPressed: (){},
+        btnText: AppStrings.save,
+        useGradient: true,
+      ).paddingSymmetric(horizontal: 4.w,vertical: 3.h),
     );
   }
 }
+// Stack(
+// children: [
+// Container(
+// color: Colors.lightBlue,
+// alignment: Alignment.center,
+// height: 290,
+// width: 240,
+// child: Stack(
+// children: [
+// Container(
+// height: 250,
+// width: 200,
+// margin: const EdgeInsets.symmetric(vertical: 15),
+// decoration: BoxDecoration(
+// color: AppColor.whiteColor,
+// borderRadius: BorderRadius.circular(10),
+// border: Border.all(color: AppColor.lightGreyBorder),
+// image: DecorationImage(image: AssetImage(AppImages.recipeImg),fit: BoxFit.cover),
+// boxShadow: const [
+// AppColor.shadow
+// ]
+// ),
+// ),
+// Positioned(
+// top: 0,
+// left: 0,
+// child: Container(
+// height: 50,
+// width: 50,
+// decoration: BoxDecoration(
+// color: Colors.red,
+// shape: BoxShape.circle
+// ),
+// ),
+// )
+// ],
+// ),
+// ),
+// ],
+// ),

@@ -16,7 +16,15 @@ import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class RecipeScreen extends StatelessWidget {
-  const RecipeScreen({super.key});
+  RecipeScreen({super.key});
+
+  final List<String> diets = [
+    'Vegetarian',
+  'Baixo teor de carboidratos',
+    'Paleo',
+    'Vegan',
+    'Alimentação limpa'
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +41,7 @@ class RecipeScreen extends StatelessWidget {
                 Get.to(() => const CreateRecipeOption());
               },
               trailingIcon: AppIcons.plusIcon,
-              shadowColor: AppColor.blackColor.withOpacity(0.5)
+              shadowColor: AppColor.blackColor.withOpacity(0.5),
             ),
             body: Column(
               children: [
@@ -55,23 +63,25 @@ class RecipeScreen extends StatelessWidget {
                       onTap: (){
                         KRecipeBottomSheets.filter(
                             onConfirmTap: (){
-                              print('object');
                               Navigator.pop(context);
                             },
                             recipeController: c,
+                          dietList: diets,
                             context,
                         );
                       },
                       child: Container(
-                        height: 8.h,width: 20.w,
+                        height: 7.5.h,width: 20.w,
                         alignment: Alignment.center,
                         decoration: const BoxDecoration(
                           shape: BoxShape.circle,
                           color: AppColor.lightGreyColor
                         ),
-                        child: showSvgIconWidget(iconPath: AppIcons.barIcon,onTap: (){
-                          KRecipeBottomSheets.filter(
+                        child: showSvgIconWidget(
+                            iconPath: AppIcons.barIcon,
+                            onTap: (){ KRecipeBottomSheets.filter(
                             onConfirmTap: (){},
+                              dietList: diets,
                             recipeController: c,
                             context,
                           )
@@ -83,6 +93,7 @@ class RecipeScreen extends StatelessWidget {
                 2.ySpace,
                 /// TabBar Container
                 Container(
+                  height: 40,
                   padding: const EdgeInsets.all(2),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(26),
@@ -125,7 +136,7 @@ class RecipeScreen extends StatelessWidget {
                           crossAxisSpacing: 10,
                           mainAxisSpacing: 5,
                           crossAxisCount: 2,
-                          mainAxisExtent: 30.h,
+                          mainAxisExtent: 24.h,
                         ),
                         padding: const EdgeInsets.symmetric(vertical: 10),
                         itemCount: 3,
@@ -137,7 +148,7 @@ class RecipeScreen extends StatelessWidget {
                             child: Column(
                               children: [
                                 Container(
-                                  height: 21.h,
+                                  height: 16.h,
                                   padding: const EdgeInsets.only(bottom: 5,left: 5,right: 5),
                                   decoration: BoxDecoration(
                                     color: AppColor.blackColor,
@@ -151,25 +162,26 @@ class RecipeScreen extends StatelessWidget {
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
                                       Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        mainAxisAlignment: MainAxisAlignment.start,
                                         children: [
                                           Container(
                                             alignment: Alignment.center,
-                                            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                                            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
                                             decoration: BoxDecoration(
                                               borderRadius: BorderRadius.circular(26),
                                               color: AppColor.whiteColor,
                                             ),
-                                            child: KText(text:  '10 ${AppStrings.min}',fontSize: 13,),
+                                            child: KText(text:  '10 ${AppStrings.min}',fontSize: 14,fontWeight: FontWeight.w500,),
                                           ),
+                                          1.xSpace,
                                           Container(
                                             alignment: Alignment.center,
-                                            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                                            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
                                             decoration: BoxDecoration(
                                               borderRadius: BorderRadius.circular(26),
                                               color: AppColor.whiteColor,
                                             ),
-                                            child: KText(text:'319 ${AppStrings.kcal}',fontSize: 13,),
+                                            child: KText(text:'319 ${AppStrings.kcal}',fontSize: 14,fontWeight: FontWeight.w500,),
                                           ),
                                         ],
                                       ),
@@ -194,7 +206,7 @@ class RecipeScreen extends StatelessWidget {
                           crossAxisSpacing: 10,
                           mainAxisSpacing: 5,
                           crossAxisCount: 2,
-                          mainAxisExtent: 30.h,
+                          mainAxisExtent: 24.h,
                         ),
                         padding: const EdgeInsets.symmetric(vertical: 10),
                         itemCount: 3,
@@ -206,7 +218,7 @@ class RecipeScreen extends StatelessWidget {
                             child: Column(
                               children: [
                                 Container(
-                                  height: 21.h,
+                                  height: 16.h,
                                   padding: const EdgeInsets.only(bottom: 5,left: 5,right: 5),
                                   decoration: BoxDecoration(
                                     color: AppColor.blackColor,
@@ -220,25 +232,25 @@ class RecipeScreen extends StatelessWidget {
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
                                       Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
                                           Container(
                                             alignment: Alignment.center,
-                                            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                                            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
                                             decoration: BoxDecoration(
                                               borderRadius: BorderRadius.circular(26),
                                               color: AppColor.whiteColor,
                                             ),
-                                            child: KText(text:  '10 ${AppStrings.min}',fontSize: 13,),
+                                            child: KText(text:  '10 ${AppStrings.min}',fontSize: 14,fontWeight: FontWeight.w500,),
                                           ),
+                                          1.xSpace,
                                           Container(
                                             alignment: Alignment.center,
-                                            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                                            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
                                             decoration: BoxDecoration(
                                               borderRadius: BorderRadius.circular(26),
                                               color: AppColor.whiteColor,
                                             ),
-                                            child: KText(text:'319 ${AppStrings.kcal}',fontSize: 13,),
+                                            child: KText(text:'319 ${AppStrings.kcal}',fontSize: 14,fontWeight: FontWeight.w500,),
                                           ),
                                         ],
                                       ),
@@ -263,7 +275,7 @@ class RecipeScreen extends StatelessWidget {
                           crossAxisSpacing: 10,
                           mainAxisSpacing: 5,
                           crossAxisCount: 2,
-                          mainAxisExtent: 30.h,
+                          mainAxisExtent: 24.h,
                         ),
                         padding: const EdgeInsets.symmetric(vertical: 10),
                         itemCount: 3,
@@ -275,7 +287,7 @@ class RecipeScreen extends StatelessWidget {
                             child: Column(
                               children: [
                                 Container(
-                                  height: 21.h,
+                                  height: 16.h,
                                   padding: const EdgeInsets.only(bottom: 5,left: 5,right: 5),
                                   decoration: BoxDecoration(
                                     color: AppColor.blackColor,
@@ -289,25 +301,25 @@ class RecipeScreen extends StatelessWidget {
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
                                       Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
                                           Container(
                                             alignment: Alignment.center,
-                                            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                                            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
                                             decoration: BoxDecoration(
                                               borderRadius: BorderRadius.circular(26),
                                               color: AppColor.whiteColor,
                                             ),
-                                            child: KText(text:  '10 ${AppStrings.min}',fontSize: 13,),
+                                            child: KText(text:  '10 ${AppStrings.min}',fontSize: 14,fontWeight: FontWeight.w500,),
                                           ),
+                                          1.xSpace,
                                           Container(
                                             alignment: Alignment.center,
-                                            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                                            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
                                             decoration: BoxDecoration(
                                               borderRadius: BorderRadius.circular(26),
                                               color: AppColor.whiteColor,
                                             ),
-                                            child: KText(text:'319 ${AppStrings.kcal}',fontSize: 13,),
+                                            child: KText(text:'319 ${AppStrings.kcal}',fontSize: 14,fontWeight: FontWeight.w500,),
                                           ),
                                         ],
                                       ),

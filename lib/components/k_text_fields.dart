@@ -114,6 +114,7 @@ class CustomTextField extends StatelessWidget {
   final String? prefixText;
   final String? prefixIcon;
   final String? suffixText;
+  final IconData? suffixTextIcon;
   final String? hintText;
   final Color? color;
   final Color? borderColor;
@@ -122,6 +123,7 @@ class CustomTextField extends StatelessWidget {
   final TextInputAction? textInputAction;
   final int? maxLines;
   final double? fieldBorderRadius;
+  final bool? enabled;
 
 
   const CustomTextField({super.key,
@@ -138,6 +140,8 @@ class CustomTextField extends StatelessWidget {
     this.textInputType,
     this.textInputAction,
     this.fieldBorderRadius,
+    this.suffixTextIcon,
+    this.enabled,
     });
 
   @override
@@ -151,6 +155,7 @@ class CustomTextField extends StatelessWidget {
       textInputAction: textInputAction?? TextInputAction.next,
       onTapOutside: (event) {context.dismissKeyBoard();},
       textDirection: textDirection!=null? TextDirection.rtl:TextDirection.ltr,
+      enabled: enabled,
       decoration: InputDecoration(
         prefixIcon:  Padding(
           padding: const EdgeInsets.only(left: 12.0,right: 10),
@@ -159,16 +164,23 @@ class CustomTextField extends StatelessWidget {
               : prefixIcon!=null? showSvgIconWidget(iconPath:  prefixIcon!):null,),
         suffixIcon: suffixText!= null?Padding(
           padding: const EdgeInsets.only(right: 18.0,left: 5),
-          child: Text(suffixText!,style: kTextStyle(fontWeight: FontWeight.w500,fontSize: 15,color: AppColor.greyColor),),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(suffixText!,style: kTextStyle(fontWeight: FontWeight.w500,fontSize: 15,color: AppColor.greyColor),),
+              if(suffixTextIcon !=null) Icon(suffixTextIcon)
+            ],
+          ),
         ):null,
         hintText: hintText??'',
-        hintStyle: kTextStyle(color: AppColor.greyColor, fontSize: 15.0,fontWeight: FontWeight.w400),
+        hintStyle: kTextStyle(color: AppColor.greyColor, fontSize: 16.0,fontWeight: FontWeight.w400),
+        hintTextDirection: textDirection!=null? TextDirection.rtl:TextDirection.ltr,
         prefixIconConstraints: const BoxConstraints(maxHeight: 25.0),
         suffixIconConstraints: const BoxConstraints(maxHeight: 25.0,),
         filled: true,
         isDense: true,
         fillColor: color?? AppColor.lightGreyColor,
-        contentPadding: const EdgeInsets.all(20),
+        contentPadding: const EdgeInsets.all(17),
         enabledBorder:  OutlineInputBorder(
           borderRadius: BorderRadius.circular(fieldBorderRadius??12),
           borderSide:  BorderSide(color: borderColor?? Colors.transparent),

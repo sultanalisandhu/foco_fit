@@ -21,8 +21,11 @@ class KPersonalDataSheet {
   }) {
     showModalBottomSheet(
       context: context,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(0.0),
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
+        ),
       ),
       isScrollControlled: true,
       isDismissible: false,
@@ -32,7 +35,7 @@ class KPersonalDataSheet {
           height: mQ.height * heightFactor,
           width: mQ.width,
           child: Padding(
-            padding: const EdgeInsets.all(20.0),
+            padding: const EdgeInsets.only(top: 5),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -45,8 +48,9 @@ class KPersonalDataSheet {
                 ...content,
                 const Spacer(),
                 _buildConfirmButton(onConfirmTap),
+                3.ySpace,
               ],
-            ),
+            ).paddingSymmetric(horizontal: 4.w),
           ),
         );
       },
@@ -334,6 +338,7 @@ class KPersonalDataSheet {
       context: context,
       title: AppStrings.gender,
       content: [
+        1.ySpace,
         for (int i = 0; i < profileController.genderList.length; i++)
           Obx(() => Container(
             margin:  EdgeInsets.symmetric(vertical: 1.h),
@@ -356,9 +361,10 @@ class KPersonalDataSheet {
             ),
           ),
           ),
+        3.ySpace,
       ],
       onConfirmTap: onConfirmTap,
-      heightFactor: 0.5,
+      heightFactor: 0.54,
     );
   }
 
@@ -447,6 +453,7 @@ class KPersonalDataSheet {
       context: context,
       title: AppStrings.goalWeight,
       content: [
+        2.ySpace,
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -520,6 +527,7 @@ class KPersonalDataSheet {
             ),
           ],
         ),
+        2.ySpace,
       ],
       onConfirmTap: onConfirmTap,
       heightFactor: 0.5,
@@ -531,7 +539,7 @@ class KPersonalDataSheet {
       context: context,
       title: AppStrings.activityLevel,
       content: [
-
+        1.ySpace,
         for (int i = 0; i < profileController.activityLevelList.length; i++)
           Obx(() => Container(
             margin: const EdgeInsets.symmetric(vertical: 10),
@@ -557,9 +565,10 @@ class KPersonalDataSheet {
             ),
           ),
           ),
+        3.ySpace,
       ],
       onConfirmTap: onConfirmTap,
-      heightFactor: 0.7,
+      heightFactor: 0.74,
     );
   }
 

@@ -62,7 +62,7 @@ class CreateActivityOptions extends StatelessWidget {
             ],
           ),
         ],
-      ).paddingSymmetric(horizontal: 6.w,vertical: 3.h),
+      ).paddingSymmetric(horizontal: 5.w,vertical: 3.h),
     );
   }
 }

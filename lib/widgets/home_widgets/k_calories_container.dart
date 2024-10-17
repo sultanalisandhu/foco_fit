@@ -47,7 +47,7 @@ class CaloriesContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 20),
+      padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 2.h),
       decoration: BoxDecoration(
         color: AppColor.whiteColor,
         borderRadius: BorderRadius.circular(22),
@@ -62,104 +62,100 @@ class CaloriesContainer extends StatelessWidget {
       child: Column(
         children: [
           Stack(
-            alignment: Alignment.bottomCenter,
+
             children: [
               ColoredBox(
                   color: AppColor.whiteColor,
                   child: SizedBox(
-                      height: 32.h,
+                      height: 30.h,
                       child: _buildDistanceTrackerExample())),
               Positioned(
-                top: 10,
+                top: 0,
                 left: 1,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        KText(text: title,fontWeight: FontWeight.w500,),
-                        KText(text: totalCalories,fontWeight: FontWeight.w700,fontSize: 20),
-                        1.ySpace,
-                        KText(text: consumedTitle,fontWeight: FontWeight.w500,),
-                        KText(text: consumed,fontWeight: FontWeight.w700,fontSize: 20),
-                        1.ySpace,
-                        KText(text: burnTitle,fontWeight: FontWeight.w500,),
-                        KText(text: burned,fontWeight: FontWeight.w700,fontSize: 20),
-                      ],
-                    ),
+                    KText(text: title,fontWeight: FontWeight.w500,),
+                    KText(text: totalCalories,fontWeight: FontWeight.w700,fontSize: 20),
+                    KText(text: consumedTitle,fontWeight: FontWeight.w500,),
+                    KText(text: consumed,fontWeight: FontWeight.w700,fontSize: 20),
+                    KText(text: burnTitle,fontWeight: FontWeight.w500,),
+                    KText(text: burned,fontWeight: FontWeight.w700,fontSize: 20),
                   ],
                 ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        KText(text: AppStrings.carbohydrate,fontSize: 13, fontWeight: FontWeight.w500),
-                        KText(text: carbohydrate, fontWeight: FontWeight.w500),
-                        1.ySpace,
-                        LinearPercentIndicator(
-                          animation: true,
-                          padding: EdgeInsets.zero,
-                          backgroundColor: AppColor.lightGreyColor,
-                          linearGradient: AppColor.greenGradient,
-                          linearStrokeCap: LinearStrokeCap.butt,
-                          barRadius: const Radius.circular(12),
-                          animationDuration: 1000,
-                          lineHeight: 12.0,
-                          percent: carbPercent,
-                        ),
-                      ],
+              Positioned(
+                bottom: 10,
+                left: 0,
+                right: 0,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          KText(text: AppStrings.carbohydrate,fontSize: 13, fontWeight: FontWeight.w500),
+                          KText(text: carbohydrate, fontWeight: FontWeight.w500),
+                          LinearPercentIndicator(
+                            animation: true,
+                            padding: EdgeInsets.zero,
+                            backgroundColor: AppColor.lightGreyColor,
+                            linearGradient: AppColor.greenGradient,
+                            linearStrokeCap: LinearStrokeCap.butt,
+                            barRadius: const Radius.circular(12),
+                            animationDuration: 1000,
+                            lineHeight: 12.0,
+                            percent: carbPercent,
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                  10.width,
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        KText(text: AppStrings.protein,fontSize: 13, fontWeight: FontWeight.w500),
-                        KText(text: protein, fontWeight: FontWeight.w500),
-                        1.ySpace,
-                        LinearPercentIndicator(
-                          animation: true,
-                          padding: EdgeInsets.zero,
-                          backgroundColor: AppColor.lightGreyColor,
-                          linearGradient: AppColor.redGradient,
-                          linearStrokeCap: LinearStrokeCap.butt,
-                          barRadius: const Radius.circular(12),
-                          animationDuration: 1000,
-                          lineHeight: 12.0,
-                          percent: proteinPercent,
-                        ),
-                      ],
+                   2.xSpace,
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          KText(text: AppStrings.protein,fontSize: 13, fontWeight: FontWeight.w500),
+                          KText(text: protein, fontWeight: FontWeight.w500),
+                          LinearPercentIndicator(
+                            animation: true,
+                            padding: EdgeInsets.zero,
+                            backgroundColor: AppColor.lightGreyColor,
+                            linearGradient: AppColor.redGradient,
+                            linearStrokeCap: LinearStrokeCap.butt,
+                            barRadius: const Radius.circular(12),
+                            animationDuration: 1000,
+                            lineHeight: 12.0,
+                            percent: proteinPercent,
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                 10.width,
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        KText(text: AppStrings.fat,fontSize: 13, fontWeight: FontWeight.w500),
-                        KText(text: fat, fontWeight: FontWeight.w500),
-                        LinearPercentIndicator(
-                          animation: true,
-                          padding: EdgeInsets.zero,
-                          linearGradient: AppColor.primaryGradient,
-                          backgroundColor: AppColor.lightGreyColor,
-                          linearStrokeCap: LinearStrokeCap.butt,
-                          barRadius: const Radius.circular(12),
-                          animationDuration: 1000,
-                          lineHeight: 12.0,
-                          percent: fatPercent,
-                        ),
-                      ],
+                   2.xSpace,
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          KText(text: AppStrings.fat,fontSize: 13, fontWeight: FontWeight.w500),
+                          KText(text: fat, fontWeight: FontWeight.w500),
+                          LinearPercentIndicator(
+                            animation: true,
+                            padding: EdgeInsets.zero,
+                            linearGradient: AppColor.primaryGradient,
+                            backgroundColor: AppColor.lightGreyColor,
+                            linearStrokeCap: LinearStrokeCap.butt,
+                            barRadius: const Radius.circular(12),
+                            animationDuration: 1000,
+                            lineHeight: 12.0,
+                            percent: fatPercent,
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ],
           ),
@@ -169,56 +165,54 @@ class CaloriesContainer extends StatelessWidget {
     );
   }
   Widget _buildDistanceTrackerExample() {
-    return SizedBox(
-      height: 300,
-      child: SfRadialGauge(
-        enableLoadingAnimation: true,
-        axes: <RadialAxis>[
-          RadialAxis(
-            showLabels: false,
-            showTicks: false,
-            radiusFactor: 0.6,
-            maximum: 100,
-            endAngle: 35,
-            startAngle: 145,
-            minimum: 0,
-            centerX: 0.7,
-            centerY: 0.35,
-            axisLineStyle: const AxisLineStyle(
-              cornerStyle: CornerStyle.bothCurve,
-              thickness: 12,
-              color: AppColor.lightGreyColor,
-            ),
-            annotations: <GaugeAnnotation>[
-              GaugeAnnotation(
-                angle: 60,
-                widget: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    KText(text: totalCalories ,fontSize: 22, fontWeight: FontWeight.w800),
-                    KText(text: calories ,fontWeight: FontWeight.w600,fontSize: 13,)
-                  ],
-                ),
-                verticalAlignment: GaugeAlignment.far,
-              ),
-            ],
-            pointers: const <GaugePointer>[
-               RangePointer(
-                value: 100,
-                width: 15,
-                pointerOffset: -1,
-                cornerStyle: CornerStyle.bothCurve,
-                gradient: SweepGradient(
-                  colors: <Color>[AppColor.startGradient, AppColor.endGradient],
-                  stops: <double>[0.5, 0.8],
-                ),
-              ),
-            ],
-
-
+    return SfRadialGauge(
+      enableLoadingAnimation: true,
+      axes: <RadialAxis>[
+        RadialAxis(
+          showLabels: false,
+          showTicks: false,
+          radiusFactor: 0.76,
+          maximum: 100,
+          endAngle: 35,
+          startAngle: 145,
+          minimum: 0,
+          centerX: 0.7,
+          centerY: 0.39,
+          axisLineStyle: const AxisLineStyle(
+            cornerStyle: CornerStyle.bothCurve,
+            thickness: 12,
+            color: AppColor.lightGreyColor,
           ),
-        ],
-      ),
+          annotations: <GaugeAnnotation>[
+            GaugeAnnotation(
+              angle: 60,
+              widget: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  KText(text: totalCalories ,fontSize: 24, fontWeight: FontWeight.w800),
+                  KText(text: calories ,
+                    fontWeight: FontWeight.w500,fontSize: 15,)
+                ],
+              ),
+              verticalAlignment: GaugeAlignment.center,
+            ),
+          ],
+          pointers: const <GaugePointer>[
+             RangePointer(
+              value: 100,
+              width: 20,
+              pointerOffset: -1,
+              cornerStyle: CornerStyle.bothCurve,
+              gradient: SweepGradient(
+                colors: <Color>[AppColor.startGradient, AppColor.endGradient],
+                stops: <double>[0.5, 0.8],
+              ),
+            ),
+          ],
+
+
+        ),
+      ],
     );
   }
 }

@@ -28,6 +28,7 @@ class ProfileSetting extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder(
       init: Get.put(ProfileController()),
+      tag: 'profileController',
       builder: (c) {
         return Scaffold(
           backgroundColor: AppColor.whiteColor,
@@ -42,12 +43,12 @@ class ProfileSetting extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
               SizedBox(
-                width: 160,
-                height: 150,
+                width: 130,
+                height: 140,
                 child: Stack(children: [
                   Container(
-                    height: 140,
-                    width: 150,
+                    height: 130,
+                    width: 130,
                     decoration: const BoxDecoration(
                         color: Colors.blue,
                         shape: BoxShape.circle,
@@ -59,29 +60,30 @@ class ProfileSetting extends StatelessWidget {
                     ),
                   ),
                   Positioned(
-                    bottom: 0,
+                    bottom: 8,
                     right: 0,
-                    child: showSvgIconWidget(iconPath: AppIcons.editIcon,height: 20),
+                    child: showSvgIconWidget(iconPath: AppIcons.editIcon,height: 14),
                   )
                 ],),
               ),
-                5.ySpace,
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const KText(text: 'Weslei Vicentini', fontSize: 20,fontWeight: FontWeight.w500),
-                    2.xSpace,
-                    showSvgIconWidget(iconPath: AppIcons.editIcon,height: 20,onTap: (){}),
-                  ],
-                ),
-                KText(text: '25 ${AppStrings.years}', fontSize: 16,fontWeight: FontWeight.w500),
                 2.ySpace,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
+
                   children: [
-                    KText(text: AppStrings.weightLoss, fontSize: 16,fontWeight: FontWeight.w500),
+                    const KText(text: 'Weslei Vicentini', fontSize: 20,fontWeight: FontWeight.w500),
                     2.xSpace,
-                    showSvgIconWidget(iconPath: AppIcons.editIcon,height: 20,onTap: (){}),
+                    showSvgIconWidget(iconPath: AppIcons.editIcon,onTap: (){},height: 14),
+                  ],
+                ),
+                KText(text: '25 ${AppStrings.years}',fontWeight: FontWeight.w500),
+                4.ySpace,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    KText(text: AppStrings.weightLoss,fontWeight: FontWeight.w600),
+                    2.xSpace,
+                    showSvgIconWidget(iconPath: AppIcons.editIcon,onTap: (){},height: 14),
                   ],
                 ),
                 2.ySpace,
@@ -98,9 +100,9 @@ class ProfileSetting extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    KText(text:  '3,250  kg',fontWeight: FontWeight.w500,fontSize: 13,),
-                    KText(text:  AppStrings.of,fontWeight: FontWeight.w500,fontSize: 13,),
-                    KText(text:  '12,400  kg',fontWeight: FontWeight.w500,fontSize: 13,),
+                    KText(text:  '3,250  kg',fontWeight: FontWeight.w500,fontSize: 14,),
+                    KText(text:  AppStrings.of,fontWeight: FontWeight.w500,fontSize: 14,),
+                    KText(text:  '12,400  kg',fontWeight: FontWeight.w500,fontSize: 14,),
                   ],
                 ),
                 5.ySpace,
@@ -113,7 +115,7 @@ class ProfileSetting extends StatelessWidget {
                     )),
                 1.ySpace,
                 Container(
-                  padding:  EdgeInsets.symmetric(horizontal: 3.w,vertical: 1.h),
+                  padding:  EdgeInsets.symmetric(horizontal: 16,),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(16),
                       border: Border.all(color: AppColor.greyColor,width: 0.5)
@@ -144,7 +146,7 @@ class ProfileSetting extends StatelessWidget {
                       },
                 ),),
                 ///Personal Data Container
-                2.ySpace,
+                3.ySpace,
                 Align(
                     alignment: Alignment.topLeft,
                     child: Padding(
@@ -153,7 +155,7 @@ class ProfileSetting extends StatelessWidget {
                     )),
                 1.ySpace,
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 16,vertical: 13),
+                  padding: const EdgeInsets.symmetric(horizontal: 16,),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(16),
                       border: Border.all(color: AppColor.greyColor,width: 0.5)
@@ -223,14 +225,13 @@ class ProfileSetting extends StatelessWidget {
                             break;
                             }
                           },
-                          height: 20,
                           iconPath: AppIcons.editIcon),
                       contentPadding: EdgeInsets.zero,
                     );
                   },
                   ),
                 ),
-                2.ySpace,
+                3.ySpace,
                 /// On Container
                 Align(
                     alignment: Alignment.topLeft,
@@ -240,7 +241,7 @@ class ProfileSetting extends StatelessWidget {
                     )),
                 1.ySpace,
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 16,vertical: 13),
+                  padding: const EdgeInsets.symmetric(horizontal: 16,),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(16),
                       border: Border.all(color: AppColor.greyColor,width: 0.5)
@@ -266,21 +267,25 @@ class ProfileSetting extends StatelessWidget {
                                 break;
                             }
                           },
-                          leading: showSvgIconWidget(iconPath: profileSettingOnList[index].iconPath.toString()),
+                          leading: showSvgIconWidget(iconPath: profileSettingOnList[index].iconPath.toString(),color: AppColor.greyColor),
                           title: KText(text: profileSettingOnList[index].title.toString(),fontSize: 14,fontWeight: FontWeight.w500),
-                          trailing: const Icon(Icons.arrow_forward_ios,color: AppColor.greyColor,),
+                          trailing: const Icon(Icons.arrow_forward_ios,
+                            color: AppColor.greyColor,
+                          size: 15,
+                          ),
                           contentPadding: EdgeInsets.zero,
                         );
                       }),
                 ),
-                2.ySpace,
+                5.ySpace,
                 kTextButton(
                   onPressed: (){
                     Get.back();
                   },
                   btnText: AppStrings.logOutOfAccount,
                   useGradient: true
-                )
+                ),
+                3.ySpace,
                 ],),
           ),);
       }

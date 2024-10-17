@@ -8,6 +8,7 @@ import 'package:focofit/utils/app_colors.dart';
 import 'package:focofit/utils/app_strings.dart';
 import 'package:focofit/utils/k_text_styles.dart';
 import 'package:get/get.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class FastingChart extends StatelessWidget {
   final ChartsController controller;
@@ -24,7 +25,7 @@ class FastingChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+      padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 2.h),
       decoration: BoxDecoration(
         color: AppColor.whiteColor,
         borderRadius: BorderRadius.circular(16),
@@ -36,9 +37,9 @@ class FastingChart extends StatelessWidget {
           _buildFastingInfo(AppStrings.totalDuration, controller.fastingHistory),
           2.ySpace,
           _buildPeriodButtons(),
-          2.ySpace,
+          3.ySpace,
           _buildBarChart(),
-          2.ySpace,
+          3.ySpace,
           kTextButton(
               btnText: btnText,
               onPressed: onButtonTap,
@@ -50,18 +51,15 @@ class FastingChart extends StatelessWidget {
   }
 
   Widget _buildFastingInfo(String label, RxInt value) {
-    return Align(
-      alignment: Alignment.topLeft,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          KText(text:  label,),
-          Obx(() => KText(text:
-            '${value.value} hours',
-                fontSize: 20, fontWeight: FontWeight.w700),
-          ),
-        ],
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        KText(text:  label,fontSize: 15,fontWeight: FontWeight.w500,),
+        Obx(() => KText(text:
+          '${value.value} hours',
+              fontSize: 20, fontWeight: FontWeight.w700),
+        ),
+      ],
     );
   }
 
@@ -94,13 +92,14 @@ class FastingChart extends StatelessWidget {
         child: Container(
           alignment: Alignment.center,
           padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+          margin: const EdgeInsets.symmetric(vertical: 2.0, horizontal: 2.0),
           decoration: BoxDecoration(
             gradient: isSelected ? AppColor.primaryGradient : null,
             borderRadius: BorderRadius.circular(20),
           ),
           child: KText(text:
             period,
-                color: isSelected ? Colors.white : Colors.orange,
+                color: isSelected ? Colors.white : AppColor.greyColor,
                 fontWeight: FontWeight.w600,
                 fontSize: 14),
         ),
@@ -131,14 +130,17 @@ class FastingChart extends StatelessWidget {
               ),
               rightTitles: AxisTitles(
                 sideTitles: SideTitles(
-                  reservedSize: 30,
+                  reservedSize: 40,
                   showTitles: true,
                   interval: _getIntervalForSelectedPeriod(),
                   getTitlesWidget: (value, meta) {
                     String formattedValue = _formatYAxisLabels(value);
-                    return Text(
-                      formattedValue,
-                      style: primaryTextStyle(fontSize: 10),
+                    return Padding(
+                      padding: const EdgeInsets.only(left: 8),
+                      child: Text(
+                        formattedValue,
+                        style: kTextStyle(fontSize: 14,fontWeight: FontWeight.w500),
+                      ),
                     );
                   },
                 ),
@@ -150,7 +152,19 @@ class FastingChart extends StatelessWidget {
               ),
             ),
             borderData: FlBorderData(show: false),
-            gridData: const FlGridData(show: false),
+            gridData: FlGridData(
+              show: true,
+              horizontalInterval: _getIntervalForSelectedPeriod(),  // Interval for horizontal lines
+              drawVerticalLine: false,
+
+              getDrawingHorizontalLine: (value) {
+                return FlLine(
+                  color: AppColor.greyColor.withOpacity(0.2),
+                  strokeWidth: 1,
+
+                );
+              },
+            ),
           ),
         ),
       ),
@@ -190,26 +204,25 @@ class FastingChart extends StatelessWidget {
     }
   }
 
-
   String _formatYAxisLabels(double value) {
-    if (controller.selectedFastingPeriod.value == 'Semana' && value > 10) {
-      return '${(value / 10).toStringAsFixed(1)}h';
+    if (controller.selectedFastingPeriod.value == 'Semana') {
+      return '${value.toInt()}h';
     }
 
-    if (controller.selectedFastingPeriod.value == 'Mês' && value >= 50) {
-      return '${(value / 10).toStringAsFixed(1)}h';
+    if (controller.selectedFastingPeriod.value == 'Mês') {
+      return '${(value / 10).toInt()}h';
     }
 
-    if (controller.selectedFastingPeriod.value == 'Ano' && value >= 100) {
-      return '${(value / 10).toStringAsFixed(1)}h';
+    if (controller.selectedFastingPeriod.value == 'Ano') {
+      return '${(value / 10).toInt()}h';
     }
-
     return value.toInt().toString();
   }
 
+
   Widget _buildBottomTitles(double value, TitleMeta meta) {
-    const weeklyLabels = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
-    const monthlyLabels = ['Jan', 'Feb', 'Mar', 'Apr'];
+    const weeklyLabels = ['dom', 'seg', 'ter', 'qua', 'qui', 'sex', 'sáb'];
+    const monthlyLabels = ['Jan', 'Feb', 'Mar', 'Apr','May','June'];
     const annualLabels = ['2019', '2020', '2021', '2022', '2023'];
 
     String text = '';
@@ -227,7 +240,7 @@ class FastingChart extends StatelessWidget {
       space: 4.0,
       child: Text(
         text,
-        style: primaryTextStyle(fontSize: 12),
+        style: kTextStyle(fontSize: 14,fontWeight: FontWeight.w500),
       ),
     );
   }

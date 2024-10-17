@@ -76,7 +76,7 @@ class CreateActivityManually extends StatelessWidget {
         },
         btnText: AppStrings.confirmAndCreate,
         useGradient: true
-      ).paddingSymmetric(horizontal: 6.w, vertical: 3.h),
+      ).paddingSymmetric(horizontal: 5.w, vertical: 3.h),
     );
   }
 }

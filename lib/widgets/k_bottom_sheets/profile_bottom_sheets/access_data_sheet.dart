@@ -7,6 +7,7 @@ import 'package:focofit/utils/app_colors.dart';
 import 'package:focofit/utils/app_strings.dart';
 import 'package:focofit/utils/asset_utils.dart';
 import 'package:focofit/utils/k_text_styles.dart';
+import 'package:get/get.dart';
 
 class KBottomSheet {
   // Common method to show the bottom sheet
@@ -19,8 +20,11 @@ class KBottomSheet {
   }) {
     showModalBottomSheet(
       context: context,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(0.0),
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
+        ),
       ),
       isScrollControlled: true,
       isDismissible: false,
@@ -30,21 +34,22 @@ class KBottomSheet {
           height: context.isKeyboardVisible ? mQ.height : mQ.height * heightFactor,
           width: mQ.width,
           child: Padding(
-            padding: const EdgeInsets.all(20.0),
+            padding: const EdgeInsets.only(top: 2),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 context.isKeyboardVisible ? 30.height : 2.height,
                 _buildHeader(),
-                1.ySpace,
+                3.ySpace,
                 _buildTitle(title),
                 const Divider(color: AppColor.lightGreyBorder,),
                 10.height,
                 ...content,
                 const Spacer(),
                 _buildConfirmButton(onConfirmTap),
+                3.ySpace,
               ],
-            ),
+            ).paddingSymmetric(horizontal: 20),
           ),
         );
       },
@@ -57,8 +62,9 @@ class KBottomSheet {
       title: AppStrings.changeEmail,
       content: [
         _buildTextField(context: context, label: AppStrings.newEmail, hintText: AppStrings.newEmail, ),
-        1.ySpace,
+        2.ySpace,
         _buildTextField(context: context, label: AppStrings.confirmEmail, hintText: AppStrings.confirmEmail,textInputAction: TextInputAction.done ),
+        3.ySpace,
       ],
       onConfirmTap: onConfirmTap,
       heightFactor: 0.45,
@@ -71,13 +77,14 @@ class KBottomSheet {
       title: AppStrings.changePassword,
       content: [
         _buildTextField(label: AppStrings.oldPassword, hintText: AppStrings.oldPassword, context: context),
-        1.ySpace,
+        2.ySpace,
         _buildTextField(label: AppStrings.newPassword, hintText: AppStrings.newPassword, context: context),
-        1.ySpace,
+        2.ySpace,
         _buildTextField(label: AppStrings.confirmPassword, hintText: AppStrings.confirmPassword, context: context,textInputAction: TextInputAction.done),
+      3.ySpace,
       ],
       onConfirmTap: onConfirmTap,
-      heightFactor: 0.55,
+      heightFactor: 0.56,
     );
   }
 
@@ -89,7 +96,7 @@ class KBottomSheet {
         _buildTextField(hintText: '(16) 99999-9999', context: context,textInputAction: TextInputAction.done),
       ],
       onConfirmTap: onConfirmTap,
-      heightFactor: 0.35,
+      heightFactor: 0.3,
     );
   }
 
@@ -141,6 +148,7 @@ class KBottomSheet {
       onPressed: onConfirmTap!,
       btnText: AppStrings.save,
       useGradient: true,
+      height: 7
     );
   }
 }

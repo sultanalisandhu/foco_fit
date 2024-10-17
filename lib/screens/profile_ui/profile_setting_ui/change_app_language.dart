@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:focofit/components/k_buttons.dart';
-import 'package:focofit/components/k_check_box.dart';
 import 'package:focofit/extensions/extension.dart';
 import 'package:focofit/utils/app_colors.dart';
 import 'package:focofit/utils/app_strings.dart';
@@ -57,7 +56,6 @@ class ChangeAppLanguage extends StatelessWidget {
         ],
       ).paddingSymmetric(horizontal: 4.w),
 
-
       bottomNavigationBar: kTextButton(
         btnText: AppStrings.save,
         onPressed: () {
@@ -76,6 +74,7 @@ class ChangeAppLanguage extends StatelessWidget {
           }
         },
       ).paddingSymmetric(horizontal: 4.w,vertical: 3.h),
+
     );
   }
 }

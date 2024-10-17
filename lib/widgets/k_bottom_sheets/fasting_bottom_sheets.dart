@@ -23,34 +23,33 @@ class KFastBottomSheet {
     showModalBottomSheet(
       context: context,
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20.0)),
+        borderRadius: BorderRadius.only(topLeft: Radius.circular(20.0),topRight: Radius.circular(20.0)),
       ),
       isScrollControlled: true,
       isDismissible: true,
       backgroundColor: AppColor.whiteColor,
       builder: (BuildContext context) {
-        return SizedBox(
+        return Container(
           height: mQ.height * heightFactor,
           width: mQ.width,
-          child: Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                context.isKeyboardVisible ? 30.height : 2.height,
-                _buildHeader(),
-                1.ySpace,
-                _buildTitle(title),
-                const Divider(color: AppColor.lightGreyColor),
-                1.ySpace,
-                ...content,
-                const Spacer(),
-                onConfirmTap !=null
-                    ? _buildConfirmButton(onConfirmTap)
-                    : const SizedBox.shrink(),
-              ],
-            ),
-          ),
+          padding: const EdgeInsets.only(top: 2),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              context.isKeyboardVisible ? 30.height : 2.height,
+              _buildHeader(),
+              3.ySpace,
+              _buildTitle(title),
+              const Divider(color: AppColor.lightGreyColor),
+              1.ySpace,
+              ...content,
+              const Spacer(),
+              onConfirmTap !=null
+                  ? _buildConfirmButton(onConfirmTap)
+                  : const SizedBox.shrink(),
+              3.ySpace,
+            ],
+          ).paddingSymmetric(horizontal: 4.w),
         );
       },
     );
@@ -62,6 +61,7 @@ class KFastBottomSheet {
       context: context,
       title: AppStrings.whenYouWantToStart,
       content: [
+
         Align(
             alignment: Alignment.center,
             child: Padding(
@@ -71,6 +71,7 @@ class KFastBottomSheet {
                 textAlign: TextAlign.center,
                 style: primaryTextStyle(fontSize: 14,fontWeight: FontWeight.w400),),
             )),
+        3.ySpace,
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -149,9 +150,10 @@ class KFastBottomSheet {
             ),
           ],
         ),
+        3.ySpace,
       ],
       onConfirmTap: onConfirmTap,
-      heightFactor: 0.53,
+      heightFactor: 0.57,
     );
   }
 
@@ -178,7 +180,8 @@ class KFastBottomSheet {
                  onPressed: onConfirmTap,
                  useGradient: true,
                  btnText: AppStrings.yesInterrupt,
-               fontSize: 14
+               fontSize: 15,
+               height: 7
              ),
            ),
             2.xSpace,
@@ -188,14 +191,15 @@ class KFastBottomSheet {
                 btnText: AppStrings.noContinue,
                 gradient: AppColor.blackGradient,
               textGradient: AppColor.blackGradient,
-                fontSize: 14,
+                fontSize: 15,
+                height: 7,
               ),
             )
 
           ],
         ),
       ],
-      heightFactor: 0.27,
+      heightFactor: 0.28,
     );
   }
 
@@ -215,7 +219,7 @@ class KFastBottomSheet {
       alignment: Alignment.center,
       child: KText(
         text: title,
-          fontSize: 17,
+          fontSize: 18,
           fontWeight: FontWeight.w600,
       ),
     );
@@ -224,7 +228,7 @@ class KFastBottomSheet {
 
   static Widget _buildConfirmButton(Function()? onConfirmTap) {
     return kTextButton(
-      height: 6,
+      height: 7,
       fontSize: 16,
       width: mQ.width,
       onPressed: onConfirmTap!,

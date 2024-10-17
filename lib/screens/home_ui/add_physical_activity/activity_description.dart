@@ -78,7 +78,7 @@ class ActivityDescription extends StatelessWidget {
         },
         btnText: AppStrings.confirmAndCreate,
         gradient: AppColor.greenGradient,
-      ).paddingSymmetric(horizontal: 4.w,vertical:  3.h),
+      ).paddingSymmetric(horizontal: 5.w,vertical:  3.h),
     );
   }
 }

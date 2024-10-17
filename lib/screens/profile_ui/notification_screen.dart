@@ -25,7 +25,10 @@ class NotificationScreen extends StatelessWidget {
           trailingOnTap: (){
           Get.to(()=> NotificationSetting());
           },
-        title: AppStrings.notifications
+        title: AppStrings.notifications,
+        trailingIconColor: AppColor.greyColor,
+        trailingBorderColor: AppColor.greyColor,
+        leadingBorderColor: AppColor.greyColor
       ),
       body: Column(children: [
         1.ySpace,
@@ -38,6 +41,7 @@ class NotificationScreen extends StatelessWidget {
               decoration: BoxDecoration(
                 color: AppColor.whiteColor,
                 borderRadius: BorderRadius.circular(14),
+                border: Border.all(color: AppColor.lightGreyBorder),
                 boxShadow: const [
                   BoxShadow(
                     color: AppColor.lightGreyColor,
@@ -48,17 +52,19 @@ class NotificationScreen extends StatelessWidget {
               ),
               child: ListTile(
                 leading: showSvgIconWidget(iconPath: AppIcons.blackBellIcon),
-                title: const KText(text:  'Lorem notificatins here you can check',fontSize: 13),
-                trailing: GradientText(onTextTap: (){
-                  _showBottomSheet(context,
+                title: const KText(text:  'Lorem notificatins here you can check',fontSize: 15),
+                trailing: GradientText(
+                  onTextTap: (){
+                  _showBottomSheet(
+                      context,
                     onConfirmTap: (){Navigator.pop(context);},
                     onCancelTap: (){Navigator.pop(context);}
                 );},
                   text: AppStrings.remove,
                   gradient: AppColor.primaryGradient,
-                  style: kTextStyle(fontSize: 13),
+                  style: kTextStyle(fontSize: 15),
                 ),
-                contentPadding:  EdgeInsets.symmetric(horizontal: 4.w,vertical: 5),
+                contentPadding:  EdgeInsets.symmetric(horizontal: 3.w,vertical: 5),
               ),
             );
           }),
@@ -71,7 +77,7 @@ class NotificationScreen extends StatelessWidget {
   }) {
     showModalBottomSheet(
       context: context,
-      shape:  RoundedRectangleBorder(borderRadius: BorderRadius.circular(22.0),),
+      shape:  const RoundedRectangleBorder(borderRadius: BorderRadius.only(topLeft: Radius.circular(20),topRight: Radius.circular(20)),),
       isScrollControlled: true,
       isDismissible: false,
       backgroundColor: AppColor.whiteColor,
@@ -100,27 +106,27 @@ class NotificationScreen extends StatelessWidget {
                Row(
                  children: [
                    Expanded(
-                     child: kTextButton(
-                        height: 6,
-                        width: mQ.width,
-                        onPressed: onConfirmTap!,
-                        btnText: AppStrings.noGoWantToBack,
-                       fontSize: 14,
-                       useGradient: true
-                      ),
-                   ),
-                   1.xSpace,
-                   Expanded(
                      child: KOutlineButton(
-                       height:6,
                        onTap: onCancelTap!,
                        gradient: AppColor.blackGradient,
                        btnText: AppStrings.yesWantToDelete,
                        textGradient: AppColor.blackGradient,
-                       fontSize: 14,
+                       fontSize: 15,
+                       height: 7.5,
 
                      ),
-                   )
+                   ),
+                   1.xSpace,
+                   Expanded(
+                     child: kTextButton(
+                        width: mQ.width,
+                        onPressed: onConfirmTap!,
+                        btnText: AppStrings.noGoWantToBack,
+                       fontSize: 15,
+                       useGradient: true,
+                       height: 7.5
+                      ),
+                   ),
                  ],
                ),
                 1.ySpace,

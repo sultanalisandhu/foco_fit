@@ -23,7 +23,7 @@ Widget kTextButton( {
   return GestureDetector(
     onTap: onPressed,
     child: Container(
-      height: height != null ? height.h : 6.h,
+      height: height != null ? height.h : 7.h,
       width: width,
       alignment: Alignment.center,
       padding:  EdgeInsets.symmetric(horizontal: padding??15),
@@ -64,7 +64,7 @@ class KOutlineButton extends StatelessWidget {
     this.width,
     this.fontSize,
   })
-      : _painter = _GradientPainter(strokeWidth: 1, radius: 26, gradient: gradient);
+      : _painter = _GradientPainter(strokeWidth: 1, radius: 36, gradient: gradient);
 
 
   @override
@@ -75,7 +75,7 @@ class KOutlineButton extends StatelessWidget {
         onTap: onTap,
         child: Container(
           alignment: Alignment.center,
-          height: height != null ? height?.h : 6.h,
+          height: height != null ? height?.h : 7.h,
           padding: const EdgeInsets.symmetric(horizontal: 15),
           width: width,
           child:
@@ -111,7 +111,7 @@ Widget kNumberButton( {
     onTap: onPressed,
     child: Container(
       alignment: Alignment.center,
-      height: height != null ? height.h : 6.h,
+      height: height != null ? height.h : 7.h,
       width: width,
       padding:  EdgeInsets.symmetric(horizontal: padding??15),
       decoration: BoxDecoration(

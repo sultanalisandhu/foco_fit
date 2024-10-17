@@ -48,6 +48,7 @@ class AppIcons{
   static const String arrowDownIcon= 'assets/icons/arrowDownIcon.svg';
   static const String newAlarmIcon= 'assets/icons/newAlarmIcon.svg';
   static const String languageIcon= 'assets/icons/languageIcon.svg';
+  static const String outlineChartIcon= 'assets/icons/outlineChartIcon.svg';
 }
 
 

@@ -61,6 +61,8 @@ class CreateRecipeManual extends StatelessWidget {
                         controller: controller.recipeIngredientC,
                         hintText: AppStrings.sugarFreeCake,
                         textInputType: TextInputType.text,
+                        color: Colors.white,
+                        borderColor: AppColor.greyColor,
                       ),
                     ),
                     5.width,
@@ -69,8 +71,10 @@ class CreateRecipeManual extends StatelessWidget {
                       child: CustomTextField(
                         context: context,
                       controller: controller.recipeIngredientQuantityC,
-                      suffixText: 'g',
+                      suffixText: 'g ',
                         textDirection: TextDirection.ltr,
+                        color: Colors.white,
+                        borderColor: AppColor.greyColor,
                       )
                     ),
 
@@ -102,13 +106,14 @@ class CreateRecipeManual extends StatelessWidget {
               maxLines: 6,
               textInputType: TextInputType.text,
               textInputAction: TextInputAction.done,
-
+              color: Colors.white,
+                borderColor: AppColor.greyColor,
             ),
           ],
         ),
       ),
       bottomNavigationBar: Container(
-        padding: EdgeInsets.symmetric(horizontal: 4.w,vertical: 2.h),
+        padding: EdgeInsets.symmetric(horizontal: 5.w,vertical: 3.h),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -116,16 +121,18 @@ class CreateRecipeManual extends StatelessWidget {
               children: [
                 const Icon(Icons.info,color: AppColor.greyColor,),
                 15.width,
-                Expanded(child: KText(text: AppStrings.nutritionalInformationBasedOnIngredients,color: AppColor.greyColor,)),
+                Expanded(child: KText(text: AppStrings.nutritionalInformationBasedOnIngredients,
+                  color: AppColor.greyColor,fontSize: 15,)),
               ],
             ),
-            3.ySpace,
+            2.ySpace,
             kTextButton(
               onPressed: (){
                 Get.to(()=>RecipeAdded());
               },
               btnText: AppStrings.saveRecipe,
               gradient: AppColor.blackGradient,
+              fontSize: 16
             ),
           ],
         ),

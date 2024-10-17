@@ -49,16 +49,17 @@ class CustomExpandableContainer extends StatelessWidget {
           children: [
             KText(text: title,fontWeight: FontWeight.w600,),
             2.xSpace,
-            showSvgIconWidget(iconPath: AppIcons.arrowDownIcon)
+            showSvgIconWidget(iconPath: AppIcons.arrowDownIcon,height: 6)
           ],
         ),
-        subtitle: KText(text: subtitle, fontSize: 14,fontWeight: FontWeight.w500,color: AppColor.greyColor,),
+        subtitle: KText(text: subtitle, fontSize: 12,
+          fontWeight: FontWeight.w500,color: AppColor.greyColor,),
         leading: Image(image: AssetImage(imageUrl),),
         trailing: GestureDetector(
           onTap: onTapTrailing,
           child: Container(
-            height: 5.h,
-            width: 15.w,
+            height: 9.h,
+            width: 12.w,
             decoration: const BoxDecoration(
               gradient: AppColor.primaryGradient,
               shape: BoxShape.circle,
@@ -71,7 +72,7 @@ class CustomExpandableContainer extends StatelessWidget {
         ),
         backgroundColor: Colors.transparent,
         expandedAlignment: Alignment.topRight,
-        tilePadding: EdgeInsets.symmetric( horizontal: 2.w,vertical: 1.h),
+        tilePadding: EdgeInsets.symmetric( horizontal: 4.w,vertical: 1.h),
         childrenPadding: EdgeInsets.only(bottom:  2.h,left: 4.w,right: 4.w),
         collapsedBackgroundColor: Colors.transparent,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
@@ -81,28 +82,25 @@ class CustomExpandableContainer extends StatelessWidget {
               children: [
                 KText(
                   text: item['name'] ?? '',
-
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
                 ),
                 const Expanded(child: KText(text:'------------------------------------------------------------------------------',
                   maxLines: 1,fontSize: 12, color: AppColor.greyColor,)),
                 KText(
                   text: item['calories'] ?? '',
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
                 ),
               ],
             ),
           3.ySpace,
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              kTextButton(
-                onPressed: onEditPressed!,
-                btnText: AppStrings.historicalEditor,
-                height: 5,
-                useGradient: true,
-                fontSize: 15,
-                width: 60.w,
-              ),
-            ],
+          kTextButton(
+            onPressed: onEditPressed!,
+            btnText: AppStrings.historicalEditor,
+            useGradient: true,
+            fontSize: 16,
+            width: mQ.width,
           ),
         ],
       ),

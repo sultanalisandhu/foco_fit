@@ -16,8 +16,8 @@ class CalenderUi extends StatelessWidget {
       todayHighlightColor: AppColor.endGradient,
       selectionTextStyle: primaryTextStyle(color: Colors.white, fontSize: 14),
       headerStyle: DateRangePickerHeaderStyle(
-        textStyle: primaryTextStyle(
-          color: Colors.black,
+        textStyle: kTextStyle(
+
           fontWeight: FontWeight.w600,
         ),
         backgroundColor: AppColor.whiteColor,

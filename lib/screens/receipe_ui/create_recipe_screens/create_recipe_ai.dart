@@ -58,7 +58,7 @@ class CreateRecipeAi extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: Container(
-        padding: EdgeInsets.symmetric(horizontal: 4.w,vertical: 2.h),
+        padding: EdgeInsets.symmetric(horizontal: 5.w,vertical: 3.h),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -74,13 +74,14 @@ class CreateRecipeAi extends StatelessWidget {
                 )
               ],
             ),
-            3.ySpace,
+            2.ySpace,
             kTextButton(
               onPressed: (){
                 Get.to(()=> GeneratingRecipe());
               },
               btnText: AppStrings.createRecipe,
               gradient: AppColor.blackGradient,
+              fontSize: 16
             ),
           ],
         ),
